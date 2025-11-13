@@ -1,0 +1,25 @@
+# Blog Posts Directory
+
+Add your markdown (.md) files here. Each file should include frontmatter with:
+- title: Blog post title
+- date: Publication date (YYYY-MM-DD)
+- excerpt: Short description
+- author: Author name (optional)
+- category: Category name (optional)
+- tags: Array of tags (optional)
+- image: Featured image URL (optional)
+
+Example:
+
+---
+title: "How to Keep Your Pet Healthy"
+date: "2025-01-15"
+excerpt: "Learn essential tips for maintaining your pet's health and wellbeing."
+author: "Dr. Sarah Johnson"
+category: "Health"
+tags: ["health", "wellness", "tips"]
+image: "/images/blog/pet-health.jpg"
+---
+
+Your blog content here in markdown format...
+
