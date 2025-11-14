@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
     images: [
       {
-        url: 'https://nearbypetcare.com/og-image.jpg',
+        url: 'https://nearbypetcare.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Nearby Pet Care - Professional Pet Care Services',
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Nearby Pet Care - Professional Pet Care Services Near You',
     description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
-    images: ['https://nearbypetcare.com/og-image.jpg'],
+    images: ['https://nearbypetcare.com/og-image.png'],
     creator: '@nearbypetcare',
   },
   robots: {
