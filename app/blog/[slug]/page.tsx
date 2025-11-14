@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getPostBySlug, getAllSlugs } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import CopyButton from '@/components/CopyButton';
@@ -82,8 +83,83 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const publishedTime = new Date(post.date).toISOString();
+  const modifiedTime = new Date(post.date).toISOString();
+
+  // Article Structured Data
+  const articleStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.image || 'https://nearbypetcare.com/og-image.jpg',
+    datePublished: publishedTime,
+    dateModified: modifiedTime,
+    author: {
+      '@type': 'Person',
+      name: post.author || 'Trishul D N.',
+      url: 'https://nearbypetcare.com/about'
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nearbypetcare.com/logo.png'
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://nearbypetcare.com/blog/${slug}`
+    },
+    articleSection: post.category || 'General',
+    keywords: post.tags?.join(', ') || '',
+    wordCount: post.content.split(' ').length,
+    timeRequired: `PT${post.readingTime || 5}M`,
+    inLanguage: 'en-US'
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://nearbypetcare.com/blog'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://nearbypetcare.com/blog/${slug}`
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
@@ -207,10 +283,14 @@ export default async function BlogPostPage({ params }: PageProps) {
               {/* Article Image */}
               {post.image && (
                 <div className="mb-4 sm:mb-6">
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
+                    width={1200}
+                    height={630}
                     className="w-full h-auto rounded-lg sm:rounded-xl"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   />
                 </div>
               )}

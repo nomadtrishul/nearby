@@ -16,7 +16,11 @@ export default function CopyButton({ content, className = '' }: CopyButtonProps)
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      console.error('Failed to copy:', err);
+      // Silently fail - user can manually copy if needed
+      // In production, you might want to show a toast notification
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Failed to copy:', err);
+      }
     }
   };
 

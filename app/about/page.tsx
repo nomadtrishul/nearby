@@ -26,6 +26,46 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  // AboutPage Structured Data
+  const aboutStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'About Nearby Pet Care',
+    description: 'Learn about Nearby Pet Care, founded by a passionate pet lover dedicated to making quality pet care accessible to all.',
+    url: 'https://nearbypetcare.com/about',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      description: 'A platform created by a pet lover, for pet lovers. We believe every pet deserves access to quality care, and every pet owner deserves peace of mind.',
+      url: 'https://nearbypetcare.com',
+      foundingDate: '2020',
+      numberOfEmployees: {
+        '@type': 'QuantitativeValue',
+        value: '50+'
+      }
+    }
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About',
+        item: 'https://nearbypetcare.com/about'
+      }
+    ]
+  };
+
   const values = [
     {
       title: 'Compassion',
@@ -51,6 +91,19 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">

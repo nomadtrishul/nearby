@@ -46,8 +46,159 @@ export const metadata: Metadata = {
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
 
+  // Structured Data for Services
+  const servicesStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'Service',
+        name: 'Pet Grooming',
+        description: 'Professional grooming services including bathing, haircuts, nail trimming, and styling. Mobile grooming available.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Nearby Pet Care'
+        },
+        areaServed: 'US',
+        url: 'https://nearbypetcare.com/services/grooming'
+      },
+      {
+        '@type': 'Service',
+        name: 'Pet Boarding',
+        description: 'Safe and comfortable overnight stays with 24/7 supervision. Perfect for vacations and extended trips.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Nearby Pet Care'
+        },
+        areaServed: 'US',
+        url: 'https://nearbypetcare.com/services/boarding'
+      },
+      {
+        '@type': 'Service',
+        name: 'Pet Daycare',
+        description: 'Daily care and socialization for your pet while you work. Exercise, playtime, and mental stimulation included.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Nearby Pet Care'
+        },
+        areaServed: 'US',
+        url: 'https://nearbypetcare.com/services/daycare'
+      },
+      {
+        '@type': 'Service',
+        name: 'Pet Training',
+        description: 'Professional training programs for obedience, behavior modification, and specialized skills development.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Nearby Pet Care'
+        },
+        areaServed: 'US',
+        url: 'https://nearbypetcare.com/services/training'
+      }
+    ]
+  };
+
+  // Structured Data for Reviews/Testimonials
+  const reviewsStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Review',
+    itemReviewed: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care'
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: '5',
+      bestRating: '5'
+    },
+    author: {
+      '@type': 'Person',
+      name: 'Sarah Johnson'
+    },
+    reviewBody: 'Finding reliable pet care services near me was a game-changer. The grooming service was exceptional, and my dog came back looking and feeling amazing!'
+  };
+
+  // Structured Data for FAQ
+  const faqStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What pet care services do you offer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We offer comprehensive pet care services including professional grooming, safe boarding, fun daycare, and expert training. All services are provided by verified, licensed professionals.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I book an appointment?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You can book an appointment easily through our online booking system. Simply visit our Book page, select your preferred service, date, and time, and fill out the booking form. We\'ll confirm your appointment shortly.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Are your pet care providers verified?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, all our pet care providers are thoroughly vetted, licensed, and insured. We maintain the highest standards of care and ensure all professionals meet our strict quality requirements.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you offer mobile pet care services?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, we offer mobile pet care services for your convenience. Our mobile grooming service brings professional care directly to your home, perfect for pets who are anxious about traveling or entering new environments.'
+        }
+      }
+    ]
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(servicesStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(reviewsStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-black transition-colors">
         {/* Animated Background Elements */}

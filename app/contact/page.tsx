@@ -11,12 +11,19 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    try {
+      // TODO: Implement form submission API endpoint
+      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
+      
+      // Temporary: Show success message
+      alert('Thank you for your message! We will get back to you soon.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (error) {
+      // Error handling will be implemented with API endpoint
+      alert('Sorry, there was an error submitting your message. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -53,8 +60,63 @@ export default function ContactPage() {
     }
   ];
 
+  // ContactPage Structured Data
+  const contactStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Nearby Pet Care',
+    description: 'Get in touch with Nearby Pet Care. We\'re here to help with any questions or concerns about our pet care services.',
+    url: 'https://nearbypetcare.com/contact',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      url: 'https://nearbypetcare.com',
+      email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'Customer Service',
+        email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
+        areaServed: 'US',
+        availableLanguage: ['English']
+      }
+    }
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: 'https://nearbypetcare.com/contact'
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(contactStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">

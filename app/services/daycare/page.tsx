@@ -26,6 +26,50 @@ export const metadata: Metadata = {
 };
 
 export default function DaycarePage() {
+  // Service Structured Data
+  const serviceStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Pet Daycare',
+    name: 'Pet Daycare Services',
+    description: 'Pet daycare services providing socialization, exercise, and mental stimulation. Supervised play, structured activities, and feeding services for your pet.',
+    provider: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      url: 'https://nearbypetcare.com'
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States'
+    }
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://nearbypetcare.com/services'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Pet Daycare',
+        item: 'https://nearbypetcare.com/services/daycare'
+      }
+    ]
+  };
+
   const activities = [
     'Supervised group play',
     'Individual attention time',
@@ -72,6 +116,19 @@ export default function DaycarePage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">

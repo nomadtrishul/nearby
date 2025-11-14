@@ -15,21 +15,29 @@ export default function BookPage() {
     notes: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Booking submitted:', formData);
-    alert('Booking request submitted! We will confirm your appointment shortly.');
-    setFormData({
-      service: '',
-      date: '',
-      time: '',
-      petName: '',
-      petType: '',
-      ownerName: '',
-      email: '',
-      phone: '',
-      notes: ''
-    });
+    try {
+      // TODO: Implement booking API endpoint
+      // Example: await fetch('/api/bookings', { method: 'POST', body: JSON.stringify(formData) });
+      
+      // Temporary: Show success message
+      alert('Booking request submitted! We will confirm your appointment shortly.');
+      setFormData({
+        service: '',
+        date: '',
+        time: '',
+        petName: '',
+        petType: '',
+        ownerName: '',
+        email: '',
+        phone: '',
+        notes: ''
+      });
+    } catch (error) {
+      // Error handling will be implemented with API endpoint
+      alert('Sorry, there was an error submitting your booking. Please try again.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -53,8 +61,35 @@ export default function BookPage() {
     '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM'
   ];
 
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Book Appointment',
+        item: 'https://nearbypetcare.com/book'
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">

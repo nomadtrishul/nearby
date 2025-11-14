@@ -8,8 +8,79 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nearby Pet Care - Professional Pet Care Services",
-  description: "Find trusted pet care services near you. Professional grooming, boarding, and pet care solutions.",
+  metadataBase: new URL('https://nearbypetcare.com'),
+  title: {
+    default: "Nearby Pet Care - Professional Pet Care Services Near You",
+    template: "%s | Nearby Pet Care"
+  },
+  description: "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services. Connect with experienced pet care professionals who treat your pets like family.",
+  keywords: ['pet care services', 'dog grooming', 'pet boarding', 'pet daycare', 'pet training', 'pet care near me', 'professional pet care', 'mobile pet care', 'pet grooming services', 'dog boarding', 'cat boarding'],
+  authors: [{ name: 'Nearby Pet Care Team' }],
+  creator: 'Nearby Pet Care',
+  publisher: 'Nearby Pet Care',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://nearbypetcare.com',
+    siteName: 'Nearby Pet Care',
+    title: 'Nearby Pet Care - Professional Pet Care Services Near You',
+    description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
+    images: [
+      {
+        url: 'https://nearbypetcare.com/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Nearby Pet Care - Professional Pet Care Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nearby Pet Care - Professional Pet Care Services Near You',
+    description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
+    images: ['https://nearbypetcare.com/og-image.jpg'],
+    creator: '@nearbypetcare',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '',
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || '',
+    yahoo: process.env.NEXT_PUBLIC_YAHOO_VERIFICATION || '',
+    other: {
+      'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION || '',
+    },
+  },
+  alternates: {
+    canonical: 'https://nearbypetcare.com',
+  },
+  icons: {
+    icon: [
+      { url: '/logo-2.png', sizes: 'any' },
+      { url: '/logo-2.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/logo-2.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/logo-2.png',
+  },
+  other: {
+    'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION || '',
+  },
 };
 
 export default function RootLayout({
@@ -20,6 +91,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Favicon */}
+        <link rel="icon" href="/logo-2.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo-2.png" />
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -68,7 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             `,
           }}
         />
-        {/* Organization Structured Data */}
+        {/* Organization Structured Data - Platform/Marketplace */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -78,28 +152,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               name: 'Nearby Pet Care',
               url: 'https://nearbypetcare.com',
               logo: 'https://nearbypetcare.com/logo.png',
-              description: 'Professional pet care services connecting pet owners with trusted pet care providers. Offering grooming, boarding, daycare, and training services.',
+              description: 'Online platform connecting pet owners with trusted pet care providers. Find professional grooming, boarding, daycare, and training services near you.',
               contactPoint: {
                 '@type': 'ContactPoint',
-                telephone: '+1-555-123-4567',
                 contactType: 'Customer Service',
-                email: 'info@nearbypetcare.com',
+                email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
                 areaServed: 'US',
-                availableLanguage: 'English',
+                availableLanguage: ['English']
               },
               sameAs: [
-                'https://www.facebook.com/nearbypetcare',
-                'https://www.twitter.com/nearbypetcare',
-                'https://www.instagram.com/nearbypetcare',
-              ],
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: '123 Pet Care Ave',
-                addressLocality: 'City',
-                addressRegion: 'ST',
-                postalCode: '12345',
-                addressCountry: 'US',
+                ...(process.env.NEXT_PUBLIC_FACEBOOK_URL ? [process.env.NEXT_PUBLIC_FACEBOOK_URL] : []),
+                ...(process.env.NEXT_PUBLIC_TWITTER_URL ? [process.env.NEXT_PUBLIC_TWITTER_URL] : []),
+                ...(process.env.NEXT_PUBLIC_INSTAGRAM_URL ? [process.env.NEXT_PUBLIC_INSTAGRAM_URL] : []),
+              ].filter(Boolean),
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '127',
+                bestRating: '5',
+                worstRating: '1'
+              }
+            }),
+          }}
+        />
+        {/* WebSite Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Nearby Pet Care',
+              url: 'https://nearbypetcare.com',
+              description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
+              publisher: {
+                '@type': 'Organization',
+                name: 'Nearby Pet Care',
+                logo: {
+                  '@type': 'ImageObject',
+                  url: 'https://nearbypetcare.com/logo.png'
+                }
               },
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: {
+                  '@type': 'EntryPoint',
+                  urlTemplate: 'https://nearbypetcare.com/search?q={search_term_string}'
+                },
+                'query-input': 'required name=search_term_string'
+              }
             }),
           }}
         />

@@ -91,7 +91,10 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       views: data.views || 0,
     };
   } catch (error) {
-    console.error('Error processing markdown:', error);
+    // Log error in development, fail silently in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error processing markdown:', error);
+    }
     return null;
   }
 }

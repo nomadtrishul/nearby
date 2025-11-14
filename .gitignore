@@ -36,3 +36,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# documentation (optional - uncomment if you don't want SEO reports in git)
+# SEO_AUDIT_REPORT.md
+# SEO_FIXES_SUMMARY.md
+

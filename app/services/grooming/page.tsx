@@ -26,6 +26,86 @@ export const metadata: Metadata = {
 };
 
 export default function GroomingPage() {
+  // Service Structured Data
+  const serviceStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Pet Grooming',
+    name: 'Pet Grooming Services',
+    description: 'Professional pet grooming services including bath, haircut, nail trimming, and more. Mobile grooming available. Keep your pet looking and feeling their best.',
+    provider: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      url: 'https://nearbypetcare.com'
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States'
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Grooming Packages',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Basic Groom',
+            description: 'Bath & Dry, Nail Trim, Ear Cleaning, Brush Out, Sanitary Trim'
+          },
+          price: '45',
+          priceCurrency: 'USD'
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Full Groom',
+            description: 'Everything in Basic plus Haircut & Styling, Teeth Brushing, Paw Pad Trim, De-matting'
+          },
+          price: '75',
+          priceCurrency: 'USD'
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Deluxe Groom',
+            description: 'Everything in Full plus De-shedding Treatment, Aromatherapy, Blueberry Facial, Coat Conditioning'
+          },
+          price: '120',
+          priceCurrency: 'USD'
+        }
+      ]
+    }
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://nearbypetcare.com/services'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Pet Grooming',
+        item: 'https://nearbypetcare.com/services/grooming'
+      }
+    ]
+  };
+
   const packages = [
     {
       name: 'Basic Groom',
@@ -91,6 +171,19 @@ export default function GroomingPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">

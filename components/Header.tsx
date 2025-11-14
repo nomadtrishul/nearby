@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
@@ -13,16 +14,18 @@ export default function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
-              <div className="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold text-base sm:text-lg md:text-xl">
-                NP
-              </div>
+          <Link href="/" className="flex items-center group">
+            <div className="relative h-8 w-auto sm:h-10 md:h-12">
+              <Image
+                src="/logo.png"
+                alt="Nearby Pet Care Logo"
+                width={200}
+                height={48}
+                className="h-full w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+                sizes="(max-width: 640px) 150px, (max-width: 768px) 180px, 200px"
+              />
             </div>
-            <span className="text-gray-900 dark:text-white font-semibold text-base sm:text-lg md:text-xl hidden sm:block transition-colors">
-              Nearby Pet Care
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

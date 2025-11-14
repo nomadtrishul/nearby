@@ -26,6 +26,50 @@ export const metadata: Metadata = {
 };
 
 export default function BoardingPage() {
+  // Service Structured Data
+  const serviceStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Pet Boarding',
+    name: 'Pet Boarding Services',
+    description: 'Safe and comfortable pet boarding services with 24/7 supervision. Individual suites, daily exercise, and personalized care for your pet while you\'re away.',
+    provider: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      url: 'https://nearbypetcare.com'
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States'
+    }
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://nearbypetcare.com/services'
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Pet Boarding',
+        item: 'https://nearbypetcare.com/services/boarding'
+      }
+    ]
+  };
+
   const features = [
     'Individual climate-controlled suites',
     '24/7 supervision and care',
@@ -70,6 +114,19 @@ export default function BoardingPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">

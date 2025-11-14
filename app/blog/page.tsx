@@ -39,8 +39,58 @@ export default function BlogPage() {
   const categories = getAllCategories();
   const tags = getAllTags();
 
+  // Blog Structured Data
+  const blogStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'Pet Care Blog',
+    description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
+    url: 'https://nearbypetcare.com/blog',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nearbypetcare.com/logo.png'
+      }
+    }
+  };
+
+  // Breadcrumb Structured Data
+  const breadcrumbStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com'
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://nearbypetcare.com/blog'
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(blogStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+      />
       {/* Hero Section */}
       <section className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
