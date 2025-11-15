@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -162,6 +164,16 @@ export default function Footer() {
             <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
               Terms of Service
             </Link>
+            <button
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new Event('show-cookie-banner'));
+                }
+              }}
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"
+            >
+              Cookie Preferences
+            </button>
           </div>
         </div>
       </div>

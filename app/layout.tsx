@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ConsentBanner from "@/components/ConsentBanner";
+import AnalyticsLoader from "@/components/AnalyticsLoader";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -94,38 +96,50 @@ export default function RootLayout({
         {/* Favicon */}
         <link rel="icon" href="/logo-2.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo-2.png" />
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W8HWTDWN');`,
-          }}
-        />
-        {/* End Google Tag Manager */}
-        {/* Google tag (gtag.js) */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-KVZJ3QXM24"
-        />
+        {/* Initialize Google Consent Mode v2 - Must be loaded before any analytics scripts */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-KVZJ3QXM24');
+              
+              // Initialize consent mode with default 'denied' state
+              // This ensures compliance before user consent is obtained
+              gtag('consent', 'default', {
+                'analytics_storage': 'denied',
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'granted',
+                'wait_for_update': 500,
+              });
+              
+              // Check for existing consent and update if available
+              (function() {
+                try {
+                  const consent = localStorage.getItem('cookie-consent');
+                  if (consent) {
+                    const preferences = JSON.parse(consent);
+                    gtag('consent', 'update', {
+                      'analytics_storage': preferences.analytics ? 'granted' : 'denied',
+                      'ad_storage': preferences.marketing ? 'granted' : 'denied',
+                      'ad_user_data': preferences.marketing ? 'granted' : 'denied',
+                      'ad_personalization': preferences.marketing ? 'granted' : 'denied',
+                      'functionality_storage': preferences.functional ? 'granted' : 'denied',
+                      'personalization_storage': preferences.functional ? 'granted' : 'denied',
+                      'security_storage': 'granted',
+                    });
+                  }
+                } catch (e) {
+                  // If consent parsing fails, keep defaults
+                }
+              })();
             `,
           }}
         />
-        {/* Google AdSense */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2513522563082642"
-          crossOrigin="anonymous"
-        />
+        {/* Analytics scripts will be loaded dynamically by AnalyticsLoader component after consent */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -217,9 +231,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <ThemeProvider>
+          <AnalyticsLoader />
           <Header />
           {children}
           <Footer />
+          <ConsentBanner />
         </ThemeProvider>
       </body>
     </html>

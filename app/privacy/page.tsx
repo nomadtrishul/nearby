@@ -157,19 +157,128 @@ export default function PrivacyPage() {
                   5. Cookies and Tracking Technologies
                 </h2>
                 <p className="mb-3">
-                  We use cookies and similar tracking technologies to collect and store information about your preferences and activity on our website. Cookies are small data files stored on your device that help us improve your experience. We use cookies for:
+                  We use cookies and similar tracking technologies to collect and store information about your preferences and activity on our website. Cookies are small data files stored on your device that help us improve your experience.
+                </p>
+                
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Cookie Consent Management
+                </h3>
+                <p className="mb-3">
+                  We respect your privacy and provide you with control over your cookie preferences through our cookie consent banner. When you first visit our website, you will see a consent banner that allows you to:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Remembering your preferences and settings</li>
-                  <li>Analyzing website traffic and usage patterns</li>
-                  <li>Providing personalized content and recommendations</li>
-                  <li>Improving website functionality and performance</li>
+                  <li>Accept all cookies</li>
+                  <li>Reject all optional cookies</li>
+                  <li>Customize your cookie preferences by category</li>
+                  <li>Review and change your preferences at any time through the "Cookie Preferences" link in our footer</li>
                 </ul>
                 <p className="mb-3">
-                  You can control cookies through your browser settings. Most browsers allow you to refuse cookies or alert you when cookies are being sent. However, if you disable cookies, some features of our website may not function properly.
+                  Your consent preferences are stored in your browser's localStorage and will be remembered for future visits. You can update your preferences at any time by clicking the "Cookie Preferences" link in our website footer.
                 </p>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Types of Cookies We Use
+                </h3>
+                <p className="mb-3">
+                  We categorize cookies based on their purpose and function:
+                </p>
+                
+                <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 mt-3 transition-colors">
+                  Necessary Cookies
+                </h4>
+                <p className="mb-3">
+                  These cookies are essential for the website to function properly and cannot be disabled. They are usually set in response to actions made by you, such as setting your privacy preferences, logging in, or filling in forms. These cookies do not store any personally identifiable information.
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Session management and authentication</li>
+                  <li>Security and fraud prevention</li>
+                  <li>Cookie consent preferences</li>
+                  <li>Load balancing and website functionality</li>
+                </ul>
+
+                <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 mt-3 transition-colors">
+                  Analytics Cookies
+                </h4>
+                <p className="mb-3">
+                  These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use Google Analytics and similar services to analyze website usage, which helps us improve our services and user experience. These cookies are only set if you consent to analytics cookies.
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Page views and navigation patterns</li>
+                  <li>Time spent on pages</li>
+                  <li>Traffic sources and user demographics (anonymized)</li>
+                  <li>Error tracking and performance monitoring</li>
+                </ul>
+                <p className="mb-3">
+                  We use Google Consent Mode v2 to ensure that analytics data is collected in compliance with your consent preferences. When you do not consent to analytics cookies, we do not load analytics scripts or collect analytics data.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 mt-3 transition-colors">
+                  Marketing Cookies
+                </h4>
+                <p className="mb-3">
+                  These cookies are used to deliver personalized advertisements and track campaign performance. They may be set by our advertising partners and are only activated if you consent to marketing cookies. These cookies can track your browsing activity across different websites to build a profile of your interests.
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Google AdSense for personalized advertising</li>
+                  <li>Ad campaign performance tracking</li>
+                  <li>Retargeting and remarketing</li>
+                  <li>Conversion tracking</li>
+                </ul>
+                <p className="mb-3">
+                  We use Google Consent Mode v2 to manage advertising consent. Marketing cookies are only set if you explicitly consent to them. You can withdraw your consent at any time through the cookie preferences.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-2 mt-3 transition-colors">
+                  Functional Cookies
+                </h4>
+                <p className="mb-3">
+                  These cookies enable enhanced functionality and personalization, such as remembering your preferences and settings. They may be set by us or by third-party providers whose services we have added to our pages.
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Theme preferences (light/dark mode)</li>
+                  <li>Language preferences</li>
+                  <li>User interface customizations</li>
+                  <li>Remembering form data and preferences</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Third-Party Cookies
+                </h3>
+                <p className="mb-3">
+                  We use the following third-party services that may set cookies:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Google Analytics:</strong> Web analytics service (requires analytics consent)</li>
+                  <li><strong>Google Tag Manager:</strong> Tag management system (requires analytics or marketing consent)</li>
+                  <li><strong>Google AdSense:</strong> Advertising service (requires marketing consent)</li>
+                </ul>
+                <p className="mb-3">
+                  These third-party services have their own privacy policies and cookie practices. We encourage you to review their policies:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Google Privacy Policy</a></li>
+                  <li><a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Google Cookie Policy</a></li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Managing Your Cookie Preferences
+                </h3>
+                <p className="mb-3">
+                  You have several options for managing cookies:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Cookie Consent Banner:</strong> Use our cookie consent banner to accept, reject, or customize cookie preferences when you first visit our site</li>
+                  <li><strong>Cookie Preferences Link:</strong> Click "Cookie Preferences" in our website footer to change your settings at any time</li>
+                  <li><strong>Browser Settings:</strong> Most browsers allow you to refuse cookies or alert you when cookies are being sent. However, disabling cookies may affect website functionality</li>
+                  <li><strong>Opt-Out Tools:</strong> You can opt out of certain third-party cookies through industry opt-out tools such as:
+                    <ul className="list-disc list-inside space-y-1 mt-2 ml-6">
+                      <li><a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Digital Advertising Alliance</a></li>
+                      <li><a href="https://www.networkadvertising.org/choices/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Network Advertising Initiative</a></li>
+                    </ul>
+                  </li>
+                </ul>
                 <p>
-                  We may also use third-party analytics services that use cookies and similar technologies to analyze website usage. These services may collect information about your use of our website and other websites to provide analytics and advertising services.
+                  Please note that if you disable cookies, some features of our website may not function properly, and your user experience may be affected.
                 </p>
               </section>
 
@@ -178,43 +287,201 @@ export default function PrivacyPage() {
                   6. Your Rights and Choices
                 </h2>
                 <p className="mb-3">
-                  You have certain rights regarding your personal information, and we are committed to helping you exercise these rights. Depending on your location, you may have the following rights:
+                  You have certain rights regarding your personal information, and we are committed to helping you exercise these rights. Depending on your location, you may have additional rights under applicable privacy laws such as GDPR (General Data Protection Regulation) or CCPA (California Consumer Privacy Act).
                 </p>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Access and Portability
+                  General Rights
                 </h3>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Access:</strong> Request access to the personal information we hold about you</li>
+                  <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information</li>
+                  <li><strong>Deletion:</strong> Request deletion of your personal information, subject to legal obligations</li>
+                  <li><strong>Portability:</strong> Request a copy of your data in a portable format</li>
+                  <li><strong>Objection:</strong> Object to certain processing of your personal information</li>
+                  <li><strong>Restriction:</strong> Request restriction of processing in certain circumstances</li>
+                  <li><strong>Withdraw Consent:</strong> Withdraw consent for processing based on consent at any time</li>
+                </ul>
                 <p className="mb-3">
-                  You have the right to access the personal information we hold about you and request a copy of your data in a portable format. You can view and update much of your information directly through your account settings.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Correction and Updates
-                </h3>
-                <p className="mb-3">
-                  You have the right to correct inaccurate or incomplete information. You can update your personal information through your account settings or by contacting us directly.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Deletion
-                </h3>
-                <p className="mb-3">
-                  You have the right to request deletion of your personal information, subject to certain exceptions such as legal obligations or legitimate business interests. We will honor deletion requests to the extent permitted by law.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Opt-Out of Marketing Communications
-                </h3>
-                <p className="mb-3">
-                  You can opt-out of receiving marketing communications from us at any time by clicking the unsubscribe link in our emails or by updating your communication preferences in your account settings. Please note that you may still receive service-related communications even if you opt-out of marketing messages.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Data Processing Restrictions
-                </h3>
-                <p>
-                  You have the right to object to or restrict certain processing of your personal information. To exercise any of these rights, please contact us using the information provided in the Contact Us section below.
+                  To exercise any of these rights, please contact us using the information provided in the Contact Us section below. We will respond to your request within the timeframes required by applicable law (typically 30 days, or 45 days in some cases).
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  7. Data Retention
+                  7. GDPR Compliance (European Users)
+                </h2>
+                <p className="mb-3">
+                  If you are located in the European Economic Area (EEA), United Kingdom, or Switzerland, the General Data Protection Regulation (GDPR) provides you with specific rights regarding your personal data. This section explains how we comply with GDPR requirements.
+                </p>
+                
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Legal Basis for Processing
+                </h3>
+                <p className="mb-3">
+                  We process your personal data based on the following legal bases:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Consent:</strong> When you provide explicit consent, such as for marketing communications or non-essential cookies</li>
+                  <li><strong>Contract Performance:</strong> To fulfill our contractual obligations when you book services</li>
+                  <li><strong>Legal Obligation:</strong> To comply with legal requirements, such as tax or accounting obligations</li>
+                  <li><strong>Legitimate Interests:</strong> For purposes such as fraud prevention, security, and service improvement, where our interests do not override your rights</li>
+                  <li><strong>Vital Interests:</strong> To protect the health and safety of pets in emergency situations</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Your GDPR Rights
+                </h3>
+                <p className="mb-3">
+                  Under GDPR, you have the following rights:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Right of Access (Article 15):</strong> You can request information about what personal data we hold about you and how we process it</li>
+                  <li><strong>Right to Rectification (Article 16):</strong> You can request correction of inaccurate or incomplete personal data</li>
+                  <li><strong>Right to Erasure (Article 17):</strong> You can request deletion of your personal data in certain circumstances (the "right to be forgotten")</li>
+                  <li><strong>Right to Restrict Processing (Article 18):</strong> You can request that we limit how we use your personal data</li>
+                  <li><strong>Right to Data Portability (Article 20):</strong> You can request a copy of your data in a structured, machine-readable format</li>
+                  <li><strong>Right to Object (Article 21):</strong> You can object to processing based on legitimate interests or for direct marketing purposes</li>
+                  <li><strong>Right to Withdraw Consent:</strong> You can withdraw consent at any time where processing is based on consent</li>
+                  <li><strong>Right to Lodge a Complaint:</strong> You have the right to file a complaint with your local data protection authority</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Data Controller and Data Protection Officer
+                </h3>
+                <p className="mb-3">
+                  Nearby Pet Care is the data controller for personal data collected through our services. For GDPR-related inquiries, you can contact us at:
+                </p>
+                <div className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg mb-4">
+                  <p className="mb-2">
+                    <strong className="text-gray-900 dark:text-white">Email:</strong>{' '}
+                    <a href="mailto:privacy@nearbypetcare.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+                      privacy@nearbypetcare.com
+                    </a>
+                  </p>
+                  <p>
+                    <strong className="text-gray-900 dark:text-white">Subject Line:</strong> GDPR Request
+                  </p>
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  International Data Transfers
+                </h3>
+                <p className="mb-3">
+                  Your personal data may be transferred to and processed in countries outside the EEA. When we transfer data outside the EEA, we ensure appropriate safeguards are in place, such as:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Standard Contractual Clauses approved by the European Commission</li>
+                  <li>Adequacy decisions by the European Commission</li>
+                  <li>Other appropriate safeguards as required by GDPR</li>
+                </ul>
+                <p>
+                  By using our services, you consent to the transfer of your data to countries outside the EEA with appropriate safeguards in place.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
+                  8. CCPA Compliance (California Residents)
+                </h2>
+                <p className="mb-3">
+                  If you are a California resident, the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) provide you with specific rights regarding your personal information. This section explains your rights and how we comply with CCPA/CPRA requirements.
+                </p>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Information We Collect
+                </h3>
+                <p className="mb-3">
+                  In the past 12 months, we have collected the following categories of personal information:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Identifiers:</strong> Name, email address, phone number, IP address, device identifiers</li>
+                  <li><strong>Personal Information:</strong> Payment information, billing address, pet information</li>
+                  <li><strong>Protected Characteristics:</strong> Not collected</li>
+                  <li><strong>Commercial Information:</strong> Purchase history, booking records, service preferences</li>
+                  <li><strong>Internet Activity:</strong> Browsing history, search history, interaction with our website</li>
+                  <li><strong>Geolocation Data:</strong> Location data when using location-based features</li>
+                  <li><strong>Sensory Data:</strong> Not collected</li>
+                  <li><strong>Professional Information:</strong> Not collected</li>
+                  <li><strong>Inferences:</strong> Preferences and characteristics derived from your use of our services</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  How We Use Your Information
+                </h3>
+                <p className="mb-3">
+                  We use the personal information we collect for the business purposes described in Section 2 of this Privacy Policy, including:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Providing and improving our services</li>
+                  <li>Processing transactions and bookings</li>
+                  <li>Communicating with you</li>
+                  <li>Security and fraud prevention</li>
+                  <li>Legal compliance</li>
+                  <li>Marketing (with your consent)</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Information Sharing and Sale
+                </h3>
+                <p className="mb-3">
+                  We do not sell your personal information to third parties. We may share your information with service providers as described in Section 3 of this Privacy Policy. In the past 12 months, we have shared the following categories of personal information with service providers:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Identifiers</li>
+                  <li>Personal Information</li>
+                  <li>Commercial Information</li>
+                  <li>Internet Activity</li>
+                  <li>Geolocation Data</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Your CCPA Rights
+                </h3>
+                <p className="mb-3">
+                  As a California resident, you have the following rights:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Right to Know:</strong> You can request information about what personal information we collect, use, disclose, and sell (we do not sell personal information)</li>
+                  <li><strong>Right to Delete:</strong> You can request deletion of your personal information, subject to certain exceptions</li>
+                  <li><strong>Right to Opt-Out:</strong> You can opt-out of the sale of personal information (we do not sell personal information)</li>
+                  <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your CCPA rights</li>
+                  <li><strong>Right to Correct:</strong> You can request correction of inaccurate personal information</li>
+                  <li><strong>Right to Limit Use of Sensitive Information:</strong> You can request limits on the use of sensitive personal information</li>
+                </ul>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  How to Exercise Your CCPA Rights
+                </h3>
+                <p className="mb-3">
+                  To exercise your CCPA rights, you can:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Submit a request by email to <a href="mailto:privacy@nearbypetcare.com" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@nearbypetcare.com</a> with "CCPA Request" in the subject line</li>
+                  <li>Use the "Cookie Preferences" link in our website footer to manage cookie consent</li>
+                  <li>Contact us through our <Link href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact Us</Link> page</li>
+                </ul>
+                <p className="mb-3">
+                  We will verify your identity before processing your request. We may ask for additional information to verify your identity, such as your email address or account information. We will respond to your request within 45 days, or inform you if we need additional time.
+                </p>
+                <p>
+                  You can designate an authorized agent to make requests on your behalf. The authorized agent must provide proof of authorization, and we may still verify your identity directly.
+                </p>
+
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  "Do Not Sell or Share My Personal Information"
+                </h3>
+                <p className="mb-3">
+                  We do not sell your personal information. However, if you would like to opt-out of any potential future sales or sharing of personal information, you can do so by:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Clicking "Cookie Preferences" in our website footer and disabling marketing cookies</li>
+                  <li>Emailing us at <a href="mailto:privacy@nearbypetcare.com" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@nearbypetcare.com</a></li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
+                  9. Data Retention
                 </h2>
                 <p className="mb-3">
                   We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. Our retention practices include:
@@ -232,7 +499,7 @@ export default function PrivacyPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  8. Children's Privacy
+                  10. Children's Privacy
                 </h2>
                 <p>
                   Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately. If we become aware that we have collected personal information from a child without parental consent, we will take steps to delete that information promptly.
@@ -241,7 +508,7 @@ export default function PrivacyPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  9. Third-Party Links
+                  11. Third-Party Links
                 </h2>
                 <p>
                   Our website may contain links to third-party websites, services, or applications that are not operated by us. We are not responsible for the privacy practices of these third parties. We encourage you to review the privacy policies of any third-party sites you visit. This Privacy Policy applies only to information collected by Nearby Pet Care.
@@ -250,16 +517,24 @@ export default function PrivacyPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  10. International Data Transfers
+                  12. International Data Transfers
                 </h2>
+                <p className="mb-3">
+                  Your information may be transferred to and processed in countries other than your country of residence. These countries may have data protection laws that differ from those in your country. We take appropriate measures to ensure your information receives adequate protection, including:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Standard Contractual Clauses for transfers from the EEA</li>
+                  <li>Adequacy decisions where applicable</li>
+                  <li>Other appropriate safeguards as required by applicable law</li>
+                </ul>
                 <p>
-                  Your information may be transferred to and processed in countries other than your country of residence. These countries may have data protection laws that differ from those in your country. By using our services, you consent to the transfer of your information to these countries. We take appropriate measures to ensure your information receives adequate protection in accordance with this Privacy Policy.
+                  By using our services, you consent to the transfer of your information to these countries with appropriate safeguards in place. For more information about international data transfers under GDPR, please see Section 7.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  11. Changes to This Privacy Policy
+                  13. Changes to This Privacy Policy
                 </h2>
                 <p className="mb-3">
                   We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. We will notify you of any material changes by:
@@ -276,7 +551,7 @@ export default function PrivacyPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  12. Contact Us
+                  14. Contact Us
                 </h2>
                 <p className="mb-3">
                   If you have any questions, concerns, or requests regarding this Privacy Policy or our privacy practices, please contact us:
