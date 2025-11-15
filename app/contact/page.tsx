@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { createClient } from '@/lib/supabase';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,19 +11,39 @@ export default function ContactPage() {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
     try {
-      // TODO: Implement form submission API endpoint
-      // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
+      const supabase = createClient();
       
-      // Temporary: Show success message
+      const { error } = await supabase
+        .from('petcare_contact')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || null,
+            subject: formData.subject,
+            message: formData.message
+          }
+        ]);
+
+      if (error) {
+        throw error;
+      }
+      
+      // Success: Show success message and reset form
       alert('Thank you for your message! We will get back to you soon.');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
     } catch (error) {
-      // Error handling will be implemented with API endpoint
+      console.error('Error submitting form:', error);
       alert('Sorry, there was an error submitting your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -245,9 +266,10 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>
