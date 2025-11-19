@@ -69,6 +69,9 @@ export default function AnalyticsLoader() {
           if (preferences.marketing) {
             loadAdSense();
           }
+        } else {
+          // No consent yet - ensure scripts are not loaded
+          // This is important for compliance
         }
       } catch (e) {
         // If consent check fails, don't load scripts
@@ -76,8 +79,15 @@ export default function AnalyticsLoader() {
       }
     };
 
-    // Check immediately
-    checkAndLoadScripts();
+    // Wait a bit for localStorage to be available, then check
+    const timer = setTimeout(() => {
+      checkAndLoadScripts();
+    }, 100);
+    
+    // Also check immediately in case localStorage is already available
+    if (typeof window !== 'undefined' && window.localStorage) {
+      checkAndLoadScripts();
+    }
 
     // Listen for consent changes
     const handleStorageChange = (e: StorageEvent) => {
@@ -95,6 +105,7 @@ export default function AnalyticsLoader() {
     window.addEventListener('consent-updated', handleConsentChange);
 
     return () => {
+      clearTimeout(timer);
       window.removeEventListener('storage', handleStorageChange);
       window.removeEventListener('consent-updated', handleConsentChange);
     };

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Nearby Pet Care',
-  description: 'Terms of Service for Nearby Pet Care. Read our terms and conditions for using our pet care services platform.',
+  description: 'Terms of Service for Nearby Pet Care. Read our terms and conditions for using our educational pet care platform and content.',
   robots: {
     index: true,
     follow: true,
@@ -29,7 +29,10 @@ export default function TermsPage() {
               
               <div className="space-y-4 sm:space-y-6">
                 <p>
-                  Welcome to Nearby Pet Care. These Terms of Service ("Terms") govern your access to and use of our website, mobile applications, and services (collectively, the "Services"). Please read these Terms carefully before using our Services.
+                  Welcome to Nearby Pet Care. These Terms of Service ("Terms") govern your access to and use of our educational website, content, and services (collectively, the "Services"). Please read these Terms carefully before using our Services.
+                </p>
+                <p>
+                  Nearby Pet Care is an independent educational platform dedicated to providing practical, step-by-step guidance on pet care. We operate solely as an informational resource and do not represent any business, clinic, or service provider. Our mission is to help pet owners make informed decisions about everyday pet care through accessible, evidence-based information.
                 </p>
                 <p>
                   By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, please do not use our Services. These Terms constitute a legally binding agreement between you and Nearby Pet Care.
@@ -41,7 +44,7 @@ export default function TermsPage() {
                   1. Acceptance of Terms
                 </h2>
                 <p className="mb-3">
-                  By accessing and using Nearby Pet Care services, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by the above, please do not use our Services. These Terms apply to all users of the Services, including without limitation users who are browsers, customers, merchants, and contributors of content.
+                  By accessing and using Nearby Pet Care's educational platform, you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by the above, please do not use our Services. These Terms apply to all users of the Services, including without limitation users who are browsers, readers, subscribers, and contributors of content.
                 </p>
                 <p>
                   We reserve the right to update, change, or replace any part of these Terms at any time. It is your responsibility to check this page periodically for changes. Your continued use of or access to the Services following the posting of any changes constitutes acceptance of those changes.
@@ -53,18 +56,25 @@ export default function TermsPage() {
                   2. Description of Services
                 </h2>
                 <p className="mb-3">
-                  Nearby Pet Care provides a platform that connects pet owners with professional pet care service providers. Our Services include:
+                  Nearby Pet Care provides an independent educational platform that offers practical, step-by-step guidance on pet care. Our Services include:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Online platform for browsing and discovering pet care services in your area</li>
-                  <li>Booking and scheduling services for grooming, boarding, daycare, and training</li>
-                  <li>Information and resources about pet care, health, and wellness</li>
-                  <li>Communication tools to connect with service providers</li>
-                  <li>Payment processing for service bookings</li>
+                  <li>Educational articles, guides, and how-to content about pet nutrition, health, grooming, training, and overall wellbeing</li>
+                  <li>Practical, actionable advice written in clear, understandable language</li>
+                  <li>Information and resources based on widely accepted pet care practices</li>
+                  <li>Tools and calculators to help pet owners make informed decisions</li>
+                  <li>Blog posts and community content about pet care topics</li>
                 </ul>
                 <p className="mb-3">
-                  We act as an intermediary platform connecting pet owners with independent service providers. We do not directly provide pet care services ourselves, but rather facilitate connections between pet owners and qualified service providers. All services are provided by independent third-party providers who are responsible for the quality and delivery of their services.
+                  <strong>Important:</strong> Nearby Pet Care operates solely as an informational and educational resource. We do not:
                 </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Provide veterinary services, medical advice, or professional consultations</li>
+                  <li>Connect users with service providers or facilitate bookings</li>
+                  <li>Represent any business, clinic, or service provider</li>
+                  <li>Endorse or recommend specific products, services, or brands (unless explicitly stated in our editorial content)</li>
+                  <li>Provide emergency services or crisis support</li>
+                </ul>
                 <p>
                   We reserve the right to modify, suspend, or discontinue any aspect of our Services at any time, with or without notice. We may also impose limits on certain features or restrict access to parts or all of the Services without notice or liability.
                 </p>
@@ -72,13 +82,31 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  3. User Accounts and Registration
+                  3. Educational Content and Medical Disclaimer
                 </h2>
                 <p className="mb-3">
-                  To use certain features of our Services, you may be required to create an account. When creating an account, you agree to:
+                  All content provided on Nearby Pet Care is for educational and informational purposes only. Our content is designed to help pet owners understand general pet care practices and make informed decisions. However, it is not intended as a substitute for professional veterinary advice, diagnosis, or treatment.
+                </p>
+                <p className="mb-3">
+                  <strong>Always seek the advice of your veterinarian or other qualified pet health provider</strong> with any questions you may have regarding your pet's health or medical condition. Never disregard professional veterinary advice or delay in seeking it because of something you have read on our website.
+                </p>
+                <p className="mb-3">
+                  If you think your pet may have a medical emergency, call your veterinarian or emergency animal hospital immediately. Do not rely on information from our website for emergency situations.
+                </p>
+                <p>
+                  Our content is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior. However, individual pets may have unique needs, and what works for one pet may not work for another. Always consult with a qualified professional before making significant changes to your pet's care routine.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
+                  4. User Accounts and Registration
+                </h2>
+                <p className="mb-3">
+                  Most of our educational content is available without creating an account. However, to use certain features of our Services (such as subscribing to newsletters or accessing interactive tools), you may be required to create an account. When creating an account, you agree to:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Provide accurate, current, and complete information about yourself and your pets</li>
+                  <li>Provide accurate, current, and complete information about yourself</li>
                   <li>Maintain and promptly update your account information to keep it accurate, current, and complete</li>
                   <li>Maintain the security of your password and identification</li>
                   <li>Accept responsibility for all activities that occur under your account</li>
@@ -92,163 +120,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  4. Booking and Cancellation Policies
-                </h2>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Booking Requirements
-                </h3>
-                <p className="mb-3">
-                  All service bookings must be made in advance through our platform. Bookings are subject to availability and confirmation by the service provider. We recommend booking as early as possible, especially during peak seasons or holidays, to ensure availability.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Cancellation and Refund Policy
-                </h3>
-                <p className="mb-3">
-                  Cancellation policies vary by service type and provider. Generally:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Cancellations made at least 24 hours in advance are typically eligible for a full refund or credit</li>
-                  <li>Cancellations made less than 24 hours in advance may be subject to a cancellation fee</li>
-                  <li>No-shows or same-day cancellations may result in forfeiture of payment</li>
-                  <li>Emergency situations and extenuating circumstances will be considered on a case-by-case basis</li>
-                </ul>
-                <p className="mb-3">
-                  Specific cancellation policies will be clearly stated at the time of booking. Service providers may have their own cancellation policies that apply in addition to our general policies. Refunds, when applicable, will be processed to the original payment method within 5-10 business days.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Rescheduling
-                </h3>
-                <p>
-                  You may request to reschedule your booking, subject to availability. Rescheduling requests should be made as early as possible. Service providers reserve the right to approve or deny rescheduling requests based on availability and their policies.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  5. Pet Health and Safety Requirements
-                </h2>
-                <p className="mb-3">
-                  To ensure the safety and well-being of all pets in our care network, we require that all pets meet certain health and safety standards:
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Vaccination Requirements
-                </h3>
-                <p className="mb-3">
-                  All pets must be up-to-date on required vaccinations as specified by the service provider. Common requirements include:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Dogs: DHPP, Rabies, Bordetella (kennel cough), and Canine Influenza as required</li>
-                  <li>Cats: FVRCP, Rabies, and Feline Leukemia as required</li>
-                  <li>Proof of vaccination must be provided before services can be rendered</li>
-                </ul>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Health and Behavior Standards
-                </h3>
-                <p className="mb-3">
-                  Service providers reserve the right to refuse service to pets that:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Show signs of illness, contagious conditions, or parasites</li>
-                  <li>Display aggressive behavior that poses a risk to staff, other pets, or themselves</li>
-                  <li>Have not been properly socialized or trained for the requested service</li>
-                  <li>Have medical conditions that cannot be safely accommodated</li>
-                </ul>
-                <p>
-                  You are responsible for accurately disclosing your pet's health status, behavioral issues, and any special needs when making a booking. Failure to disclose relevant information may result in service refusal and may affect your ability to use our Services in the future.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  6. Payment Terms
-                </h2>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Payment Methods
-                </h3>
-                <p className="mb-3">
-                  We accept various payment methods including credit cards, debit cards, and digital payment platforms. Payment is typically required at the time of booking, unless other arrangements have been made with the service provider.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Pricing and Fees
-                </h3>
-                <p className="mb-3">
-                  Service prices are set by individual service providers and may vary. Prices displayed on our platform are subject to change without notice. Additional fees may apply for:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Additional services or add-ons requested at the time of service</li>
-                  <li>Special handling requirements or accommodations</li>
-                  <li>Holiday or peak season surcharges</li>
-                  <li>Late cancellation or no-show fees</li>
-                </ul>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Platform Fees
-                </h3>
-                <p>
-                  We may charge a platform or service fee for facilitating bookings through our platform. This fee, if applicable, will be clearly disclosed at the time of booking. All fees are non-refundable unless otherwise stated in our cancellation policy.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  7. Liability and Disclaimers
-                </h2>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Service Provider Responsibility
-                </h3>
-                <p className="mb-3">
-                  Nearby Pet Care acts as an intermediary platform connecting pet owners with independent service providers. We are not responsible for the quality, safety, or delivery of services provided by third-party service providers. Each service provider is an independent business entity responsible for their own services, insurance, and compliance with applicable laws and regulations.
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Limitation of Liability
-                </h3>
-                <p className="mb-3">
-                  To the maximum extent permitted by law, Nearby Pet Care, its affiliates, and their respective officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Loss of profits, revenue, data, or use</li>
-                  <li>Pet injury, illness, or death</li>
-                  <li>Property damage</li>
-                  <li>Emotional distress</li>
-                  <li>Any damages arising from the use or inability to use our Services</li>
-                </ul>
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Pet Owner Responsibility
-                </h3>
-                <p className="mb-3">
-                  As a pet owner, you are responsible for:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Accurately disclosing your pet's health, behavior, and special needs</li>
-                  <li>Ensuring your pet is properly vaccinated and in good health</li>
-                  <li>Providing accurate emergency contact information</li>
-                  <li>Any pre-existing conditions or injuries your pet may have</li>
-                  <li>Costs associated with emergency veterinary care if needed</li>
-                </ul>
-                <p>
-                  While service providers take every reasonable precaution to ensure your pet's safety, pet owners acknowledge that there are inherent risks associated with pet care services, and they assume responsibility for these risks.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  8. Insurance and Coverage
-                </h2>
-                <p className="mb-3">
-                  Service providers are encouraged to maintain appropriate insurance coverage for their services. However, we do not guarantee that all service providers carry insurance. We recommend that pet owners:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Verify insurance coverage with service providers before booking</li>
-                  <li>Maintain their own pet insurance for comprehensive coverage</li>
-                  <li>Understand the limitations of any insurance coverage</li>
-                </ul>
-                <p>
-                  Nearby Pet Care maintains general liability insurance, but this coverage does not extend to services provided by third-party service providers. Each service provider is responsible for their own insurance and liability coverage.
-                </p>
-              </section>
-
-              <section>
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  9. User Conduct and Prohibited Activities
+                  5. User Conduct and Prohibited Activities
                 </h2>
                 <p className="mb-3">
                   You agree to use our Services only for lawful purposes and in accordance with these Terms. You agree not to:
@@ -259,9 +131,11 @@ export default function TermsPage() {
                   <li>Interfere with or disrupt the Services or servers connected to the Services</li>
                   <li>Attempt to gain unauthorized access to any portion of the Services</li>
                   <li>Impersonate any person or entity or misrepresent your affiliation with any person or entity</li>
-                  <li>Use automated systems to access the Services without permission</li>
-                  <li>Harass, abuse, or harm other users or service providers</li>
+                  <li>Use automated systems (such as bots, scrapers, or crawlers) to access the Services without permission</li>
+                  <li>Harass, abuse, or harm other users</li>
                   <li>Post false, misleading, or fraudulent information</li>
+                  <li>Copy, reproduce, or redistribute our content without permission (see Intellectual Property section)</li>
+                  <li>Use our content for commercial purposes without our express written consent</li>
                 </ul>
                 <p>
                   Violation of these conduct rules may result in immediate termination of your account and access to our Services, and may subject you to legal action.
@@ -270,43 +144,122 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  10. Reviews and Content
+                  6. Reviews, Comments, and User-Generated Content
                 </h2>
                 <p className="mb-3">
-                  Our platform may allow you to post reviews, ratings, comments, and other content. By posting content, you grant us a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, and distribute your content. You agree that:
+                  Our platform may allow you to post reviews, comments, questions, and other content. By posting content, you grant us a non-exclusive, royalty-free, perpetual, and worldwide license to use, reproduce, modify, and distribute your content. You agree that:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Your content is accurate, truthful, and based on your personal experience</li>
+                  <li>Your content is accurate, truthful, and based on your personal experience or knowledge</li>
                   <li>You will not post defamatory, libelous, or false information</li>
                   <li>You will not post content that violates any third-party rights</li>
                   <li>You own or have the right to post the content you submit</li>
+                  <li>Your content does not contain spam, advertising, or promotional material</li>
+                  <li>Your content is respectful and does not contain offensive, abusive, or inappropriate language</li>
                 </ul>
                 <p>
-                  We reserve the right to remove, edit, or refuse to post any content that violates these Terms or that we determine is inappropriate, offensive, or harmful. We are not responsible for user-generated content and do not endorse any opinions expressed in reviews or comments.
+                  We reserve the right to remove, edit, or refuse to post any content that violates these Terms or that we determine is inappropriate, offensive, or harmful. We are not responsible for user-generated content and do not endorse any opinions expressed in reviews or comments. User-generated content reflects the views of the individual users and not necessarily the views of Nearby Pet Care.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  11. Intellectual Property
+                  7. Intellectual Property
                 </h2>
                 <p className="mb-3">
-                  All content, features, and functionality of our Services, including but not limited to text, graphics, logos, images, software, and code, are owned by Nearby Pet Care or its licensors and are protected by copyright, trademark, and other intellectual property laws.
+                  All content, features, and functionality of our Services, including but not limited to text, graphics, logos, images, articles, guides, software, and code, are owned by Nearby Pet Care or its licensors and are protected by copyright, trademark, and other intellectual property laws.
                 </p>
+                <p className="mb-3">
+                  <strong>Permitted Use:</strong> You may view, download, and print content from our website for your personal, non-commercial use only. You may share links to our articles and guides on social media or other platforms, provided you do not alter the content or remove any attributions.
+                </p>
+                <p className="mb-3">
+                  <strong>Prohibited Use:</strong> You may not:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of our content without our prior written consent</li>
+                  <li>Use our content for commercial purposes without our express written permission</li>
+                  <li>Remove any copyright, trademark, or other proprietary notices from our content</li>
+                  <li>Use automated systems to scrape, copy, or download our content</li>
+                  <li>Frame or mirror any portion of our website without our permission</li>
+                </ul>
                 <p>
-                  You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, download, store, or transmit any of the material on our Services without our prior written consent, except as necessary to use the Services for their intended purpose.
+                  If you wish to use our content for commercial purposes or in a way not permitted by these Terms, please contact us to request permission. We may grant permission on a case-by-case basis, subject to our editorial guidelines and terms.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  12. Dispute Resolution
+                  8. Third-Party Links and Content
+                </h2>
+                <p className="mb-3">
+                  Our website may contain links to third-party websites, services, or applications that are not operated by us. These links are provided for your convenience and educational purposes. We are not responsible for the content, privacy practices, or terms of service of these third-party sites.
+                </p>
+                <p className="mb-3">
+                  The inclusion of any link does not imply endorsement by Nearby Pet Care. We encourage you to review the terms of service and privacy policies of any third-party sites you visit. Your use of third-party websites is at your own risk.
+                </p>
+                <p>
+                  We may also display third-party content, such as advertisements, on our website. We are not responsible for the accuracy, completeness, or reliability of third-party content. Any interactions with third-party content are solely between you and the third party.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
+                  9. Liability and Disclaimers
+                </h2>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Educational Content Disclaimer
+                </h3>
+                <p className="mb-3">
+                  The information provided on Nearby Pet Care is for educational and informational purposes only. While we strive to provide accurate, up-to-date information based on widely accepted pet care practices, we make no representations or warranties of any kind, express or implied, about:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>The completeness, accuracy, reliability, or suitability of the information</li>
+                  <li>The applicability of the information to your specific pet or situation</li>
+                  <li>The results or outcomes that may result from following our guidance</li>
+                </ul>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Limitation of Liability
+                </h3>
+                <p className="mb-3">
+                  To the maximum extent permitted by law, Nearby Pet Care, its affiliates, and their respective officers, directors, employees, and agents shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>Loss of profits, revenue, data, or use</li>
+                  <li>Pet injury, illness, or death resulting from following our educational content</li>
+                  <li>Property damage</li>
+                  <li>Emotional distress</li>
+                  <li>Any damages arising from the use or inability to use our Services</li>
+                  <li>Any damages arising from reliance on our educational content</li>
+                </ul>
+                <p className="mb-3">
+                  Our total liability to you for all claims arising from or related to the use of our Services shall not exceed the amount you paid to us, if any, in the 12 months preceding the claim, or $100, whichever is greater.
+                </p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  No Professional Advice
+                </h3>
+                <p>
+                  Our content is not a substitute for professional veterinary advice, diagnosis, or treatment. Always seek the advice of your veterinarian or other qualified pet health provider with any questions you may have regarding your pet's health or medical condition. Never disregard professional veterinary advice or delay in seeking it because of something you have read on our website.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
+                  10. Indemnification
+                </h2>
+                <p>
+                  You agree to indemnify, defend, and hold harmless Nearby Pet Care, its affiliates, and their respective officers, directors, employees, and agents from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney's fees) arising from: (a) your use of and access to the Services; (b) your violation of any term of these Terms; (c) your violation of any third-party right, including without limitation any copyright, property, or privacy right; or (d) any claim that your user-generated content caused damage to a third party.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
+                  11. Dispute Resolution
                 </h2>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
                   Informal Resolution
                 </h3>
                 <p className="mb-3">
-                  If you have a dispute with a service provider or with us, we encourage you to first contact us directly to attempt to resolve the dispute informally. Many disputes can be resolved through direct communication.
+                  If you have a dispute with us, we encourage you to first contact us directly to attempt to resolve the dispute informally. Many disputes can be resolved through direct communication.
                 </p>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
                   Binding Arbitration
@@ -325,7 +278,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  13. Termination
+                  12. Termination
                 </h2>
                 <p className="mb-3">
                   We reserve the right to terminate or suspend your account and access to our Services immediately, without prior notice or liability, for any reason, including if you breach these Terms. Upon termination:
@@ -333,16 +286,16 @@ export default function TermsPage() {
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
                   <li>Your right to use the Services will immediately cease</li>
                   <li>We may delete your account and all associated information</li>
-                  <li>Any outstanding bookings may be cancelled in accordance with our cancellation policy</li>
+                  <li>Any content you have posted may be removed</li>
                 </ul>
                 <p>
-                  You may terminate your account at any time by contacting us or using account deletion features if available. All provisions of these Terms that by their nature should survive termination shall survive, including ownership provisions, warranty disclaimers, and limitations of liability.
+                  You may terminate your account at any time by contacting us or using account deletion features if available. All provisions of these Terms that by their nature should survive termination shall survive, including ownership provisions, warranty disclaimers, limitations of liability, and indemnification obligations.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  14. Modifications to Terms
+                  13. Modifications to Terms
                 </h2>
                 <p>
                   We reserve the right to modify these Terms at any time. We will notify users of material changes by posting the updated Terms on this page with a new "Last updated" date, and in some cases, we may provide additional notice such as email notification. Your continued use of the Services after any changes constitutes your acceptance of the new Terms. If you do not agree to the modified Terms, you must stop using the Services.
@@ -351,7 +304,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  15. Governing Law
+                  14. Governing Law
                 </h2>
                 <p>
                   These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Nearby Pet Care operates, without regard to its conflict of law provisions. Any legal action or proceeding arising under these Terms will be brought exclusively in the courts of that jurisdiction.
@@ -360,7 +313,7 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  16. Severability
+                  15. Severability
                 </h2>
                 <p>
                   If any provision of these Terms is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that these Terms shall otherwise remain in full force and effect and enforceable.
@@ -369,16 +322,16 @@ export default function TermsPage() {
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  17. Entire Agreement
+                  16. Entire Agreement
                 </h2>
                 <p>
-                  These Terms, together with our Privacy Policy, constitute the entire agreement between you and Nearby Pet Care regarding the use of our Services and supersede all prior agreements and understandings, whether written or oral, relating to the subject matter of these Terms.
+                  These Terms, together with our Privacy Policy and Disclaimer, constitute the entire agreement between you and Nearby Pet Care regarding the use of our Services and supersede all prior agreements and understandings, whether written or oral, relating to the subject matter of these Terms.
                 </p>
               </section>
 
               <section>
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 mt-6 sm:mt-8 transition-colors">
-                  18. Contact Information
+                  17. Contact Information
                 </h2>
                 <p className="mb-3">
                   If you have any questions about these Terms of Service, please contact us:

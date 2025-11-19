@@ -2,19 +2,19 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'About Us - Our Story & Mission | Nearby Pet Care',
-  description: 'Learn about Nearby Pet Care, founded by a passionate pet lover dedicated to making quality pet care accessible to all. Discover our mission, values, and commitment to pets.',
-  keywords: ['about nearby pet care', 'pet care company', 'pet care mission', 'pet care values', 'pet care story'],
+  title: 'About Us - Trusted Pet Care Information & Education | Nearby Pet Care',
+  description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips, guides, and information. We help pet owners learn how to care for dogs, cats, and pets with practical, evidence-based advice.',
+  keywords: ['about pet care', 'pet care education', 'pet care information', 'pet care tips', 'how to care for pets', 'pet care guide', 'trusted pet care advice', 'pet care resources'],
   openGraph: {
-    title: 'About Us - Our Story & Mission | Nearby Pet Care',
-    description: 'Learn about Nearby Pet Care, founded by a passionate pet lover dedicated to making quality pet care accessible to all.',
+    title: 'About Us - Independent Educational Pet Care Platform | Nearby Pet Care',
+    description: 'An independent educational platform providing practical guidance on pet nutrition, health, grooming, training, and overall wellbeing.',
     type: 'website',
     url: 'https://nearbypetcare.com/about',
   },
   twitter: {
     card: 'summary',
-    title: 'About Us - Our Story & Mission | Nearby Pet Care',
-    description: 'Learn about Nearby Pet Care, founded by a passionate pet lover dedicated to making quality pet care accessible to all.',
+    title: 'About Us - Independent Educational Pet Care Platform | Nearby Pet Care',
+    description: 'An independent educational platform providing practical guidance on pet nutrition, health, grooming, training, and overall wellbeing.',
   },
   alternates: {
     canonical: 'https://nearbypetcare.com/about',
@@ -31,18 +31,13 @@ export default function AboutPage() {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'About Nearby Pet Care',
-    description: 'Learn about Nearby Pet Care, founded by a passionate pet lover dedicated to making quality pet care accessible to all.',
+    description: 'An independent educational platform providing practical guidance on pet care',
     url: 'https://nearbypetcare.com/about',
     mainEntity: {
-      '@type': 'Organization',
+      '@type': 'WebSite',
       name: 'Nearby Pet Care',
-      description: 'A platform created by a pet lover, for pet lovers. We believe every pet deserves access to quality care, and every pet owner deserves peace of mind.',
-      url: 'https://nearbypetcare.com',
-      foundingDate: '2020',
-      numberOfEmployees: {
-        '@type': 'QuantitativeValue',
-        value: '50+'
-      }
+      description: 'An independent educational platform dedicated to helping pet owners make informed decisions about everyday pet care through practical, step-by-step guidance.',
+      url: 'https://nearbypetcare.com'
     }
   };
 
@@ -68,29 +63,29 @@ export default function AboutPage() {
 
   const values = [
     {
-      title: 'Compassion',
-      description: 'We treat every pet as if they were our own, with love, care, and respect. Every decision we make is guided by what\'s best for the pets in our care.',
-      icon: '❤️'
+      title: 'Independence',
+      description: 'We operate as an independent platform with no affiliations to businesses, clinics, or service providers. Our content is created solely to help pet owners make informed decisions.',
+      icon: '🔍'
     },
     {
-      title: 'Excellence',
-      description: 'We maintain the highest standards in pet care through continuous training, improvement, and dedication to providing exceptional service.',
-      icon: '⭐'
+      title: 'Practical Guidance',
+      description: 'We provide step-by-step instructions and practical advice that pet owners can easily understand and apply in their everyday pet care routines.',
+      icon: '📋'
+    },
+    {
+      title: 'Evidence-Based',
+      description: 'All our content is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior.',
+      icon: '✅'
     },
     {
       title: 'Accessibility',
-      description: 'We believe quality pet care should be accessible to all pet lovers. Our platform connects pet owners with trusted, professional care services.',
-      icon: '🌍'
-    },
-    {
-      title: 'Trust',
-      description: 'We build lasting relationships with pet parents through transparency, reliability, and genuine commitment to your pet\'s well-being.',
-      icon: '🤝'
+      description: 'We believe pet care information should be accessible to everyone. Our guides are written in clear, simple language that all pet owners can understand.',
+      icon: '💡'
     }
   ];
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
       {/* Structured Data Scripts */}
       <script
         type="application/ld+json"
@@ -105,15 +100,57 @@ export default function AboutPage() {
         }}
       />
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 transition-colors">
-              About Nearby Pet Care
+      <section className="relative pb-16 sm:pb-20 md:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto max-w-7xl relative z-10 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-blue-200/50 dark:border-white/20 rounded-full shadow-sm">
+              <span className="text-2xl">📚</span>
+              <span className="text-sm font-semibold text-gray-900 dark:text-white">Independent Educational Platform</span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Empowering Pet Owners
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Through Education
+              </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 transition-colors leading-relaxed">
-              A platform created by a pet lover, for pet lovers. We believe every pet deserves access to quality care, and every pet owner deserves peace of mind.
+
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
+              If you've ever searched for "how to care for a dog" or "pet care tips" and found yourself drowning in conflicting advice, you know exactly why we created Nearby Pet Care. We're an independent platform that cuts through the noise to give you practical, trustworthy pet care information you can actually use.
             </p>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
+              Whether you're learning how to care for a cat for the first time or looking for advanced pet training techniques, our mission is simple: make pet care information accessible, understandable, and actionable for every pet owner.
+            </p>
+
+            {/* Key Points */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+              {[
+                { icon: '📖', text: 'Educational Resources' },
+                { icon: '🎯', text: 'Practical Guidance' },
+                { icon: '🔍', text: 'Independent Information' }
+              ].map((point, index) => (
+                <div
+                  key={index}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-white/10 backdrop-blur-sm border border-gray-200/50 dark:border-white/20 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200 shadow-sm"
+                >
+                  <span>{point.icon}</span>
+                  <span>{point.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -127,16 +164,16 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed transition-colors">
               <p>
-                Nearby Pet Care was born from a simple yet profound love for animals. As a lifelong pet lover, our founder experienced firsthand the challenges of finding reliable, quality pet care services. Whether it was searching for a trustworthy groomer, a safe boarding facility, or professional training services, the process was often overwhelming and time-consuming.
+                Here's the thing: when you're searching for pet care advice online, you're probably looking for answers to real questions. "How do I know if my dog is getting the right nutrition?" "What's the best way to groom a cat?" "How can I train my puppy without losing my mind?" These are the kinds of questions pet owners ask every day, and they deserve clear, practical answers.
               </p>
               <p>
-                This personal experience sparked a vision: to create a platform that makes it easier for pet lovers everywhere to find and access the best pet care services in their area. We believe that pets are family, and they deserve the same level of care, attention, and love that we give to our human loved ones. This philosophy drives everything we do.
+                That's where we come in. Nearby Pet Care was born from watching too many pet owners struggle to find reliable information. We saw people getting overwhelmed by conflicting advice, marketing messages disguised as pet care tips, and information that was either too basic or way too technical. So we decided to create something different: a place where you can find straightforward pet care information that actually helps you care for your pet better.
               </p>
               <p>
-                Our founder chose to remain anonymous because the focus should always be on what matters most—the pets and the pet owners we serve. This isn't about personal recognition; it's about creating something meaningful that helps pet lovers provide the best possible care for their furry, feathered, or scaled family members. The mission is simple: connect pet owners with exceptional care providers and make quality pet care accessible to everyone.
+                <strong className="font-semibold">Here's what you should know:</strong> We're completely independent. We don't sell pet food, we don't run a veterinary clinic, and we don't represent any pet care business. Our only job is to help you understand pet care topics so you can make better decisions for your furry, feathered, or scaled family members. Think of us as your go-to resource for pet care tips and information—nothing more, nothing less.
               </p>
               <p>
-                Every feature we build, every service we highlight, and every connection we facilitate is guided by one question: "Will this help pets and their owners?" If the answer is yes, we pursue it with passion and dedication. We're not just a business—we're a community of pet lovers working together to ensure every pet receives the care, attention, and love they deserve.
+                When pet owners have access to clear, practical pet care information, amazing things happen. They catch health issues earlier. They choose better pet food. They understand their pet's behavior better. They feel more confident as pet parents. That's why we create guides on everything from "how to care for a new puppy" to "senior pet care tips"—always written in plain language that makes sense, always based on what actually works.
               </p>
             </div>
           </div>
@@ -152,16 +189,16 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed transition-colors">
               <p>
-                At the heart of Nearby Pet Care is a deep, unwavering love for animals. We understand that pets bring immeasurable joy, companionship, and love into our lives. They're not just animals—they're family members who deserve the very best care we can provide. This understanding shapes every aspect of our platform and guides our commitment to connecting pet owners with exceptional care providers.
+                We believe every pet owner—whether you're figuring out how to care for a dog for the first time or you've been a pet parent for decades—deserves access to information that actually helps. Your pet is family, and caring for them means making dozens of decisions: What food should I feed them? How often should I groom them? Is this behavior normal? These questions matter, and you deserve answers that make sense.
               </p>
               <p>
-                We believe that quality pet care should be accessible, transparent, and trustworthy. Every pet owner should be able to find reliable services without the stress of endless searching or uncertainty about quality. That's why we've created a platform that makes it easy to discover, compare, and book professional pet care services in your area.
+                That's why we keep things simple and independent. You won't find us pushing products or services. Instead, you'll find pet care tips and guides that are practical, based on widely accepted practices, and written in language you can actually understand. No veterinary jargon. No marketing fluff. Just clear information that helps you make better decisions for your pet.
               </p>
               <p>
-                Our commitment extends beyond just connecting pet owners with services. We're dedicated to supporting a community where pet care providers can thrive, where pet owners can find peace of mind, and most importantly, where pets receive the care and attention they need to live happy, healthy lives. We're here to support the entire pet care ecosystem—from the dedicated professionals who provide care to the loving owners who seek it.
+                Our goal is to help you feel confident as a pet owner. Whether you're dealing with everyday pet care routines or learning about something new—like how to care for a senior pet or understanding pet nutrition basics—we want you to have the information you need. Every guide we create, every pet care tip we share, is designed with one thing in mind: helping you provide better care for your pet.
               </p>
               <p>
-                Whether you're a first-time pet owner navigating the world of pet care for the first time, or a seasoned pet parent looking for new services, we're here to help. Our platform is designed to grow with you and your pet's needs, providing resources, information, and connections that make pet ownership easier and more enjoyable.
+                Maybe you're a first-time pet owner searching for "how to care for a cat" and feeling overwhelmed. Maybe you're an experienced dog owner looking for advanced training techniques. Or maybe you're somewhere in between, just trying to figure out the best way to care for your pet. Wherever you are in your pet care journey, we're here to help with practical, trustworthy information that makes a real difference.
               </p>
             </div>
           </div>
@@ -202,13 +239,13 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed transition-colors">
               <p>
-                Nearby Pet Care serves as a comprehensive platform connecting pet owners with professional pet care services in their local area. We've carefully curated a network of trusted providers offering grooming, boarding, daycare, training, and other essential pet care services. Our goal is to make finding quality pet care as simple and stress-free as possible.
+                <strong className="font-semibold">Let's be clear about what we do:</strong> We're an independent educational platform that provides pet care information and guides. That's it. We don't offer veterinary services, we don't sell pet products, and we don't represent any pet care business. Our job is simple: help you understand pet care topics so you can make informed decisions for your pet.
               </p>
               <p>
-                Beyond connecting pet owners with services, we provide valuable resources, educational content, and support to help pet owners make informed decisions about their pet's care. Our blog features expert advice, care guides, and helpful tips written by pet care professionals and experienced pet owners. We believe that informed pet owners make better decisions, leading to happier, healthier pets.
+                What does that look like in practice? We create comprehensive pet care guides that cover everything from the basics—like "how to care for a new puppy" or "cat grooming basics"—to more advanced topics like understanding pet nutrition labels or recognizing early signs of health issues. Every guide includes step-by-step instructions, practical pet care tips, and real-world advice you can actually use. We take complex topics and break them down into simple, actionable steps because we know you're busy and you need information that works.
               </p>
               <p>
-                We're constantly working to improve our platform, add new features, and expand our network of trusted care providers. Your feedback and experiences help shape our direction, ensuring we continue to serve the pet-loving community in meaningful ways. Whether you're looking for a one-time service or establishing an ongoing relationship with a care provider, we're here to support you every step of the way.
+                We're always adding new content and updating existing guides based on the latest pet care research and best practices. Whether you need help with dog training tips, cat health information, pet nutrition advice, or anything else related to pet care, our goal is to be your trusted source for practical, reliable information. Think of us as your pet care library—always available, always helpful, always focused on what's best for your pet.
               </p>
             </div>
           </div>
@@ -220,17 +257,17 @@ export default function AboutPage() {
         <div className="container mx-auto max-w-7xl">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center transition-colors">
-              Built for Pet Lovers, By Pet Lovers
+              Built for Pet Owners, By Pet Lovers
             </h2>
             <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed transition-colors">
               <p>
-                Nearby Pet Care is more than just a platform—it's a community built on shared love for animals. We understand the joy of coming home to a wagging tail, the comfort of a purring cat, and the unique bond that forms between pets and their owners. This understanding informs everything we do, from the services we feature to the content we create.
+                Here's what drives everything we do: pet owners deserve better information. We know how much your pet means to you. We understand the joy they bring, the responsibility you feel, and the countless questions that come with pet ownership. That's why we've built a platform that gives you access to clear, practical pet care information—no strings attached, no hidden agendas.
               </p>
               <p>
-                We're committed to supporting pet owners at every stage of their journey. Whether you're welcoming your first pet into your home or caring for a senior companion, we provide resources, connections, and support to help you give your pet the best possible life. We celebrate the diversity of the pet-loving community and work to ensure our platform serves pets and owners of all kinds.
+                Whether you're a first-time pet owner searching for "how to care for a dog" or an experienced caregiver looking for advanced pet care tips, we're here to help. Our guides are designed to be practical and actionable because we know you want information you can use right away. From basic pet care routines to complex topics like pet nutrition and behavior, we break everything down into steps you can actually follow.
               </p>
               <p>
-                Our mission is simple: make quality pet care accessible, transparent, and trustworthy. We believe that when pet owners have easy access to excellent care services, pets benefit, families benefit, and the entire pet care community thrives. Every day, we work toward this vision, guided by our love for animals and our commitment to serving the pet-loving community.
+                Our mission hasn't changed since day one: help pet owners make better decisions through education. When you have access to clear, trustworthy pet care information, you can catch health issues earlier, choose better products, understand your pet's behavior, and ultimately provide better care. That's why every guide we create, every pet care tip we share, is designed to empower you with knowledge that makes a real difference in your pet's life.
               </p>
             </div>
           </div>
@@ -242,23 +279,23 @@ export default function AboutPage() {
         <div className="container mx-auto max-w-7xl">
           <div className="max-w-3xl mx-auto text-center p-8 sm:p-10 md:p-12 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-2xl sm:rounded-3xl backdrop-blur-sm">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 transition-colors">
-              Join Our Pet Care Community
+              Start Learning Today
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 transition-colors leading-relaxed">
-              Experience the difference that comes from a platform built with genuine love for pets and dedication to serving pet owners. Find trusted care providers, access valuable resources, and become part of a community that shares your passion for pet care.
+              Ready to learn how to care for your pet better? Explore our comprehensive pet care guides covering everything from pet nutrition and health to grooming and training. Whether you need dog care tips, cat care advice, or information on any aspect of pet ownership, we've got practical answers that work.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/book"
+                href="/pet-care-tips"
                 className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
               >
-                Book Appointment
+                Browse All Guides
               </Link>
               <Link
-                href="/contact"
+                href="/blog"
                 className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-200 dark:hover:bg-white/20 transition-all duration-300"
               >
-                Contact Us
+                Read Our Blog
               </Link>
             </div>
           </div>

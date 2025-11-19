@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getAllPosts, getAllCategories, getAllTags } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export const metadata: Metadata = {
-  title: 'Pet Care Blog - Tips, Guides & News | Nearby Pet Care',
-  description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care. Learn how to keep your pets happy and healthy.',
-  keywords: ['pet care blog', 'dog care tips', 'cat care guide', 'pet health', 'pet training', 'pet grooming tips'],
+  title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners | Nearby Pet Care',
+  description: 'Read expert pet care articles, training tips, health guides, and pet care news. Learn how to keep your dog or cat healthy and happy with practical advice from our pet care blog.',
+  keywords: ['pet care blog', 'pet care articles', 'dog care tips', 'cat care guide', 'pet health articles', 'pet training tips', 'pet grooming tips', 'pet care advice', 'pet care news'],
   openGraph: {
     title: 'Pet Care Blog - Tips, Guides & News | Nearby Pet Care',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
@@ -92,15 +93,52 @@ export default function BlogPage() {
         }}
       />
       {/* Hero Section */}
-      <section className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
-              Pet Care Blog
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog' }]} />
+          <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
+              <span className="text-2xl">📝</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Expert Articles</span>
+            </div>
+            
+            {/* Icon */}
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">📚</div>
+            
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Pet Care Blog
+              </span>
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 transition-colors">
-              Expert tips, guides, and insights to help you provide the best care for your pets
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Expert tips, guides, and insights to help you provide the best care for your pets. Stay updated with the latest pet care knowledge and advice.
             </p>
+            
+            {/* Stats or highlights */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">💡</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Expert Tips</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">📖</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Comprehensive Guides</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🔍</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Latest Insights</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

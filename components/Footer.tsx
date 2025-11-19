@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-black border-t border-gray-200 dark:border-white/10 mt-12 sm:mt-16 transition-colors">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center">
@@ -23,7 +23,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors">
-              Professional pet care services with cutting-edge technology and compassionate care.
+              An independent educational platform providing practical, step-by-step guidance on pet nutrition, health, grooming, training, and overall pet wellbeing.
             </p>
             <div className="flex space-x-4">
               {process.env.NEXT_PUBLIC_FACEBOOK_URL && (
@@ -78,8 +78,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
-                  Services
+                <Link href="/tools" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Tools
                 </Link>
               </li>
               <li>
@@ -97,56 +97,138 @@ export default function Footer() {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link href="/pet-care-tips" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Care Tips
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Pet Care Categories */}
           <div>
-            <h3 className="text-gray-900 dark:text-white font-semibold mb-4 transition-colors">Services</h3>
+            <h3 className="text-gray-900 dark:text-white font-semibold mb-4 transition-colors">Pet Care</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/services/grooming" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                <Link href="/pet-health" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Health
+                </Link>
+              </li>
+              <li>
+                <Link href="/pet-nutrition" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Nutrition
+                </Link>
+              </li>
+              <li>
+                <Link href="/pet-grooming" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
                   Pet Grooming
                 </Link>
               </li>
               <li>
-                <Link href="/services/boarding" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
-                  Pet Boarding
+                <Link href="/pet-training" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Training
                 </Link>
               </li>
               <li>
-                <Link href="/services/daycare" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
-                  Daycare
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/training" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
-                  Training
+                <Link href="/pet-safety" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Safety
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* More Resources */}
           <div>
-            <h3 className="text-gray-900 dark:text-white font-semibold mb-4 transition-colors">Contact</h3>
-            <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm transition-colors">
-              <li className="flex items-start space-x-2">
-                <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <a 
-                  href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com'}`}
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  {process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com'}
-                </a>
+            <h3 className="text-gray-900 dark:text-white font-semibold mb-4 transition-colors">More Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/pet-breeds" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Breeds
+                </Link>
               </li>
-              <li className="flex items-start space-x-2">
-                <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                </svg>
-                <span>Online Platform - Nationwide</span>
+              <li>
+                <Link href="/puppies-kittens" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Puppies & Kittens
+                </Link>
+              </li>
+              <li>
+                <Link href="/senior-pets" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Senior Pets
+                </Link>
+              </li>
+              <li>
+                <Link href="/pet-adoption" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Adoption
+                </Link>
+              </li>
+              <li>
+                <Link href="/pet-products" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/buying-guides" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Buying Guides
+                </Link>
+              </li>
+              <li>
+                <Link href="/comparisons" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Comparisons
+                </Link>
+              </li>
+              <li>
+                <Link href="/community" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Community
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Tools
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Pages */}
+          <div>
+            <h3 className="text-gray-900 dark:text-white font-semibold mb-4 transition-colors">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/disclaimer" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Disclaimer
+                </Link>
+              </li>
+              <li>
+                <Link href="/editorial-guidelines" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Editorial Guidelines
+                </Link>
+              </li>
+              <li>
+                <Link href="/sources" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Sources
+                </Link>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new Event('show-cookie-banner'));
+                    }
+                  }}
+                  className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm text-left"
+                >
+                  Cookie Preferences
+                </button>
               </li>
             </ul>
           </div>
@@ -157,24 +239,6 @@ export default function Footer() {
           <p className="text-gray-600 dark:text-gray-400 text-sm transition-colors">
             © {new Date().getFullYear()} Nearby Pet Care. All rights reserved.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
-              Terms of Service
-            </Link>
-            <button
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.dispatchEvent(new Event('show-cookie-banner'));
-                }
-              }}
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm"
-            >
-              Cookie Preferences
-            </button>
-          </div>
         </div>
       </div>
     </footer>

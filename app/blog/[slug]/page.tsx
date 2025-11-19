@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getPostBySlug, getAllSlugs } from '@/lib/blog';
+import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import CopyButton from '@/components/CopyButton';
+import RelatedArticles from '@/components/RelatedArticles';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -82,6 +83,12 @@ export default async function BlogPostPage({ params }: PageProps) {
   if (!post) {
     notFound();
   }
+
+  // Get related articles (same category or recent)
+  const allPosts = getAllPosts();
+  const relatedPosts = allPosts
+    .filter(p => p.slug !== slug && (p.category === post.category || p.tags?.some(tag => post.tags?.includes(tag))))
+    .slice(0, 3);
 
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
@@ -299,6 +306,18 @@ export default async function BlogPostPage({ params }: PageProps) {
               <div
                 className="prose prose-xs sm:prose-sm lg:prose-base max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-code:text-gray-900 dark:prose-code:text-white prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800 prose-img:rounded-lg prose-img:shadow-lg"
                 dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+
+              {/* Related Articles */}
+              <RelatedArticles 
+                articles={relatedPosts.map(p => ({
+                  slug: p.slug,
+                  title: p.title,
+                  excerpt: p.excerpt,
+                  category: p.category,
+                  date: p.date,
+                }))}
+                currentSlug={slug}
               />
 
               {/* Article Footer */}

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Nearby Pet Care',
-  description: 'Privacy Policy for Nearby Pet Care. Learn how we collect, use, and protect your personal information and data.',
+  description: 'Privacy Policy for Nearby Pet Care. Learn how we collect, use, and protect your personal information when you use our educational pet care platform.',
   robots: {
     index: true,
     follow: true,
@@ -29,7 +29,10 @@ export default function PrivacyPage() {
               
               <div className="space-y-4 sm:space-y-6">
                 <p>
-                  At Nearby Pet Care, we are committed to protecting your privacy and the privacy of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, use our services, or interact with us. We respect your privacy and are dedicated to maintaining the confidentiality and security of your personal data.
+                  At Nearby Pet Care, we are committed to protecting your privacy and the privacy of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our educational website, read our content, or interact with our platform. We respect your privacy and are dedicated to maintaining the confidentiality and security of your personal data.
+                </p>
+                <p>
+                  Nearby Pet Care is an independent educational platform dedicated to providing practical, step-by-step guidance on pet care. We operate solely as an informational resource and do not represent any business, clinic, or service provider. This Privacy Policy applies to all information collected through our website and any related services.
                 </p>
                 <p>
                   Please read this Privacy Policy carefully to understand our practices regarding your personal information. By using our website or services, you agree to the collection and use of information in accordance with this policy. If you do not agree with our policies and practices, please do not use our services.
@@ -41,27 +44,33 @@ export default function PrivacyPage() {
                   1. Information We Collect
                 </h2>
                 <p className="mb-3">
-                  We collect information that you provide directly to us and information that is automatically collected when you use our services. The types of information we collect include:
+                  As an educational platform, we collect minimal information necessary to provide and improve our services. The types of information we collect include:
                 </p>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  Personal Information You Provide
+                  Information You Provide Voluntarily
                 </h3>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Name, email address, phone number, and mailing address when you create an account or make a booking</li>
-                  <li>Pet information including names, breeds, ages, medical history, vaccination records, and special care requirements</li>
-                  <li>Payment information including credit card details, billing addresses, and transaction history</li>
-                  <li>Communication preferences and any information you provide when contacting us, submitting feedback, or participating in surveys</li>
-                  <li>Emergency contact information for use in case of pet care emergencies</li>
+                  <li>Email address when you subscribe to our newsletter or contact us through our contact form</li>
+                  <li>Name and message content when you reach out to us with questions or feedback</li>
+                  <li>Comments or contributions you may submit on our blog posts or articles (if applicable)</li>
+                  <li>Information you provide when participating in surveys or feedback forms</li>
                 </ul>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
                   Automatically Collected Information
                 </h3>
+                <p className="mb-3">
+                  When you visit our website, we automatically collect certain information about your device and browsing behavior:
+                </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
                   <li>Device information including IP address, browser type, operating system, and device identifiers</li>
                   <li>Usage data such as pages visited, time spent on pages, links clicked, and search queries</li>
-                  <li>Location data when you use location-based features to find nearby pet care services</li>
+                  <li>Referral sources that led you to our website</li>
                   <li>Cookies and similar tracking technologies that help us understand how you interact with our website</li>
+                  <li>General location data (country/region level) based on your IP address</li>
                 </ul>
+                <p>
+                  This automatically collected information helps us understand how visitors use our educational content, which topics are most helpful, and how we can improve our guides and articles to better serve pet owners.
+                </p>
               </section>
 
               <section>
@@ -69,21 +78,21 @@ export default function PrivacyPage() {
                   2. How We Use Your Information
                 </h2>
                 <p className="mb-3">
-                  We use the information we collect for various purposes to provide, maintain, and improve our services. Specifically, we use your information to:
+                  We use the information we collect for various purposes to provide, maintain, and improve our educational platform. Specifically, we use your information to:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Process and manage your bookings, appointments, and service requests</li>
-                  <li>Communicate with you about your bookings, account updates, service changes, and important notices</li>
-                  <li>Provide customer support, respond to your inquiries, and address any concerns or issues</li>
-                  <li>Send you service-related information, updates, and promotional materials (with your consent where required)</li>
-                  <li>Improve our website, services, and user experience through analytics and feedback</li>
-                  <li>Ensure the safety and security of our services, prevent fraud, and protect against unauthorized access</li>
-                  <li>Comply with legal obligations, enforce our terms of service, and protect our rights and interests</li>
-                  <li>Personalize your experience by showing relevant content and recommendations based on your preferences</li>
-                  <li>Facilitate communication between you and pet care service providers</li>
+                  <li>Provide access to our educational content, guides, and articles about pet care</li>
+                  <li>Respond to your inquiries, questions, and feedback about our content</li>
+                  <li>Send you newsletters or updates about new articles and guides (only if you have subscribed and consented)</li>
+                  <li>Improve our website, content, and user experience through analytics and feedback</li>
+                  <li>Understand which topics and guides are most helpful to pet owners</li>
+                  <li>Ensure the security and functionality of our website</li>
+                  <li>Comply with legal obligations and protect our rights</li>
+                  <li>Personalize your experience by showing relevant content based on your interests (if you have consented to cookies)</li>
+                  <li>Conduct research and analysis to better understand pet owner needs and improve our educational content</li>
                 </ul>
                 <p>
-                  We do not use your personal information for purposes other than those described in this Privacy Policy without your explicit consent.
+                  We do not use your personal information for purposes other than those described in this Privacy Policy without your explicit consent. We do not sell, rent, or trade your personal information to third parties for their marketing purposes.
                 </p>
               </section>
 
@@ -92,20 +101,19 @@ export default function PrivacyPage() {
                   3. Information Sharing and Disclosure
                 </h2>
                 <p className="mb-3">
-                  We respect your privacy and do not sell, trade, or rent your personal information to third parties for their marketing purposes. However, we may share your information in the following circumstances:
+                  We respect your privacy and do not sell, trade, or rent your personal information to third parties for their marketing purposes. However, we may share your information in the following limited circumstances:
                 </p>
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
                   Service Providers
                 </h3>
                 <p className="mb-3">
-                  We may share your information with trusted third-party service providers who assist us in operating our business, conducting our operations, or serving our users. These service providers include:
+                  We may share your information with trusted third-party service providers who assist us in operating our website and providing our educational services. These service providers include:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Payment processors who handle transaction processing and payment security</li>
-                  <li>Hosting and cloud service providers who store and manage our data</li>
-                  <li>Analytics providers who help us understand website usage and improve our services</li>
-                  <li>Email service providers who send communications on our behalf</li>
-                  <li>Pet care service providers who need your information to provide booked services</li>
+                  <li>Hosting and cloud service providers who store and manage our website data</li>
+                  <li>Analytics providers who help us understand website usage and improve our content (only with your consent)</li>
+                  <li>Email service providers who send newsletters and communications on our behalf (only if you have subscribed)</li>
+                  <li>Content delivery networks that help our website load faster</li>
                 </ul>
                 <p className="mb-3">
                   All service providers are contractually obligated to maintain the confidentiality and security of your information and are prohibited from using it for any purpose other than providing services to us.
@@ -138,17 +146,18 @@ export default function PrivacyPage() {
                   We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Our security measures include:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Encryption of sensitive data in transit and at rest using industry-standard protocols</li>
+                  <li>Encryption of sensitive data in transit using industry-standard SSL/TLS protocols</li>
                   <li>Secure servers and databases with restricted access controls</li>
                   <li>Regular security assessments and vulnerability testing</li>
                   <li>Employee training on data protection and privacy best practices</li>
                   <li>Incident response procedures to address potential security breaches</li>
+                  <li>Regular backups of our data to prevent data loss</li>
                 </ul>
                 <p className="mb-3">
-                  While we strive to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. Although we implement reasonable security measures, we cannot guarantee absolute security. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.
+                  While we strive to protect your personal information, no method of transmission over the Internet or electronic storage is 100% secure. Although we implement reasonable security measures, we cannot guarantee absolute security. You are responsible for maintaining the confidentiality of any account credentials you may have and for all activities that occur under your account.
                 </p>
                 <p>
-                  If you suspect any unauthorized access to your account or believe your information has been compromised, please contact us immediately so we can take appropriate action.
+                  If you suspect any unauthorized access to your information or believe your information has been compromised, please contact us immediately so we can take appropriate action.
                 </p>
               </section>
 
@@ -157,7 +166,7 @@ export default function PrivacyPage() {
                   5. Cookies and Tracking Technologies
                 </h2>
                 <p className="mb-3">
-                  We use cookies and similar tracking technologies to collect and store information about your preferences and activity on our website. Cookies are small data files stored on your device that help us improve your experience.
+                  We use cookies and similar tracking technologies to collect and store information about your preferences and activity on our website. Cookies are small data files stored on your device that help us improve your experience and understand how our educational content is being used.
                 </p>
                 
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
@@ -200,13 +209,13 @@ export default function PrivacyPage() {
                   Analytics Cookies
                 </h4>
                 <p className="mb-3">
-                  These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. We use Google Analytics and similar services to analyze website usage, which helps us improve our services and user experience. These cookies are only set if you consent to analytics cookies.
+                  These cookies help us understand how visitors interact with our educational content by collecting and reporting information anonymously. We use Google Analytics and similar services to analyze website usage, which helps us improve our guides and articles. These cookies are only set if you consent to analytics cookies.
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Page views and navigation patterns</li>
-                  <li>Time spent on pages</li>
-                  <li>Traffic sources and user demographics (anonymized)</li>
-                  <li>Error tracking and performance monitoring</li>
+                  <li>Page views and navigation patterns to understand which guides are most helpful</li>
+                  <li>Time spent on pages to gauge content engagement</li>
+                  <li>Traffic sources and user demographics (anonymized) to understand our audience</li>
+                  <li>Error tracking and performance monitoring to ensure our website works properly</li>
                 </ul>
                 <p className="mb-3">
                   We use Google Consent Mode v2 to ensure that analytics data is collected in compliance with your consent preferences. When you do not consent to analytics cookies, we do not load analytics scripts or collect analytics data.
@@ -300,6 +309,7 @@ export default function PrivacyPage() {
                   <li><strong>Objection:</strong> Object to certain processing of your personal information</li>
                   <li><strong>Restriction:</strong> Request restriction of processing in certain circumstances</li>
                   <li><strong>Withdraw Consent:</strong> Withdraw consent for processing based on consent at any time</li>
+                  <li><strong>Opt-Out:</strong> Unsubscribe from marketing communications at any time</li>
                 </ul>
                 <p className="mb-3">
                   To exercise any of these rights, please contact us using the information provided in the Contact Us section below. We will respond to your request within the timeframes required by applicable law (typically 30 days, or 45 days in some cases).
@@ -322,10 +332,8 @@ export default function PrivacyPage() {
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
                   <li><strong>Consent:</strong> When you provide explicit consent, such as for marketing communications or non-essential cookies</li>
-                  <li><strong>Contract Performance:</strong> To fulfill our contractual obligations when you book services</li>
-                  <li><strong>Legal Obligation:</strong> To comply with legal requirements, such as tax or accounting obligations</li>
-                  <li><strong>Legitimate Interests:</strong> For purposes such as fraud prevention, security, and service improvement, where our interests do not override your rights</li>
-                  <li><strong>Vital Interests:</strong> To protect the health and safety of pets in emergency situations</li>
+                  <li><strong>Legitimate Interests:</strong> For purposes such as website security, content improvement, and understanding user needs, where our interests do not override your rights</li>
+                  <li><strong>Legal Obligation:</strong> To comply with legal requirements, such as responding to legal requests</li>
                 </ul>
 
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
@@ -349,7 +357,7 @@ export default function PrivacyPage() {
                   Data Controller and Data Protection Officer
                 </h3>
                 <p className="mb-3">
-                  Nearby Pet Care is the data controller for personal data collected through our services. For GDPR-related inquiries, you can contact us at:
+                  Nearby Pet Care is the data controller for personal data collected through our educational platform. For GDPR-related inquiries, you can contact us at:
                 </p>
                 <div className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg mb-4">
                   <p className="mb-2">
@@ -394,15 +402,10 @@ export default function PrivacyPage() {
                   In the past 12 months, we have collected the following categories of personal information:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li><strong>Identifiers:</strong> Name, email address, phone number, IP address, device identifiers</li>
-                  <li><strong>Personal Information:</strong> Payment information, billing address, pet information</li>
-                  <li><strong>Protected Characteristics:</strong> Not collected</li>
-                  <li><strong>Commercial Information:</strong> Purchase history, booking records, service preferences</li>
+                  <li><strong>Identifiers:</strong> Name, email address, IP address, device identifiers</li>
                   <li><strong>Internet Activity:</strong> Browsing history, search history, interaction with our website</li>
-                  <li><strong>Geolocation Data:</strong> Location data when using location-based features</li>
-                  <li><strong>Sensory Data:</strong> Not collected</li>
-                  <li><strong>Professional Information:</strong> Not collected</li>
-                  <li><strong>Inferences:</strong> Preferences and characteristics derived from your use of our services</li>
+                  <li><strong>Geolocation Data:</strong> General location data (country/region level) based on IP address</li>
+                  <li><strong>Inferences:</strong> Preferences and characteristics derived from your use of our educational content</li>
                 </ul>
 
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
@@ -412,9 +415,9 @@ export default function PrivacyPage() {
                   We use the personal information we collect for the business purposes described in Section 2 of this Privacy Policy, including:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Providing and improving our services</li>
-                  <li>Processing transactions and bookings</li>
-                  <li>Communicating with you</li>
+                  <li>Providing and improving our educational content</li>
+                  <li>Understanding how visitors use our guides and articles</li>
+                  <li>Communicating with you about our content</li>
                   <li>Security and fraud prevention</li>
                   <li>Legal compliance</li>
                   <li>Marketing (with your consent)</li>
@@ -428,8 +431,6 @@ export default function PrivacyPage() {
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
                   <li>Identifiers</li>
-                  <li>Personal Information</li>
-                  <li>Commercial Information</li>
                   <li>Internet Activity</li>
                   <li>Geolocation Data</li>
                 </ul>
@@ -461,22 +462,11 @@ export default function PrivacyPage() {
                   <li>Contact us through our <Link href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline">Contact Us</Link> page</li>
                 </ul>
                 <p className="mb-3">
-                  We will verify your identity before processing your request. We may ask for additional information to verify your identity, such as your email address or account information. We will respond to your request within 45 days, or inform you if we need additional time.
+                  We will verify your identity before processing your request. We may ask for additional information to verify your identity, such as your email address. We will respond to your request within 45 days, or inform you if we need additional time.
                 </p>
                 <p>
                   You can designate an authorized agent to make requests on your behalf. The authorized agent must provide proof of authorization, and we may still verify your identity directly.
                 </p>
-
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
-                  "Do Not Sell or Share My Personal Information"
-                </h3>
-                <p className="mb-3">
-                  We do not sell your personal information. However, if you would like to opt-out of any potential future sales or sharing of personal information, you can do so by:
-                </p>
-                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Clicking "Cookie Preferences" in our website footer and disabling marketing cookies</li>
-                  <li>Emailing us at <a href="mailto:privacy@nearbypetcare.com" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@nearbypetcare.com</a></li>
-                </ul>
               </section>
 
               <section>
@@ -487,10 +477,10 @@ export default function PrivacyPage() {
                   We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. Our retention practices include:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
-                  <li>Account information is retained while your account is active and for a reasonable period after account closure</li>
-                  <li>Booking and transaction records are retained for legal and accounting purposes</li>
-                  <li>Communication records are retained to maintain service quality and resolve disputes</li>
-                  <li>Analytics data may be retained in aggregated or anonymized form</li>
+                  <li>Email addresses and subscription information are retained while you remain subscribed and for a reasonable period after unsubscribing</li>
+                  <li>Contact form submissions are retained to maintain communication records and improve our content</li>
+                  <li>Analytics data may be retained in aggregated or anonymized form for research and improvement purposes</li>
+                  <li>Legal and compliance records may be retained as required by applicable laws</li>
                 </ul>
                 <p>
                   When we no longer need your personal information, we will securely delete or anonymize it in accordance with our data retention policies and applicable laws.
@@ -502,7 +492,7 @@ export default function PrivacyPage() {
                   10. Children's Privacy
                 </h2>
                 <p>
-                  Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately. If we become aware that we have collected personal information from a child without parental consent, we will take steps to delete that information promptly.
+                  Our educational platform is not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately. If we become aware that we have collected personal information from a child without parental consent, we will take steps to delete that information promptly.
                 </p>
               </section>
 
@@ -511,7 +501,7 @@ export default function PrivacyPage() {
                   11. Third-Party Links
                 </h2>
                 <p>
-                  Our website may contain links to third-party websites, services, or applications that are not operated by us. We are not responsible for the privacy practices of these third parties. We encourage you to review the privacy policies of any third-party sites you visit. This Privacy Policy applies only to information collected by Nearby Pet Care.
+                  Our website may contain links to third-party websites, services, or applications that are not operated by us. These links are provided for your convenience and educational purposes. We are not responsible for the privacy practices of these third parties. We encourage you to review the privacy policies of any third-party sites you visit. This Privacy Policy applies only to information collected by Nearby Pet Care through our educational platform.
                 </p>
               </section>
 
@@ -541,7 +531,7 @@ export default function PrivacyPage() {
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
                   <li>Posting the updated Privacy Policy on this page with a new "Last updated" date</li>
-                  <li>Sending you an email notification if the changes are significant</li>
+                  <li>Sending you an email notification if the changes are significant and you have provided us with your email address</li>
                   <li>Displaying a prominent notice on our website</li>
                 </ul>
                 <p>

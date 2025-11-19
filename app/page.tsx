@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
-  title: 'Nearby Pet Care - Professional Pet Care Services Near You',
-  description: 'Find trusted pet care services in your area. Professional grooming, boarding, daycare, and training services. Connect with experienced pet care professionals who treat your pets like family.',
-  keywords: ['pet care services', 'dog grooming', 'pet boarding', 'pet daycare', 'pet training', 'pet care near me', 'professional pet care', 'mobile pet care'],
+  title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
+  description: 'Learn how to care for a dog, cat, or any pet with our practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, training, and behavior. Trusted pet care information for pet owners.',
+  keywords: ['how to care for a dog', 'how to care for a cat', 'pet care tips', 'pet care guide', 'dog care tips', 'cat care tips', 'pet nutrition', 'pet health', 'dog grooming', 'cat grooming', 'pet training', 'dog training tips', 'pet care advice', 'pet care information', 'how to care for pets'],
   openGraph: {
-    title: 'Nearby Pet Care - Professional Pet Care Services Near You',
-    description: 'Find trusted pet care services in your area. Professional grooming, boarding, daycare, and training services.',
+    title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
+    description: 'Learn how to care for your pet with practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, and training from trusted pet care resources.',
     type: 'website',
     url: 'https://nearbypetcare.com',
     siteName: 'Nearby Pet Care',
@@ -17,14 +18,14 @@ export const metadata: Metadata = {
         url: 'https://nearbypetcare.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Nearby Pet Care - Professional Pet Care Services',
+        alt: 'Nearby Pet Care - Educational Pet Care Resources',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nearby Pet Care - Professional Pet Care Services Near You',
-    description: 'Find trusted pet care services in your area. Professional grooming, boarding, daycare, and training services.',
+    title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets',
+    description: 'Learn how to care for your pet with practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, and training.',
     images: ['https://nearbypetcare.com/og-image.png'],
   },
   alternates: {
@@ -46,76 +47,13 @@ export const metadata: Metadata = {
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
 
-  // Structured Data for Services
-  const servicesStructuredData = {
+  // Structured Data for Educational Content
+  const educationalContentStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: [
-      {
-        '@type': 'Service',
-        name: 'Pet Grooming',
-        description: 'Professional grooming services including bathing, haircuts, nail trimming, and styling. Mobile grooming available.',
-        provider: {
-          '@type': 'Organization',
-          name: 'Nearby Pet Care'
-        },
-        areaServed: 'US',
-        url: 'https://nearbypetcare.com/services/grooming'
-      },
-      {
-        '@type': 'Service',
-        name: 'Pet Boarding',
-        description: 'Safe and comfortable overnight stays with 24/7 supervision. Perfect for vacations and extended trips.',
-        provider: {
-          '@type': 'Organization',
-          name: 'Nearby Pet Care'
-        },
-        areaServed: 'US',
-        url: 'https://nearbypetcare.com/services/boarding'
-      },
-      {
-        '@type': 'Service',
-        name: 'Pet Daycare',
-        description: 'Daily care and socialization for your pet while you work. Exercise, playtime, and mental stimulation included.',
-        provider: {
-          '@type': 'Organization',
-          name: 'Nearby Pet Care'
-        },
-        areaServed: 'US',
-        url: 'https://nearbypetcare.com/services/daycare'
-      },
-      {
-        '@type': 'Service',
-        name: 'Pet Training',
-        description: 'Professional training programs for obedience, behavior modification, and specialized skills development.',
-        provider: {
-          '@type': 'Organization',
-          name: 'Nearby Pet Care'
-        },
-        areaServed: 'US',
-        url: 'https://nearbypetcare.com/services/training'
-      }
-    ]
-  };
-
-  // Structured Data for Reviews/Testimonials
-  const reviewsStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Review',
-    itemReviewed: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care'
-    },
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: '5',
-      bestRating: '5'
-    },
-    author: {
-      '@type': 'Person',
-      name: 'Sarah Johnson'
-    },
-    reviewBody: 'Finding reliable pet care services near me was a game-changer. The grooming service was exceptional, and my dog came back looking and feeling amazing!'
+    '@type': 'WebSite',
+    name: 'Nearby Pet Care',
+    description: 'An independent educational platform providing practical guidance on pet care',
+    url: 'https://nearbypetcare.com'
   };
 
   // Structured Data for FAQ
@@ -125,34 +63,34 @@ export default function Home() {
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'What pet care services do you offer?',
+        name: 'What kind of information does Nearby Pet Care provide?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We offer comprehensive pet care services including professional grooming, safe boarding, fun daycare, and expert training. All services are provided by verified, licensed professionals.'
+          text: 'We provide practical, step-by-step guidance on pet nutrition, health, grooming, training, behavior, product selection, and overall pet wellbeing. Our content is designed to help pet owners make informed decisions based on widely accepted pet care practices.'
         }
       },
       {
         '@type': 'Question',
-        name: 'How do I book an appointment?',
+        name: 'Do you provide pet care services?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'You can book an appointment easily through our online booking system. Simply visit our Book page, select your preferred service, date, and time, and fill out the booking form. We\'ll confirm your appointment shortly.'
+          text: 'No, we are an independent educational platform that provides informational resources only. We do not represent any business, clinic, or service provider. Our role is to help pet owners understand pet care topics so they can make informed decisions.'
         }
       },
       {
         '@type': 'Question',
-        name: 'Are your pet care providers verified?',
+        name: 'Is the information on this site reliable?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, all our pet care providers are thoroughly vetted, licensed, and insured. We maintain the highest standards of care and ensure all professionals meet our strict quality requirements.'
+          text: 'Yes, all our content is based on widely accepted pet care practices and designed to be easy to understand. We focus on providing practical, actionable guidance that pet owners can use in their everyday pet care routines.'
         }
       },
       {
         '@type': 'Question',
-        name: 'Do you offer mobile pet care services?',
+        name: 'Can I use this information to care for my pet?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, we offer mobile pet care services for your convenience. Our mobile grooming service brings professional care directly to your home, perfect for pets who are anxious about traveling or entering new environments.'
+          text: 'Our content is designed to help you make informed decisions about everyday pet care. However, for specific health concerns or emergencies, always consult with a qualified veterinarian. Our guides complement professional veterinary care.'
         }
       }
     ]
@@ -178,13 +116,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(servicesStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(reviewsStructuredData),
+          __html: JSON.stringify(educationalContentStructuredData),
         }}
       />
       <script
@@ -200,304 +132,298 @@ export default function Home() {
         }}
       />
       {/* Hero Section */}
-      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-black transition-colors">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-black transition-colors min-h-screen isolate">
+        {/* Hero Image Background - Fixed on scroll, clipped to section */}
+        <div 
+          className="absolute inset-0 z-0 w-full h-full"
+          style={{
+            backgroundImage: 'url(/pet-care-hero.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            backgroundRepeat: 'no-repeat',
+            willChange: 'transform'
+          }}
+        >
         </div>
+
 
         <div className="container mx-auto max-w-7xl relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30 rounded-full backdrop-blur-sm">
-              <span className="text-blue-600 dark:text-blue-400 text-sm font-semibold transition-colors">✨ Trusted Pet Care Services Near You</span>
+            <div className="inline-block mb-6 px-4 py-2 bg-white/20 dark:bg-white/10 backdrop-blur-md border border-white/30 rounded-full">
+              <span className="text-black text-sm font-semibold drop-shadow-md">📚 Your Independent Guide to Pet Care</span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-gray-900 via-blue-600 to-purple-600 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent leading-tight transition-colors">
-              Professional Pet Care
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-pink-600 via-pink-500 to-purple-600 bg-clip-text text-transparent drop-shadow-[0_1px_3px_rgba(0,0,0,0.15)]">
+                Make Informed Decisions
+              </span>
               <br />
-              <span className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
-                When You Need It Most
+              <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent drop-shadow-[0_1px_3px_rgba(0,0,0,0.15)]">
+                About Your Pet's Care
               </span>
             </h1>
             
-            <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed transition-colors">
-              Find trusted pet care services in your area. From grooming and boarding to daycare and training, we connect you with experienced professionals who treat your pets like family.
+            <p className="text-base sm:text-lg md:text-xl text-black mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+              Whether you're wondering how to care for a dog, seeking cat health tips, or looking for pet care advice that actually works, you've come to the right place. We provide practical, step-by-step guidance on everything from pet nutrition and grooming to training and behavior—all written in plain language you can actually use. Every guide is based on widely accepted pet care practices, so you can trust the information you're getting.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link 
-                href="/book"
+                href="/pet-care-tips"
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
               >
-                Book Appointment
-              </Link>
-              <Link 
-                href="/services"
-                className="px-6 sm:px-8 py-3 sm:py-4 bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-200 dark:hover:bg-white/20 transition-all duration-300"
-              >
-                Explore Services
+                Explore Pet Care Guides
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Category Links Section - Moved up */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
-              Why Choose Nearby Pet Care?
+              Explore Our Pet Care Resources
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
-              Trusted by thousands of pet owners for reliable, professional care services
+              Comprehensive guides and resources for every aspect of pet care
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {/* Feature 1 */}
-            <div className="group relative p-6 sm:p-8 bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-xl sm:rounded-2xl transition-all duration-300"></div>
-              <div className="relative z-10">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 transform group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">Local Pet Care Services</h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
-                  Find trusted pet care providers in your neighborhood. We connect you with experienced professionals who understand local needs and provide convenient, accessible services.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="group relative p-6 sm:p-8 bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-xl sm:rounded-2xl transition-all duration-300"></div>
-              <div className="relative z-10">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 transform group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">Verified Professionals</h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
-                  All our pet care providers are thoroughly vetted, licensed, and insured. Your pet's safety and wellbeing are our top priorities, backed by professional credentials and positive reviews.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="group relative p-6 sm:p-8 bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl backdrop-blur-sm hover:border-blue-500/50 transition-all duration-300">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 rounded-xl sm:rounded-2xl transition-all duration-300"></div>
-              <div className="relative z-10">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6 transform group-hover:scale-110 transition-transform">
-                  <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">Flexible Scheduling</h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
-                  Book appointments that fit your busy schedule. From same-day emergency care to planned services, we offer flexible options including mobile pet care services for your convenience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
-              How It Works
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
-              Getting started with professional pet care is simple and straightforward
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
             {[
-              {
-                step: '01',
-                title: 'Find Services Near You',
-                description: 'Search for pet care services in your area. Browse verified providers offering grooming, boarding, daycare, training, and more.',
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                )
-              },
-              {
-                step: '02',
-                title: 'Book Your Appointment',
-                description: 'Choose a service provider that matches your needs and schedule. Book instantly online or call to speak with our team.',
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                )
-              },
-              {
-                step: '03',
-                title: 'Enjoy Peace of Mind',
-                description: 'Your pet receives professional care from experienced providers. Stay updated with real-time communication and updates.',
-                icon: (
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                )
-              }
-            ].map((item, index) => (
-              <div key={index} className="relative">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white text-xl font-bold mb-4">
-                    {item.step}
-                  </div>
-                  <div className="flex justify-center mb-4 text-blue-600 dark:text-blue-400">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
-              Our Pet Care Services
-            </h2>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
-              Comprehensive care solutions tailored to your pet's unique needs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { 
-                name: 'Pet Grooming', 
-                icon: '✂️', 
-                desc: 'Professional grooming services including bathing, haircuts, nail trimming, and styling. Mobile grooming available.',
-                link: '/services/grooming'
-              },
-              { 
-                name: 'Pet Boarding', 
-                icon: '🏠', 
-                desc: 'Safe and comfortable overnight stays with 24/7 supervision. Perfect for vacations and extended trips.',
-                link: '/services/boarding'
-              },
-              { 
-                name: 'Pet Daycare', 
-                icon: '🎾', 
-                desc: 'Daily care and socialization for your pet while you work. Exercise, playtime, and mental stimulation included.',
-                link: '/services/daycare'
-              },
-              { 
-                name: 'Pet Training', 
-                icon: '🎓', 
-                desc: 'Professional training programs for obedience, behavior modification, and specialized skills development.',
-                link: '/services/training'
-              },
-            ].map((service, index) => (
-              <Link 
+              { name: 'Pet Health', href: '/pet-health', icon: '🩺', desc: 'Health & Wellness' },
+              { name: 'Pet Nutrition', href: '/pet-nutrition', icon: '🍽️', desc: 'Diet & Feeding' },
+              { name: 'Pet Grooming', href: '/pet-grooming', icon: '✂️', desc: 'Grooming & Hygiene' },
+              { name: 'Pet Training', href: '/pet-training', icon: '🎓', desc: 'Training & Behavior' },
+              { name: 'Pet Safety', href: '/pet-safety', icon: '🛡️', desc: 'Safety & Travel' },
+              { name: 'Pet Products', href: '/pet-products', icon: '🛍️', desc: 'Product Reviews' },
+              { name: 'Pet Breeds', href: '/pet-breeds', icon: '🐾', desc: 'Breed Guides' },
+              { name: 'Puppies & Kittens', href: '/puppies-kittens', icon: '👶', desc: 'Young Pet Care' },
+              { name: 'Senior Pets', href: '/senior-pets', icon: '👴', desc: 'Senior Care' },
+              { name: 'Pet Adoption', href: '/pet-adoption', icon: '❤️', desc: 'Adoption Guide' },
+            ].map((category, index) => (
+              <Link
                 key={index}
-                href={service.link}
-                className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300 cursor-pointer"
+                href={category.href}
+                className="group p-4 sm:p-5 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300 text-center"
               >
-                <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform">
-                  {service.icon}
+                <div className="text-3xl sm:text-4xl mb-3 transform group-hover:scale-110 transition-transform">
+                  {category.icon}
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">{service.name}</h3>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 transition-colors leading-relaxed">{service.desc}</p>
+                <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {category.name}
+                </h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 transition-colors">
+                  {category.desc}
+                </p>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
-        <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
-            {[
-              { number: '10K+', label: 'Happy Pets Served' },
-              { number: '500+', label: 'Verified Providers' },
-              { number: '50+', label: 'Cities Covered' },
-              { number: '99%', label: 'Satisfaction Rate' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-1 sm:mb-2 transition-colors">
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm md:text-base transition-colors">{stat.label}</div>
-              </div>
-            ))}
+          <div className="mt-8 sm:mt-10 text-center">
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/tools"
+                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
+              >
+                🛠️ Tools
+              </Link>
+              <Link
+                href="/buying-guides"
+                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
+              >
+                📚 Buying Guides
+              </Link>
+              <Link
+                href="/comparisons"
+                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
+              >
+                ⚖️ Product Comparisons
+              </Link>
+              <Link
+                href="/community"
+                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
+              >
+                👥 Community
+              </Link>
+              <Link
+                href="/pet-care-tips"
+                className="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm"
+              >
+                💡 Pet Care Tips
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
+      {/* Latest Published Tools Section */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
-              What Pet Parents Say
+              Latest Published Tools
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
-              Real experiences from pet owners who trust us with their furry family members
+              New tools and calculators to help you care for your pets
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {[
               {
-                name: 'Sarah Johnson',
-                pet: 'Golden Retriever Owner',
-                text: 'Finding reliable pet care services near me was a game-changer. The grooming service was exceptional, and my dog came back looking and feeling amazing!',
-                rating: 5
+                title: 'Pet Age Calculator',
+                description: 'Convert your pet\'s age to human years with breed-specific calculations. Understand life stages and get age-appropriate care recommendations.',
+                href: '/tools/age-calculator',
+                icon: '🎂',
+                category: 'Health & Wellness',
               },
               {
-                name: 'Michael Chen',
-                pet: 'Cat Owner',
-                text: 'The mobile pet care service is perfect for my busy schedule. Professional, reliable, and my cat actually enjoys the visits. Highly recommend!',
-                rating: 5
+                title: 'Exercise Calculator',
+                description: 'Calculate daily exercise needs based on breed, age, and activity level. Get personalized exercise plans and activity recommendations.',
+                href: '/tools/exercise-calculator',
+                icon: '🏃',
+                category: 'Health & Wellness',
               },
               {
-                name: 'Emily Rodriguez',
-                pet: 'Multiple Pet Owner',
-                text: 'We\'ve used their boarding services multiple times. The staff is caring, the facility is clean, and I always have peace of mind when traveling.',
-                rating: 5
+                title: 'Pet Cost Calculator',
+                description: 'Estimate the total cost of pet ownership including food, veterinary care, grooming, insurance, and supplies. Plan your budget effectively.',
+                href: '/tools/cost-calculator',
+                icon: '💰',
+                category: 'Planning',
+              },
+            ].map((tool, index) => (
+              <Link
+                key={index}
+                href={tool.href}
+                className="group p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="text-4xl sm:text-5xl flex-shrink-0 transform group-hover:scale-110 transition-transform">
+                    {tool.icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors">
+                      {tool.category}
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed transition-colors">
+                      {tool.description}
+                    </p>
+                    <div className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                      Use Tool
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-8 sm:mt-10">
+            <Link
+              href="/tools"
+              className="inline-flex items-center px-6 py-3 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-sm sm:text-base"
+            >
+              View All Tools
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer Section */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+              Everything You Need to Know About Pet Care
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
+              From first-time pet owners to experienced caregivers, find answers to your pet care questions with our comprehensive guides covering all aspects of pet health, nutrition, grooming, and training.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {[
+              { 
+                title: 'Pet Nutrition & Feeding', 
+                description: 'Discover how to choose the best pet food, create proper feeding schedules, understand portion sizes, and learn what ingredients to look for. Whether you\'re comparing wet vs dry food or exploring homemade pet food recipes, we\'ve got you covered.',
+                icon: '🍽️'
+              },
+              { 
+                title: 'Pet Health & Wellness', 
+                description: 'Learn to recognize common pet health issues, understand vaccination schedules, and know when it\'s time to visit the vet. Get practical advice on preventive care that keeps your dog or cat healthy and happy.',
+                icon: '🩺'
+              },
+              { 
+                title: 'Pet Grooming & Hygiene', 
+                description: 'Master the basics of dog grooming and cat grooming with step-by-step guides. Learn how to bathe your pet, trim nails safely, brush their coat, and maintain dental hygiene—all at home.',
+                icon: '✂️'
+              },
+              { 
+                title: 'Pet Training & Behavior', 
+                description: 'Find effective dog training tips and cat behavior solutions. Learn how to address common issues like potty training, crate training, and separation anxiety with proven techniques that actually work.',
+                icon: '🎓'
+              },
+            ].map((item, index) => (
+              <div key={index} className="p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl text-center">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 transition-colors">{item.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 transition-colors leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Approach Section */}
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+              Why Pet Owners Trust Our Pet Care Advice
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
+              We know you want the best for your pet. That's why every guide we create is designed to be practical, easy to follow, and based on what actually works in real-world pet care situations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                title: 'Clear, Step-by-Step Pet Care Guides',
+                description: 'No more guessing or sifting through conflicting advice. Our how-to guides break down everything from "how to care for a new puppy" to "how to groom a cat" into simple steps you can follow right away.',
+                icon: '📋'
+              },
+              {
+                title: 'Trusted Pet Care Information',
+                description: 'Every article is grounded in widely accepted veterinary practices and current pet care research. You can feel confident applying our advice because it\'s based on what veterinarians and pet care experts actually recommend.',
+                icon: '✅'
+              },
+              {
+                title: 'Written for Real Pet Owners',
+                description: 'Whether you\'re learning how to care for a dog for the first time or looking for advanced pet training techniques, we write in plain language that makes sense. No veterinary degree required—just practical knowledge you can use.',
+                icon: '💡'
               }
-            ].map((testimonial, index) => (
-              <div key={index} className="p-6 sm:p-8 bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl">
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.033a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.033a1 1 0 00-1.175 0l-2.8 2.033c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4 leading-relaxed transition-colors">
-                  "{testimonial.text}"
+            ].map((item, index) => (
+              <div key={index} className="p-6 sm:p-8 bg-gradient-to-br from-gray-100/50 to-white/50 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl text-center">
+                <div className="text-4xl mb-4">{item.icon}</div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">
+                  {item.description}
                 </p>
-                <div>
-                  <p className="font-semibold text-gray-900 dark:text-white transition-colors">{testimonial.name}</p>
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 transition-colors">{testimonial.pet}</p>
-                </div>
               </div>
             ))}
           </div>
@@ -560,28 +486,29 @@ export default function Home() {
         </section>
       )}
 
+
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
         <div className="container mx-auto max-w-7xl">
           <div className="max-w-4xl mx-auto text-center p-8 sm:p-10 md:p-12 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-2xl sm:rounded-3xl backdrop-blur-sm">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 transition-colors">
-              Ready to Find the Perfect Pet Care?
+              Ready to Give Your Pet the Best Care Possible?
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto transition-colors">
-              Connect with trusted pet care professionals in your area. From grooming and boarding to daycare and training, we make it easy to find the right care for your furry friend.
+              Join thousands of pet owners who use our guides to make better decisions about pet nutrition, health care, grooming routines, and training. Whether you need help choosing the right pet food, learning how to care for a senior pet, or understanding your pet's behavior, we've got practical answers that work.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link 
-                href="/book"
+                href="/pet-care-tips"
                 className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
               >
-                Book Appointment Now
+                Browse All Guides
               </Link>
               <Link 
-                href="/contact"
+                href="/about"
                 className="inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:bg-gray-200 dark:hover:bg-white/20 transition-all duration-300"
               >
-                Contact Us
+                Learn More About Us
               </Link>
             </div>
           </div>
@@ -590,3 +517,4 @@ export default function Home() {
     </main>
   );
 }
+

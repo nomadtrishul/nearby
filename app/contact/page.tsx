@@ -56,27 +56,21 @@ export default function ContactPage() {
 
   const contactInfo = [
     {
-      icon: '📞',
-      title: 'Phone',
-      content: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
-    },
-    {
       icon: '✉️',
       title: 'Email',
       content: 'info@nearbypetcare.com',
       link: 'mailto:info@nearbypetcare.com'
     },
     {
-      icon: '📍',
-      title: 'Address',
-      content: '123 Pet Care Ave, City, ST 12345',
+      icon: '🌐',
+      title: 'Online Platform',
+      content: 'Available 24/7',
       link: '#'
     },
     {
-      icon: '🕒',
-      title: 'Hours',
-      content: 'Mon-Sun: 7:00 AM - 9:00 PM',
+      icon: '💬',
+      title: 'Support',
+      content: 'We respond within 24 hours',
       link: '#'
     }
   ];
@@ -86,12 +80,13 @@ export default function ContactPage() {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: 'Contact Nearby Pet Care',
-    description: 'Get in touch with Nearby Pet Care. We\'re here to help with any questions or concerns about our pet care services.',
+    description: 'Get in touch with Nearby Pet Care. We\'re an online platform connecting pet owners with trusted care providers. We\'re here to help with any questions or concerns.',
     url: 'https://nearbypetcare.com/contact',
     mainEntity: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
       url: 'https://nearbypetcare.com',
+      description: 'Online platform connecting pet owners with trusted pet care providers',
       email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
       contactPoint: {
         '@type': 'ContactPoint',
@@ -124,7 +119,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
       {/* Structured Data Scripts */}
       <script
         type="application/ld+json"
@@ -139,15 +134,57 @@ export default function ContactPage() {
         }}
       />
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
-        <div className="container mx-auto max-w-7xl">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 transition-colors">
-              Get in Touch
+      <section className="relative pb-16 sm:pb-20 md:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto max-w-7xl relative z-10 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
+          <div className="text-center max-w-4xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-blue-200/50 dark:border-white/20 rounded-full shadow-sm">
+              <span className="text-2xl">💬</span>
+              <span className="text-sm font-semibold text-gray-900 dark:text-white">We're Here to Help</span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Let's Connect
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                We're Listening
+              </span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 transition-colors">
-              We're here to help! Reach out to us with any questions or concerns.
+
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
+              Have questions about our platform? Need help finding the right pet care provider? Want to share feedback? We'd love to hear from you.
             </p>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
+              As an online platform connecting pet owners with trusted care providers, we're committed to making your experience seamless and supportive. Drop us a message and we'll get back to you within 24 hours.
+            </p>
+
+            {/* Key Points */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+              {[
+                { icon: '⚡', text: 'Quick Response' },
+                { icon: '🤝', text: 'Friendly Support' },
+                { icon: '💡', text: 'Expert Guidance' }
+              ].map((point, index) => (
+                <div
+                  key={index}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-white/10 backdrop-blur-sm border border-gray-200/50 dark:border-white/20 rounded-full text-sm font-medium text-gray-800 dark:text-gray-200 shadow-sm"
+                >
+                  <span>{point.icon}</span>
+                  <span>{point.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -155,7 +192,7 @@ export default function ContactPage() {
       {/* Contact Info Cards */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
             {contactInfo.map((info, index) => (
               <a
                 key={index}

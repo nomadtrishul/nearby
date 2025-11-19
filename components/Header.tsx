@@ -10,12 +10,14 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 transition-colors">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-18 md:h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-colors">
+      <div className="w-full px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 md:pt-6">
+        <nav className="mx-auto max-w-[1200px] bg-white/80 dark:bg-black/80 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-xl shadow-lg transition-colors">
+          <div className="px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-12 sm:h-14 md:h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center group">
-            <div className="relative h-8 w-auto sm:h-10 md:h-12">
+            <div className="relative h-7 w-auto sm:h-8 md:h-9">
               <Image
                 src="/logo.png"
                 alt="Nearby Pet Care Logo"
@@ -38,31 +40,31 @@ export default function Header() {
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link 
-              href="/services" 
+              href="/tools" 
               className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
             >
-              Services
+              Tools
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link 
-              href="/about" 
+              href="/community" 
               className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
             >
-              About
+              Community
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             <Link 
-              href="/contact" 
+              href="/pet-care-tips" 
               className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
             >
-              Contact
+              Pet Care Tips
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -76,19 +78,13 @@ export default function Header() {
               )}
             </button>
             
-            <Link 
-              href="/book" 
-              className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
-            >
-              Book Now
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+              className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -136,36 +132,31 @@ export default function Header() {
               Home
             </Link>
             <Link 
-              href="/services" 
+              href="/tools" 
               className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Services
+              Tools
             </Link>
             <Link 
-              href="/about" 
+              href="/community" 
               className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              Community
             </Link>
             <Link 
-              href="/contact" 
+              href="/pet-care-tips" 
               className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
-            </Link>
-            <Link 
-              href="/book" 
-              className="block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-center"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Book Now
+              Pet Care Tips
             </Link>
           </div>
         )}
-      </nav>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

@@ -26,13 +26,16 @@ export default function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
   const { theme } = useTheme();
 
   useEffect(() => {
+    // Wait for client-side hydration
+    if (typeof window === 'undefined') return;
+
     // Check if user has already given consent
     const consent = localStorage.getItem('cookie-consent');
     if (!consent) {
-      // Small delay to prevent flash of unstyled content
+      // Small delay to prevent flash of unstyled content and ensure proper rendering
       const timer = setTimeout(() => {
         setShowBanner(true);
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timer);
     } else {
       // Load saved preferences
@@ -106,15 +109,22 @@ export default function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
   };
 
   const saveConsent = (consentPrefs: ConsentPreferences) => {
+    if (typeof window === 'undefined') return;
+    
     localStorage.setItem('cookie-consent', JSON.stringify(consentPrefs));
     localStorage.setItem('cookie-consent-date', new Date().toISOString());
     applyConsent(consentPrefs);
     setShowBanner(false);
     
-    // Dispatch custom event to notify other components
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new Event('consent-updated'));
-    }
+    // Dispatch custom event to notify other components (including AnalyticsLoader)
+    window.dispatchEvent(new Event('consent-updated'));
+    
+    // Also trigger storage event for cross-tab synchronization
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: 'cookie-consent',
+      newValue: JSON.stringify(consentPrefs),
+      storageArea: localStorage
+    }));
     
     if (onConsentChange) {
       onConsentChange(consentPrefs);
