@@ -2,18 +2,18 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Get in Touch | Nearby Pet Care',
-  description: 'Contact Nearby Pet Care for questions, support, or to book pet care services. We\'re here to help you find the perfect care for your pets.',
+  description: 'Contact Nearby Pet Care for questions, support, or guidance. We\'re here to help you navigate pet care decisions with confidence.',
   keywords: ['contact pet care', 'pet care support', 'pet care questions', 'pet care help'],
   openGraph: {
     title: 'Contact Us - Get in Touch | Nearby Pet Care',
-    description: 'Contact Nearby Pet Care for questions, support, or to book pet care services.',
+    description: 'Contact Nearby Pet Care for questions, support, or guidance on pet care decisions.',
     type: 'website',
     url: 'https://nearbypetcare.com/contact',
   },
   twitter: {
     card: 'summary',
     title: 'Contact Us - Get in Touch | Nearby Pet Care',
-    description: 'Contact Nearby Pet Care for questions, support, or to book pet care services.',
+    description: 'Contact Nearby Pet Care for questions, support, or guidance on pet care decisions.',
   },
   alternates: {
     canonical: 'https://nearbypetcare.com/contact',
@@ -31,6 +31,11 @@ export default function ContactLayout({
 }) {
   return <>{children}</>;
 }
+
+
+
+
+
 
 
 
