@@ -24,7 +24,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
-        userAgent: 'Bingbot',
+        userAgent: 'bingbot',
         allow: '/',
         disallow: [
           '/api/',
