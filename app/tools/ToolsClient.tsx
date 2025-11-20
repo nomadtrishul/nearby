@@ -3,16 +3,18 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import ToolCard, { type Tool } from '@/components/ToolCard';
+import ToolsSidebar from '@/components/ToolsSidebar';
 
 export default function ToolsClient() {
-  const tools = [
+  const tools: Tool[] = [
     {
       title: 'Pet Weight Calculator',
       description: 'Calculate your pet\'s ideal weight range, body condition score, and BMI. Get breed-specific recommendations and track weight goals over time.',
       href: '/tools/weight-calculator',
       icon: '⚖️',
       category: 'Health & Wellness',
-      featured: true,
+      featured: false,
     },
     {
       title: 'Feeding Portion Calculator',
@@ -20,7 +22,7 @@ export default function ToolsClient() {
       href: '/tools/feeding-portion-calculator',
       icon: '🍽️',
       category: 'Nutrition',
-      featured: true,
+      featured: false,
     },
     {
       title: 'Breed Selector',
@@ -28,7 +30,7 @@ export default function ToolsClient() {
       href: '/tools/breed-selector',
       icon: '🐾',
       category: 'Adoption',
-      featured: true,
+      featured: false,
     },
     {
       title: 'Vaccine Reminder',
@@ -36,7 +38,7 @@ export default function ToolsClient() {
       href: '/tools/vaccine-reminder',
       icon: '💉',
       category: 'Health & Wellness',
-      featured: true,
+      featured: false,
     },
     {
       title: 'Pet Age Calculator',
@@ -567,54 +569,46 @@ export default function ToolsClient() {
       {/* All Tools with Categories */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            All Tools
-          </h2>
-          
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="flex-1">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center lg:text-left">
+                All Tools
+              </h2>
+              
+              {/* Category Filter */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                      selectedCategory === category
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {filteredTools.map((tool, index) => (
-              <Link
-                key={index}
-                href={tool.href}
-                className="group p-6 sm:p-8 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="text-4xl sm:text-5xl mb-4 transform group-hover:scale-110 transition-transform">
-                  {tool.icon}
-                </div>
-                <div className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors">
-                  {tool.category}
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {tool.title}
-                </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 leading-relaxed transition-colors">
-                  {tool.description}
-                </p>
-                <div className="flex items-center text-sm sm:text-base font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                  Use Tool
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            ))}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+                {filteredTools.map((tool, index) => (
+                  <ToolCard key={index} tool={tool} />
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:flex-shrink-0">
+              <ToolsSidebar 
+                categories={categories.filter(cat => cat !== 'All')}
+                popularTools={tools.filter(tool => 
+                  ['Pet Weight Calculator', 'Feeding Portion Calculator', 'Breed Selector', 'Vaccine Reminder', 'Pet Age Calculator', 'Exercise Calculator'].includes(tool.title)
+                ).slice(0, 6)}
+              />
+            </div>
           </div>
         </div>
       </section>

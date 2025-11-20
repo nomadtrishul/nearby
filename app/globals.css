@@ -94,6 +94,18 @@ img {
   }
 }
 
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -101,6 +113,28 @@ img {
 .delay-1000 {
   animation-delay: 1s;
 }
+
+/* Gradient border utility */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(to right, #ec4899, #a855f7);
+  border-radius: 0.75rem;
+  padding: 3px;
+  display: block;
+}
+
+.gradient-border-inner {
+  background: white;
+  border-radius: calc(0.75rem - 3px);
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.dark .gradient-border-inner {
+  background: rgb(31 41 55); /* gray-800 */
+}
+
 
 
 /* Hide scrollbar completely */

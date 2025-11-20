@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '@/lib/blog';
+import ResourceCards from '@/components/ResourceCards';
 
 export const metadata: Metadata = {
   title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
@@ -195,36 +196,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-            {[
-              { name: 'Pet Health', href: '/pet-health', icon: '🩺', desc: 'Health & Wellness' },
-              { name: 'Pet Nutrition', href: '/pet-nutrition', icon: '🍽️', desc: 'Diet & Feeding' },
-              { name: 'Pet Grooming', href: '/pet-grooming', icon: '✂️', desc: 'Grooming & Hygiene' },
-              { name: 'Pet Training', href: '/pet-training', icon: '🎓', desc: 'Training & Behavior' },
-              { name: 'Pet Safety', href: '/pet-safety', icon: '🛡️', desc: 'Safety & Travel' },
-              { name: 'Pet Products', href: '/pet-products', icon: '🛍️', desc: 'Product Reviews' },
-              { name: 'Pet Breeds', href: '/pet-breeds', icon: '🐾', desc: 'Breed Guides' },
-              { name: 'Puppies & Kittens', href: '/puppies-kittens', icon: '👶', desc: 'Young Pet Care' },
-              { name: 'Senior Pets', href: '/senior-pets', icon: '👴', desc: 'Senior Care' },
-              { name: 'Pet Adoption', href: '/pet-adoption', icon: '❤️', desc: 'Adoption Guide' },
-            ].map((category, index) => (
-              <Link
-                key={index}
-                href={category.href}
-                className="group p-4 sm:p-5 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300 text-center"
-              >
-                <div className="text-3xl sm:text-4xl mb-3 transform group-hover:scale-110 transition-transform">
-                  {category.icon}
-                </div>
-                <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {category.name}
-                </h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 transition-colors">
-                  {category.desc}
-                </p>
-              </Link>
-            ))}
-          </div>
+          <ResourceCards />
 
           <div className="mt-8 sm:mt-10 text-center">
             <div className="flex flex-wrap justify-center gap-4">
@@ -299,34 +271,41 @@ export default function Home() {
                 category: 'Planning',
               },
             ].map((tool, index) => (
-              <Link
+              <div
                 key={index}
-                href={tool.href}
-                className="group p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300"
+                className="group p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full"
               >
-                <div className="flex items-start gap-4">
-                  <div className="text-4xl sm:text-5xl flex-shrink-0 transform group-hover:scale-110 transition-transform">
+                {/* Icon on left, Category on right */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl sm:text-5xl transform group-hover:scale-110 transition-transform">
                     {tool.icon}
                   </div>
-                  <div className="flex-1">
-                    <div className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors">
-                      {tool.category}
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {tool.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed transition-colors">
-                      {tool.description}
-                    </p>
-                    <div className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                      Use Tool
-                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
+                  <div className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium transition-colors">
+                    {tool.category}
                   </div>
                 </div>
-              </Link>
+                
+                {/* Name - Below Icon/Category */}
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {tool.title}
+                </h3>
+                
+                {/* Description - Below Name */}
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed transition-colors flex-1">
+                  {tool.description}
+                </p>
+                
+                {/* Button - Below Description */}
+                <Link
+                  href={tool.href}
+                  className="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 w-full"
+                >
+                  Use Tool
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
             ))}
           </div>
 
