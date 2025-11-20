@@ -16,29 +16,59 @@ html {
   scroll-behavior: smooth;
   /* Let Tailwind handle background via classes */
   transition: background-color 0.3s ease;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  /* Improve font rendering */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
   min-height: 100vh;
-  font-size: 14px; /* Reduced base font size */
-  line-height: 1.5;
+  font-size: 16px; /* Mobile-first: 16px base for better readability */
+  line-height: 1.6; /* Improved line height for readability */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 /* Mobile-first: Base styles for mobile, then scale up */
 @media (min-width: 640px) {
   body {
-    font-size: 15px;
+    font-size: 16px;
   }
 }
 
 @media (min-width: 1024px) {
   body {
-    font-size: 16px;
+    font-size: 17px;
   }
+}
+
+/* Ensure touch targets are at least 44x44px for mobile accessibility */
+a, button, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Improve text readability on mobile */
+p, li, span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Optimize image loading */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 @layer utilities {

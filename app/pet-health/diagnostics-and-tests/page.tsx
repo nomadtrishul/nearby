@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import HealthSidebar from '@/components/HealthSidebar';
 
 export const metadata: Metadata = {
   title: 'Pet Diagnostics & Tests: Complete Guide to Veterinary Testing | Nearby Pet Care',
@@ -126,17 +127,68 @@ export default function DiagnosticsAndTestsPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
-      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
+      
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[
             { name: 'Home', href: '/' },
             { name: 'Pet Health', href: '/pet-health' },
             { name: 'Diagnostics & Tests', href: '/pet-health/diagnostics-and-tests' }
           ]} />
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Pet Diagnostics & Tests: Complete Guide</h1>
-          
-          <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
+              <span className="text-2xl">🔬</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Diagnostic Testing</span>
+            </div>
+            
+            {/* Icon */}
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">🔬</div>
+            
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Diagnostics & Tests
+              </span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Learn about common veterinary diagnostic tests, what they can tell you about your pet's health, when they're recommended, and how to prepare your pet for testing.
+            </p>
+            
+            {/* Stats or highlights */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🩸</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Blood Tests</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">📷</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Imaging</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🔍</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Early Detection</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
               Veterinary diagnostic tests help identify health issues early, monitor your pet's health, and guide treatment decisions. This comprehensive guide explains common diagnostic tests, what they can tell you about your pet's health, when they're recommended, and how to prepare your pet for testing. Understanding these tests helps you work with your veterinarian to provide the best care for your pet.
             </p>
@@ -354,6 +406,7 @@ export default function DiagnosticsAndTestsPage() {
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
               <p className="text-gray-700 dark:text-gray-300"><strong>Remember:</strong> This guide provides general information about diagnostic tests. Your veterinarian will recommend specific tests based on your pet's individual needs, age, health status, and symptoms. Always follow your veterinarian's recommendations and ask questions if you need clarification about any tests or results.</p>
             </div>
+          </div>
 
             {/* FAQ Section */}
             <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -411,13 +464,19 @@ export default function DiagnosticsAndTestsPage() {
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">All Pet Health Guides</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Explore all our comprehensive pet health and wellness guides.</p>
                 </Link>
-          </div>
+              </div>
             </section>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
               <Link href="/pet-health" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
                 ← Back to Pet Health Guides
               </Link>
+            </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <HealthSidebar />
             </div>
           </div>
         </div>

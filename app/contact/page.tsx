@@ -279,10 +279,11 @@ export default function ContactPage() {
                     onChange={handleChange}
                     className="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-white/20 rounded-lg text-sm sm:text-base text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   >
-                    <option value="">Select a subject</option>
-                    <option value="booking">Booking Inquiry</option>
-                    <option value="service">Service Question</option>
-                    <option value="general">General Inquiry</option>
+                    <option value="">Select an inquiry type</option>
+                    <option value="website-ads">Website Ads</option>
+                    <option value="content-questions">Content Related Questions</option>
+                    <option value="general">General</option>
+                    <option value="writing-content">Writing Content for Website</option>
                     <option value="feedback">Feedback</option>
                   </select>
                 </div>

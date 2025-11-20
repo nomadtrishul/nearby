@@ -607,6 +607,11 @@ export default async function PetTipPage({ params }: PageProps) {
                   slug: t.slug,
                   title: t.title,
                   date: t.date,
+                  formattedDate: new Date(t.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                  }),
                   category: t.category,
                 }))}
                 categories={getAllCategories()}

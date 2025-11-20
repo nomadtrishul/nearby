@@ -13,12 +13,15 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://nearbypetcare.com',
     siteName: 'Nearby Pet Care',
+    locale: 'en_US',
+    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
     images: [
       {
         url: 'https://nearbypetcare.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Nearby Pet Care - Educational Pet Care Resources',
+        type: 'image/png',
       },
     ],
   },
@@ -35,6 +38,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
     googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+    'bingbot': {
       index: true,
       follow: true,
       'max-video-preview': -1,

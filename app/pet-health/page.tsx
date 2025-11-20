@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import HealthSidebar from '@/components/HealthSidebar';
 
 export const metadata: Metadata = {
   title: 'Pet Health Guide: How to Keep Your Dog or Cat Healthy | Nearby Pet Care',
@@ -11,12 +12,15 @@ export const metadata: Metadata = {
     description: 'Learn how to keep your pet healthy with expert advice on pet vaccinations, common pet diseases, pet first aid, and recognizing when your pet needs a vet.',
     type: 'website',
     url: 'https://nearbypetcare.com/pet-health',
+    siteName: 'Nearby Pet Care',
+    locale: 'en_US',
     images: [
       {
         url: 'https://nearbypetcare.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Pet Health & Wellness Guide',
+        type: 'image/png',
       },
     ],
   },
@@ -29,9 +33,66 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://nearbypetcare.com/pet-health',
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+    'bingbot': {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  other: {
+    'google-ai-mode': 'default',
+  },
 };
 
 export default function PetHealthPage() {
+  const webpageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Pet Health & Wellness Guide',
+    description: 'Comprehensive guide to pet health and wellness, including disease prevention, vaccinations, first aid, and maintaining your pet\'s health.',
+    url: 'https://nearbypetcare.com/pet-health',
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Nearby Pet Care',
+      url: 'https://nearbypetcare.com',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nearbypetcare.com/logo.png',
+      },
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Common Pet Diseases', url: 'https://nearbypetcare.com/pet-health/common-diseases' },
+        { '@type': 'ListItem', position: 2, name: 'Vaccination Schedules', url: 'https://nearbypetcare.com/pet-health/vaccination-schedules' },
+        { '@type': 'ListItem', position: 3, name: 'Parasite Control', url: 'https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms' },
+        { '@type': 'ListItem', position: 4, name: 'First Aid for Pets', url: 'https://nearbypetcare.com/pet-health/first-aid-for-pets' },
+        { '@type': 'ListItem', position: 5, name: 'Skin and Coat Health', url: 'https://nearbypetcare.com/pet-health/skin-and-coat-health' },
+        { '@type': 'ListItem', position: 6, name: 'Signs Your Pet Needs a Vet', url: 'https://nearbypetcare.com/pet-health/signs-your-pet-needs-a-vet' },
+        { '@type': 'ListItem', position: 7, name: 'Mental Health & Anxiety', url: 'https://nearbypetcare.com/pet-health/mental-health-anxiety' },
+        { '@type': 'ListItem', position: 8, name: 'Diagnostics & Tests', url: 'https://nearbypetcare.com/pet-health/diagnostics-and-tests' },
+        { '@type': 'ListItem', position: 9, name: 'Seasonal Health Tips', url: 'https://nearbypetcare.com/pet-health/seasonal-health-tips' },
+      ],
+    },
+  };
+
   const guides = [
     { title: 'Common Pet Diseases', href: '/pet-health/common-diseases', icon: '🦠' },
     { title: 'Vaccination Schedules', href: '/pet-health/vaccination-schedules', icon: '💉' },
@@ -46,7 +107,22 @@ export default function PetHealthPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageStructuredData) }} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: 'url(https://res.cloudinary.com/dxxzhrmpm/image/upload/v1763580822/pexels-tima-miroshnichenko-6235240_xlrvxa.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-indigo-50/85 to-purple-50/90 dark:from-gray-900/90 dark:via-gray-800/85 dark:to-gray-900/90"></div>
+        </div>
+        
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
@@ -98,25 +174,35 @@ export default function PetHealthPage() {
 
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {guides.map((guide, index) => (
-              <Link
-                key={index}
-                href={guide.href}
-                className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300"
-              >
-                <div className="text-4xl mb-4">{guide.icon}</div>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {guide.title}
-                </h2>
-                <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                  Read Guide
-                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content - Guides Grid */}
+            <div className="lg:col-span-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {guides.map((guide, index) => (
+                  <Link
+                    key={index}
+                    href={guide.href}
+                    className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300"
+                  >
+                    <div className="text-4xl mb-4">{guide.icon}</div>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {guide.title}
+                    </h2>
+                    <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                      Read Guide
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <HealthSidebar />
+            </div>
           </div>
         </div>
       </section>

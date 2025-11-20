@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import HealthSidebar from '@/components/HealthSidebar';
 
 export const metadata: Metadata = {
   title: 'Parasite Control for Pets: Complete Guide to Ticks, Fleas & Worms | Nearby Pet Care',
@@ -44,17 +45,34 @@ export default function ParasiteControlPage() {
     ],
   };
 
+  const authorStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Veterinary Content Team',
+    jobTitle: 'Veterinary Health Content Specialists',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+    },
+    knowsAbout: ['Veterinary Medicine', 'Parasite Control', 'Flea and Tick Prevention', 'Heartworm Prevention'],
+  };
+
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Parasite Control for Pets: Complete Guide to Ticks, Fleas & Worms',
     description: 'Complete guide to preventing and treating parasites in pets, including ticks, fleas, heartworms, and intestinal parasites.',
     url: 'https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms',
-    datePublished: '2024-01-01',
-    dateModified: new Date().toISOString().split('T')[0],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms',
+    },
+    datePublished: '2024-01-01T00:00:00+00:00',
+    dateModified: new Date().toISOString(),
     author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
+      '@type': 'Person',
+      name: 'Veterinary Content Team',
+      jobTitle: 'Veterinary Health Content Specialists',
     },
     publisher: {
       '@type': 'Organization',
@@ -62,8 +80,19 @@ export default function ParasiteControlPage() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://nearbypetcare.com/logo.png',
+        width: 600,
+        height: 60,
       },
     },
+    image: {
+      '@type': 'ImageObject',
+      url: 'https://nearbypetcare.com/og-image.png',
+      width: 1200,
+      height: 630,
+    },
+    articleSection: 'Pet Health',
+    inLanguage: 'en-US',
+    keywords: 'pet parasites, flea control, tick prevention, heartworm prevention, pet deworming',
   };
 
   const faqStructuredData = {
@@ -124,19 +153,71 @@ export default function ParasiteControlPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(authorStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
-      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
+      
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[
             { name: 'Home', href: '/' },
             { name: 'Pet Health', href: '/pet-health' },
             { name: 'Parasite Control', href: '/pet-health/parasite-control-ticks-fleas-worms' }
           ]} />
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Parasite Control: Ticks, Fleas & Worms</h1>
-          
-          <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
+              <span className="text-2xl">🐛</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Parasite Prevention</span>
+            </div>
+            
+            {/* Icon */}
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">🐛</div>
+            
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Parasite Control
+              </span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Comprehensive guide to preventing and treating ticks, fleas, worms, and other parasites that can affect your pet's health. Learn about prevention methods, treatment options, and when to seek veterinary care.
+            </p>
+            
+            {/* Stats or highlights */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🪲</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Fleas & Ticks</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🪱</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Worms</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🛡️</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Prevention</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
               Effective parasite control is essential for your pet's health and wellbeing. Parasites can cause discomfort, transmit diseases, and in some cases, be life-threatening. This comprehensive guide covers prevention and treatment of common parasites including fleas, ticks, heartworms, and intestinal worms. Understanding how to protect your pet from parasites is one of the most important aspects of responsible pet ownership.
             </p>
@@ -287,6 +368,7 @@ export default function ParasiteControlPage() {
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
               <p className="text-gray-700 dark:text-gray-300"><strong>Important Safety Note:</strong> Never use dog parasite preventives on cats, as some ingredients (like permethrin) are toxic to cats. Always use products specifically labeled for your pet's species. If you have both dogs and cats, be careful to apply products correctly and prevent cats from coming into contact with dog products.</p>
             </div>
+          </div>
 
             {/* FAQ Section */}
             <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -344,13 +426,19 @@ export default function ParasiteControlPage() {
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">All Pet Health Guides</h3>
                   <p className="text-sm text-gray-600 dark:text-gray-400">Explore all our comprehensive pet health and wellness guides.</p>
                 </Link>
-          </div>
+              </div>
             </section>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
               <Link href="/pet-health" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
                 ← Back to Pet Health Guides
               </Link>
+            </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <HealthSidebar />
             </div>
           </div>
         </div>
@@ -358,3 +446,4 @@ export default function ParasiteControlPage() {
     </main>
   );
 }
+

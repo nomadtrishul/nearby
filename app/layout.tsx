@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
+    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
     url: 'https://nearbypetcare.com',
     siteName: 'Nearby Pet Care',
     title: 'Nearby Pet Care - Professional Pet Care Services Near You',
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: 'Nearby Pet Care - Professional Pet Care Services',
+        type: 'image/png',
       },
     ],
   },
@@ -46,12 +48,18 @@ export const metadata: Metadata = {
     title: 'Nearby Pet Care - Professional Pet Care Services Near You',
     description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
     images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
   },
   robots: {
     index: true,
     follow: true,
     googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+    'bingbot': {
       index: true,
       follow: true,
       'max-video-preview': -1,
@@ -80,6 +88,12 @@ export const metadata: Metadata = {
     ],
     shortcut: '/logo-2.png',
   },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Pet Care',
+  },
   other: {
     'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION || '',
   },
@@ -93,31 +107,46 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Viewport Meta Tag - Critical for Mobile-First Indexing */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+        
+        {/* Theme Color for Mobile Browsers */}
+        <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        
         {/* Favicon */}
         <link rel="icon" href="/logo-2.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo-2.png" />
+        
+        {/* Preconnect to External Domains for Performance */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         {/* Initialize Google Consent Mode v2 - Must be loaded before any analytics scripts */}
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              
-              // Initialize consent mode with default 'denied' state
-              // This ensures compliance before user consent is obtained
-              gtag('consent', 'default', {
-                'analytics_storage': 'denied',
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied',
-                'functionality_storage': 'denied',
-                'personalization_storage': 'denied',
-                'security_storage': 'granted',
-                'wait_for_update': 500,
-              });
-              
-              // Check for existing consent and update if available
               (function() {
+                if (typeof window === 'undefined') return;
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                
+                // Initialize consent mode with default 'denied' state
+                // This ensures compliance before user consent is obtained
+                gtag('consent', 'default', {
+                  'analytics_storage': 'denied',
+                  'ad_storage': 'denied',
+                  'ad_user_data': 'denied',
+                  'ad_personalization': 'denied',
+                  'functionality_storage': 'denied',
+                  'personalization_storage': 'denied',
+                  'security_storage': 'granted',
+                  'wait_for_update': 500,
+                });
+                
+                // Check for existing consent and update if available
                 try {
                   const consent = localStorage.getItem('cookie-consent');
                   if (consent) {
@@ -144,19 +173,29 @@ export default function RootLayout({
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2513522563082642"
           crossOrigin="anonymous"
+          suppressHydrationWarning
         />
         {/* Analytics scripts will be loaded dynamically by AnalyticsLoader component after consent */}
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const theme = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const isDark = theme === 'dark' || (!theme && prefersDark);
-                if (isDark) {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
+                if (typeof window === 'undefined') return;
+                try {
+                  const theme = localStorage.getItem('theme');
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  const isDark = theme === 'dark' || (!theme && prefersDark);
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {
+                  // Fallback to system preference if localStorage fails
+                  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                  }
                 }
               })();
             `,
@@ -165,6 +204,7 @@ export default function RootLayout({
         {/* Organization Structured Data - Platform/Marketplace */}
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -181,10 +221,11 @@ export default function RootLayout({
                 availableLanguage: ['English']
               },
               sameAs: [
-                ...(process.env.NEXT_PUBLIC_FACEBOOK_URL ? [process.env.NEXT_PUBLIC_FACEBOOK_URL] : []),
-                ...(process.env.NEXT_PUBLIC_TWITTER_URL ? [process.env.NEXT_PUBLIC_TWITTER_URL] : []),
-                ...(process.env.NEXT_PUBLIC_INSTAGRAM_URL ? [process.env.NEXT_PUBLIC_INSTAGRAM_URL] : []),
-              ].filter(Boolean),
+                'https://www.facebook.com/nearbypetcare',
+                'https://www.instagram.com/nearbypetcare',
+                'https://www.youtube.com/@nearbypetcare',
+                'https://www.linkedin.com/company/nearbypetcare',
+              ],
               aggregateRating: {
                 '@type': 'AggregateRating',
                 ratingValue: '4.9',
@@ -198,6 +239,7 @@ export default function RootLayout({
         {/* WebSite Structured Data */}
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -205,12 +247,15 @@ export default function RootLayout({
               name: 'Nearby Pet Care',
               url: 'https://nearbypetcare.com',
               description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
+              inLanguage: 'en-US',
               publisher: {
                 '@type': 'Organization',
                 name: 'Nearby Pet Care',
                 logo: {
                   '@type': 'ImageObject',
-                  url: 'https://nearbypetcare.com/logo.png'
+                  url: 'https://nearbypetcare.com/logo.png',
+                  width: 200,
+                  height: 48
                 }
               },
               potentialAction: {
@@ -220,7 +265,32 @@ export default function RootLayout({
                   urlTemplate: 'https://nearbypetcare.com/search?q={search_term_string}'
                 },
                 'query-input': 'required name=search_term_string'
-              }
+              },
+              copyrightHolder: {
+                '@type': 'Organization',
+                name: 'Nearby Pet Care'
+              },
+              copyrightYear: new Date().getFullYear()
+            }),
+          }}
+        />
+        
+        {/* BreadcrumbList for Homepage */}
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://nearbypetcare.com'
+                }
+              ]
             }),
           }}
         />

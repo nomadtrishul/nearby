@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import HealthSidebar from '@/components/HealthSidebar';
 
 export const metadata: Metadata = {
   title: 'First Aid for Pets: Emergency Care Guide & Procedures | Nearby Pet Care',
@@ -44,17 +45,34 @@ export default function FirstAidForPetsPage() {
     ],
   };
 
+  const authorStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Veterinary Content Team',
+    jobTitle: 'Veterinary Health Content Specialists',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+    },
+    knowsAbout: ['Veterinary Medicine', 'Pet First Aid', 'Emergency Care', 'Pet Health'],
+  };
+
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'First Aid for Pets: Emergency Care Guide & Procedures',
     description: 'Essential first aid guide for pets, including emergency care procedures and how to handle common pet emergencies.',
     url: 'https://nearbypetcare.com/pet-health/first-aid-for-pets',
-    datePublished: '2024-01-01',
-    dateModified: new Date().toISOString().split('T')[0],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://nearbypetcare.com/pet-health/first-aid-for-pets',
+    },
+    datePublished: '2024-01-01T00:00:00+00:00',
+    dateModified: new Date().toISOString(),
     author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
+      '@type': 'Person',
+      name: 'Veterinary Content Team',
+      jobTitle: 'Veterinary Health Content Specialists',
     },
     publisher: {
       '@type': 'Organization',
@@ -62,8 +80,19 @@ export default function FirstAidForPetsPage() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://nearbypetcare.com/logo.png',
+        width: 600,
+        height: 60,
       },
     },
+    image: {
+      '@type': 'ImageObject',
+      url: 'https://nearbypetcare.com/og-image.png',
+      width: 1200,
+      height: 630,
+    },
+    articleSection: 'Pet Health',
+    inLanguage: 'en-US',
+    keywords: 'pet first aid, emergency care, pet emergencies, pet health',
   };
 
   const howToStructuredData = {
@@ -153,19 +182,71 @@ export default function FirstAidForPetsPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(authorStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
-      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
+      
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[
             { name: 'Home', href: '/' },
             { name: 'Pet Health', href: '/pet-health' },
             { name: 'First Aid for Pets', href: '/pet-health/first-aid-for-pets' }
           ]} />
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">First Aid for Pets: Emergency Care Guide</h1>
-          
+          <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
+              <span className="text-2xl">🩹</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Emergency Care</span>
+            </div>
+            
+            {/* Icon */}
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">🩹</div>
+            
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                First Aid for Pets
+              </span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Essential first aid guide for pets. Learn how to handle common emergencies, create a pet first aid kit, perform basic first aid procedures, and know when to seek immediate veterinary care.
+            </p>
+            
+            {/* Stats or highlights */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🚨</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Emergency Care</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🏥</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">First Aid Kit</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">⚡</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Quick Response</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
           <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
               Knowing basic first aid for pets can help you respond effectively in emergencies and potentially save your pet's life. This comprehensive guide covers essential first aid procedures, how to handle common emergencies, and when to seek immediate veterinary care. While first aid is not a substitute for professional veterinary care, it can help stabilize your pet and prevent conditions from worsening until you can reach a veterinarian.
@@ -344,6 +425,7 @@ export default function FirstAidForPetsPage() {
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
               <p className="text-gray-700 dark:text-gray-300"><strong>Important:</strong> This guide provides general first aid information. It is not a substitute for professional veterinary care. In any emergency situation, contact your veterinarian or emergency veterinary clinic immediately. Consider taking a pet first aid course to learn hands-on techniques properly.</p>
             </div>
+            </div>
 
             {/* FAQ Section */}
             <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -409,9 +491,16 @@ export default function FirstAidForPetsPage() {
                 ← Back to Pet Health Guides
               </Link>
             </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <HealthSidebar />
+            </div>
           </div>
         </div>
       </article>
     </main>
   );
 }
+

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import HealthSidebar from '@/components/HealthSidebar';
 
 export const metadata: Metadata = {
   title: 'Signs Your Pet Needs a Vet: When to Seek Veterinary Care | Nearby Pet Care',
@@ -126,17 +127,68 @@ export default function SignsYourPetNeedsVetPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
-      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
+      
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[
             { name: 'Home', href: '/' },
             { name: 'Pet Health', href: '/pet-health' },
             { name: 'Signs Your Pet Needs a Vet', href: '/pet-health/signs-your-pet-needs-a-vet' }
           ]} />
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Signs Your Pet Needs a Vet: When to Seek Veterinary Care</h1>
-          
-          <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
+              <span className="text-2xl">⚠️</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Emergency Signs</span>
+            </div>
+            
+            {/* Icon */}
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">⚠️</div>
+            
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Signs Your Pet Needs a Vet
+              </span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Learn to recognize the warning signs that indicate your pet needs immediate veterinary attention. Early recognition of symptoms can make a critical difference in your pet's health and recovery.
+            </p>
+            
+            {/* Stats or highlights */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🚨</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Emergency Signs</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">👀</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Early Detection</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">⚡</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Quick Action</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
               Recognizing when your pet needs veterinary care is crucial for their health and wellbeing. This comprehensive guide helps you identify symptoms that require immediate attention versus those that can wait for a regular appointment. Early recognition and prompt veterinary care can make a significant difference in treatment outcomes and your pet's recovery.
             </p>
@@ -345,6 +397,7 @@ export default function SignsYourPetNeedsVetPage() {
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
               <p className="text-gray-700 dark:text-gray-300"><strong>Remember:</strong> This guide provides general information about when to seek veterinary care. Every pet is different, and symptoms can vary. When in doubt, it's always better to contact your veterinarian for guidance. Early intervention often leads to better outcomes and can prevent conditions from becoming more serious.</p>
             </div>
+          </div>
 
             {/* FAQ Section */}
             <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
@@ -405,10 +458,16 @@ export default function SignsYourPetNeedsVetPage() {
           </div>
             </section>
 
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-              <Link href="/pet-health" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                ← Back to Pet Health Guides
-              </Link>
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <Link href="/pet-health" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                  ← Back to Pet Health Guides
+                </Link>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <HealthSidebar />
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ export default function TermsPage() {
               Terms of Service
             </h1>
             <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 sm:space-y-6 transition-colors">
-              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500" suppressHydrationWarning>
                 Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </p>
               

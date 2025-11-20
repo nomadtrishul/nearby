@@ -7,6 +7,7 @@ interface TipsSidebarProps {
     slug: string;
     title: string;
     date: string;
+    formattedDate?: string;
     category?: string;
   }>;
   categories: string[];
@@ -14,7 +15,10 @@ interface TipsSidebarProps {
 }
 
 export default function TipsSidebar({ recentTips, categories, tags }: TipsSidebarProps) {
-
+  // This component must render identically on server and client
+  // All props are provided by the server, ensuring deterministic rendering
+  // No window, localStorage, Date.now(), Math.random(), or other non-deterministic values
+  
   return (
     <aside className="w-full lg:w-80 space-y-4 sm:space-y-5">
       {/* Recent Tips */}
@@ -34,11 +38,7 @@ export default function TipsSidebar({ recentTips, categories, tags }: TipsSideba
                     {tip.title}
                   </h4>
                   <p className="text-xs text-gray-500 dark:text-gray-400 transition-colors">
-                    {new Date(tip.date).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
+                    {tip.formattedDate || tip.date}
                   </p>
                 </Link>
               </li>
@@ -95,25 +95,14 @@ export default function TipsSidebar({ recentTips, categories, tags }: TipsSideba
         </div>
       )}
 
-      {/* CTA Section */}
-      <div className="p-3 sm:p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-lg sm:rounded-xl backdrop-blur-sm">
-        <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 transition-colors">
-          Need Professional Help?
-        </h3>
-        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4 transition-colors">
-          Find trusted pet care providers in your area for professional services.
-        </p>
-        <Link
-          href="/new-york"
-          className="block w-full px-3 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-xs sm:text-sm hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 text-center"
-        >
-          Find Services
-        </Link>
-      </div>
 
-      {/* Quick Links */}
-      <div className="p-3 sm:p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-lg sm:rounded-xl transition-colors">
-        <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+      {/* Quick Links - Static content, always renders the same */}
+      <div 
+        className="p-3 sm:p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-lg sm:rounded-xl transition-colors"
+      >
+        <h3 
+          className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors"
+        >
           Quick Links
         </h3>
         <ul className="space-y-1.5 sm:space-y-2">

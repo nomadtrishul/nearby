@@ -12,10 +12,25 @@ export default function robots(): MetadataRoute.Robots {
           '/api/',
           '/_next/',
           '/admin/',
+          '/private/',
+          '/*.json$',
         ],
+        crawlDelay: 0,
       },
       {
         userAgent: 'Googlebot',
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/_next/',
+          '/admin/',
+          '/private/',
+          '/*.json$',
+        ],
+        crawlDelay: 0,
+      },
+      {
+        userAgent: 'Googlebot-Image',
         allow: '/',
         disallow: [
           '/api/',
@@ -30,10 +45,23 @@ export default function robots(): MetadataRoute.Robots {
           '/api/',
           '/_next/',
           '/admin/',
+          '/private/',
+          '/*.json$',
+        ],
+        crawlDelay: 0,
+      },
+      {
+        userAgent: 'Slurp',
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/_next/',
+          '/admin/',
         ],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   };
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import GroomingSidebar from '@/components/GroomingSidebar';
 
 export const metadata: Metadata = {
   title: 'Pet Grooming Guide: How to Groom Your Dog or Cat at Home | Nearby Pet Care',
@@ -11,12 +12,15 @@ export const metadata: Metadata = {
     description: 'Learn how to groom your pet at home with step-by-step guides on dog grooming, cat grooming, bathing, nail trimming, and dental care.',
     type: 'website',
     url: 'https://nearbypetcare.com/pet-grooming',
+    siteName: 'Nearby Pet Care',
+    locale: 'en_US',
     images: [
       {
         url: 'https://nearbypetcare.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Pet Grooming & Hygiene Guide',
+        type: 'image/png',
       },
     ],
   },
@@ -26,7 +30,27 @@ export const metadata: Metadata = {
     description: 'Comprehensive guide to pet grooming and hygiene including bathing, brushing, and dental care.',
     images: ['https://nearbypetcare.com/og-image.png'],
   },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming' },
+  alternates: { 
+    canonical: 'https://nearbypetcare.com/pet-grooming',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+    'bingbot': {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function PetGroomingPage() {
@@ -93,16 +117,26 @@ export default function PetGroomingPage() {
       </section>
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {guides.map((guide, index) => (
-              <Link key={index} href={guide.href} className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300">
-                <div className="text-4xl mb-4">{guide.icon}</div>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h2>
-                <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                  Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content - Guides Grid */}
+            <div className="lg:col-span-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {guides.map((guide, index) => (
+                  <Link key={index} href={guide.href} className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300">
+                    <div className="text-4xl mb-4">{guide.icon}</div>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h2>
+                    <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                      Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <GroomingSidebar />
+            </div>
           </div>
         </div>
       </section>

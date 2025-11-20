@@ -12,7 +12,7 @@ export default function ServiceCategory({ category, defaultExpanded = false }: S
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
 
   return (
-    <div className="border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 hover:shadow-lg">
+    <div id={category.id} className="border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300 hover:border-blue-500/50 hover:shadow-lg scroll-mt-24">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full p-4 sm:p-6 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900/50 flex items-center justify-between text-left transition-colors"

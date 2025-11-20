@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import HealthSidebar from '@/components/HealthSidebar';
 
 export const metadata: Metadata = {
   title: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide | Nearby Pet Care',
@@ -44,17 +45,34 @@ export default function CommonDiseasesPage() {
     ],
   };
 
+  const authorStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Veterinary Content Team',
+    jobTitle: 'Veterinary Health Content Specialists',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+    },
+    knowsAbout: ['Veterinary Medicine', 'Pet Health', 'Animal Diseases', 'Preventive Care'],
+  };
+
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide',
     description: 'Comprehensive guide to common pet diseases affecting dogs and cats, including symptoms, prevention, and treatment information.',
     url: 'https://nearbypetcare.com/pet-health/common-diseases',
-    datePublished: '2024-01-01',
-    dateModified: new Date().toISOString().split('T')[0],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': 'https://nearbypetcare.com/pet-health/common-diseases',
+    },
+    datePublished: '2024-01-01T00:00:00+00:00',
+    dateModified: new Date().toISOString(),
     author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
+      '@type': 'Person',
+      name: 'Veterinary Content Team',
+      jobTitle: 'Veterinary Health Content Specialists',
     },
     publisher: {
       '@type': 'Organization',
@@ -62,8 +80,19 @@ export default function CommonDiseasesPage() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://nearbypetcare.com/logo.png',
+        width: 600,
+        height: 60,
       },
     },
+    image: {
+      '@type': 'ImageObject',
+      url: 'https://nearbypetcare.com/og-image.png',
+      width: 1200,
+      height: 630,
+    },
+    articleSection: 'Pet Health',
+    inLanguage: 'en-US',
+    keywords: 'pet diseases, dog diseases, cat diseases, pet illness symptoms, pet disease prevention',
   };
 
   const faqStructuredData = {
@@ -124,25 +153,77 @@ export default function CommonDiseasesPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(authorStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
-      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
+      
+      {/* Hero Section */}
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[
             { name: 'Home', href: '/' },
             { name: 'Pet Health', href: '/pet-health' },
             { name: 'Common Diseases', href: '/pet-health/common-diseases' }
           ]} />
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Common Pet Diseases: Symptoms, Prevention & Treatment Guide</h1>
-          
-          <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-              Understanding common pet diseases helps you recognize symptoms early and seek appropriate veterinary care. This comprehensive guide covers prevalent conditions affecting dogs, cats, and other pets, including their symptoms, prevention methods, and when to seek professional help. Early recognition and proper care can make a significant difference in your pet's health and recovery.
+          <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
+              <span className="text-2xl">🦠</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Disease Prevention</span>
+            </div>
+            
+            {/* Icon */}
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">🦠</div>
+            
+            {/* Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                Common Pet Diseases
+              </span>
+            </h1>
+            
+            {/* Description */}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+              Learn about common diseases affecting pets, their symptoms, prevention methods, and when to seek veterinary care. Early recognition can make a significant difference in your pet's health and recovery.
             </p>
+            
+            {/* Stats or highlights */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🐕</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Dog Diseases</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🐈</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Cat Diseases</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-2xl">🛡️</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Prevention</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 my-6">
-              <p className="text-gray-700 dark:text-gray-300"><strong>Important:</strong> This guide provides educational information about common pet diseases. It is not a substitute for professional veterinary diagnosis or treatment. If you notice any signs of illness in your pet, consult with your veterinarian immediately for proper diagnosis and treatment.</p>
+      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2">
+              <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
+            {/* Medical Disclaimer - YMYL Compliance */}
+            <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 sm:p-6 my-6 rounded-r-lg" role="alert" aria-label="Medical Disclaimer">
+              <p className="text-gray-900 dark:text-white font-semibold mb-2">⚠️ Medical Disclaimer</p>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+                <strong>Important:</strong> This content is for educational and informational purposes only and is not intended as veterinary medical advice, diagnosis, or treatment. Always seek the advice of a qualified veterinarian or other qualified health provider with any questions you may have regarding your pet's medical condition. Never disregard professional veterinary advice or delay in seeking it because of something you have read on this website. In case of a medical emergency, contact your veterinarian or an emergency veterinary clinic immediately.
+              </p>
             </div>
 
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Understanding Pet Disease Prevention</h2>
@@ -355,10 +436,17 @@ export default function CommonDiseasesPage() {
               </div>
             </section>
 
-            <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-              <Link href="/pet-health" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                ← Back to Pet Health Guides
-              </Link>
+              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <Link href="/pet-health" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                  ← Back to Pet Health Guides
+                </Link>
+              </div>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <HealthSidebar />
             </div>
           </div>
         </div>
@@ -366,3 +454,4 @@ export default function CommonDiseasesPage() {
     </main>
   );
 }
+

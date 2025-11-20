@@ -1,0 +1,114 @@
+'use client';
+
+import Link from 'next/link';
+
+export default function AdoptionSidebar() {
+  const guides = [
+    { title: 'Adoption Checklist', href: '/pet-adoption/adoption-checklist', icon: '📋' },
+    { title: 'Preparing Your Home', href: '/pet-adoption/preparing-home', icon: '🏡' },
+    { title: 'Transitioning a Rescue', href: '/pet-adoption/transitioning-a-rescue', icon: '🔄' },
+  ];
+
+  return (
+    <aside className="w-full lg:w-80 space-y-4 sm:space-y-5">
+      {/* Adoption Guides Navigation */}
+      <div className="p-3 sm:p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-lg sm:rounded-xl transition-colors">
+        <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+          Adoption Guides
+        </h3>
+        <ul className="space-y-1.5 sm:space-y-2">
+          {guides.map((guide) => (
+            <li key={guide.href}>
+              <Link
+                href={guide.href}
+                className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center group"
+              >
+                <span className="text-base mr-2 group-hover:scale-110 transition-transform">{guide.icon}</span>
+                <span className="flex-1">{guide.title}</span>
+                <svg className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Quick Tips */}
+      <div className="p-3 sm:p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-lg sm:rounded-xl transition-colors">
+        <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+          Quick Tips
+        </h3>
+        <ul className="space-y-2 sm:space-y-3">
+          <li className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            <span className="font-semibold text-gray-900 dark:text-white">Research first</span> to find a pet that matches your lifestyle
+          </li>
+          <li className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            <span className="font-semibold text-gray-900 dark:text-white">Prepare your home</span> before bringing your new pet home
+          </li>
+          <li className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            <span className="font-semibold text-gray-900 dark:text-white">Be patient</span> during the transition period—it can take weeks or months
+          </li>
+          <li className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            <span className="font-semibold text-gray-900 dark:text-white">Budget wisely</span> for initial costs and ongoing expenses
+          </li>
+        </ul>
+      </div>
+
+      {/* Related Resources */}
+      <div className="p-3 sm:p-4 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-lg sm:rounded-xl transition-colors">
+        <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+          Related Resources
+        </h3>
+        <ul className="space-y-1.5 sm:space-y-2">
+          <li>
+            <Link
+              href="/pet-care-tips"
+              className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"
+            >
+              <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              Pet Care Tips
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/pet-health"
+              className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"
+            >
+              <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              Pet Health
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/pet-training"
+              className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"
+            >
+              <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              Pet Training
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/pet-safety"
+              className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center"
+            >
+              <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+              Pet Safety
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  );
+}
+

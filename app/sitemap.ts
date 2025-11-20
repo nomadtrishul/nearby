@@ -98,11 +98,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const petAdoptionPages: MetadataRoute.Sitemap = [
-    createEntry('/pet-adoption', 0.9, 'monthly'),
-    createEntry('/pet-adoption/pillar', 0.9, 'monthly'),
-    createEntry('/pet-adoption/preparing-home', 0.8, 'monthly'),
-    createEntry('/pet-adoption/transitioning-a-rescue', 0.8, 'monthly'),
-    createEntry('/pet-adoption/adoption-checklist', 0.8, 'monthly'),
+    createEntry('/pet-adoption', 0.9, 'weekly'),
+    createEntry('/pet-adoption/pillar', 0.9, 'weekly'),
+    createEntry('/pet-adoption/preparing-home', 0.8, 'weekly'),
+    createEntry('/pet-adoption/transitioning-a-rescue', 0.8, 'weekly'),
+    createEntry('/pet-adoption/adoption-checklist', 0.8, 'weekly'),
   ];
 
   const petSafetyPages: MetadataRoute.Sitemap = [
@@ -223,12 +223,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Directory / Local (priority: 0.6, changefreq: monthly)
-  const directoryPages: MetadataRoute.Sitemap = [
-    createEntry('/nearby-pet-services', 0.6, 'monthly'),
-    createEntry('/nearby-pet-services/veterinarians', 0.6, 'monthly'),
-    createEntry('/nearby-pet-services/groomers', 0.6, 'monthly'),
-    createEntry('/nearby-pet-services/trainers', 0.6, 'monthly'),
-  ];
+  const directoryPages: MetadataRoute.Sitemap = [];
 
   // Authority & Trust Pages
   const trustPages: MetadataRoute.Sitemap = [
@@ -243,7 +238,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Existing pages
   const existingPages: MetadataRoute.Sitemap = [
-    createEntry('/new-york', 0.8, 'weekly'),
     createEntry('/blog', 0.9, 'daily'),
     createEntry('/pet-care-tips', 0.9, 'weekly'),
   ];

@@ -1,0 +1,50 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Breadcrumb from '@/components/Breadcrumb';
+
+export const metadata: Metadata = {
+  title: 'Cockatiels as Pets Guide | Nearby Pet Care',
+  description: 'Complete guide to keeping cockatiels as pets. Learn about cockatiel care, training, diet, and health considerations.',
+  keywords: ['cockatiels', 'cockatiel care', 'cockatiel pets', 'cockatiel guide', 'cockatiel diet', 'cockatiel health'],
+  openGraph: { title: 'Cockatiels as Pets Guide | Nearby Pet Care', description: 'Complete guide to keeping cockatiels as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/birds/cockatiels' },
+  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/birds/cockatiels' },
+};
+
+export default function CockatielsPage() {
+  return (
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-4xl">
+          <Breadcrumb items={[
+            { name: 'Home', href: '/' },
+            { name: 'Pet Breeds', href: '/pet-breeds' },
+            { name: 'Birds', href: '/pet-breeds/birds' },
+            { name: 'Cockatiels', href: '/pet-breeds/birds/cockatiels' }
+          ]} />
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Cockatiels as Pets</h1>
+          <div className="prose prose-lg dark:prose-invert max-w-none">
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Cockatiels are friendly, intelligent birds that make excellent pets for both beginners and experienced bird owners. They are known for their playful personalities and ability to learn tricks and mimic sounds.</p>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
+            <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
+              <li>Size: Medium (12-13 inches)</li>
+              <li>Lifespan: 15-20 years</li>
+              <li>Temperament: Friendly, affectionate, playful, social</li>
+              <li>Activity Level: Moderate to high</li>
+              <li>Grooming: Regular nail trims, occasional wing clipping</li>
+            </ul>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Care Requirements</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">Cockatiels need a spacious cage, daily social interaction, a varied diet of pellets, seeds, and fresh fruits/vegetables, and plenty of toys for mental stimulation. They enjoy being handled and can learn to talk and perform tricks.</p>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Training and Socialization</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">Cockatiels are highly trainable and enjoy learning new tricks. They bond strongly with their owners and require daily interaction. Early socialization helps them become well-adjusted pets.</p>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Health Considerations</h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4">Cockatiels can be prone to respiratory issues, feather plucking (if bored or stressed), and nutritional deficiencies. Regular veterinary check-ups and a balanced diet are essential for their wellbeing.</p>
+          </div>
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <Link href="/pet-breeds/birds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Bird Breeds</Link>
+          </div>
+        </div>
+      </article>
+    </main>
+  );
+}
+

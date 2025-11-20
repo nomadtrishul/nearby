@@ -1,32 +1,72 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import ComparisonsSidebar from '@/components/ComparisonsSidebar';
+
+const baseUrl = 'https://nearbypetcare.com';
+const pageUrl = `${baseUrl}/comparisons`;
 
 export const metadata: Metadata = {
   title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side | Nearby Pet Care',
-  description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis.',
-  keywords: ['pet product comparisons', 'compare pet food', 'pet food comparison', 'wet vs dry food', 'pet product comparison', 'compare pet products', 'dog food comparison', 'cat food comparison'],
+  description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis, ingredient reviews, and real-world results.',
+  keywords: ['pet product comparisons', 'compare pet food', 'pet food comparison', 'wet vs dry food', 'pet product comparison', 'compare pet products', 'dog food comparison', 'cat food comparison', 'pet food reviews', 'best pet food'],
+  authors: [{ name: 'Nearby Pet Care Team' }],
+  creator: 'Nearby Pet Care',
+  publisher: 'Nearby Pet Care',
+  metadataBase: new URL(baseUrl),
   openGraph: {
-    title: 'Pet Product Comparisons | Nearby Pet Care',
-    description: 'Compare pet products side-by-side.',
+    title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side | Nearby Pet Care',
+    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis.',
     type: 'website',
-    url: 'https://nearbypetcare.com/comparisons',
+    url: pageUrl,
+    siteName: 'Nearby Pet Care',
+    locale: 'en_US',
+    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
     images: [
       {
-        url: 'https://nearbypetcare.com/og-image.png',
+        url: `${baseUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: 'Pet Product Comparisons',
+        type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pet Product Comparisons | Nearby Pet Care',
-    description: 'Compare pet products side-by-side.',
-    images: ['https://nearbypetcare.com/og-image.png'],
+    title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side | Nearby Pet Care',
+    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons with expert analysis.',
+    images: [`${baseUrl}/og-image.png`],
+    creator: '@nearbypetcare',
+    site: '@nearbypetcare',
   },
-  alternates: { canonical: 'https://nearbypetcare.com/comparisons' },
+  alternates: {
+    canonical: pageUrl,
+    languages: {
+      'en-US': pageUrl,
+      'en-GB': pageUrl,
+      'en-CA': pageUrl,
+      'en-AU': pageUrl,
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+    bingbot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function ComparisonsPage() {
@@ -35,8 +75,73 @@ export default function ComparisonsPage() {
     { title: 'Wet vs Dry Food', href: '/comparisons/wet-vs-dry-food' },
   ];
 
+  // WebPage Structured Data
+  const webPageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Pet Product Comparisons',
+    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis.',
+    url: pageUrl,
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Nearby Pet Care',
+      url: baseUrl,
+    },
+    about: {
+      '@type': 'Thing',
+      name: 'Pet Product Comparisons',
+    },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: baseUrl,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Comparisons',
+          item: pageUrl,
+        },
+      ],
+    },
+  };
+
+  // CollectionPage Structured Data
+  const collectionPageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Pet Product Comparisons',
+    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products.',
+    url: pageUrl,
+    inLanguage: 'en-US',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: comparisons.map((comparison, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: comparison.title,
+        url: `${baseUrl}${comparison.href}`,
+      })),
+    },
+  };
+
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <>
+      {/* Structured Data Scripts */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageStructuredData) }}
+      />
+      <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -65,7 +170,7 @@ export default function ComparisonsPage() {
             
             {/* Description */}
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Not sure which pet food or product is right for your pet? Our side-by-side comparisons make it easy to see the differences. Whether you're comparing wet vs dry food, different pet food brands, or other pet products, we break down the pros, cons, and key differences so you can make an informed decision that's best for your pet's needs.
+              Choosing the right pet food can feel overwhelming when you're standing in the pet store aisle, surrounded by dozens of options. We've been there too. That's why we've created these detailed comparisons to help you cut through the marketing noise and find what actually works for your furry friend. Each comparison dives deep into ingredients, nutrition, real-world experiences, and what pet owners like you have discovered works best.
             </p>
             
             {/* Stats or highlights */}
@@ -88,19 +193,91 @@ export default function ComparisonsPage() {
       </section>
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {comparisons.map((comparison, index) => (
-              <Link key={index} href={comparison.href} className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300">
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{comparison.title}</h2>
-                <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                  View Comparison <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                </div>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content - Comparisons Grid */}
+            <div className="lg:col-span-2">
+              <div className="grid grid-cols-1 gap-6 sm:gap-8">
+                <Link href="/comparisons/royal-canin-vs-pedigree" className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl hover:shadow-2xl hover:shadow-blue-500/10 dark:hover:shadow-blue-500/20 transition-all duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/10 dark:via-transparent dark:to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative p-6 sm:p-8">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-2xl shadow-lg">
+                            🐕
+                          </div>
+                          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            Royal Canin vs Pedigree
+                          </h2>
+                        </div>
+                        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                          Two of the most recognizable names in dog food, but which one delivers better nutrition for your pup? We compare everything from ingredient quality to real-world results, helping you understand if the premium price of Royal Canin is worth it or if Pedigree's budget-friendly approach meets your dog's needs.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Brand Comparison</span>
+                      </div>
+                      <div className="flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:gap-2 gap-1 transition-all">
+                        <span>Read Full Comparison</span>
+                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+                
+                <Link href="/comparisons/wet-vs-dry-food" className="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl hover:shadow-2xl hover:shadow-purple-500/10 dark:hover:shadow-purple-500/20 transition-all duration-300 hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-transparent to-pink-50/50 dark:from-purple-900/10 dark:via-transparent dark:to-pink-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative p-6 sm:p-8">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-2xl shadow-lg">
+                            🍽️
+                          </div>
+                          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                            Wet vs Dry Food
+                          </h2>
+                        </div>
+                        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                          The age-old debate: should you feed your pet wet food, dry kibble, or a mix of both? We break down the science, share practical feeding tips, and help you understand when each option makes the most sense for your pet's health, lifestyle, and preferences.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Food Type Comparison</span>
+                      </div>
+                      <div className="flex items-center text-sm font-semibold text-purple-600 dark:text-purple-400 group-hover:gap-2 gap-1 transition-all">
+                        <span>Read Full Comparison</span>
+                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:sticky lg:top-24 lg:h-fit">
+              <ComparisonsSidebar />
+            </div>
           </div>
         </div>
       </section>
     </main>
+    </>
   );
 }
 

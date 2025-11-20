@@ -7,20 +7,45 @@ import Breadcrumb from '@/components/Breadcrumb';
 export const metadata: Metadata = {
   title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners | Nearby Pet Care',
   description: 'Read expert pet care articles, training tips, health guides, and pet care news. Learn how to keep your dog or cat healthy and happy with practical advice from our pet care blog.',
-  keywords: ['pet care blog', 'pet care articles', 'dog care tips', 'cat care guide', 'pet health articles', 'pet training tips', 'pet grooming tips', 'pet care advice', 'pet care news'],
+  keywords: ['pet care blog', 'pet care articles', 'dog care tips', 'cat care guide', 'pet health articles', 'pet training tips', 'pet grooming tips', 'pet care advice', 'pet care news', 'pet care resources', 'pet owner education'],
+  authors: [{ name: 'Nearby Pet Care Team' }],
+  creator: 'Nearby Pet Care',
+  publisher: 'Nearby Pet Care',
+  metadataBase: new URL('https://nearbypetcare.com'),
   openGraph: {
     title: 'Pet Care Blog - Tips, Guides & News | Nearby Pet Care',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
     type: 'website',
     url: 'https://nearbypetcare.com/blog',
+    siteName: 'Nearby Pet Care',
+    locale: 'en_US',
+    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
+    images: [
+      {
+        url: 'https://nearbypetcare.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Pet Care Blog - Expert Advice, Tips & Guides for Pet Owners',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pet Care Blog - Tips, Guides & News | Nearby Pet Care',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
+    images: ['https://nearbypetcare.com/og-image.png'],
+    creator: '@nearbypetcare',
+    site: '@nearbypetcare',
   },
   alternates: {
     canonical: 'https://nearbypetcare.com/blog',
+    languages: {
+      'en-US': 'https://nearbypetcare.com/blog',
+      'en-GB': 'https://nearbypetcare.com/blog',
+      'en-CA': 'https://nearbypetcare.com/blog',
+      'en-AU': 'https://nearbypetcare.com/blog',
+    },
   },
   robots: {
     index: true,
@@ -32,6 +57,21 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+    'bingbot': {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  other: {
+    'og:updated_time': new Date().toISOString(),
   },
 };
 
@@ -39,22 +79,84 @@ export default function BlogPage() {
   const posts = getAllPosts();
   const categories = getAllCategories();
   const tags = getAllTags();
+  const baseUrl = 'https://nearbypetcare.com';
+  const currentDate = new Date().toISOString();
 
-  // Blog Structured Data
+  // Enhanced Blog Structured Data (Schema.org)
   const blogStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
+    '@id': `${baseUrl}/blog#blog`,
     name: 'Pet Care Blog',
+    headline: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
-    url: 'https://nearbypetcare.com/blog',
+    url: `${baseUrl}/blog`,
+    inLanguage: 'en-US',
+    datePublished: '2024-01-01T00:00:00Z',
+    dateModified: currentDate,
     publisher: {
       '@type': 'Organization',
+      '@id': `${baseUrl}#organization`,
       name: 'Nearby Pet Care',
+      legalName: 'Nearby Pet Care',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png'
-      }
-    }
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
+      },
+      url: baseUrl,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${baseUrl}/blog#webpage`,
+    },
+    blogPost: posts.slice(0, 10).map((post) => ({
+      '@type': 'BlogPosting',
+      '@id': `${baseUrl}/blog/${post.slug}`,
+      headline: post.title,
+      description: post.excerpt,
+      url: `${baseUrl}/blog/${post.slug}`,
+      datePublished: new Date(post.date).toISOString(),
+      dateModified: new Date(post.date).toISOString(),
+      author: {
+        '@type': 'Person',
+        name: post.author || 'Nearby Pet Care Team',
+      },
+      image: post.image || `${baseUrl}/og-image.png`,
+    })),
+  };
+
+  // CollectionPage Structured Data for blog listing
+  const collectionPageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${baseUrl}/blog#collectionpage`,
+    name: 'Pet Care Blog',
+    description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
+    url: `${baseUrl}/blog`,
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${baseUrl}#website`,
+      name: 'Nearby Pet Care',
+      url: baseUrl,
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: posts.length,
+      itemListElement: posts.slice(0, 20).map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'BlogPosting',
+          '@id': `${baseUrl}/blog/${post.slug}`,
+          headline: post.title,
+          url: `${baseUrl}/blog/${post.slug}`,
+          datePublished: new Date(post.date).toISOString(),
+        },
+      })),
+    },
   };
 
   // Breadcrumb Structured Data
@@ -66,20 +168,40 @@ export default function BlogPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://nearbypetcare.com'
+        item: baseUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://nearbypetcare.com/blog'
-      }
-    ]
+        item: `${baseUrl}/blog`,
+      },
+    ],
+  };
+
+  // WebPage Structured Data
+  const webPageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${baseUrl}/blog#webpage`,
+    name: 'Pet Care Blog',
+    description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
+    url: `${baseUrl}/blog`,
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${baseUrl}#website`,
+      name: 'Nearby Pet Care',
+      url: baseUrl,
+    },
+    breadcrumb: breadcrumbStructuredData,
+    datePublished: '2024-01-01T00:00:00Z',
+    dateModified: currentDate,
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      {/* Structured Data Scripts */}
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label="Pet Care Blog">
+      {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -89,31 +211,46 @@ export default function BlogPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(collectionPageStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webPageStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbStructuredData),
         }}
       />
-      {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
+      {/* Hero Section - Optimized for Core Web Vitals */}
+      <section 
+        className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden"
+        aria-labelledby="blog-heading"
+      >
+        {/* Decorative background elements - Optimized for performance */}
+        <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl" aria-hidden="true"></div>
         </div>
         
         <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog' }]} />
           <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
-              <span className="text-2xl">📝</span>
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm" role="status" aria-label="Content type">
+              <span className="text-2xl" aria-hidden="true">📝</span>
               <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Expert Articles</span>
             </div>
             
             {/* Icon */}
-            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">📚</div>
+            <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse" aria-hidden="true">📚</div>
             
-            {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+            {/* Title - H1 for SEO */}
+            <h1 id="blog-heading" className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Pet Care Blog
               </span>
@@ -124,18 +261,18 @@ export default function BlogPage() {
               Expert tips, guides, and insights to help you provide the best care for your pets. Stay updated with the latest pet care knowledge and advice.
             </p>
             
-            {/* Stats or highlights */}
-            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">💡</span>
+            {/* Stats or highlights - Optimized for mobile touch targets */}
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10" role="list" aria-label="Blog features">
+              <div className="flex items-center gap-2" role="listitem">
+                <span className="text-2xl" aria-hidden="true">💡</span>
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Expert Tips</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">📖</span>
+              <div className="flex items-center gap-2" role="listitem">
+                <span className="text-2xl" aria-hidden="true">📖</span>
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Comprehensive Guides</span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-2xl">🔍</span>
+              <div className="flex items-center gap-2" role="listitem">
+                <span className="text-2xl" aria-hidden="true">🔍</span>
                 <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Latest Insights</span>
               </div>
             </div>
@@ -143,20 +280,25 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Blog Content */}
-      <section className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
+      {/* Blog Content - Semantic HTML for SEO */}
+      <section 
+        className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors"
+        aria-labelledby="blog-heading"
+      >
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Main Content */}
             <div className="flex-1">
               {posts.length > 0 ? (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6" role="list" aria-label="Blog posts">
                   {posts.map((post) => (
                     <article
                       key={post.slug}
                       className="p-5 sm:p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-lg sm:rounded-xl hover:border-blue-500/50 transition-all duration-300"
+                      itemScope
+                      itemType="https://schema.org/BlogPosting"
                     >
-                      <Link href={`/blog/${post.slug}`} className="block group">
+                      <Link href={`/blog/${post.slug}`} className="block group" aria-label={`Read article: ${post.title}`}>
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 sm:mb-3">
                           <div className="flex items-center space-x-2 sm:space-x-3 mb-2 sm:mb-0">
                             <span className="px-2.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium transition-colors">
@@ -174,12 +316,15 @@ export default function BlogPage() {
                             </span>
                           </div>
                         </div>
-                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" itemProp="headline">
                           {post.title}
                         </h2>
-                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4 line-clamp-2 transition-colors">
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-3 sm:mb-4 line-clamp-2 transition-colors" itemProp="description">
                           {post.excerpt}
                         </p>
+                        <meta itemProp="datePublished" content={new Date(post.date).toISOString()} />
+                        <meta itemProp="author" content={post.author || 'Nearby Pet Care Team'} />
+                        <meta itemProp="url" content={`https://nearbypetcare.com/blog/${post.slug}`} />
                         {post.tags && post.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1.5 mb-3 sm:mb-4">
                             {post.tags.slice(0, 3).map((tag) => (

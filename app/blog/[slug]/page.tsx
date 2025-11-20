@@ -28,33 +28,59 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const baseUrl = 'https://nearbypetcare.com';
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
+  const postUrl = `${baseUrl}/blog/${slug}`;
+  const postImage = post.image || `${baseUrl}/og-image.png`;
 
   return {
     title: `${post.title} | Nearby Pet Care Blog`,
     description: post.excerpt,
     keywords: post.tags || [],
-    authors: [{ name: post.author || 'Trishul D N.' }],
+    authors: [{ name: post.author || 'Nearby Pet Care Team' }],
+    creator: post.author || 'Nearby Pet Care Team',
+    publisher: 'Nearby Pet Care',
+    metadataBase: new URL(baseUrl),
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
       publishedTime,
       modifiedTime,
-      authors: [post.author || 'Trishul D N.'],
+      authors: [post.author || 'Nearby Pet Care Team'],
       tags: post.tags || [],
-      url: `https://nearbypetcare.com/blog/${slug}`,
-      images: post.image ? [post.image] : [],
+      url: postUrl,
+      siteName: 'Nearby Pet Care',
+      locale: 'en_US',
+      alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
+      images: [
+        {
+          url: postImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+          type: 'image/png',
+        },
+      ],
+      section: post.category || 'General',
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [post.image] : [],
+      images: [postImage],
+      creator: '@nearbypetcare',
+      site: '@nearbypetcare',
     },
     alternates: {
-      canonical: `https://nearbypetcare.com/blog/${slug}`,
+      canonical: postUrl,
+      languages: {
+        'en-US': postUrl,
+        'en-GB': postUrl,
+        'en-CA': postUrl,
+        'en-AU': postUrl,
+      },
     },
     robots: {
       index: true,
@@ -66,12 +92,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         'max-image-preview': 'large',
         'max-snippet': -1,
       },
+      'bingbot': {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
     },
     other: {
       'article:published_time': publishedTime,
       'article:modified_time': modifiedTime,
-      'article:author': post.author || 'Trishul D N.',
+      'article:author': post.author || 'Nearby Pet Care Team',
       'article:section': post.category || 'General',
+      ...(post.tags && post.tags.length > 0 && { 'article:tag': post.tags.join(', ') }),
     },
   };
 }
@@ -90,43 +129,121 @@ export default async function BlogPostPage({ params }: PageProps) {
     .filter(p => p.slug !== slug && (p.category === post.category || p.tags?.some(tag => post.tags?.includes(tag))))
     .slice(0, 3);
 
+  const baseUrl = 'https://nearbypetcare.com';
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
+  const postUrl = `${baseUrl}/blog/${slug}`;
+  const postImage = post.image || `${baseUrl}/og-image.png`;
+  const wordCount = post.content.split(' ').length;
+  const readingTime = post.readingTime || Math.ceil(wordCount / 200);
 
-  // Article Structured Data
+  // Enhanced Article Structured Data (Schema.org)
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
+    '@id': `${postUrl}#blogposting`,
     headline: post.title,
     description: post.excerpt,
-    image: post.image || 'https://nearbypetcare.com/og-image.jpg',
+    image: {
+      '@type': 'ImageObject',
+      url: postImage,
+      width: 1200,
+      height: 630,
+    },
     datePublished: publishedTime,
     dateModified: modifiedTime,
     author: {
       '@type': 'Person',
-      name: post.author || 'Trishul D N.',
-      url: 'https://nearbypetcare.com/about'
+      '@id': `${baseUrl}/about#author`,
+      name: post.author || 'Nearby Pet Care Team',
+      url: `${baseUrl}/about`,
     },
     publisher: {
       '@type': 'Organization',
+      '@id': `${baseUrl}#organization`,
       name: 'Nearby Pet Care',
+      legalName: 'Nearby Pet Care',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png'
-      }
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
+      },
+      url: baseUrl,
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://nearbypetcare.com/blog/${slug}`
+      '@id': `${postUrl}#webpage`,
+      url: postUrl,
     },
     articleSection: post.category || 'General',
     keywords: post.tags?.join(', ') || '',
-    wordCount: post.content.split(' ').length,
-    timeRequired: `PT${post.readingTime || 5}M`,
-    inLanguage: 'en-US'
+    wordCount: wordCount,
+    timeRequired: `PT${readingTime}M`,
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': `${baseUrl}/blog#blog`,
+      name: 'Pet Care Blog',
+      url: `${baseUrl}/blog`,
+    },
+    ...(post.tags && post.tags.length > 0 && {
+      about: post.tags.map((tag) => ({
+        '@type': 'Thing',
+        name: tag,
+      })),
+    }),
   };
 
-  // Breadcrumb Structured Data
+  // WebPage Structured Data
+  const webPageStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${postUrl}#webpage`,
+    name: post.title,
+    description: post.excerpt,
+    url: postUrl,
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${baseUrl}#website`,
+      name: 'Nearby Pet Care',
+      url: baseUrl,
+    },
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      url: postImage,
+      width: 1200,
+      height: 630,
+    },
+    datePublished: publishedTime,
+    dateModified: modifiedTime,
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: baseUrl,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: `${baseUrl}/blog`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: postUrl,
+        },
+      ],
+    },
+  };
+
+  // Breadcrumb Structured Data (separate for better compatibility)
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -135,26 +252,26 @@ export default async function BlogPostPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://nearbypetcare.com'
+        item: baseUrl,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://nearbypetcare.com/blog'
+        item: `${baseUrl}/blog`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://nearbypetcare.com/blog/${slug}`
-      }
-    ]
+        item: postUrl,
+      },
+    ],
   };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      {/* Structured Data Scripts */}
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label={`Article: ${post.title}`}>
+      {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -164,43 +281,61 @@ export default async function BlogPostPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
+          __html: JSON.stringify(webPageStructuredData),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbStructuredData),
         }}
       />
-      {/* Hero Section */}
-      <section className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
+      {/* Hero Section - Optimized for Core Web Vitals */}
+      <section 
+        className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"
+        aria-labelledby="article-heading"
+      >
         <div className="container mx-auto max-w-7xl">
           {/* Breadcrumb */}
           <nav className="mb-6 sm:mb-8" aria-label="Breadcrumb">
-            <ol className="flex items-center justify-center space-x-2 text-xs sm:text-sm">
-              <li>
-                <Link href="/" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Home
+            <ol className="flex items-center justify-center space-x-2 text-xs sm:text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Link href="/" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" itemProp="item">
+                  <span itemProp="name">Home</span>
                 </Link>
+                <meta itemProp="position" content="1" />
               </li>
-              <li className="text-gray-400 dark:text-gray-600">/</li>
-              <li>
-                <Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                  Blog
+              <li className="text-gray-400 dark:text-gray-600" aria-hidden="true">/</li>
+              <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <Link href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors" itemProp="item">
+                  <span itemProp="name">Blog</span>
                 </Link>
+                <meta itemProp="position" content="2" />
               </li>
-              <li className="text-gray-400 dark:text-gray-600">/</li>
-              <li className="text-gray-900 dark:text-white font-medium transition-colors" aria-current="page">
-                {post.title}
+              <li className="text-gray-400 dark:text-gray-600" aria-hidden="true">/</li>
+              <li className="text-gray-900 dark:text-white font-medium transition-colors" aria-current="page" itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+                <span itemProp="name">{post.title}</span>
+                <meta itemProp="position" content="3" />
               </li>
             </ol>
           </nav>
 
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+            <h1 id="article-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors" itemProp="headline">
               {post.title}
             </h1>
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 transition-colors">
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6 transition-colors" itemProp="description">
               {post.excerpt}
             </p>
             
-            {/* Meta Information */}
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+            {/* Meta Information - Semantic HTML */}
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400" itemScope itemType="https://schema.org/Article">
+              <meta itemProp="datePublished" content={publishedTime} />
+              <meta itemProp="dateModified" content={modifiedTime} />
+              <meta itemProp="author" content={post.author || 'Nearby Pet Care Team'} />
+              <meta itemProp="publisher" content="Nearby Pet Care" />
+              <meta itemProp="wordCount" content={wordCount.toString()} />
+              <meta itemProp="timeRequired" content={`PT${readingTime}M`} />
               {/* Author */}
               {post.author && (
                 <div className="flex items-center gap-1.5">
@@ -287,25 +422,30 @@ export default async function BlogPostPage({ params }: PageProps) {
                 )}
               </div>
 
-              {/* Article Image */}
+              {/* Article Image - Optimized for Core Web Vitals */}
               {post.image && (
-                <div className="mb-4 sm:mb-6">
+                <div className="mb-4 sm:mb-6" itemProp="image" itemScope itemType="https://schema.org/ImageObject">
                   <Image
                     src={post.image}
                     alt={post.title}
                     width={1200}
                     height={630}
                     className="w-full h-auto rounded-lg sm:rounded-xl"
-                    loading="lazy"
+                    loading="eager"
+                    priority
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    itemProp="url"
                   />
+                  <meta itemProp="width" content="1200" />
+                  <meta itemProp="height" content="630" />
                 </div>
               )}
 
-              {/* Article Content */}
+              {/* Article Content - Semantic HTML with proper structure */}
               <div
                 className="prose prose-xs sm:prose-sm lg:prose-base max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-code:text-gray-900 dark:prose-code:text-white prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800 prose-img:rounded-lg prose-img:shadow-lg"
                 dangerouslySetInnerHTML={{ __html: post.content }}
+                itemProp="articleBody"
               />
 
               {/* Related Articles */}
@@ -330,9 +470,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                   </div>
                   <Link
                     href="/blog"
-                    className="inline-flex items-center px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs sm:text-sm"
+                    className="inline-flex items-center px-3 py-1.5 min-h-[44px] bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    aria-label="Back to blog listing"
                   >
-                    <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                     Back to Blog
