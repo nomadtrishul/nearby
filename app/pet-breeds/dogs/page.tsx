@@ -60,48 +60,47 @@ export default function DogBreedsPage() {
             {/* Main Content */}
             <div className="flex-1">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Explore different dog breeds and learn about their unique characteristics, temperament, exercise needs, and care requirements. Each breed has specific traits that may make them more suitable for certain lifestyles.</p>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Popular Dog Breeds</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Link href="/pet-breeds/dogs/golden-retriever" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Golden Retriever</h3>
-                <p className="text-gray-600 dark:text-gray-400">Friendly, intelligent family dogs with beautiful golden coats</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/labrador-retriever" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Labrador Retriever</h3>
-                <p className="text-gray-600 dark:text-gray-400">America's most popular breed, friendly and versatile</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/german-shepherd" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">German Shepherd</h3>
-                <p className="text-gray-600 dark:text-gray-400">Intelligent, loyal working dogs known for their courage</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/beagle" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Beagle</h3>
-                <p className="text-gray-600 dark:text-gray-400">Friendly, curious hounds with excellent sense of smell</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/bulldog" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bulldog</h3>
-                <p className="text-gray-600 dark:text-gray-400">Calm, friendly dogs with distinctive wrinkled faces</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/poodle" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Poodle</h3>
-                <p className="text-gray-600 dark:text-gray-400">Highly intelligent dogs with hypoallergenic curly coats</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/french-bulldog" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">French Bulldog</h3>
-                <p className="text-gray-600 dark:text-gray-400">Small, muscular dogs with bat-like ears</p>
-              </Link>
-              <Link href="/pet-breeds/dogs/yorkie" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Yorkshire Terrier</h3>
-                <p className="text-gray-600 dark:text-gray-400">Small, confident dogs with big personalities</p>
-              </Link>
-            </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Explore different dog breeds and learn about their unique characteristics, temperament, exercise needs, and care requirements. Each breed has specific traits that may make them more suitable for certain lifestyles.</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Popular Dog Breeds</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <Link href="/pet-breeds/dogs/golden-retriever" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Golden Retriever</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Friendly, intelligent family dogs with beautiful golden coats</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/labrador-retriever" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Labrador Retriever</h3>
+                    <p className="text-gray-600 dark:text-gray-400">America's most popular breed, friendly and versatile</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/german-shepherd" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">German Shepherd</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Intelligent, loyal working dogs known for their courage</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/beagle" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Beagle</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Friendly, curious hounds with excellent sense of smell</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/bulldog" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bulldog</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Calm, friendly dogs with distinctive wrinkled faces</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/poodle" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Poodle</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Highly intelligent dogs with hypoallergenic curly coats</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/french-bulldog" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">French Bulldog</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Small, muscular dogs with bat-like ears</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/yorkie" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Yorkshire Terrier</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Small, confident dogs with big personalities</p>
+                  </Link>
+                </div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Breed-Specific Care</h2>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">Different breeds have unique health considerations, exercise requirements, and grooming needs. Understanding breed-specific care helps ensure your dog lives a happy, healthy life.</p>
-              </div>
-              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                <Link href="/pet-breeds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Pet Breeds</Link>
+                <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                  <Link href="/pet-breeds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Pet Breeds</Link>
+                </div>
               </div>
             </div>
             {/* Sidebar */}

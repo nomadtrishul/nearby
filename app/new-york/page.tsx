@@ -132,38 +132,43 @@ export default function NewYorkPage() {
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: sampleBusinesses.length,
-      itemListElement: sampleBusinesses.map((business, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
+      itemListElement: sampleBusinesses.map((business, index) => {
+        const businessItem: any = {
           '@type': 'LocalBusiness',
           '@id': `${pageUrl}#business-${business.id}`,
           name: business.name,
           description: business.description,
-          image: business.image,
-          telephone: business.phone,
-          email: business.email,
-          url: business.website,
-          address: {
+          areaServed: {
+            '@type': 'City',
+            name: 'New York'
+          },
+        };
+        
+        if (business.image) businessItem.image = business.image;
+        if (business.phone) businessItem.telephone = business.phone;
+        if (business.email) businessItem.email = business.email;
+        if (business.website) businessItem.url = business.website;
+        if (business.address) {
+          businessItem.address = {
             '@type': 'PostalAddress',
             streetAddress: business.address.split(',')[0],
             addressLocality: 'New York',
             addressRegion: 'NY',
             addressCountry: 'US'
-          },
-          priceRange: business.priceRange,
-          aggregateRating: business.rating ? {
+          };
+        }
+        if (business.priceRange) businessItem.priceRange = business.priceRange;
+        if (business.rating && business.reviewCount) {
+          businessItem.aggregateRating = {
             '@type': 'AggregateRating',
             ratingValue: business.rating.toString(),
             reviewCount: business.reviewCount.toString(),
             bestRating: '5',
             worstRating: '1'
-          } : undefined,
-          areaServed: {
-            '@type': 'City',
-            name: 'New York'
-          },
-          hasOfferCatalog: {
+          };
+        }
+        if (business.services && business.services.length > 0) {
+          businessItem.hasOfferCatalog = {
             '@type': 'OfferCatalog',
             name: 'Pet Care Services',
             itemListElement: business.services.map((service, svcIndex) => ({
@@ -173,9 +178,15 @@ export default function NewYorkPage() {
                 name: service
               }
             }))
-          }
+          };
         }
-      }))
+        
+        return {
+          '@type': 'ListItem',
+          position: index + 1,
+          item: businessItem
+        };
+      })
     }
   };
 

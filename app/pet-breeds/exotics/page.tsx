@@ -60,33 +60,32 @@ export default function ExoticsPage() {
             {/* Main Content */}
             <div className="flex-1">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Exotic pets require specialized care and knowledge. Learn about reptiles, amphibians, and other exotic species, their unique needs, and legal considerations.</p>
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
-              <p className="text-gray-700 dark:text-gray-300"><strong>Important:</strong> Research local laws and regulations before acquiring an exotic pet. Many species have specific legal requirements or restrictions.</p>
-            </div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Exotic Pets</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-              <Link href="/pet-breeds/exotics/bearded-dragon" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bearded Dragon</h3>
-                <p className="text-gray-600 dark:text-gray-400">Docile lizards known for their distinctive "beard" display</p>
-              </Link>
-              <Link href="/pet-breeds/exotics/ball-python" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Ball Python</h3>
-                <p className="text-gray-600 dark:text-gray-400">Docile snakes perfect for beginners</p>
-              </Link>
-              <Link href="/pet-breeds/exotics/leopard-gecko" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Leopard Gecko</h3>
-                <p className="text-gray-600 dark:text-gray-400">Easy-to-care-for geckos with beautiful spotted patterns</p>
-              </Link>
-              <Link href="/pet-breeds/exotics/red-eared-slider" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Red-Eared Slider</h3>
-                <p className="text-gray-600 dark:text-gray-400">Popular aquatic turtles requiring specialized habitats</p>
-              </Link>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Exotic pets require specialized care and knowledge. Learn about reptiles, amphibians, and other exotic species, their unique needs, and legal considerations.</p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
+                  <p className="text-gray-700 dark:text-gray-300"><strong>Important:</strong> Research local laws and regulations before acquiring an exotic pet. Many species have specific legal requirements or restrictions.</p>
                 </div>
-              </div>
-              <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-                <Link href="/pet-breeds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Pet Breeds</Link>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Exotic Pets</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <Link href="/pet-breeds/exotics/bearded-dragon" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bearded Dragon</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Docile lizards known for their distinctive "beard" display</p>
+                  </Link>
+                  <Link href="/pet-breeds/exotics/ball-python" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Ball Python</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Docile snakes perfect for beginners</p>
+                  </Link>
+                  <Link href="/pet-breeds/exotics/leopard-gecko" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Leopard Gecko</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Easy-to-care-for geckos with beautiful spotted patterns</p>
+                  </Link>
+                  <Link href="/pet-breeds/exotics/red-eared-slider" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Red-Eared Slider</h3>
+                    <p className="text-gray-600 dark:text-gray-400">Popular aquatic turtles requiring specialized habitats</p>
+                  </Link>
+                </div>
+                <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                  <Link href="/pet-breeds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Pet Breeds</Link>
+                </div>
               </div>
             </div>
             {/* Sidebar */}

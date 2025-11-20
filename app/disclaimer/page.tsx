@@ -23,8 +23,6 @@ export const metadata: Metadata = {
     siteName: 'Nearby Pet Care',
     locale: 'en_US',
     alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime,
-    modifiedTime,
     images: [
       {
         url: `${baseUrl}/og-image.png`,
@@ -56,13 +54,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
     googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-    bingbot: {
       index: true,
       follow: true,
       'max-video-preview': -1,

@@ -97,13 +97,6 @@ export function generateSEOMetadata(config: SEOConfig): Metadata {
         'max-image-preview': 'large',
         'max-snippet': -1,
       },
-      'bingbot': {
-        index: !noindex,
-        follow: !nofollow,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
     },
     formatDetection: {
       email: false,
