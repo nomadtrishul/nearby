@@ -1,40 +1,77 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import NutritionSidebar from '@/components/NutritionSidebar';
 
 export const metadata: Metadata = {
   title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat | Nearby Pet Care',
   description: 'Learn what to feed your pet with our comprehensive pet nutrition guide. Expert advice on choosing pet food, understanding pet food ingredients, feeding schedules, portion sizes, and creating a healthy diet plan for your dog or cat.',
-  keywords: ['pet nutrition', 'what to feed a dog', 'what to feed a cat', 'pet food guide', 'dog nutrition', 'cat nutrition', 'pet feeding schedule', 'pet food ingredients', 'pet diet plan', 'how much to feed a dog', 'how much to feed a cat', 'best pet food'],
+  keywords: ['pet nutrition', 'what to feed a dog', 'what to feed a cat', 'pet food guide', 'dog nutrition', 'cat nutrition', 'pet feeding schedule', 'pet food ingredients', 'pet diet plan', 'how much to feed a dog', 'how much to feed a cat', 'best pet food', 'AAFCO pet food', 'pet nutrition facts', 'pet diet planning'],
+  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
+  creator: 'Nearby Pet Care',
+  publisher: 'Nearby Pet Care',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat | Nearby Pet Care',
     description: 'Learn what to feed your pet with expert advice on choosing pet food, understanding ingredients, feeding schedules, and creating a healthy diet plan.',
     type: 'website',
     url: 'https://nearbypetcare.com/pet-nutrition',
+    siteName: 'Nearby Pet Care',
+    locale: 'en_US',
+    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
+    images: [
+      {
+        url: 'https://nearbypetcare.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Pet Nutrition Guide - Complete Guide to Feeding Your Pet',
+        type: 'image/png',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pet Nutrition & Diet - Complete Guide | Nearby Pet Care',
     description: 'Comprehensive guide to pet nutrition and diet. Learn about pet food ingredients, feeding schedules, and creating the perfect diet plan.',
+    images: ['https://nearbypetcare.com/og-image.png'],
+    creator: '@nearbypetcare',
+    site: '@nearbypetcare',
   },
   alternates: {
     canonical: 'https://nearbypetcare.com/pet-nutrition',
+    languages: {
+      'en-US': 'https://nearbypetcare.com/pet-nutrition',
+      'en-GB': 'https://nearbypetcare.com/pet-nutrition',
+      'en-CA': 'https://nearbypetcare.com/pet-nutrition',
+      'en-AU': 'https://nearbypetcare.com/pet-nutrition',
+    },
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  other: {
+    'mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
   },
 };
 
 export default function PetNutritionPage() {
-  const collectionStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Pet Nutrition & Diet',
-    description: 'Comprehensive guides and resources for pet nutrition and diet planning.',
-    url: 'https://nearbypetcare.com/pet-nutrition',
-  };
-
+  const currentDate = new Date().toISOString().split('T')[0];
+  
+  // Define guides array first
   const guides = [
     {
       title: 'Pet Nutrition Diet Plan',
@@ -103,12 +140,98 @@ export default function PetNutritionPage() {
       icon: '⏰',
     },
   ];
+  
+  // Organization Schema for E-E-A-T
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Nearby Pet Care',
+    url: 'https://nearbypetcare.com',
+    logo: 'https://nearbypetcare.com/logo.png',
+    description: 'Comprehensive pet care guides and resources for pet owners. Expert advice on pet nutrition, health, grooming, and training.',
+    sameAs: [
+      'https://www.facebook.com/nearbypetcare',
+      'https://twitter.com/nearbypetcare',
+      'https://www.instagram.com/nearbypetcare',
+    ],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+      availableLanguage: ['English'],
+    },
+  };
+
+  // CollectionPage Schema
+  const collectionStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Pet Nutrition & Diet',
+    description: 'Comprehensive guides and resources for pet nutrition and diet planning. Expert advice on choosing pet food, understanding ingredients, feeding schedules, and creating healthy diet plans for dogs and cats.',
+    url: 'https://nearbypetcare.com/pet-nutrition',
+    datePublished: '2024-01-01',
+    dateModified: currentDate,
+    publisher: {
+      '@type': 'Organization',
+      name: 'Nearby Pet Care',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://nearbypetcare.com/logo.png',
+        width: 600,
+        height: 60,
+      },
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: guides.length,
+      itemListElement: guides.map((guide, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: guide.title,
+        description: guide.description,
+        url: `https://nearbypetcare.com${guide.href}`,
+      })),
+    },
+    inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    license: 'https://nearbypetcare.com/terms',
+  };
+
+  // Breadcrumb Schema
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://nearbypetcare.com',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Pet Nutrition',
+        item: 'https://nearbypetcare.com/pet-nutrition',
+      },
+    ],
+  };
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/CollectionPage">
+      {/* Structured Data - Organization */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      {/* Structured Data - CollectionPage */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionStructuredData) }}
+      />
+      {/* Structured Data - Breadcrumb */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero Section */}
@@ -132,14 +255,14 @@ export default function PetNutritionPage() {
             <div className="text-6xl sm:text-7xl md:text-8xl mb-6 animate-pulse">🥘</div>
             
             {/* Title */}
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight" itemProp="name">
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Pet Nutrition & Diet
               </span>
             </h1>
             
             {/* Description */}
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto" itemProp="description">
               Figuring out what to feed your pet can feel overwhelming with so many options. Whether you're choosing between wet and dry food, wondering how much to feed your dog, or trying to understand pet food ingredients, our guides make pet nutrition simple. Learn how to create a healthy feeding schedule, calculate the right portion sizes, and choose the best food for your pet's needs.
             </p>
             
@@ -165,7 +288,10 @@ export default function PetNutritionPage() {
       {/* Guides Grid */}
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {guides.map((guide, index) => (
               <Link
                 key={index}
@@ -187,6 +313,13 @@ export default function PetNutritionPage() {
                 </div>
               </Link>
             ))}
+              </div>
+            </div>
+            
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <NutritionSidebar />
+            </div>
           </div>
         </div>
       </section>
