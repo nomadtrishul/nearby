@@ -2,12 +2,46 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { theme, toggleTheme } = useTheme();
+  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      Object.values(dropdownRefs.current).forEach((ref) => {
+        if (ref && !ref.contains(event.target as Node)) {
+          // Check if the click is on a link - if so, don't close immediately
+          const target = event.target as HTMLElement;
+          if (target.closest('a')) {
+            return;
+          }
+          setOpenDropdown(null);
+        }
+      });
+    };
+
+    if (openDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openDropdown]);
+
+  const toggleDropdown = (dropdownName: string) => {
+    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+  };
+
+  const closeDropdown = () => {
+    setOpenDropdown(null);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-colors">
@@ -31,14 +65,84 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link 
-              href="/" 
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
+            {/* Care Dropdown */}
+            <div 
+              className="relative"
+              ref={(el) => (dropdownRefs.current['care'] = el)}
             >
-              Home
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-            </Link>
+              <button
+                onClick={() => toggleDropdown('care')}
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group flex items-center"
+              >
+                Care
+                <svg 
+                  className={`w-4 h-4 ml-1 transition-transform ${openDropdown === 'care' ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
+              {openDropdown === 'care' && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50">
+                  <Link 
+                    href="/pet-health" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Health
+                  </Link>
+                  <Link 
+                    href="/pet-nutrition" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Nutrition
+                  </Link>
+                  <Link 
+                    href="/pet-grooming" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Grooming
+                  </Link>
+                  <Link 
+                    href="/pet-training" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Training
+                  </Link>
+                  <Link 
+                    href="/pet-safety" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Safety
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Tools - Direct Link */}
             <Link 
               href="/tools" 
               className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
@@ -46,18 +150,185 @@ export default function Header() {
               Tools
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
-            <Link 
-              href="/community" 
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
+
+            {/* Guide Dropdown */}
+            <div 
+              className="relative"
+              ref={(el) => (dropdownRefs.current['guide'] = el)}
             >
-              Community
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-            </Link>
+              <button
+                onClick={() => toggleDropdown('guide')}
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group flex items-center"
+              >
+                Guide
+                <svg 
+                  className={`w-4 h-4 ml-1 transition-transform ${openDropdown === 'guide' ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
+              {openDropdown === 'guide' && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50">
+                  <Link 
+                    href="/pet-breeds" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Breeds
+                  </Link>
+                  <Link 
+                    href="/puppies-kittens" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Puppies & Kittens
+                  </Link>
+                  <Link 
+                    href="/senior-pets" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Senior Pets
+                  </Link>
+                  <Link 
+                    href="/pet-adoption" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Adoption
+                  </Link>
+                  <Link 
+                    href="/pet-products" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Products
+                  </Link>
+                  <Link 
+                    href="/buying-guides" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Buying Guides
+                  </Link>
+                  <Link 
+                    href="/comparisons" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Comparisons
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Links Dropdown */}
+            <div 
+              className="relative"
+              ref={(el) => (dropdownRefs.current['quickLinks'] = el)}
+            >
+              <button
+                onClick={() => toggleDropdown('quickLinks')}
+                className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group flex items-center"
+              >
+                Quick Links
+                <svg 
+                  className={`w-4 h-4 ml-1 transition-transform ${openDropdown === 'quickLinks' ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+              </button>
+              {openDropdown === 'quickLinks' && (
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 z-50">
+                  <Link 
+                    href="/" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    href="/tools" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Tools
+                  </Link>
+                  <Link 
+                    href="/about" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Contact
+                  </Link>
+                  <Link 
+                    href="/blog" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Blog
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Tips - Direct Link */}
             <Link 
               href="/pet-care-tips" 
               className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors relative group"
             >
-              Pet Care Tips
+              Tips
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
             </Link>
             
@@ -123,14 +394,85 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 space-y-4 animate-in slide-in-from-top">
-            <Link 
-              href="/" 
-              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
+          <div className="md:hidden py-4 space-y-2 animate-in slide-in-from-top">
+            {/* Care Dropdown */}
+            <div>
+              <button
+                onClick={() => toggleDropdown('care-mobile')}
+                className="w-full flex items-center justify-between text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+              >
+                <span>Care</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform ${openDropdown === 'care-mobile' ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {openDropdown === 'care-mobile' && (
+                <div className="pl-4 space-y-1 mt-1">
+                  <Link 
+                    href="/pet-health" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Health
+                  </Link>
+                  <Link 
+                    href="/pet-nutrition" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Nutrition
+                  </Link>
+                  <Link 
+                    href="/pet-grooming" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Grooming
+                  </Link>
+                  <Link 
+                    href="/pet-training" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Training
+                  </Link>
+                  <Link 
+                    href="/pet-safety" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Safety
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Tools */}
             <Link 
               href="/tools" 
               className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
@@ -138,19 +480,190 @@ export default function Header() {
             >
               Tools
             </Link>
-            <Link 
-              href="/community" 
-              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Community
-            </Link>
+
+            {/* Guide Dropdown */}
+            <div>
+              <button
+                onClick={() => toggleDropdown('guide-mobile')}
+                className="w-full flex items-center justify-between text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+              >
+                <span>Guide</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform ${openDropdown === 'guide-mobile' ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {openDropdown === 'guide-mobile' && (
+                <div className="pl-4 space-y-1 mt-1">
+                  <Link 
+                    href="/pet-breeds" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Breeds
+                  </Link>
+                  <Link 
+                    href="/puppies-kittens" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Puppies & Kittens
+                  </Link>
+                  <Link 
+                    href="/senior-pets" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Senior Pets
+                  </Link>
+                  <Link 
+                    href="/pet-adoption" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Adoption
+                  </Link>
+                  <Link 
+                    href="/pet-products" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Products
+                  </Link>
+                  <Link 
+                    href="/buying-guides" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Buying Guides
+                  </Link>
+                  <Link 
+                    href="/comparisons" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Comparisons
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Quick Links Dropdown */}
+            <div>
+              <button
+                onClick={() => toggleDropdown('quickLinks-mobile')}
+                className="w-full flex items-center justify-between text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+              >
+                <span>Quick Links</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform ${openDropdown === 'quickLinks-mobile' ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {openDropdown === 'quickLinks-mobile' && (
+                <div className="pl-4 space-y-1 mt-1">
+                  <Link 
+                    href="/" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    href="/tools" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Tools
+                  </Link>
+                  <Link 
+                    href="/about" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/contact" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Contact
+                  </Link>
+                  <Link 
+                    href="/blog" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Blog
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Tips */}
             <Link 
               href="/pet-care-tips" 
               className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Pet Care Tips
+              Tips
             </Link>
           </div>
         )}
