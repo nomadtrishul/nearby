@@ -9,7 +9,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { theme, toggleTheme } = useTheme();
-  const dropdownRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -69,7 +69,9 @@ export default function Header() {
             {/* Care Dropdown */}
             <div 
               className="relative"
-              ref={(el) => (dropdownRefs.current['care'] = el)}
+              ref={(el) => {
+                dropdownRefs.current['care'] = el;
+              }}
             >
               <button
                 onClick={() => toggleDropdown('care')}
@@ -154,7 +156,9 @@ export default function Header() {
             {/* Guide Dropdown */}
             <div 
               className="relative"
-              ref={(el) => (dropdownRefs.current['guide'] = el)}
+              ref={(el) => {
+                dropdownRefs.current['guide'] = el;
+              }}
             >
               <button
                 onClick={() => toggleDropdown('guide')}
@@ -250,7 +254,9 @@ export default function Header() {
             {/* Quick Links Dropdown */}
             <div 
               className="relative"
-              ref={(el) => (dropdownRefs.current['quickLinks'] = el)}
+              ref={(el) => {
+                dropdownRefs.current['quickLinks'] = el;
+              }}
             >
               <button
                 onClick={() => toggleDropdown('quickLinks')}
