@@ -114,23 +114,6 @@ export default function PrivacyPage() {
     },
     datePublished: publishedTime,
     dateModified: modifiedTime,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Privacy Policy',
-          item: pageUrl,
-        },
-      ],
-    },
     publisher: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',

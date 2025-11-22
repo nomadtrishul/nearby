@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
 import { getAllTips } from '@/lib/petTips';
+import { getBaseUrl } from '@/lib/site-config';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const now = new Date();
   
   // Helper function to create sitemap entries

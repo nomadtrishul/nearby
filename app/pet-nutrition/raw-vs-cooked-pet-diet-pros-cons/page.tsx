@@ -76,16 +76,6 @@ export const metadata: Metadata = {
 export default function RawVsCookedDietPage() {
   const currentDate = new Date().toISOString();
   
-  // Organization Schema for E-E-A-T
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Nearby Pet Care',
-    url: 'https://nearbypetcare.com',
-    logo: 'https://nearbypetcare.com/logo.png',
-    description: 'Comprehensive pet care guides and resources for pet owners. Expert advice on pet nutrition, health, grooming, and training.',
-  };
-
   // Breadcrumb Schema
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
@@ -144,11 +134,6 @@ export default function RawVsCookedDietPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/Article">
-      {/* Structured Data - Organization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       {/* Structured Data - Article */}
       <script
         type="application/ld+json"

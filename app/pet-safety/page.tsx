@@ -79,34 +79,6 @@ export default function PetSafetyPage() {
     { title: 'Seasonal Care', href: '/pet-safety/seasonal-care', icon: '🌤️' },
   ];
 
-  // Organization Schema
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Nearby Pet Care',
-    url: 'https://nearbypetcare.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/logo.png',
-      width: 600,
-      height: 60,
-    },
-    description: 'Comprehensive pet care guides and resources for pet owners. Expert advice on pet nutrition, health, grooming, training, and safety.',
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'Customer Service',
-      email: 'info@nearbypetcare.com',
-      areaServed: 'US',
-      availableLanguage: ['English'],
-    },
-    sameAs: [
-      'https://www.facebook.com/nearbypetcare',
-      'https://www.instagram.com/nearbypetcare',
-      'https://www.youtube.com/@nearbypetcare',
-      'https://www.linkedin.com/company/nearbypetcare',
-    ],
-  };
-
   // WebPage Schema
   const webpageSchema = {
     '@context': 'https://schema.org',
@@ -171,10 +143,6 @@ export default function PetSafetyPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/WebPage">
       {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}

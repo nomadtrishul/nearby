@@ -3,6 +3,8 @@
  * Optimized for Google, Bing, and AdSense compliance (November 2025)
  */
 
+import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from './site-config';
+
 export interface NutritionPageSEOConfig {
   title: string;
   description: string;
@@ -34,7 +36,7 @@ export function generateNutritionMetadata(config: NutritionPageSEOConfig) {
       title: `${config.title} | Nearby Pet Care`,
       description: config.description,
       type: 'article',
-      url: `https://nearbypetcare.com${config.url}`,
+      url: ensureAbsoluteUrl(config.url),
       siteName: 'Nearby Pet Care',
       locale: 'en_US',
       alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
@@ -43,7 +45,7 @@ export function generateNutritionMetadata(config: NutritionPageSEOConfig) {
       authors: ['Nearby Pet Care Team'],
       images: [
         {
-          url: 'https://nearbypetcare.com/og-image.png',
+          url: getDefaultOgImage(),
           width: 1200,
           height: 630,
           alt: `${config.title} - Nearby Pet Care`,
@@ -55,17 +57,17 @@ export function generateNutritionMetadata(config: NutritionPageSEOConfig) {
       card: 'summary_large_image',
       title: `${config.title} | Nearby Pet Care`,
       description: config.description,
-      images: ['https://nearbypetcare.com/og-image.png'],
+      images: [getDefaultOgImage()],
       creator: '@nearbypetcare',
       site: '@nearbypetcare',
     },
     alternates: {
-      canonical: `https://nearbypetcare.com${config.url}`,
+      canonical: ensureAbsoluteUrl(config.url),
       languages: {
-        'en-US': `https://nearbypetcare.com${config.url}`,
-        'en-GB': `https://nearbypetcare.com${config.url}`,
-        'en-CA': `https://nearbypetcare.com${config.url}`,
-        'en-AU': `https://nearbypetcare.com${config.url}`,
+        'en-US': ensureAbsoluteUrl(config.url),
+        'en-GB': ensureAbsoluteUrl(config.url),
+        'en-CA': ensureAbsoluteUrl(config.url),
+        'en-AU': ensureAbsoluteUrl(config.url),
       },
     },
     robots: {
@@ -90,17 +92,19 @@ export function generateNutritionMetadata(config: NutritionPageSEOConfig) {
 }
 
 export function generateOrganizationSchema() {
+  const baseUrl = getBaseUrl();
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Nearby Pet Care',
-    url: 'https://nearbypetcare.com',
-    logo: 'https://nearbypetcare.com/logo.png',
+    url: baseUrl,
+    logo: `${baseUrl}/logo.png`,
     description: 'Comprehensive pet care guides and resources for pet owners. Expert advice on pet nutrition, health, grooming, and training.',
     sameAs: [
       'https://www.facebook.com/nearbypetcare',
-      'https://twitter.com/nearbypetcare',
       'https://www.instagram.com/nearbypetcare',
+      'https://www.youtube.com/@nearbypetcare',
+      'https://www.linkedin.com/company/nearbypetcare',
     ],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -112,24 +116,26 @@ export function generateOrganizationSchema() {
 
 export function generateArticleSchema(config: NutritionPageSEOConfig) {
   const currentDate = new Date().toISOString();
+  const baseUrl = getBaseUrl();
+  const articleUrl = ensureAbsoluteUrl(config.url);
   
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: config.title,
     description: config.description,
-    url: `https://nearbypetcare.com${config.url}`,
+    url: articleUrl,
     datePublished: config.datePublished || '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
     author: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
       logo: {
         '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
       },
     },
     publisher: {
@@ -137,18 +143,18 @@ export function generateArticleSchema(config: NutritionPageSEOConfig) {
       name: 'Nearby Pet Care',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://nearbypetcare.com${config.url}`,
+      '@id': articleUrl,
     },
     image: {
       '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
+      url: getDefaultOgImage(),
       width: 1200,
       height: 630,
     },
@@ -170,7 +176,7 @@ export function generateBreadcrumbSchema(url: string, breadcrumbItems: Array<{ n
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url,
+      item: ensureAbsoluteUrl(item.url),
     })),
   };
 }

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '@/lib/blog';
 import ResourceCards from '@/components/ResourceCards';
+import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
@@ -12,13 +13,13 @@ export const metadata: Metadata = {
     title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
     description: 'Learn how to care for your pet with practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, and training from trusted pet care resources.',
     type: 'website',
-    url: 'https://nearbypetcare.com',
+    url: getBaseUrl(),
     siteName: 'Nearby Pet Care',
     locale: 'en_US',
     alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
     images: [
       {
-        url: 'https://nearbypetcare.com/og-image.png',
+        url: getDefaultOgImage(),
         width: 1200,
         height: 630,
         alt: 'Nearby Pet Care - Educational Pet Care Resources',
@@ -30,10 +31,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets',
     description: 'Learn how to care for your pet with practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, and training.',
-    images: ['https://nearbypetcare.com/og-image.png'],
+    images: [getDefaultOgImage()],
   },
   alternates: {
-    canonical: 'https://nearbypetcare.com',
+    canonical: getBaseUrl(),
   },
   robots: {
     index: true,
@@ -52,12 +53,13 @@ export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
 
   // Structured Data for Educational Content
+  const baseUrl = getBaseUrl();
   const educationalContentStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Nearby Pet Care',
     description: 'An independent educational platform providing practical guidance on pet care',
-    url: 'https://nearbypetcare.com'
+    url: baseUrl
   };
 
   // Structured Data for FAQ
@@ -109,7 +111,7 @@ export default function Home() {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://nearbypetcare.com'
+        item: baseUrl
       }
     ]
   };
@@ -469,8 +471,59 @@ export default function Home() {
       )}
 
 
+      {/* FAQ Section - Visible content matching structured data */}
+      <section 
+        className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors"
+        aria-labelledby="faq-heading"
+      >
+        <div className="container mx-auto max-w-4xl">
+          <header className="text-center mb-10 sm:mb-12">
+            <h2 id="faq-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 transition-colors">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto transition-colors">
+              Common questions about Nearby Pet Care and our resources
+            </p>
+          </header>
+          <div className="space-y-6">
+            <article className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">
+                What kind of information does Nearby Pet Care provide?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                We provide practical, step-by-step guidance on pet nutrition, health, grooming, training, behavior, product selection, and overall pet wellbeing. Our content is designed to help pet owners make informed decisions based on widely accepted pet care practices.
+              </p>
+            </article>
+            <article className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Do you provide pet care services?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                No, we are an independent educational platform that provides informational resources only. We do not represent any business, clinic, or service provider. Our role is to help pet owners understand pet care topics so they can make informed decisions.
+              </p>
+            </article>
+            <article className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Is the information on this site reliable?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                Yes, all our content is based on widely accepted pet care practices and designed to be easy to understand. We focus on providing practical, actionable guidance that pet owners can use in their everyday pet care routines.
+              </p>
+            </article>
+            <article className="p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-white/10 rounded-xl">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">
+                Can I use this information to care for my pet?
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                Our content is designed to help you make informed decisions about everyday pet care. However, for specific health concerns or emergencies, always consult with a qualified veterinarian. Our guides complement professional veterinary care.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
           <div className="max-w-4xl mx-auto text-center p-8 sm:p-10 md:p-12 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-2xl sm:rounded-3xl backdrop-blur-sm">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 transition-colors">

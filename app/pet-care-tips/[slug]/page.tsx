@@ -6,6 +6,7 @@ import { getTipBySlug, getAllSlugs, getRecentTips, getAllCategories, getAllTags,
 import CopyButton from '@/components/CopyButton';
 import TipsSidebar from '@/components/TipsSidebar';
 import RelatedTips from '@/components/RelatedTips';
+import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from '@/lib/site-config';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,8 +29,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const baseUrl = getBaseUrl();
   const publishedTime = new Date(tip.date).toISOString();
   const modifiedTime = new Date(tip.dateModified || tip.date).toISOString();
+  const tipUrl = `${baseUrl}/pet-care-tips/${slug}`;
+  const tipImage = tip.image ? ensureAbsoluteUrl(tip.image) : getDefaultOgImage();
 
   return {
     title: `${tip.title} | Pet Care Tips | Nearby Pet Care`,
@@ -44,17 +48,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       modifiedTime,
       authors: [tip.author || 'Nearby Pet Care Team'],
       tags: tip.tags || [],
-      url: `https://nearbypetcare.com/pet-care-tips/${slug}`,
-      images: tip.image ? [tip.image] : [],
+      url: tipUrl,
+      images: [
+        {
+          url: tipImage,
+          width: 1200,
+          height: 630,
+          alt: tip.title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: tip.title,
       description: tip.excerpt,
-      images: tip.image ? [tip.image] : [],
+      images: [tipImage],
     },
     alternates: {
-      canonical: `https://nearbypetcare.com/pet-care-tips/${slug}`,
+      canonical: tipUrl,
     },
     robots: {
       index: true,
@@ -96,25 +107,8 @@ export default async function PetTipPage({ params }: PageProps) {
   const publishedTime = new Date(tip.date).toISOString();
   const modifiedTime = new Date(tip.dateModified || tip.date).toISOString();
 
-  // Ensure image URL is HTTPS
-  const ensureHttps = (url?: string): string | undefined => {
-    if (!url) return undefined;
-    if (url.startsWith('http://')) {
-      return url.replace('http://', 'https://');
-    }
-    if (url.startsWith('//')) {
-      return `https:${url}`;
-    }
-    if (url.startsWith('/')) {
-      return `https://nearbypetcare.com${url}`;
-    }
-    if (!url.startsWith('https://')) {
-      return `https://${url}`;
-    }
-    return url;
-  };
-
-  const mainImage = ensureHttps(tip.image) || 'https://nearbypetcare.com/og-image.png';
+  const baseUrl = getBaseUrl();
+  const mainImage = tip.image ? ensureAbsoluteUrl(tip.image) : getDefaultOgImage();
 
   // Convert HTML to plain text for JSON-LD (Google requires plain text in structured data)
   const htmlToPlainText = (html: string): string => {
@@ -141,19 +135,21 @@ export default async function PetTipPage({ params }: PageProps) {
     author: {
       '@type': 'Person',
       name: tip.author || 'Nearby Pet Care Team',
-      url: 'https://nearbypetcare.com/about'
+      url: `${baseUrl}/about`
     },
     publisher: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png'
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48
       }
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://nearbypetcare.com/pet-care-tips/${slug}`
+      '@id': `${baseUrl}/pet-care-tips/${slug}`
     },
     totalTime: tip.totalTime || `PT${tip.readingTime || 5}M`,
   };
@@ -198,9 +194,9 @@ export default async function PetTipPage({ params }: PageProps) {
         url: step.url || `https://nearbypetcare.com/pet-care-tips/${slug}#step-${index + 1}`
       };
       
-      // Add step image if provided (must be HTTPS)
+      // Add step image if provided (must be absolute URL)
       if (step.image) {
-        stepData.image = ensureHttps(step.image);
+        stepData.image = ensureAbsoluteUrl(step.image);
       }
       
       // Add step duration if provided
@@ -224,19 +220,19 @@ export default async function PetTipPage({ params }: PageProps) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://nearbypetcare.com'
+        item: baseUrl
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Pet Care Tips',
-        item: 'https://nearbypetcare.com/pet-care-tips'
+        item: `${baseUrl}/pet-care-tips`
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: tip.title,
-        item: `https://nearbypetcare.com/pet-care-tips/${slug}`
+        item: `${baseUrl}/pet-care-tips/${slug}`
       }
     ]
   };

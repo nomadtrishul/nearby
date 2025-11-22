@@ -141,26 +141,6 @@ export default function PetNutritionPage() {
     },
   ];
   
-  // Organization Schema for E-E-A-T
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Nearby Pet Care',
-    url: 'https://nearbypetcare.com',
-    logo: 'https://nearbypetcare.com/logo.png',
-    description: 'Comprehensive pet care guides and resources for pet owners. Expert advice on pet nutrition, health, grooming, and training.',
-    sameAs: [
-      'https://www.facebook.com/nearbypetcare',
-      'https://twitter.com/nearbypetcare',
-      'https://www.instagram.com/nearbypetcare',
-    ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'Customer Service',
-      availableLanguage: ['English'],
-    },
-  };
-
   // CollectionPage Schema
   const collectionStructuredData = {
     '@context': 'https://schema.org',
@@ -218,11 +198,6 @@ export default function PetNutritionPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/CollectionPage">
-      {/* Structured Data - Organization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       {/* Structured Data - CollectionPage */}
       <script
         type="application/ld+json"

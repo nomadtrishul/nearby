@@ -98,6 +98,8 @@ export default function BestDogFoodPage() {
       sameAs: [
         'https://www.facebook.com/nearbypetcare',
         'https://www.instagram.com/nearbypetcare',
+        'https://www.youtube.com/@nearbypetcare',
+        'https://www.linkedin.com/company/nearbypetcare',
       ],
     },
     publisher: {

@@ -85,20 +85,6 @@ export default function PetSafetyPillarPage() {
     ],
   };
 
-  // Organization Schema
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Nearby Pet Care',
-    url: 'https://nearbypetcare.com',
-    logo: {
-      '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/logo.png',
-      width: 600,
-      height: 60,
-    },
-  };
-
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -151,10 +137,6 @@ export default function PetSafetyPillarPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/Article">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}

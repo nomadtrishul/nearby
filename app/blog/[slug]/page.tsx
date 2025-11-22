@@ -6,6 +6,7 @@ import { getPostBySlug, getAllSlugs, getAllPosts } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import CopyButton from '@/components/CopyButton';
 import RelatedArticles from '@/components/RelatedArticles';
+import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from '@/lib/site-config';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -122,11 +123,11 @@ export default async function BlogPostPage({ params }: PageProps) {
     .filter(p => p.slug !== slug && (p.category === post.category || p.tags?.some(tag => post.tags?.includes(tag))))
     .slice(0, 3);
 
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
   const postUrl = `${baseUrl}/blog/${slug}`;
-  const postImage = post.image || `${baseUrl}/og-image.png`;
+  const postImage = post.image ? ensureAbsoluteUrl(post.image) : getDefaultOgImage();
   const wordCount = post.content.split(' ').length;
   const readingTime = post.readingTime || Math.ceil(wordCount / 200);
 
@@ -211,29 +212,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     },
     datePublished: publishedTime,
     dateModified: modifiedTime,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Blog',
-          item: `${baseUrl}/blog`,
-        },
-        {
-          '@type': 'ListItem',
-          position: 3,
-          name: post.title,
-          item: postUrl,
-        },
-      ],
-    },
   };
 
   // Breadcrumb Structured Data (separate for better compatibility)

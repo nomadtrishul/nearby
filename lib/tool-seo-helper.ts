@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from './site-config';
 
 export interface ToolSEOConfig {
   title: string;
@@ -11,9 +12,9 @@ export interface ToolSEOConfig {
 }
 
 export function generateToolMetadata(config: ToolSEOConfig): Metadata {
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const toolUrl = `${baseUrl}/tools/${config.slug}`;
-  const ogImage = `${baseUrl}/og-image.png`;
+  const ogImage = getDefaultOgImage();
   
   return {
     title: config.title.includes('|') ? config.title : `${config.title} | Nearby Pet Care`,
@@ -50,9 +51,10 @@ export function generateToolMetadata(config: ToolSEOConfig): Metadata {
 }
 
 export function generateToolStructuredData(config: ToolSEOConfig) {
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const toolUrl = `${baseUrl}/tools/${config.slug}`;
   const toolTitle = config.title.includes('|') ? config.title.split('|')[0].trim() : config.title;
+  const defaultOgImage = getDefaultOgImage();
   
   const webApplication = {
     '@context': 'https://schema.org',
@@ -63,13 +65,13 @@ export function generateToolStructuredData(config: ToolSEOConfig) {
     url: toolUrl,
     image: {
       '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+      url: defaultOgImage,
       width: 1200,
       height: 630,
     },
     screenshot: {
       '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+      url: defaultOgImage,
       width: 1200,
       height: 630,
     },
@@ -92,8 +94,8 @@ export function generateToolStructuredData(config: ToolSEOConfig) {
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/logo.png`,
-        width: 512,
-        height: 512,
+        width: 200,
+        height: 48,
       },
     },
     potentialAction: {

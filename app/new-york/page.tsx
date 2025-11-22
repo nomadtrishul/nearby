@@ -3,6 +3,7 @@ import { generateSEOMetadata, generateBreadcrumbStructuredData, generateWebPageS
 import NewYorkClient from './NewYorkClient';
 import { allServiceCategories } from '@/lib/servicesData';
 import { sampleBusinesses } from '@/lib/businessesData';
+import { getBaseUrl } from '@/lib/site-config';
 
 // Enhanced SEO metadata following latest Google, Bing, and AdSense guidelines (Nov 2025)
 export const metadata: Metadata = generateSEOMetadata({
@@ -31,7 +32,6 @@ export const metadata: Metadata = generateSEOMetadata({
   ],
   url: '/new-york',
   type: 'website',
-  image: 'https://nearbypetcare.com/og-image.png',
 });
 
 export default function NewYorkPage() {
@@ -40,7 +40,7 @@ export default function NewYorkPage() {
     { name: 'New York', url: '/new-york' }
   ];
 
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const pageUrl = `${baseUrl}/new-york`;
 
   // Breadcrumb structured data

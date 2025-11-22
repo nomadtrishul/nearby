@@ -77,16 +77,6 @@ export default function PetNutritionDietPlanPage() {
   const currentDate = new Date().toISOString();
   const currentDateShort = currentDate.split('T')[0];
   
-  // Organization Schema for E-E-A-T
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Nearby Pet Care',
-    url: 'https://nearbypetcare.com',
-    logo: 'https://nearbypetcare.com/logo.png',
-    description: 'Comprehensive pet care guides and resources for pet owners. Expert advice on pet nutrition, health, grooming, and training.',
-  };
-
   // Breadcrumb Schema
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
@@ -114,12 +104,14 @@ export default function PetNutritionDietPlanPage() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
+        width: 200,
+        height: 48,
       },
       sameAs: [
         'https://www.facebook.com/nearbypetcare',
-        'https://twitter.com/nearbypetcare',
+        'https://www.instagram.com/nearbypetcare',
+        'https://www.youtube.com/@nearbypetcare',
+        'https://www.linkedin.com/company/nearbypetcare',
       ],
     },
     publisher: {
@@ -128,8 +120,8 @@ export default function PetNutritionDietPlanPage() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
+        width: 200,
+        height: 48,
       },
     },
     mainEntityOfPage: {
@@ -201,11 +193,6 @@ export default function PetNutritionDietPlanPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/Article">
-      {/* Structured Data - Organization */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
       {/* Structured Data - Article */}
       <script
         type="application/ld+json"

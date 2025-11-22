@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getAllPosts, getAllCategories, getAllTags } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners | Nearby Pet Care',
@@ -72,7 +73,7 @@ export default function BlogPage() {
   const posts = getAllPosts();
   const categories = getAllCategories();
   const tags = getAllTags();
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
 
   // Enhanced Blog Structured Data (Schema.org)

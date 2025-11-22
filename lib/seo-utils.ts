@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getBaseUrl, getDefaultOgImage, getSiteName, ensureAbsoluteUrl } from './site-config';
 
 export interface SEOConfig {
   title: string;
@@ -17,9 +18,9 @@ export interface SEOConfig {
   nofollow?: boolean;
 }
 
-const baseUrl = 'https://nearbypetcare.com';
-const defaultImage = 'https://nearbypetcare.com/og-image.png';
-const siteName = 'Nearby Pet Care';
+const baseUrl = getBaseUrl();
+const defaultImage = getDefaultOgImage();
+const siteName = getSiteName();
 
 /**
  * Generate comprehensive metadata for SEO optimization
@@ -43,7 +44,8 @@ export function generateSEOMetadata(config: SEOConfig): Metadata {
   } = config;
 
   const fullTitle = title.includes('|') ? title : `${title} | ${siteName}`;
-  const canonicalUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const canonicalUrl = ensureAbsoluteUrl(url);
+  const ogImage = image ? ensureAbsoluteUrl(image) : defaultImage;
 
   const metadata: Metadata = {
     title: fullTitle,
@@ -66,7 +68,7 @@ export function generateSEOMetadata(config: SEOConfig): Metadata {
       description,
       images: [
         {
-          url: image,
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: title,
@@ -85,7 +87,7 @@ export function generateSEOMetadata(config: SEOConfig): Metadata {
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [image],
+      images: [ogImage],
     },
     robots: {
       index: !noindex,
@@ -130,7 +132,7 @@ export function generateBreadcrumbStructuredData(
       '@type': 'ListItem',
       position: index + 1,
       name: crumb.name,
-      item: crumb.url.startsWith('http') ? crumb.url : `${baseUrl}${crumb.url}`,
+      item: ensureAbsoluteUrl(crumb.url),
     })),
   };
 }
@@ -154,7 +156,7 @@ export function generateArticleStructuredData(config: {
   const {
     headline,
     description,
-    image = defaultImage,
+    image,
     datePublished,
     dateModified,
     author = 'Nearby Pet Care Team',
@@ -165,14 +167,15 @@ export function generateArticleStructuredData(config: {
     timeRequired,
   } = config;
 
-  const articleUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const articleUrl = ensureAbsoluteUrl(url);
+  const articleImage = image ? ensureAbsoluteUrl(image) : defaultImage;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline,
     description,
-    image,
+    image: articleImage,
     datePublished,
     dateModified: dateModified || datePublished,
     author: {
@@ -232,7 +235,7 @@ export function generateWebPageStructuredData(config: {
   breadcrumbs?: Array<{ name: string; url: string }>;
 }) {
   const { name, description, url, breadcrumbs } = config;
-  const pageUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const pageUrl = ensureAbsoluteUrl(url);
 
   return {
     '@context': 'https://schema.org',
@@ -301,7 +304,7 @@ export function generateLocalBusinessStructuredData(config: {
     '@type': 'LocalBusiness',
     name,
     description,
-    ...(image && { image }),
+    ...(image && { image: ensureAbsoluteUrl(image) }),
     ...(telephone && { telephone }),
     ...(email && { email }),
     ...(businessUrl && { url: businessUrl }),

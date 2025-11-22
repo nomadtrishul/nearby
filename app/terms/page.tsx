@@ -114,23 +114,6 @@ export default function TermsPage() {
     },
     datePublished: publishedTime,
     dateModified: modifiedTime,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Terms of Service',
-          item: pageUrl,
-        },
-      ],
-    },
     publisher: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
