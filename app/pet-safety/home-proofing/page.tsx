@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
+import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Home Proofing - Complete Safety Guide | Nearby Pet Care',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Pet Home Proofing - Complete Safety Guide | Nearby Pet Care',
     description: 'Complete guide to pet-proofing your home. Learn how to identify and eliminate common household hazards.',
     type: 'article',
-    url: 'https://nearbypetcare.com/pet-safety/home-proofing',
+    url: getBaseUrl() + '/pet-safety/home-proofing',
     siteName: 'Nearby Pet Care',
     locale: 'en_US',
     publishedTime: '2024-01-01T00:00:00+00:00',
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     authors: ['Nearby Pet Care Team'],
     images: [
       {
-        url: 'https://nearbypetcare.com/og-image.png',
+        url: getDefaultOgImage(),
         width: 1200,
         height: 630,
         alt: 'Pet Home Proofing Guide',
@@ -39,17 +40,17 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Pet Home Proofing - Complete Safety Guide | Nearby Pet Care',
     description: 'Complete guide to pet-proofing your home.',
-    images: ['https://nearbypetcare.com/og-image.png'],
+    images: [getDefaultOgImage()],
     creator: '@nearbypetcare',
     site: '@nearbypetcare',
   },
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-safety/home-proofing',
+    canonical: getBaseUrl() + '/pet-safety/home-proofing',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-safety/home-proofing',
-      'en-GB': 'https://nearbypetcare.com/pet-safety/home-proofing',
-      'en-CA': 'https://nearbypetcare.com/pet-safety/home-proofing',
-      'en-AU': 'https://nearbypetcare.com/pet-safety/home-proofing',
+      'en-US': getBaseUrl() + '/pet-safety/home-proofing',
+      'en-GB': getBaseUrl() + '/pet-safety/home-proofing',
+      'en-CA': getBaseUrl() + '/pet-safety/home-proofing',
+      'en-AU': getBaseUrl() + '/pet-safety/home-proofing',
     },
   },
   robots: {
@@ -73,15 +74,29 @@ export const metadata: Metadata = {
 };
 
 export default function HomeProofingPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
+  const pageUrl = `${baseUrl}/pet-safety/home-proofing`;
+  
+  const organizationSchema = {
+    '@type': 'Organization',
+    name: 'Nearby Pet Care',
+    url: baseUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}/logo.png`,
+      width: 200,
+      height: 48,
+    },
+  };
   
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: 'https://nearbypetcare.com/pet-safety' },
-      { '@type': 'ListItem', position: 3, name: 'Home Proofing', item: 'https://nearbypetcare.com/pet-safety/home-proofing' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: `${baseUrl}/pet-safety` },
+      { '@type': 'ListItem', position: 3, name: 'Home Proofing', item: pageUrl },
     ],
   };
 
@@ -90,18 +105,18 @@ export default function HomeProofingPage() {
     '@type': 'Article',
     headline: 'Pet Home Proofing - Complete Safety Guide',
     description: 'Complete guide to pet-proofing your home. Learn how to identify and eliminate common household hazards to keep your pet safe.',
-    url: 'https://nearbypetcare.com/pet-safety/home-proofing',
+    url: pageUrl,
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
     author: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
     },
     publisher: organizationSchema,
     image: {
       '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
+      url: getDefaultOgImage(),
       width: 1200,
       height: 630,
       alt: 'Pet Home Proofing Guide',
@@ -111,7 +126,7 @@ export default function HomeProofingPage() {
     keywords: 'pet proofing, home safety, pet hazards, pet safety',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-safety/home-proofing',
+      '@id': pageUrl,
     },
   };
 
@@ -119,15 +134,15 @@ export default function HomeProofingPage() {
   const webpageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://nearbypetcare.com/pet-safety/home-proofing',
-    url: 'https://nearbypetcare.com/pet-safety/home-proofing',
+    '@id': pageUrl,
+    url: pageUrl,
     name: 'Pet Home Proofing - Complete Safety Guide',
     description: 'Complete guide to pet-proofing your home. Learn how to identify and eliminate common household hazards to keep your pet safe.',
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
     },
     breadcrumb: breadcrumbStructuredData,
     datePublished: '2024-01-01T00:00:00+00:00',

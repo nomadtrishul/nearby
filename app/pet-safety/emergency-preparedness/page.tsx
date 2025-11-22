@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
+import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Emergency Preparedness Guide - Disaster Planning for Pets | Nearby Pet Care',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Pet Emergency Preparedness Guide - Disaster Planning for Pets | Nearby Pet Care',
     description: 'Learn how to prepare for emergencies with your pet. Create an emergency kit and develop an evacuation plan.',
     type: 'article',
-    url: 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
+    url: getBaseUrl() + '/pet-safety/emergency-preparedness',
     siteName: 'Nearby Pet Care',
     locale: 'en_US',
     publishedTime: '2024-01-01T00:00:00+00:00',
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     authors: ['Nearby Pet Care Team'],
     images: [
       {
-        url: 'https://nearbypetcare.com/og-image.png',
+        url: getDefaultOgImage(),
         width: 1200,
         height: 630,
         alt: 'Pet Emergency Preparedness Guide',
@@ -39,17 +40,17 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
   title: 'Pet Emergency Preparedness Guide | Nearby Pet Care',
     description: 'Learn how to prepare for emergencies with your pet.',
-    images: ['https://nearbypetcare.com/og-image.png'],
+    images: [getDefaultOgImage()],
     creator: '@nearbypetcare',
     site: '@nearbypetcare',
   },
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
+    canonical: getBaseUrl() + '/pet-safety/emergency-preparedness',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
-      'en-GB': 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
-      'en-CA': 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
-      'en-AU': 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
+      'en-US': getBaseUrl() + '/pet-safety/emergency-preparedness',
+      'en-GB': getBaseUrl() + '/pet-safety/emergency-preparedness',
+      'en-CA': getBaseUrl() + '/pet-safety/emergency-preparedness',
+      'en-AU': getBaseUrl() + '/pet-safety/emergency-preparedness',
     },
   },
   robots: {
@@ -73,15 +74,29 @@ export const metadata: Metadata = {
 };
 
 export default function EmergencyPreparednessPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
+  const pageUrl = `${baseUrl}/pet-safety/emergency-preparedness`;
+  
+  const organizationSchema = {
+    '@type': 'Organization',
+    name: 'Nearby Pet Care',
+    url: baseUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}/logo.png`,
+      width: 200,
+      height: 48,
+    },
+  };
   
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: 'https://nearbypetcare.com/pet-safety' },
-      { '@type': 'ListItem', position: 3, name: 'Emergency Preparedness', item: 'https://nearbypetcare.com/pet-safety/emergency-preparedness' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: `${baseUrl}/pet-safety` },
+      { '@type': 'ListItem', position: 3, name: 'Emergency Preparedness', item: pageUrl },
     ],
   };
 
@@ -90,18 +105,18 @@ export default function EmergencyPreparednessPage() {
     '@type': 'Article',
     headline: 'Pet Emergency Preparedness Guide - Disaster Planning for Pets',
     description: 'Learn how to prepare for emergencies with your pet. Create an emergency kit, develop an evacuation plan, and ensure your pet\'s safety during natural disasters.',
-    url: 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
+    url: pageUrl,
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
     author: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
     },
     publisher: organizationSchema,
     image: {
       '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
+      url: getDefaultOgImage(),
       width: 1200,
       height: 630,
       alt: 'Pet Emergency Preparedness Guide',
@@ -111,7 +126,7 @@ export default function EmergencyPreparednessPage() {
     keywords: 'pet emergency, disaster preparedness, emergency kit, evacuation plan',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
+      '@id': pageUrl,
     },
   };
 
@@ -119,15 +134,15 @@ export default function EmergencyPreparednessPage() {
   const webpageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
-    url: 'https://nearbypetcare.com/pet-safety/emergency-preparedness',
+    '@id': pageUrl,
+    url: pageUrl,
     name: 'Pet Emergency Preparedness Guide - Disaster Planning for Pets',
     description: 'Learn how to prepare for emergencies with your pet. Create an emergency kit, develop an evacuation plan, and ensure your pet\'s safety during natural disasters.',
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
     },
     breadcrumb: breadcrumbStructuredData,
     datePublished: '2024-01-01T00:00:00+00:00',

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
+import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Safety & Travel Overview - Comprehensive Guide | Nearby Pet Care',
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     title: 'Pet Safety & Travel Overview - Comprehensive Guide | Nearby Pet Care',
     description: 'Comprehensive overview of pet safety and travel topics. Learn how to keep your pet safe at home and while traveling.',
     type: 'article',
-    url: 'https://nearbypetcare.com/pet-safety/pillar',
+    url: getBaseUrl() + '/pet-safety/pillar',
     siteName: 'Nearby Pet Care',
     locale: 'en_US',
     publishedTime: '2024-01-01T00:00:00+00:00',
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     authors: ['Nearby Pet Care Team'],
     images: [
       {
-        url: 'https://nearbypetcare.com/og-image.png',
+        url: getDefaultOgImage(),
         width: 1200,
         height: 630,
         alt: 'Pet Safety & Travel Overview',
@@ -39,17 +40,17 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
   title: 'Pet Safety & Travel Overview | Nearby Pet Care',
     description: 'Comprehensive overview of pet safety and travel topics.',
-    images: ['https://nearbypetcare.com/og-image.png'],
+    images: [getDefaultOgImage()],
     creator: '@nearbypetcare',
     site: '@nearbypetcare',
   },
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-safety/pillar',
+    canonical: getBaseUrl() + '/pet-safety/pillar',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-safety/pillar',
-      'en-GB': 'https://nearbypetcare.com/pet-safety/pillar',
-      'en-CA': 'https://nearbypetcare.com/pet-safety/pillar',
-      'en-AU': 'https://nearbypetcare.com/pet-safety/pillar',
+      'en-US': getBaseUrl() + '/pet-safety/pillar',
+      'en-GB': getBaseUrl() + '/pet-safety/pillar',
+      'en-CA': getBaseUrl() + '/pet-safety/pillar',
+      'en-AU': getBaseUrl() + '/pet-safety/pillar',
     },
   },
   robots: {
@@ -73,15 +74,29 @@ export const metadata: Metadata = {
 };
 
 export default function PetSafetyPillarPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
+  const pageUrl = `${baseUrl}/pet-safety/pillar`;
+  
+  const organizationSchema = {
+    '@type': 'Organization',
+    name: 'Nearby Pet Care',
+    url: baseUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${baseUrl}/logo.png`,
+      width: 200,
+      height: 48,
+    },
+  };
   
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: 'https://nearbypetcare.com/pet-safety' },
-      { '@type': 'ListItem', position: 3, name: 'Overview', item: 'https://nearbypetcare.com/pet-safety/pillar' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
+      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: `${baseUrl}/pet-safety` },
+      { '@type': 'ListItem', position: 3, name: 'Overview', item: pageUrl },
     ],
   };
 
@@ -90,18 +105,18 @@ export default function PetSafetyPillarPage() {
     '@type': 'Article',
     headline: 'Pet Safety & Travel Overview - Comprehensive Guide',
     description: 'Comprehensive overview of pet safety and travel topics. Learn how to keep your pet safe at home, while traveling, during emergencies, and throughout the seasons.',
-    url: 'https://nearbypetcare.com/pet-safety/pillar',
+    url: pageUrl,
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
     author: {
       '@type': 'Organization',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
     },
     publisher: organizationSchema,
     image: {
       '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
+      url: getDefaultOgImage(),
       width: 1200,
       height: 630,
       alt: 'Pet Safety & Travel Overview',
@@ -111,7 +126,7 @@ export default function PetSafetyPillarPage() {
     keywords: 'pet safety, pet travel, home safety, emergency preparedness, seasonal safety',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-safety/pillar',
+      '@id': pageUrl,
     },
   };
 
@@ -119,15 +134,15 @@ export default function PetSafetyPillarPage() {
   const webpageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://nearbypetcare.com/pet-safety/pillar',
-    url: 'https://nearbypetcare.com/pet-safety/pillar',
+    '@id': pageUrl,
+    url: pageUrl,
     name: 'Pet Safety & Travel Overview - Comprehensive Guide',
     description: 'Comprehensive overview of pet safety and travel topics. Learn how to keep your pet safe at home, while traveling, during emergencies, and throughout the seasons.',
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
       name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
+      url: baseUrl,
     },
     breadcrumb: breadcrumbStructuredData,
     datePublished: '2024-01-01T00:00:00+00:00',
