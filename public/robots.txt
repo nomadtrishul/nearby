@@ -1,7 +1,18 @@
 User-agent: *
+
 Allow: /
-Disallow: /admin/
-Disallow: /private/
+
 Disallow: /api/
+
+Disallow: /admin/
+
+Disallow: /private/
+
+# Allow Next.js static assets and image loader to be crawled
+Allow: /_next/static/
+
+Allow: /_next/image
+
+Allow: /_next/static/media/
 
 Sitemap: https://nearbypetcare.com/sitemap.xml
