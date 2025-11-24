@@ -15,4 +15,19 @@ Allow: /_next/image
 
 Allow: /_next/static/media/
 
+# Allow Google Ads related endpoints
+Allow: /ads/preferences/
+
+Allow: /dtt/k
+
+Allow: /pagead/show_ads.js
+
+Allow: /pagead/managed/
+
+Allow: /pagead/html/
+
+Allow: /pagead/js/
+
+Allow: /tag/js/
+
 Sitemap: https://nearbypetcare.com/sitemap.xml
