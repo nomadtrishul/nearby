@@ -41,9 +41,9 @@ module.exports = {
     ],
   },
   additionalPaths: async (config) => {
-    // Use dynamic imports for ES modules
-    const { getAllPosts } = await import('./lib/blog');
-    const { getAllTips } = await import('./lib/petTips');
+    // Use dynamic imports for ES modules - TypeScript files are compiled to JS during build
+    const { getAllPosts } = await import('./lib/blog.ts');
+    const { getAllTips } = await import('./lib/petTips.ts');
     
     const baseUrl = getBaseUrl();
     const now = new Date();
