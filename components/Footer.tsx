@@ -133,6 +133,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/pet-behavior" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
+                  Pet Behavior
+                </Link>
+              </li>
+              <li>
                 <Link href="/pet-safety" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors text-sm">
                   Pet Safety
                 </Link>

@@ -131,6 +131,16 @@ export default function Header() {
                     Pet Training
                   </Link>
                   <Link 
+                    href="/pet-behavior" 
+                    className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Behavior
+                  </Link>
+                  <Link 
                     href="/pet-safety" 
                     className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                     onClick={(e) => {
@@ -462,6 +472,17 @@ export default function Header() {
                     }}
                   >
                     Pet Training
+                  </Link>
+                  <Link 
+                    href="/pet-behavior" 
+                    className="block text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors py-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsMenuOpen(false);
+                      closeDropdown();
+                    }}
+                  >
+                    Pet Behavior
                   </Link>
                   <Link 
                     href="/pet-safety" 

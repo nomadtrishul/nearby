@@ -24,6 +24,7 @@ module.exports = {
     '/pet-products',
     '/pet-adoption',
     '/pet-safety',
+    '/pet-behavior',
     '/puppies-kittens',
     '/senior-pets',
     '/tools',
@@ -141,6 +142,12 @@ module.exports = {
       createEntry('/pet-training/crate-training', 0.8, 'weekly'),
       createEntry('/pet-training/socialisation', 0.8, 'weekly'),
       createEntry('/pet-training/training-tools-reviews', 0.8, 'weekly'),
+      
+      createEntry('/pet-behavior', 0.9, 'weekly'),
+      createEntry('/pet-behavior/pillar', 0.9, 'weekly'),
+      createEntry('/pet-behavior/how-to-reduce-separation-anxiety-in-pets', 0.8, 'weekly'),
+      createEntry('/pet-behavior/how-to-understand-pet-body-language', 0.8, 'weekly'),
+      createEntry('/pet-behavior/how-to-stop-destructive-chewing', 0.8, 'weekly'),
       
       createEntry('/pet-breeds', 0.9, 'monthly'),
       createEntry('/pet-breeds/dogs', 0.8, 'monthly'),
