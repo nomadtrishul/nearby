@@ -15,7 +15,7 @@ export default function FrenchBulldogPage() {
     <main className="min-h-screen bg-white dark:bg-black transition-colors">
       <DogBreedHero 
         breedName="French Bulldog"
-        description="French Bulldogs, or \"Frenchies,\" are small, muscular dogs with distinctive bat-like ears and a friendly, adaptable personality. They are excellent companions for apartment living and make wonderful family pets."
+        description='French Bulldogs, or "Frenchies," are small, muscular dogs with distinctive bat-like ears and a friendly, adaptable personality. They are excellent companions for apartment living and make wonderful family pets.'
         emoji="🐕"
         slug="french-bulldog"
       />

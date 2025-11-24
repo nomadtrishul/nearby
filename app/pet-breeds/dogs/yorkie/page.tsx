@@ -15,7 +15,7 @@ export default function YorkiePage() {
     <main className="min-h-screen bg-white dark:bg-black transition-colors">
       <DogBreedHero 
         breedName="Yorkshire Terrier"
-        description="Yorkshire Terriers, or \"Yorkies,\" are small, confident dogs with a big personality. Despite their tiny size, they are bold, energetic, and make excellent companions for those who can provide them with proper care and attention."
+        description='Yorkshire Terriers, or "Yorkies," are small, confident dogs with a big personality. Despite their tiny size, they are bold, energetic, and make excellent companions for those who can provide them with proper care and attention.'
         emoji="🐕"
         slug="yorkie"
       />
