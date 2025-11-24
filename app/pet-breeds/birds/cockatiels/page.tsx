@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import BreedHero from '@/components/BreedHero';
 
 export const metadata: Metadata = {
   title: 'Cockatiels as Pets Guide | Nearby Pet Care',
@@ -12,18 +12,19 @@ export const metadata: Metadata = {
 
 export default function CockatielsPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <BreedHero
+        breedName="Cockatiels"
+        description="Cockatiels are friendly, intelligent birds that make excellent pets for both beginners and experienced bird owners. They are known for their playful personalities and ability to learn tricks and mimic sounds."
+        emoji="🦜"
+        slug="cockatiels"
+        category="birds"
+        categoryName="Birds"
+        categoryHref="/pet-breeds/birds"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Birds', href: '/pet-breeds/birds' },
-            { name: 'Cockatiels', href: '/pet-breeds/birds/cockatiels' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Cockatiels as Pets</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Cockatiels are friendly, intelligent birds that make excellent pets for both beginners and experienced bird owners. They are known for their playful personalities and ability to learn tricks and mimic sounds.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: Medium (12-13 inches)</li>

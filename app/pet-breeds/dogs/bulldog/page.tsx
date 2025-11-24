@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import DogBreedHero from '@/components/DogBreedHero';
 
 export const metadata: Metadata = {
   title: 'Bulldog Breed Guide | Nearby Pet Care',
@@ -12,18 +12,16 @@ export const metadata: Metadata = {
 
 export default function BulldogPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <DogBreedHero 
+        breedName="Bulldog"
+        description="Bulldogs are calm, friendly, and courageous dogs known for their distinctive wrinkled face and pushed-in nose. They make excellent companions but require special care due to their brachycephalic (flat-faced) structure."
+        emoji="🐕"
+        slug="bulldog"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Dogs', href: '/pet-breeds/dogs' },
-            { name: 'Bulldog', href: '/pet-breeds/dogs/bulldog' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Bulldog</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Bulldogs are calm, friendly, and courageous dogs known for their distinctive wrinkled face and pushed-in nose. They make excellent companions but require special care due to their brachycephalic (flat-faced) structure.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: Medium (40-50 pounds)</li>

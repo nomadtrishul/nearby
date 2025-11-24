@@ -59,9 +59,9 @@ export default function PetAdoptionPage() {
   const currentDate = new Date().toISOString();
   
   const guides = [
-    { title: 'Preparing Your Home', href: '/pet-adoption/preparing-home' },
-    { title: 'Transitioning a Rescue', href: '/pet-adoption/transitioning-a-rescue' },
-    { title: 'Adoption Checklist', href: '/pet-adoption/adoption-checklist' },
+    { title: 'Preparing Your Home', href: '/pet-adoption/preparing-home', icon: '🏡', description: 'Essential steps to prepare your home and create a safe, welcoming environment for your new pet.' },
+    { title: 'Transitioning a Rescue', href: '/pet-adoption/transitioning-a-rescue', icon: '🔄', description: 'Guidance on helping your rescue pet adjust to their new home and family with patience and understanding.' },
+    { title: 'Adoption Checklist', href: '/pet-adoption/adoption-checklist', icon: '📋', description: 'Complete checklist to ensure you\'re fully prepared for pet adoption, from supplies to vet visits.' },
   ];
 
   // Breadcrumb Structured Data
@@ -110,6 +110,7 @@ export default function PetAdoptionPage() {
         '@type': 'ListItem',
         position: index + 1,
         name: guide.title,
+        description: guide.description,
         url: `${baseUrl}${guide.href}`,
       })),
     },
@@ -133,6 +134,7 @@ export default function PetAdoptionPage() {
         item: {
           '@type': 'Article',
           name: guide.title,
+          description: guide.description,
           url: `${baseUrl}${guide.href}`,
         },
       })),
@@ -266,12 +268,21 @@ export default function PetAdoptionPage() {
                     <Link 
                       key={index} 
                       href={guide.href} 
-                      className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 flex flex-col min-h-[200px] text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                       aria-label={`Read guide: ${guide.title}`}
                     >
-                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h2>
-                      <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                        Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                      <div className="text-4xl mb-4">{guide.icon}</div>
+                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {guide.title}
+                      </h2>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                        {guide.description}
+                      </p>
+                      <div className="flex items-center justify-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                        Read Guide
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
                     </Link>
                   ))}

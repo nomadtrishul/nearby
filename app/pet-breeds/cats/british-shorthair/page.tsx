@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import BreedHero from '@/components/BreedHero';
 
 export const metadata: Metadata = {
   title: 'British Shorthair Cat Breed Guide | Nearby Pet Care',
@@ -12,18 +12,19 @@ export const metadata: Metadata = {
 
 export default function BritishShorthairPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <BreedHero
+        breedName="British Shorthair"
+        description="British Shorthair cats are known for their round faces, dense coats, and calm, easygoing personalities. They are independent yet affectionate, making them ideal companions for various households."
+        emoji="🐈"
+        slug="british-shorthair"
+        category="cats"
+        categoryName="Cats"
+        categoryHref="/pet-breeds/cats"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Cats', href: '/pet-breeds/cats' },
-            { name: 'British Shorthair', href: '/pet-breeds/cats/british-shorthair' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">British Shorthair</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">British Shorthair cats are known for their round faces, dense coats, and calm, easygoing personalities. They are independent yet affectionate, making them ideal companions for various households.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: Medium to large (9-18 pounds)</li>

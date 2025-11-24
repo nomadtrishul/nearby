@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import BreedHero from '@/components/BreedHero';
 
 export const metadata: Metadata = {
   title: 'Rabbit Care Guide | Nearby Pet Care',
@@ -12,18 +12,19 @@ export const metadata: Metadata = {
 
 export default function RabbitPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <BreedHero
+        breedName="Rabbit"
+        description="Rabbits are social, intelligent pets that require proper care and attention. They can be litter-trained and make wonderful companions when provided with appropriate housing, diet, and enrichment."
+        emoji="🐇"
+        slug="rabbit"
+        category="small-mammals"
+        categoryName="Small Mammals"
+        categoryHref="/pet-breeds/small-mammals"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Small Mammals', href: '/pet-breeds/small-mammals' },
-            { name: 'Rabbit', href: '/pet-breeds/small-mammals/rabbit' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Rabbit</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Rabbits are social, intelligent pets that require proper care and attention. They can be litter-trained and make wonderful companions when provided with appropriate housing, diet, and enrichment.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: Varies by breed (2-20+ pounds)</li>

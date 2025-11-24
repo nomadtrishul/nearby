@@ -60,32 +60,38 @@ export default function BirdsPage() {
             {/* Main Content */}
             <div className="flex-1">
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Popular Pet Birds</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <Link href="/pet-breeds/birds/parrots" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Parrots</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Intelligent, social birds known for their ability to mimic speech</p>
+                <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Birds make intelligent and social pets. Learn about different bird species, their care requirements, housing needs, and health considerations.</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-6">Popular Pet Birds</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  <Link href="/pet-breeds/birds/parrots" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🦜</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Parrots</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Intelligent • Social • Mimic speech • Long-lived • Complex care</p>
                   </Link>
-                  <Link href="/pet-breeds/birds/canaries" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Canaries</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Beautiful singing birds with vibrant colors</p>
+                  <Link href="/pet-breeds/birds/cockatiels" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🦜</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Cockatiels</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Friendly • Intelligent • Learn tricks • Social • Whistling</p>
                   </Link>
-                  <Link href="/pet-breeds/birds/finches" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Finches</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Small, active birds best kept in pairs or groups</p>
+                  <Link href="/pet-breeds/birds/budgies" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🦜</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Budgies</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Small • Colorful • Beginners • Social • Easy to care for</p>
                   </Link>
-                  <Link href="/pet-breeds/birds/cockatiels" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Cockatiels</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Friendly, intelligent birds that can learn tricks</p>
+                  <Link href="/pet-breeds/birds/canaries" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🦜</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Canaries</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Beautiful singing • Vibrant colors • Melodious • Independent • Low maintenance</p>
                   </Link>
-                  <Link href="/pet-breeds/birds/budgies" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Budgies</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Small, colorful birds excellent for beginners</p>
+                  <Link href="/pet-breeds/birds/finches" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🦜</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Finches</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Small • Active • Pairs or groups • Social • Entertaining</p>
                   </Link>
                 </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <Link href="/pet-breeds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Pet Breeds</Link>
+                <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                  <Link href="/pet-breeds" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Pet Breeds</Link>
+                </div>
               </div>
             </div>
             {/* Sidebar */}

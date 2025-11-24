@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import BreedHero from '@/components/BreedHero';
 
 export const metadata: Metadata = {
   title: 'Red-Eared Slider Care Guide | Nearby Pet Care',
@@ -12,18 +12,19 @@ export const metadata: Metadata = {
 
 export default function RedEaredSliderPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <BreedHero
+        breedName="Red-Eared Slider"
+        description="Red-eared sliders are popular aquatic turtles known for the distinctive red stripe behind each eye. They require specialized care and large aquatic habitats, making them a long-term commitment."
+        emoji="🦎"
+        slug="red-eared-slider"
+        category="exotics"
+        categoryName="Exotic Pets"
+        categoryHref="/pet-breeds/exotics"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Exotic Pets', href: '/pet-breeds/exotics' },
-            { name: 'Red-Eared Slider', href: '/pet-breeds/exotics/red-eared-slider' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Red-Eared Slider</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Red-eared sliders are popular aquatic turtles known for the distinctive red stripe behind each eye. They require specialized care and large aquatic habitats, making them a long-term commitment.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: 7-12 inches (shell length)</li>

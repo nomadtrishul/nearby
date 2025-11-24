@@ -61,39 +61,147 @@ export default function DogBreedsPage() {
             <div className="flex-1">
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Explore different dog breeds and learn about their unique characteristics, temperament, exercise needs, and care requirements. Each breed has specific traits that may make them more suitable for certain lifestyles.</p>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Popular Dog Breeds</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <Link href="/pet-breeds/dogs/golden-retriever" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Golden Retriever</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Friendly, intelligent family dogs with beautiful golden coats</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-6">Popular Dog Breeds</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  <Link href="/pet-breeds/dogs/labrador-retriever" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Labrador Retriever</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">America's most popular breed • Friendly • Versatile • Great with families</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/labrador-retriever" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Labrador Retriever</h3>
-                    <p className="text-gray-600 dark:text-gray-400">America's most popular breed, friendly and versatile</p>
+                  <Link href="/pet-breeds/dogs/golden-retriever" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Golden Retriever</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Friendly • Intelligent • Family dogs • Beautiful golden coats</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/german-shepherd" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">German Shepherd</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Intelligent, loyal working dogs known for their courage</p>
+                  <Link href="/pet-breeds/dogs/german-shepherd" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">German Shepherd</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Intelligent • Loyal • Working dogs • Courageous • Protective</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/beagle" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Beagle</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Friendly, curious hounds with excellent sense of smell</p>
+                  <Link href="/pet-breeds/dogs/french-bulldog" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">French Bulldog</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Small • Muscular • Bat-like ears • Apartment-friendly • Adaptable</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/bulldog" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Bulldog</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Calm, friendly dogs with distinctive wrinkled faces</p>
+                  <Link href="/pet-breeds/dogs/bulldog" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Bulldog</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Calm • Friendly • Wrinkled faces • Low energy • Gentle</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/poodle" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Poodle</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Highly intelligent dogs with hypoallergenic curly coats</p>
+                  <Link href="/pet-breeds/dogs/poodle" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Poodle</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Highly intelligent • Hypoallergenic • Curly coats • Three sizes • Trainable</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/french-bulldog" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">French Bulldog</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Small, muscular dogs with bat-like ears</p>
+                  <Link href="/pet-breeds/dogs/beagle" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Beagle</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Friendly • Curious • Excellent sense of smell • Great with kids • Merry</p>
                   </Link>
-                  <Link href="/pet-breeds/dogs/yorkie" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Yorkshire Terrier</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Small, confident dogs with big personalities</p>
+                  <Link href="/pet-breeds/dogs/rottweiler" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Rottweiler</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Confident • Loyal • Protective • Strong • Calm</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/dachshund" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Dachshund</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Clever • Lively • Long bodies • Courageous • Independent</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/siberian-husky" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Siberian Husky</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Outgoing • Energetic • Striking appearance • Friendly • Mischievous</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/shih-tzu" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Shih Tzu</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Affectionate • Outgoing • Long flowing coats • Alert • Apartment-friendly</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/boxer" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Boxer</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Playful • Energetic • Great with children • Patient • Loyal</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/great-dane" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Great Dane</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Gentle giants • Friendly • Patient • Dependable • Family dogs</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/yorkie" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Yorkshire Terrier</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Small • Confident • Big personalities • Bold • Energetic</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/australian-shepherd" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Australian Shepherd</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Intelligent • Energetic • Working dogs • Beautiful coats • Versatile</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/border-collie" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Border Collie</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Most intelligent breed • Energetic • Work-oriented • Alert • Responsive</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/cocker-spaniel" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Cocker Spaniel</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Gentle • Merry • Beautiful silky coats • Affectionate • Adaptable</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/chihuahua" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Chihuahua</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Tiny • Big bold personalities • Alert • Confident • Loyal</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/pomeranian" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Pomeranian</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Tiny • Fluffy • Confident personalities • Intelligent • Lively</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/bernese-mountain-dog" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Bernese Mountain Dog</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Gentle giants • Tri-color coats • Calm • Family-friendly • Loyal</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/cane-corso" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Cane Corso</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Powerful • Protective • Intelligent • Confident • Loyal</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/cavalier-king-charles-spaniel" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Cavalier King Charles Spaniel</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Affectionate • Gentle • Sweet expressions • Family-friendly • Adaptable</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/doberman-pinscher" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Doberman Pinscher</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Intelligent • Loyal • Athletic • Protective • Trainable</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/german-shorthaired-pointer" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">German Shorthaired Pointer</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Versatile • Athletic • Intelligent • Friendly • Hunting dogs</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/miniature-schnauzer" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Miniature Schnauzer</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Alert • Friendly • Distinctive beards • Intelligent • Spirited</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/pembroke-welsh-corgi" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Pembroke Welsh Corgi</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Short legs • Big personalities • Intelligent • Active • Herding dogs</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/shiba-inu" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Shiba Inu</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Alert • Independent • Fox-like appearance • Bold • Spirited</p>
+                  </Link>
+                  <Link href="/pet-breeds/dogs/saint-bernard" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐕</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Saint Bernard</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Gentle giants • Rescue history • Friendly • Patient • Dependable</p>
                   </Link>
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Breed-Specific Care</h2>

@@ -59,12 +59,12 @@ export const metadata: Metadata = {
 
 export default function PetTrainingPage() {
   const guides = [
-    { title: 'Obedience Training', href: '/pet-training/obedience-training', icon: '🎓' },
-    { title: 'Potty Training', href: '/pet-training/potty-training', icon: '🚽' },
-    { title: 'Aggression and Anxiety', href: '/pet-training/aggression-and-anxiety', icon: '😰' },
-    { title: 'Crate Training', href: '/pet-training/crate-training', icon: '📦' },
-    { title: 'Socialisation', href: '/pet-training/socialisation', icon: '👥' },
-    { title: 'Training Tools Reviews', href: '/pet-training/training-tools-reviews', icon: '🛠️' },
+    { title: 'Obedience Training', href: '/pet-training/obedience-training', icon: '🎓', description: 'Learn essential obedience commands and training techniques to teach your pet basic and advanced skills.' },
+    { title: 'Potty Training', href: '/pet-training/potty-training', icon: '🚽', description: 'Effective potty training methods and tips for puppies, kittens, and adult pets.' },
+    { title: 'Aggression and Anxiety', href: '/pet-training/aggression-and-anxiety', icon: '😰', description: 'Understand and address pet aggression and anxiety issues with proven training strategies.' },
+    { title: 'Crate Training', href: '/pet-training/crate-training', icon: '📦', description: 'Step-by-step guide to crate training your pet safely and effectively for comfort and security.' },
+    { title: 'Socialisation', href: '/pet-training/socialisation', icon: '👥', description: 'Learn how to properly socialize your pet with people, other animals, and new environments.' },
+    { title: 'Training Tools Reviews', href: '/pet-training/training-tools-reviews', icon: '🛠️', description: 'Expert reviews and recommendations for the best training tools and equipment.' },
   ];
 
   const currentDate = new Date().toISOString();
@@ -88,6 +88,7 @@ export default function PetTrainingPage() {
         '@type': 'ListItem',
         position: index + 1,
         name: guide.title,
+        description: guide.description,
         url: `https://nearbypetcare.com${guide.href}`,
       })),
     },
@@ -193,16 +194,28 @@ export default function PetTrainingPage() {
       </section>
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="lg:col-span-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 {guides.map((guide, index) => (
-                  <Link key={index} href={guide.href} className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300">
+                  <Link 
+                    key={index} 
+                    href={guide.href} 
+                    className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 flex flex-col min-h-[200px] text-center"
+                  >
                     <div className="text-4xl mb-4">{guide.icon}</div>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h2>
-                    <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                      Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {guide.title}
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                      {guide.description}
+                    </p>
+                    <div className="flex items-center justify-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                      Read Guide
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
                   </Link>
                 ))}
@@ -210,7 +223,7 @@ export default function PetTrainingPage() {
             </div>
             
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:sticky lg:top-24 lg:h-fit">
               <TrainingSidebar />
             </div>
           </div>

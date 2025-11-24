@@ -61,31 +61,52 @@ export default function SmallMammalsPage() {
             <div className="flex-1">
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Small mammals like rabbits, guinea pigs, hamsters, and ferrets make wonderful pets. Learn about their specific care requirements, housing needs, and health considerations.</p>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Small Mammal Pets</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <Link href="/pet-breeds/small-mammals/rabbit" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Rabbit</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Social, intelligent pets that can be litter-trained</p>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-6">Common Small Mammal Pets</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  <Link href="/pet-breeds/small-mammals/rabbit" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Rabbit</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Social • Intelligent • Litter-trainable • Long-lived • Needs space</p>
                   </Link>
-                  <Link href="/pet-breeds/small-mammals/guinea-pig" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Guinea Pig</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Gentle, social pets known for their vocalizations</p>
+                  <Link href="/pet-breeds/small-mammals/guinea-pig" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Guinea Pig</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Gentle • Social • Vocalizations • Docile • Needs companion</p>
                   </Link>
-                  <Link href="/pet-breeds/small-mammals/hamster" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Hamster</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Small, nocturnal rodents popular as pets</p>
+                  <Link href="/pet-breeds/small-mammals/hamster" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Hamster</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Small • Nocturnal • Solitary • Easy care • Beginner-friendly</p>
                   </Link>
-                  <Link href="/pet-breeds/small-mammals/ferret" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Ferret</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Playful, curious pets requiring significant attention</p>
+                  <Link href="/pet-breeds/small-mammals/ferret" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Ferret</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Playful • Curious • Needs attention • Energetic • Social</p>
                   </Link>
-                  <Link href="/pet-breeds/small-mammals/rat" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Rat</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Intelligent, social pets that form strong bonds</p>
+                  <Link href="/pet-breeds/small-mammals/rat" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Rat</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Intelligent • Social • Strong bonds • Trainable • Affectionate</p>
                   </Link>
-                  <Link href="/pet-breeds/small-mammals/mouse" className="p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Mouse</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Small, active pets that are entertaining to watch</p>
+                  <Link href="/pet-breeds/small-mammals/mouse" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Mouse</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Small • Active • Entertaining • Social • Easy to care for</p>
+                  </Link>
+                  <Link href="/pet-breeds/small-mammals/chinchilla" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Chinchilla</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Soft fur • Gentle • Specialized care • Long-lived • Nocturnal</p>
+                  </Link>
+                  <Link href="/pet-breeds/small-mammals/hedgehog" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Hedgehog</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Unique • Spiny • Curious • Nocturnal • Specialized care</p>
+                  </Link>
+                  <Link href="/pet-breeds/small-mammals/gerbil" className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">🐹</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Gerbil</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">Active • Social • Curious • Low-maintenance • Entertaining</p>
                   </Link>
                 </div>
                 <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">

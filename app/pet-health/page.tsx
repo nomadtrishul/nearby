@@ -87,15 +87,15 @@ export default function PetHealthPage() {
   };
 
   const guides = [
-    { title: 'Common Pet Diseases', href: '/pet-health/common-diseases', icon: '🦠' },
-    { title: 'Vaccination Schedules', href: '/pet-health/vaccination-schedules', icon: '💉' },
-    { title: 'Parasite Control', href: '/pet-health/parasite-control-ticks-fleas-worms', icon: '🐛' },
-    { title: 'First Aid for Pets', href: '/pet-health/first-aid-for-pets', icon: '🩹' },
-    { title: 'Skin and Coat Health', href: '/pet-health/skin-and-coat-health', icon: '✨' },
-    { title: 'Signs Your Pet Needs a Vet', href: '/pet-health/signs-your-pet-needs-a-vet', icon: '⚠️' },
-    { title: 'Mental Health & Anxiety', href: '/pet-health/mental-health-anxiety', icon: '🧠' },
-    { title: 'Diagnostics & Tests', href: '/pet-health/diagnostics-and-tests', icon: '🔬' },
-    { title: 'Seasonal Health Tips', href: '/pet-health/seasonal-health-tips', icon: '🌤️' },
+    { title: 'Common Pet Diseases', href: '/pet-health/common-diseases', icon: '🦠', description: 'Learn about common diseases affecting dogs and cats, their symptoms, prevention, and treatment options.' },
+    { title: 'Vaccination Schedules', href: '/pet-health/vaccination-schedules', icon: '💉', description: 'Essential vaccination schedules for puppies, kittens, and adult pets to keep them protected.' },
+    { title: 'Parasite Control', href: '/pet-health/parasite-control-ticks-fleas-worms', icon: '🐛', description: 'Comprehensive guide to preventing and treating ticks, fleas, worms, and other parasites.' },
+    { title: 'First Aid for Pets', href: '/pet-health/first-aid-for-pets', icon: '🩹', description: 'Essential first aid techniques and emergency care tips to help your pet in critical situations.' },
+    { title: 'Skin and Coat Health', href: '/pet-health/skin-and-coat-health', icon: '✨', description: 'Maintain healthy skin and a shiny coat with proper grooming and care techniques.' },
+    { title: 'Signs Your Pet Needs a Vet', href: '/pet-health/signs-your-pet-needs-a-vet', icon: '⚠️', description: 'Recognize warning signs and symptoms that indicate your pet needs immediate veterinary attention.' },
+    { title: 'Mental Health & Anxiety', href: '/pet-health/mental-health-anxiety', icon: '🧠', description: 'Understand pet anxiety, stress, and mental health issues, plus effective management strategies.' },
+    { title: 'Diagnostics & Tests', href: '/pet-health/diagnostics-and-tests', icon: '🔬', description: 'Learn about common veterinary diagnostic tests and what they mean for your pet\'s health.' },
+    { title: 'Seasonal Health Tips', href: '/pet-health/seasonal-health-tips', icon: '🌤️', description: 'Season-specific health care tips to keep your pet healthy throughout the year.' },
   ];
 
   return (
@@ -175,13 +175,16 @@ export default function PetHealthPage() {
                   <Link
                     key={index}
                     href={guide.href}
-                    className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300"
+                    className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 flex flex-col min-h-[200px] text-center"
                   >
                     <div className="text-4xl mb-4">{guide.icon}</div>
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {guide.title}
                     </h2>
-                    <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                      {guide.description}
+                    </p>
+                    <div className="flex items-center justify-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
                       Read Guide
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

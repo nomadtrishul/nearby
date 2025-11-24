@@ -59,9 +59,9 @@ export const metadata: Metadata = {
 
 export default function PuppiesKittensPage() {
   const guides = [
-    { title: 'First 30 Days', href: '/puppies-kittens/first-30-days' },
-    { title: 'Vaccination Timeline', href: '/puppies-kittens/vaccination-timeline' },
-    { title: 'Training Basics', href: '/puppies-kittens/training-basics' },
+    { title: 'First 30 Days', href: '/puppies-kittens/first-30-days', icon: '📅', description: 'Essential guide to caring for your new puppy or kitten during their crucial first month at home.' },
+    { title: 'Vaccination Timeline', href: '/puppies-kittens/vaccination-timeline', icon: '💉', description: 'Complete vaccination schedules and timelines for puppies and kittens to keep them protected.' },
+    { title: 'Training Basics', href: '/puppies-kittens/training-basics', icon: '🎓', description: 'Fundamental training techniques and tips to start your puppy or kitten on the right path.' },
   ];
 
   const currentDate = new Date().toISOString();
@@ -89,6 +89,7 @@ export default function PuppiesKittensPage() {
         '@type': 'ListItem',
         position: index + 1,
         name: guide.title,
+        description: guide.description,
         url: `https://nearbypetcare.com${guide.href}`,
       })),
     },
@@ -196,12 +197,21 @@ export default function PuppiesKittensPage() {
                     <Link 
                       key={index} 
                       href={guide.href} 
-                      className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300"
+                      className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 flex flex-col min-h-[200px] text-center"
                       aria-label={`Read guide: ${guide.title}`}
                     >
-                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h2>
-                      <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                        Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                      <div className="text-4xl mb-4">{guide.icon}</div>
+                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {guide.title}
+                      </h2>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                        {guide.description}
+                      </p>
+                      <div className="flex items-center justify-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                        Read Guide
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
                     </Link>
                   ))}
@@ -209,7 +219,7 @@ export default function PuppiesKittensPage() {
               </nav>
             </div>
             {/* Sidebar */}
-            <aside className="lg:col-span-1" aria-label="Related resources">
+            <aside className="lg:sticky lg:top-24 lg:h-fit" aria-label="Related resources">
               <PuppiesKittensSidebar />
             </aside>
           </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import DogBreedHero from '@/components/DogBreedHero';
 
 export const metadata: Metadata = {
   title: 'Golden Retriever Breed Guide | Nearby Pet Care',
@@ -12,18 +12,16 @@ export const metadata: Metadata = {
 
 export default function GoldenRetrieverPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <DogBreedHero 
+        breedName="Golden Retriever"
+        description="Golden Retrievers are friendly, intelligent, and devoted family dogs known for their gentle temperament and beautiful golden coats. They are one of the most popular dog breeds worldwide."
+        emoji="🐕"
+        slug="golden-retriever"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Dogs', href: '/pet-breeds/dogs' },
-            { name: 'Golden Retriever', href: '/pet-breeds/dogs/golden-retriever' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Golden Retriever</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Golden Retrievers are friendly, intelligent, and devoted family dogs known for their gentle temperament and beautiful golden coats. They are one of the most popular dog breeds worldwide.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: Large (55-75 pounds)</li>

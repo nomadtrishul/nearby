@@ -73,10 +73,10 @@ export default function PetSafetyPage() {
   const currentDate = new Date().toISOString();
   
   const guides = [
-    { title: 'Travel with Pets', href: '/pet-safety/travel-with-pets', icon: '✈️' },
-    { title: 'Home Proofing', href: '/pet-safety/home-proofing', icon: '🏠' },
-    { title: 'Emergency Preparedness', href: '/pet-safety/emergency-preparedness', icon: '🚨' },
-    { title: 'Seasonal Care', href: '/pet-safety/seasonal-care', icon: '🌤️' },
+    { title: 'Travel with Pets', href: '/pet-safety/travel-with-pets', icon: '✈️', description: 'Essential tips and guidelines for safely traveling with your pet by car, plane, or other transportation methods.' },
+    { title: 'Home Proofing', href: '/pet-safety/home-proofing', icon: '🏠', description: 'Learn how to pet-proof your home to prevent accidents and keep your pet safe from common household hazards.' },
+    { title: 'Emergency Preparedness', href: '/pet-safety/emergency-preparedness', icon: '🚨', description: 'Prepare for emergencies with pet-specific safety plans, emergency kits, and evacuation strategies.' },
+    { title: 'Seasonal Care', href: '/pet-safety/seasonal-care', icon: '🌤️', description: 'Season-specific safety tips to protect your pet from weather-related hazards throughout the year.' },
   ];
 
   // WebPage Schema
@@ -125,6 +125,7 @@ export default function PetSafetyPage() {
         '@type': 'ListItem',
         position: index + 1,
         name: guide.title,
+        description: guide.description,
         url: `https://nearbypetcare.com${guide.href}`,
       })),
     },
@@ -213,12 +214,21 @@ export default function PetSafetyPage() {
                     <Link 
                       key={index} 
                       href={guide.href} 
-                      className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 flex flex-col min-h-[200px] text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                       aria-label={`Read guide: ${guide.title}`}
                     >
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h3>
-                      <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                        Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                      <div className="text-4xl mb-4">{guide.icon}</div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {guide.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                        {guide.description}
+                      </p>
+                      <div className="flex items-center justify-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                        Read Guide
+                        <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
                     </Link>
                   ))}
@@ -227,7 +237,7 @@ export default function PetSafetyPage() {
             </div>
             
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:sticky lg:top-24 lg:h-fit">
               <PetSafetySidebar />
             </div>
           </div>

@@ -32,11 +32,41 @@ export const metadata: Metadata = {
 
 export default function PetBreedsPage() {
   const categories = [
-    { title: 'Dog Breeds', href: '/pet-breeds/dogs', icon: '🐕', description: 'Explore different dog breeds and their characteristics' },
-    { title: 'Cat Breeds', href: '/pet-breeds/cats', icon: '🐈', description: 'Learn about various cat breeds and their needs' },
-    { title: 'Small Mammals', href: '/pet-breeds/small-mammals', icon: '🐹', description: 'Information about rabbits, guinea pigs, and more' },
-    { title: 'Birds', href: '/pet-breeds/birds', icon: '🦜', description: 'Guide to different bird species as pets' },
-    { title: 'Exotic Pets', href: '/pet-breeds/exotics', icon: '🦎', description: 'Care information for exotic pet species' },
+    { 
+      title: 'Dog Breeds', 
+      href: '/pet-breeds/dogs', 
+      icon: '🐕', 
+      description: 'Explore different dog breeds and their characteristics',
+      traits: '21 breeds • Family-friendly • Working dogs • Companions • Popular breeds'
+    },
+    { 
+      title: 'Cat Breeds', 
+      href: '/pet-breeds/cats', 
+      icon: '🐈', 
+      description: 'Learn about various cat breeds and their needs',
+      traits: 'Multiple breeds • Indoor cats • Independent • Grooming needs • Temperament'
+    },
+    { 
+      title: 'Small Mammals', 
+      href: '/pet-breeds/small-mammals', 
+      icon: '🐹', 
+      description: 'Information about rabbits, guinea pigs, and more',
+      traits: 'Rabbits • Guinea pigs • Hamsters • Ferrets • Small pets'
+    },
+    { 
+      title: 'Birds', 
+      href: '/pet-breeds/birds', 
+      icon: '🦜', 
+      description: 'Guide to different bird species as pets',
+      traits: 'Parrots • Canaries • Finches • Cockatiels • Budgies'
+    },
+    { 
+      title: 'Exotic Pets', 
+      href: '/pet-breeds/exotics', 
+      icon: '🦎', 
+      description: 'Care information for exotic pet species',
+      traits: 'Reptiles • Lizards • Snakes • Turtles • Specialized care'
+    },
   ];
 
   return (
@@ -95,15 +125,13 @@ export default function PetBreedsPage() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Main Content */}
             <div className="flex-1">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categories.map((category, index) => (
-                  <Link key={index} href={category.href} className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300">
-                    <div className="text-4xl mb-4">{category.icon}</div>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{category.title}</h2>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4 transition-colors">{category.description}</p>
-                    <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                      Explore <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                    </div>
+                  <Link key={index} href={category.href} className="group flex flex-col items-center text-center p-6 bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-xl hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">{category.icon}</div>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{category.title}</h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-2">{category.description}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-500 leading-relaxed">{category.traits}</p>
                   </Link>
                 ))}
               </div>

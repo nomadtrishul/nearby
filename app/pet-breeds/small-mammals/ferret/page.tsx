@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
+import BreedHero from '@/components/BreedHero';
 
 export const metadata: Metadata = {
   title: 'Ferret Care Guide | Nearby Pet Care',
@@ -12,18 +12,19 @@ export const metadata: Metadata = {
 
 export default function FerretPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors">
+      <BreedHero
+        breedName="Ferret"
+        description="Ferrets are playful, curious, and intelligent pets that require significant time, attention, and specialized care. They are highly social and make entertaining companions for experienced pet owners."
+        emoji="🐹"
+        slug="ferret"
+        category="small-mammals"
+        categoryName="Small Mammals"
+        categoryHref="/pet-breeds/small-mammals"
+      />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-4xl">
-          <Breadcrumb items={[
-            { name: 'Home', href: '/' },
-            { name: 'Pet Breeds', href: '/pet-breeds' },
-            { name: 'Small Mammals', href: '/pet-breeds/small-mammals' },
-            { name: 'Ferret', href: '/pet-breeds/small-mammals/ferret' }
-          ]} />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Ferret</h1>
           <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">Ferrets are playful, curious, and intelligent pets that require significant time, attention, and specialized care. They are highly social and make entertaining companions for experienced pet owners.</p>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Characteristics</h2>
             <ul className="list-disc pl-6 mb-6 text-gray-700 dark:text-gray-300 space-y-2">
               <li>Size: 1.5-4 pounds</li>

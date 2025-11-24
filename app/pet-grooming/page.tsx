@@ -48,13 +48,13 @@ export const metadata: Metadata = {
 
 export default function PetGroomingPage() {
   const guides = [
-    { title: 'Bathing Guides', href: '/pet-grooming/bathing-guides', icon: '🛁' },
-    { title: 'Brushing and Coat Care', href: '/pet-grooming/brushing-and-coat-care', icon: '🪮' },
-    { title: 'Nail Trimming', href: '/pet-grooming/nail-trimming', icon: '✂️' },
-    { title: 'Ear and Eye Care', href: '/pet-grooming/ear-and-eye-care', icon: '👁️' },
-    { title: 'Dental Care', href: '/pet-grooming/dental-care', icon: '🦷' },
-    { title: 'Grooming Tools Reviews', href: '/pet-grooming/grooming-tools-reviews', icon: '🛠️' },
-    { title: 'Haircuts and Styles', href: '/pet-grooming/haircuts-and-styles', icon: '💇' },
+    { title: 'Bathing Guides', href: '/pet-grooming/bathing-guides', icon: '🛁', description: 'Step-by-step guides for bathing dogs and cats safely and effectively at home.' },
+    { title: 'Brushing and Coat Care', href: '/pet-grooming/brushing-and-coat-care', icon: '🪮', description: 'Learn proper brushing techniques and coat care for different pet breeds and coat types.' },
+    { title: 'Nail Trimming', href: '/pet-grooming/nail-trimming', icon: '✂️', description: 'Safe nail trimming techniques and tips to keep your pet\'s nails healthy and trimmed.' },
+    { title: 'Ear and Eye Care', href: '/pet-grooming/ear-and-eye-care', icon: '👁️', description: 'Essential care routines for maintaining your pet\'s ear and eye health and cleanliness.' },
+    { title: 'Dental Care', href: '/pet-grooming/dental-care', icon: '🦷', description: 'Complete guide to pet dental hygiene including brushing, cleaning, and oral health maintenance.' },
+    { title: 'Grooming Tools Reviews', href: '/pet-grooming/grooming-tools-reviews', icon: '🛠️', description: 'Expert reviews and recommendations for the best grooming tools and equipment.' },
+    { title: 'Haircuts and Styles', href: '/pet-grooming/haircuts-and-styles', icon: '💇', description: 'Popular pet haircut styles and techniques for different breeds and coat lengths.' },
   ];
 
   return (
@@ -115,11 +115,23 @@ export default function PetGroomingPage() {
             <div className="lg:col-span-2">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 {guides.map((guide, index) => (
-                  <Link key={index} href={guide.href} className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300">
+                  <Link 
+                    key={index} 
+                    href={guide.href} 
+                    className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl sm:rounded-2xl hover:border-blue-500/50 transition-all duration-300 flex flex-col min-h-[200px] text-center"
+                  >
                     <div className="text-4xl mb-4">{guide.icon}</div>
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{guide.title}</h2>
-                    <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-                      Read Guide <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {guide.title}
+                    </h2>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 flex-grow">
+                      {guide.description}
+                    </p>
+                    <div className="flex items-center justify-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
+                      Read Guide
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
                   </Link>
                 ))}

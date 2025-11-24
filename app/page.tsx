@@ -432,24 +432,37 @@ export default function Home() {
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300"
+                  className="group p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full"
                 >
+                  {/* Category - Top */}
                   {post.category && (
-                    <span className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors">
+                    <span className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors w-fit">
                       {post.category}
                     </span>
                   )}
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                  
+                  {/* Heading - Below Category */}
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 transition-colors">
+                  
+                  {/* Description - Below Heading */}
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 transition-colors flex-1">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center text-xs sm:text-sm text-blue-600 dark:text-blue-400 font-semibold group-hover:underline transition-colors">
-                    Read More
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                  
+                  {/* Date and Author - Bottom */}
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <span>
+                      {new Date(post.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      })}
+                    </span>
+                    <span className="font-medium">
+                      {post.author || 'Nearby Pet Care Team'}
+                    </span>
                   </div>
                 </Link>
               ))}
