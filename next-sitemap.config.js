@@ -10,7 +10,33 @@ module.exports = {
   siteUrl: getBaseUrl(),
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ['/server-sitemap-index.xml'],
+  exclude: [
+    '/server-sitemap-index.xml',
+    // Exclude routes that are manually added in additionalPaths to prevent duplicates
+    '/about',
+    '/blog',
+    '/pet-care-tips',
+    '/pet-nutrition',
+    '/pet-health',
+    '/pet-grooming',
+    '/pet-training',
+    '/pet-breeds',
+    '/pet-products',
+    '/pet-adoption',
+    '/pet-safety',
+    '/puppies-kittens',
+    '/senior-pets',
+    '/tools',
+    '/buying-guides',
+    '/comparisons',
+    '/community',
+    '/contact',
+    '/privacy',
+    '/terms',
+    '/disclaimer',
+    '/editorial-guidelines',
+    '/sources',
+  ],
   robotsTxtOptions: {
     policies: [
       {
@@ -48,10 +74,17 @@ module.exports = {
     const baseUrl = getBaseUrl();
     const now = new Date();
     
+    // Helper function to format dates to YYYY-MM-DD
+    const formatDate = (date) => {
+      if (!date) return new Date().toISOString().split('T')[0];
+      const d = new Date(date);
+      return d.toISOString().split('T')[0];
+    };
+
     // Helper function to create sitemap entries
     const createEntry = (path, priority, changeFrequency, lastModified) => ({
       loc: `${baseUrl}${path}`,
-      lastmod: lastModified || now.toISOString(),
+      lastmod: formatDate(lastModified || now),
       changefreq: changeFrequency,
       priority,
     });
@@ -248,7 +281,7 @@ module.exports = {
     const posts = getAllPosts();
     const blogPages = posts.map((post) => ({
       loc: `${baseUrl}/blog/${post.slug}`,
-      lastmod: new Date(post.date).toISOString(),
+      lastmod: formatDate(post.date),
       changefreq: 'weekly',
       priority: 0.7,
     }));
@@ -257,7 +290,7 @@ module.exports = {
     const tips = getAllTips();
     const tipPages = tips.map((tip) => ({
       loc: `${baseUrl}/pet-care-tips/${tip.slug}`,
-      lastmod: new Date(tip.date).toISOString(),
+      lastmod: formatDate(tip.date),
       changefreq: 'weekly',
       priority: 0.8,
     }));

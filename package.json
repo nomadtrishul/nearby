@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npx next-sitemap",
+    "postbuild": "npx next-sitemap && node scripts/fix-sitemap.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fix-sitemap": "node scripts/fix-sitemap.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

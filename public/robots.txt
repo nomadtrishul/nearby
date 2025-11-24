@@ -1,0 +1,43 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Googlebot-Image
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# bingbot
+User-agent: bingbot
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+Disallow: /private/
+
+# Slurp
+User-agent: Slurp
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Host
+Host: https://nearbypetcare.com
+
+# Sitemaps
+Sitemap: https://nearbypetcare.com/sitemap.xml
