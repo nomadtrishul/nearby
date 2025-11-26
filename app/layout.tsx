@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
@@ -285,7 +287,14 @@ export default function RootLayout({
           <Footer />
           <ConsentBanner />
           <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
+        <Script
+          src={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_URL!}
+          async
+          strategy="afterInteractive"
+          data-key={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY}
+        />
       </body>
     </html>
   );
