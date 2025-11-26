@@ -4,26 +4,9 @@ import { useEffect } from 'react';
 
 export default function AnalyticsLoader() {
   useEffect(() => {
-    // Note: Google Tag Manager is now loaded directly in the head via app/layout.tsx
-    // This component only handles Google Analytics and AdSense loading based on consent
-
-    // Function to load Google Analytics
-    const loadGA = () => {
-      if (typeof window !== 'undefined' && !(window as any).gaLoaded) {
-        (window as any).gaLoaded = true;
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-KVZJ3QXM24';
-        document.head.appendChild(script);
-
-        script.onload = () => {
-          if ((window as any).gtag) {
-            (window as any).gtag('js', new Date());
-            (window as any).gtag('config', 'G-KVZJ3QXM24');
-          }
-        };
-      }
-    };
+    // Note: Google Tag Manager and Google Analytics (gtag.js) are now loaded directly in the head via app/layout.tsx
+    // This component only handles Google AdSense loading based on consent
+    // Consent mode v2 controls what data is collected by GA/GTM
 
     // Function to load Google AdSense
     const loadAdSense = () => {
@@ -45,11 +28,9 @@ export default function AnalyticsLoader() {
         if (consent) {
           const preferences = JSON.parse(consent);
           
-          // Load analytics scripts if analytics or marketing consent is granted
-          // Note: GTM is already loaded in the head, consent mode controls tag firing
-          if (preferences.analytics || preferences.marketing) {
-            loadGA();
-          }
+          // Note: GTM and GA are already loaded in the head
+          // Consent mode v2 controls what data is collected
+          // No need to load them here
           
           // Load AdSense only if marketing consent is granted
           if (preferences.marketing) {
