@@ -171,28 +171,36 @@ module.exports = {
     // Use seo-utils.makeSitemapEntry if available, otherwise fallback
     const blogPages = Array.isArray(posts)
       ? posts.map((post) => {
-          const image = post.image || '/og-image.png';
-          return createEntry(
-            `/blog/${post.slug}`,
-            0.7,
-            'weekly',
-            post.date,
-            image
-          );
-        })
+        let image = post.image;
+        // Fix for "undefined" string or null/undefined value
+        if (!image || image === 'undefined' || image === 'null') {
+          image = '/og-image.png';
+        }
+        return createEntry(
+          `/blog/${post.slug}`,
+          0.7,
+          'weekly',
+          post.date,
+          image
+        );
+      })
       : [];
 
     const tipPages = Array.isArray(tips)
       ? tips.map((tip) => {
-          const image = tip.image || '/og-image.png';
-          return createEntry(
-            `/pet-care-tips/${tip.slug}`,
-            0.8,
-            'weekly',
-            tip.date || tip.dateModified,
-            image
-          );
-        })
+        let image = tip.image;
+        // Fix for "undefined" string or null/undefined value
+        if (!image || image === 'undefined' || image === 'null') {
+          image = '/og-image.png';
+        }
+        return createEntry(
+          `/pet-care-tips/${tip.slug}`,
+          0.8,
+          'weekly',
+          tip.date || tip.dateModified,
+          image
+        );
+      })
       : [];
 
     return [...staticRoutes, ...blogPages, ...tipPages];
