@@ -302,6 +302,68 @@ export default function SeparationAnxietyRiskCheckerClient() {
             </div>
           )}
 
+          {/* How Separation Anxiety Risk Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Separation Anxiety Risk Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our separation anxiety risk checker evaluates your pet's risk for separation anxiety based on behaviors, history, and lifestyle factors. The tool analyzes symptoms such as destructive behavior, excessive vocalization, house soiling, and escape attempts when left alone. It also considers risk factors like being rehomed, lack of early socialization, sudden routine changes, and spending most time with owners. The tool provides a risk level assessment and personalized recommendations.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Separation Anxiety</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Separation anxiety is a condition where pets become distressed when left alone or separated from their owners. It's more common in dogs but can occur in cats. Risk factors include being rehomed, lack of early socialization, sudden changes in routine, and over-attachment to owners. Treatment involves gradual desensitization, creating safe spaces, providing mental stimulation, and in severe cases, medication. Professional help from a certified animal behaviorist is often necessary.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What is separation anxiety in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Separation anxiety is a condition where pets become distressed when left alone or separated from their owners. Symptoms include destructive behavior, excessive vocalization, house soiling, pacing, drooling, attempts to escape, and self-injury. It's more common in dogs but can occur in cats. Separation anxiety requires professional treatment and behavior modification.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What causes separation anxiety?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Separation anxiety can be caused by: being rehomed or rescued, lack of early socialization, sudden changes in routine, loss of a family member or pet, traumatic experiences, over-attachment to owner, or being left alone for long periods. Pets that spend most of their time with their owners are at higher risk.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How is separation anxiety treated?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Treatment involves: gradual desensitization to being alone, creating a safe space with comfort items, providing mental stimulation (puzzle toys), avoiding making departures/arrivals a big deal, using positive reinforcement, and in severe cases, medication prescribed by a veterinarian. Professional help from a certified animal behaviorist is often necessary. Never punish anxious behavior.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/behavior-problem-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Behavior Problem Diagnosis</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Diagnose other behavior issues</p>
+              </a>
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track anxiety training progress</p>
+              </a>
+              <a href="/pet-behavior" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Behavior Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet behavior</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Resources</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Training techniques for anxiety</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <p className="text-sm text-red-800 dark:text-red-200">
               <strong>Important:</strong> Severe separation anxiety can cause significant distress and may lead to self-injury or property damage. If your pet shows severe symptoms, seek professional help immediately. Never punish anxious behavior, as it will worsen the problem.

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'German Shepherd Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'German Shepherd Breed Guide',
   description: 'Complete guide to German Shepherd dogs. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['German Shepherd', 'German Shepherd breed', 'German Shepherd care', 'German Shepherd temperament'],
-  openGraph: { title: 'German Shepherd Breed Guide | Nearby Pet Care', description: 'Complete guide to German Shepherd dogs.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/german-shepherd' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/german-shepherd' },
-};
+  pathname: '/pet-breeds/dogs/german-shepherd',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'German Shepherd Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function GermanShepherdPage() {
   return (

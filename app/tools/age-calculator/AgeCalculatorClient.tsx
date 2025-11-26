@@ -339,9 +339,9 @@ export default function AgeCalculatorClient() {
             </div>
           )}
 
-          {/* How Pet Age is Calculated Section */}
+          {/* How Pet Age Calculator Works */}
           <div className="mt-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Pet Age is Calculated</h2>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Pet Age Calculator Works</h2>
             <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Dog Age Calculator Formula</h3>
               <p className="text-gray-700 dark:text-gray-300 mb-4">

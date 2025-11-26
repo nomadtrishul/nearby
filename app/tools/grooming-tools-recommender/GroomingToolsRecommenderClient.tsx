@@ -327,6 +327,68 @@ export default function GroomingToolsRecommenderClient() {
             </div>
           )}
 
+          {/* How Grooming Tools Recommender Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Grooming Tools Recommender Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our grooming tools recommender analyzes your pet's coat type, grooming level, and specific needs to provide personalized tool recommendations. The tool categorizes recommendations into essential tools (required for basic grooming), recommended tools (enhance grooming effectiveness), and optional tools (nice-to-have for advanced grooming). Each recommendation includes usage instructions and benefits.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Tool Categories</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Essential tools are necessary for basic grooming and health maintenance, such as nail clippers, ear cleaners, and appropriate brushes. Recommended tools improve grooming quality and efficiency, like combs, detangling sprays, and specialized brushes. Optional tools are for advanced grooming or specific needs, such as professional-grade equipment or specialty items.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What grooming tools do I need for my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Essential grooming tools include: nail clippers (for trimming nails every 2-4 weeks), ear cleaner (for weekly to monthly ear cleaning), toothbrush and pet toothpaste (for daily or regular dental care), and appropriate brushes for your pet's coat type (slicker brushes for medium/long coats, soft brushes for short coats, undercoat rakes for double coats). Additional tools like combs, detangling sprays, and bathing supplies may be recommended based on your pet's specific needs.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What brush should I use for my pet's coat type?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Brush selection depends on coat type: Short/smooth coats need soft bristle brushes or grooming mitts. Medium coats need slicker brushes and combs. Long coats need slicker brushes, wide-tooth combs, and possibly pin brushes. Double coats need undercoat rakes and slicker brushes, plus deshedding tools. Curly coats need pin brushes and wide-tooth combs. Always use appropriate tools for your pet's specific coat to avoid damage or discomfort.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I replace grooming tools?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Replace grooming tools when they show signs of wear: brushes with bent, broken, or missing bristles, nail clippers that are dull or don't cut cleanly, or any tool that's damaged or no longer functions properly. Quality tools can last years with proper care. Clean tools after each use, store them properly, and inspect regularly for damage. Investing in quality tools initially can save money long-term.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/grooming-cost-estimator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Cost Estimator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Estimate professional grooming costs</p>
+              </a>
+              <a href="/tools/nail-length-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Nail Length Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Check if nails need trimming</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Tool recommendations are general guidelines. Specific breeds may have unique grooming needs. Consult a professional groomer or your veterinarian for breed-specific recommendations. Always use tools safely and appropriately.

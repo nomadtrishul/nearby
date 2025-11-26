@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Oriental Shorthair Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Oriental Shorthair Cat Breed Guide',
   description: 'Complete guide to Oriental Shorthair cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Oriental Shorthair', 'Oriental Shorthair cat', 'Oriental Shorthair breed', 'Oriental Shorthair care'],
-  openGraph: { title: 'Oriental Shorthair Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Oriental Shorthair cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/oriental-shorthair' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/oriental-shorthair' },
-};
+  pathname: '/pet-breeds/cats/oriental-shorthair',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Oriental Shorthair Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function OrientalShorthairPage() {
   return (

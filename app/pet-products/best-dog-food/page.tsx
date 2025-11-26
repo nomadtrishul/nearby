@@ -5,7 +5,7 @@ import PetProductsSidebar from '@/components/PetProductsSidebar';
 
 export const metadata: Metadata = {
   title: 'Best Dog Food - Reviews & Buying Guide | Nearby Pet Care',
-  description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands, ingredients, and find the perfect food for your dog based on age, size, and health needs.',
+  description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands, ingredients, and find the perfect food for your dog.',
   keywords: ['best dog food', 'dog food reviews', 'dog food comparison', 'best dog food brands', 'premium dog food', 'dog nutrition', 'dog food guide', 'AAFCO dog food', 'dog food ingredients', 'healthy dog food'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',
@@ -81,7 +81,7 @@ export default function BestDogFoodPage() {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Best Dog Food - Reviews & Buying Guide',
-    description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands, ingredients, and find the perfect food for your dog based on age, size, and health needs.',
+    description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands, ingredients, and find the perfect food for your dog.',
     url: 'https://nearbypetcare.com/pet-products/best-dog-food',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,

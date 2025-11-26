@@ -224,6 +224,68 @@ export default function ChronicDiseaseManagementPlannerClient() {
             </div>
           )}
 
+          {/* How Chronic Disease Management Planner Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Chronic Disease Management Planner Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our chronic disease management planner creates comprehensive management plans for pets with chronic health conditions by providing medication schedules, monitoring guidelines, dietary recommendations, and lifestyle modifications based on the selected condition. The tool covers common chronic diseases such as diabetes, kidney disease, heart disease, arthritis, allergies, and thyroid disease, offering condition-specific guidance to help you manage your pet's health effectively.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Chronic Disease Management</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Managing a pet with chronic disease requires working closely with your veterinarian to develop a comprehensive plan, following medication schedules exactly as prescribed, regular monitoring of symptoms and condition, dietary modifications as recommended, lifestyle adjustments, and keeping detailed records. Diet is crucial in managing chronic disease - many conditions require prescription diets specifically formulated for the condition. Always follow your veterinarian's specific recommendations.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I manage a pet with chronic disease?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Managing a pet with chronic disease requires: 1) Working closely with your veterinarian to develop a comprehensive plan; 2) Following medication schedules exactly as prescribed; 3) Regular monitoring of symptoms and condition; 4) Dietary modifications as recommended; 5) Lifestyle adjustments (exercise, stress reduction); 6) Keeping detailed records of medications, symptoms, and veterinary visits; 7) Attending all scheduled checkups. Always follow your veterinarian's specific recommendations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What chronic diseases are common in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common chronic diseases in pets include: diabetes, kidney disease, heart disease, arthritis, allergies, thyroid disease (hyperthyroidism in cats, hypothyroidism in dogs), liver disease, inflammatory bowel disease (IBD), epilepsy, Cushing's disease, and Addison's disease. Each condition requires specific management approaches including medications, dietary modifications, and monitoring protocols.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How important is diet in managing chronic disease?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Diet is crucial in managing chronic disease. Many conditions require prescription diets specifically formulated for the condition (e.g., kidney diets, diabetic diets, heart diets). Dietary modifications can help manage symptoms, slow disease progression, and improve quality of life. Always follow your veterinarian's dietary recommendations, as incorrect diets can worsen the condition. Never change your pet's diet without veterinary guidance.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/symptom-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Symptom Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify health symptoms</p>
+              </a>
+              <a href="/tools/senior-pet-diet-planner" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Senior Pet Diet Planner</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create diet plans for senior pets</p>
+              </a>
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/pet-health" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Health Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet health and wellness</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This planner provides general guidelines. Chronic disease management must be supervised by your veterinarian. Always follow your veterinarian's specific recommendations for your pet's condition.

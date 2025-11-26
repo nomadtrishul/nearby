@@ -35,9 +35,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const postUrl = `${baseUrl}/blog/${slug}`;
   const postImage = post.image || `${baseUrl}/og-image.png`;
 
+  const truncatedExcerpt = post.excerpt.length > 160 ? post.excerpt.substring(0, 157) + '...' : post.excerpt;
+  
   return {
     title: `${post.title} | Nearby Pet Care Blog`,
-    description: post.excerpt,
+    description: truncatedExcerpt,
     keywords: post.tags || [],
     authors: [{ name: post.author || 'Nearby Pet Care Team' }],
     creator: post.author || 'Nearby Pet Care Team',
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     metadataBase: new URL(baseUrl),
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description: truncatedExcerpt,
       type: 'article',
       publishedTime,
       modifiedTime,
@@ -69,7 +71,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: post.excerpt,
+      description: truncatedExcerpt,
       images: [postImage],
       creator: '@nearbypetcare',
       site: '@nearbypetcare',

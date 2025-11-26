@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Poodle Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Poodle Breed Guide',
   description: 'Complete guide to Poodles. Learn about their characteristics, intelligence, temperament, and care requirements.',
   keywords: ['Poodle', 'Poodle breed', 'Poodle care', 'Poodle temperament', 'Standard Poodle', 'Miniature Poodle', 'Toy Poodle'],
-  openGraph: { title: 'Poodle Breed Guide | Nearby Pet Care', description: 'Complete guide to Poodles.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/poodle' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/poodle' },
-};
+  pathname: '/pet-breeds/dogs/poodle',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Poodle Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function PoodlePage() {
   return (

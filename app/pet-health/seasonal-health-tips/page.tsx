@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Seasonal Pet Health Tips: Year-Round Care Guide | Nearby Pet Care',
-  description: 'Seasonal health tips for pets throughout the year. Learn how to keep your pet healthy and safe during different seasons, including summer heat safety, winter care, and seasonal health considerations.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Seasonal Pet Health Tips: Year-Round Care Guide',
+  description: 'Seasonal health tips for pets throughout the year. Learn how to keep your pet healthy and safe during different seasons, including summer and winter care.',
   keywords: ['seasonal pet care', 'winter pet care', 'summer pet care', 'pet seasonal health', 'pet weather safety', 'summer pet safety', 'winter pet safety', 'seasonal pet tips'],
-  openGraph: {
-    title: 'Seasonal Pet Health Tips: Year-Round Care Guide | Nearby Pet Care',
-    description: 'Seasonal health tips for pets throughout the year, including summer and winter care considerations.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/seasonal-health-tips',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Seasonal Pet Health Tips Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Seasonal Pet Health Tips: Year-Round Guide | Nearby Pet Care',
-    description: 'Seasonal health tips for pets throughout the year.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/seasonal-health-tips' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/seasonal-health-tips',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Seasonal Pet Health Tips Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SeasonalHealthTipsPage() {
   const breadcrumbStructuredData = {

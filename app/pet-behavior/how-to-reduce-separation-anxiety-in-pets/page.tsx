@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'How to Reduce Separation Anxiety in Pets | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'How to Reduce Separation Anxiety in Pets',
   description: 'Practical plan to ease separation anxiety using gradual departures, enrichment, and calm routines for dogs and cats.',
   keywords: [
     'separation anxiety in dogs',
@@ -13,24 +14,16 @@ export const metadata: Metadata = {
     'pet anxiety plan',
     'reduce barking when alone',
   ],
-  openGraph: {
-    title: 'How to Reduce Separation Anxiety in Pets | Nearby Pet Care',
-    description: 'A humane step-by-step plan to help pets stay calm when left alone.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-behavior/how-to-reduce-separation-anxiety-in-pets',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Separation Anxiety Guide',
-      },
-    ],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-behavior/how-to-reduce-separation-anxiety-in-pets',
-  },
-};
+  pathname: '/pet-behavior/how-to-reduce-separation-anxiety-in-pets',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Separation Anxiety Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SeparationAnxietyPage() {
   const currentDate = new Date().toISOString();

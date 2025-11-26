@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Yorkshire Terrier Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Yorkshire Terrier Breed Guide',
   description: 'Complete guide to Yorkshire Terriers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Yorkshire Terrier', 'Yorkie', 'Yorkshire Terrier breed', 'Yorkie care'],
-  openGraph: { title: 'Yorkshire Terrier Breed Guide | Nearby Pet Care', description: 'Complete guide to Yorkshire Terriers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/yorkie' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/yorkie' },
-};
+  pathname: '/pet-breeds/dogs/yorkie',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Yorkshire Terrier Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function YorkiePage() {
   return (
@@ -37,7 +45,31 @@ export default function YorkiePage() {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Health Considerations</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-4">Yorkies can be prone to dental problems, patellar luxation, hypoglycemia, and certain eye conditions. Regular dental care, veterinary check-ups, and maintaining a healthy weight are important for their wellbeing.</p>
           </div>
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+
+          {/* Related Resources */}
+          <section className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Related Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <Link href="/pet-health/dental-care-for-pets" className="block p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Dental Care for Small Dogs</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about dental care practices important for Yorkies and other small breeds.</p>
+              </Link>
+              <Link href="/pet-grooming" className="block p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Essential grooming tips for long-haired breeds like Yorkies.</p>
+              </Link>
+              <Link href="/pet-training/basic-commands" className="block p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Basic Training for Small Dogs</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Training tips tailored for small, intelligent breeds.</p>
+              </Link>
+              <Link href="/tools/dental-health-score-tool" className="block p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Dental Health Score Tool</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess your Yorkie's dental health and get recommendations.</p>
+              </Link>
+            </div>
+          </section>
+
+          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
             <Link href="/pet-breeds/dogs" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">← Back to Dog Breeds</Link>
           </div>
         </div>

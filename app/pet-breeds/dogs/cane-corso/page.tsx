@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Cane Corso Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Cane Corso Breed Guide',
   description: 'Complete guide to Cane Corsos. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Cane Corso', 'Cane Corso breed', 'Cane Corso care', 'Cane Corso temperament'],
-  openGraph: { title: 'Cane Corso Breed Guide | Nearby Pet Care', description: 'Complete guide to Cane Corsos.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/cane-corso' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/cane-corso' },
-};
+  pathname: '/pet-breeds/dogs/cane-corso',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Cane Corso Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CaneCorsoPage() {
   return (

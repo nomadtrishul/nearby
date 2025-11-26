@@ -233,6 +233,68 @@ export default function GroomingScheduleGeneratorClient() {
             </div>
           )}
 
+          {/* How Grooming Schedule Generator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Grooming Schedule Generator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our grooming schedule generator creates a personalized grooming calendar based on your pet's coat type, lifestyle, and individual needs. The tool considers factors such as coat length, texture, shedding patterns, and activity level to recommend frequencies for bathing, brushing, nail trimming, ear cleaning, and professional grooming. The schedule is tailored to maintain optimal coat health while preventing common issues like matting, skin problems, and over-grooming.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Grooming Frequency</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Grooming frequency varies significantly by coat type: short-coated pets may need bathing every 4-8 weeks and weekly brushing, while long-coated pets may need bathing every 3-4 weeks and daily brushing. Nail trimming is typically needed every 2-4 weeks for most pets, and ear cleaning weekly to monthly. Professional grooming is recommended every 4-8 weeks for long or curly coats, and every 8-12 weeks for short coats. Regular grooming prevents matting, skin issues, and keeps your pet comfortable.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I groom my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Grooming frequency depends on your pet's coat type. Short-coated pets may need bathing every 4-8 weeks and weekly brushing, while long-coated pets may need bathing every 3-4 weeks and daily brushing. Nail trimming is typically needed every 2-4 weeks, and ear cleaning weekly to monthly. Professional grooming is recommended every 4-8 weeks for long or curly coats, and every 8-12 weeks for short coats.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What grooming tasks should I do regularly?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Regular grooming tasks include: bathing (frequency depends on coat type), brushing (daily for long coats, weekly for short coats), nail trimming (every 2-4 weeks), ear cleaning (weekly to monthly), and teeth brushing (daily ideal, or 3-4 times per week). Professional grooming may also be needed for trimming, styling, and thorough cleaning.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know if my pet needs grooming?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Signs your pet needs grooming include: strong odor, matted or tangled fur, overgrown nails (touching the ground or clicking on floors), dirty or waxy ears, visible dirt or debris in the coat, excessive shedding, and skin irritation. Regular grooming prevents these issues and keeps your pet healthy and comfortable.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right grooming tools for your pet</p>
+              </a>
+              <a href="/tools/grooming-cost-estimator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Cost Estimator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Estimate grooming expenses</p>
+              </a>
+              <a href="/tools/nail-length-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Nail Length Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Check if your pet's nails need trimming</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This schedule provides general guidelines. Adjust based on your pet's individual needs, activity level, and any skin or coat conditions. Consult your veterinarian or professional groomer for specific recommendations.

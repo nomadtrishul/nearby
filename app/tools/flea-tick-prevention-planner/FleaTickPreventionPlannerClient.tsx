@@ -255,6 +255,68 @@ export default function FleaTickPreventionPlannerPage() {
             </div>
           )}
 
+          {/* How Flea/Tick Prevention Planner Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Flea/Tick Prevention Planner Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our flea/tick prevention planner creates a year-round prevention schedule based on your pet's lifestyle, location, and risk factors. The tool considers factors such as geographic area (high-risk vs. low-risk areas), lifestyle (indoor vs. outdoor), and seasonal variations to recommend monthly prevention schedules. The planner provides product recommendations, application reminders, and prevention guidelines tailored to your pet's specific needs.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Year-Round Prevention</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Year-round prevention is recommended for most pets, especially those in high-risk areas or with outdoor access. Even in areas with cold winters, fleas and ticks can survive indoors or in protected areas. Monthly preventives are the most common and effective approach, providing continuous protection against fleas, ticks, and in some cases, heartworm and other parasites. Consistency is key to effective prevention.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I give my pet flea and tick prevention?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Most flea and tick preventives are given monthly, year-round. Year-round prevention is recommended for most pets, especially those in high-risk areas (rural areas, outdoor pets) or areas with mild winters. Indoor pets in urban areas may use seasonal prevention (typically March-October), but year-round is still recommended for optimal protection.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What types of flea and tick prevention are available?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common types of flea and tick prevention include: 1) Topical (spot-on) treatments - applied to skin between shoulder blades monthly; 2) Oral chewables/tablets - given by mouth monthly; 3) Collars - worn around neck, provide continuous protection for 6-8 months. Always use products specifically labeled for your pet type (dog vs cat) and weight. Never use dog products on cats - can be fatal.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I use dog flea/tick products on cats?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  No, you should never use dog flea/tick products on cats. Many dog products contain permethrin, which is highly toxic to cats and can be fatal. Always use products specifically labeled for your pet type (dog vs cat). Read labels carefully and consult your veterinarian for the best product for your pet's weight and lifestyle.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/parasite-risk-assessment" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Parasite Risk Assessment</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Evaluate overall parasite risk</p>
+              </a>
+              <a href="/tools/deworming-reminder" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Deworming Reminder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track deworming schedules</p>
+              </a>
+              <a href="/pet-health/parasite-control-ticks-fleas-worms" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Parasite Control Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about parasite prevention</p>
+              </a>
+              <a href="/tools/vaccine-reminder" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccine Reminder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track vaccination schedules</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Warning:</strong> Never use dog flea/tick products on cats. Many dog products contain permethrin, which is highly toxic to cats and can be fatal. Always use products specifically labeled for your pet type.

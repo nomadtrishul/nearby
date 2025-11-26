@@ -2,14 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Bird Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Bird Pets Guide',
   description: 'Guide to pet birds including parrots, canaries, finches, and more. Learn about bird care, housing, and health.',
   keywords: ['pet birds', 'parrots', 'canaries', 'bird care', 'pet bird guide'],
-  openGraph: { title: 'Bird Pets Guide | Nearby Pet Care', description: 'Guide to pet birds and their care requirements.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/birds' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/birds' },
-};
+  pathname: '/pet-breeds/birds',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Bird Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BirdsPage() {
   return (

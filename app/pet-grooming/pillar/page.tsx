@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Grooming & Hygiene Overview | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Grooming & Hygiene Overview',
   description: 'Overview of pet grooming and hygiene topics. Learn about maintaining your pet\'s appearance and health through proper grooming.',
   keywords: ['pet grooming overview', 'pet hygiene', 'pet grooming basics'],
-  openGraph: { title: 'Pet Grooming & Hygiene Overview | Nearby Pet Care', description: 'Overview of pet grooming and hygiene topics.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/pillar' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/pillar' },
-};
+  pathname: '/pet-grooming/pillar',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Grooming & Hygiene Overview',
+    type: 'image/png',
+  }],
+});
 
 export default function PetGroomingPillarPage() {
   return (

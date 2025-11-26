@@ -5,7 +5,7 @@ import PetProductsSidebar from '@/components/PetProductsSidebar';
 
 export const metadata: Metadata = {
   title: 'Best Cat Litter - Reviews & Buying Guide | Nearby Pet Care',
-  description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option for your cat and home.',
+  description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option.',
   keywords: ['best cat litter', 'cat litter reviews', 'cat litter comparison', 'best cat litter brands', 'clumping cat litter', 'natural cat litter', 'odor control cat litter', 'cat litter types', 'dust free cat litter'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',
@@ -80,7 +80,7 @@ export default function BestCatLitterPage() {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Best Cat Litter - Reviews & Buying Guide',
-    description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option for your cat and home.',
+    description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option.',
     url: 'https://nearbypetcare.com/pet-products/best-cat-litter',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,

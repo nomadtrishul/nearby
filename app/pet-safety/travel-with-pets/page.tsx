@@ -6,7 +6,7 @@ import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Traveling with Pets - Complete Guide to Safe Pet Travel | Nearby Pet Care',
-  description: 'Complete guide to traveling safely with your pet. Expert tips for car travel, air travel, hotels, and preparing your pet for stress-free trips. Learn how to keep your pet comfortable and safe on the road.',
+  description: 'Complete guide to traveling safely with your pet. Expert tips for car travel, air travel, and preparing your pet for stress-free trips.',
   keywords: ['traveling with pets', 'pet travel', 'pet car travel', 'pet air travel', 'traveling with dogs', 'traveling with cats', 'pet travel tips', 'pet travel safety'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

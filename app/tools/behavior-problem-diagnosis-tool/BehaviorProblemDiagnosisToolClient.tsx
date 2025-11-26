@@ -326,6 +326,68 @@ export default function BehaviorProblemDiagnosisToolClient() {
             </div>
           )}
 
+          {/* How Behavior Problem Diagnosis Tool Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Behavior Problem Diagnosis Tool Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our behavior problem diagnosis tool analyzes the behaviors you observe in your pet to identify potential causes and provide guidance on solutions. By selecting the behaviors your pet displays, along with duration and context, the tool matches these patterns to common behavior problems such as aggression, separation anxiety, resource guarding, or fear-based behaviors. The tool provides urgency assessment, potential causes, and recommended solutions.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Behavior Problems</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Behavior problems often have underlying causes such as lack of exercise, insufficient mental stimulation, fear, anxiety, medical issues, or improper training. Early identification and intervention are key to successful behavior modification. Some behaviors require immediate professional help, especially aggression or severe anxiety, while others can be addressed with proper training and environmental changes.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are common behavior problems in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common behavior problems include: excessive barking/meowing, destructive chewing, house soiling, aggression (toward people or other animals), separation anxiety, resource guarding, fear or phobias, jumping on people, pulling on leash, and not responding to commands. Many behavior problems can be addressed with proper training, but some require professional help.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should I seek professional help for behavior problems?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Seek professional help immediately for: aggression toward people or animals, severe separation anxiety, resource guarding that escalates, or any behavior that poses a safety risk. Also consult a professional if behavior problems persist despite training efforts, worsen over time, or if you're unsure how to address them safely. Certified animal behaviorists and professional trainers can provide effective solutions.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I prevent behavior problems?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Prevent behavior problems by: providing adequate exercise and mental stimulation, consistent training from an early age, proper socialization, positive reinforcement training methods, addressing issues early before they become habits, and ensuring your pet's physical and mental needs are met. Early intervention is key to preventing behavior problems from developing or worsening.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/separation-anxiety-risk-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Separation Anxiety Risk Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess separation anxiety risk factors</p>
+              </a>
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track behavior modification progress</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+              <a href="/pet-behavior" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Behavior Resources</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Understand pet behavior better</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <p className="text-sm text-red-800 dark:text-red-200">
               <strong>Important:</strong> This tool provides general guidance only. For aggressive behaviors, severe anxiety, or persistent problems, consult a certified animal behaviorist, professional trainer, or veterinarian. Never use punishment-based training methods, as they can worsen behavior problems.

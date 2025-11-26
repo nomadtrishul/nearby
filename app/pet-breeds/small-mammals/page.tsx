@@ -2,14 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Small Mammal Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Small Mammal Pets Guide',
   description: 'Guide to small mammal pets including rabbits, guinea pigs, hamsters, and more. Learn about their care requirements.',
   keywords: ['small mammals', 'rabbits', 'guinea pigs', 'hamsters', 'small pet care'],
-  openGraph: { title: 'Small Mammal Pets Guide | Nearby Pet Care', description: 'Guide to small mammal pets and their care requirements.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals' },
-};
+  pathname: '/pet-breeds/small-mammals',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Small Mammal Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SmallMammalsPage() {
   return (

@@ -2,76 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Weight Management Guide - Prevent Obesity | Nearby Pet Care',
   description: 'Comprehensive guide to managing your pet\'s weight and preventing obesity. Learn about healthy weight ranges, diet strategies, and exercise recommendations. Veterinary-approved weight loss plans.',
   keywords: ['pet weight management', 'pet obesity', 'dog weight loss', 'cat weight loss', 'pet diet plan', 'pet exercise', 'pet body condition score', 'pet weight loss'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Pet Weight Management Guide - Prevent Obesity | Nearby Pet Care',
-    description: 'Comprehensive guide to managing your pet\'s weight and preventing obesity.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-nutrition/pet-weight-management-guide',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Weight Management Guide - Prevent Pet Obesity',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Weight Management Guide - Prevent Obesity | Nearby Pet Care',
-    description: 'Comprehensive guide to managing your pet\'s weight and preventing obesity.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition/pet-weight-management-guide',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition/pet-weight-management-guide',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition/pet-weight-management-guide',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition/pet-weight-management-guide',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition/pet-weight-management-guide',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Nutrition',
-    'article:tag': 'pet weight management, pet obesity, weight loss, pet exercise',
-  },
-};
+  pathname: '/pet-nutrition/pet-weight-management-guide',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Weight Management Guide - Prevent Pet Obesity',
+    type: 'image/png',
+  }],
+});
 
 export default function PetWeightManagementPage() {
   const currentDate = new Date().toISOString();

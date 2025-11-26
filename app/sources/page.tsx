@@ -1,142 +1,74 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import {
+  generateSEOMetadata,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/sources`;
-const publishedTime = '2024-01-01T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
-  title: 'Sources & References | Nearby Pet Care',
-  description: 'Sources and references used in our pet care content. Learn about our sourcing practices and the authoritative sources we rely on for accurate, evidence-based information.',
-  keywords: ['sources', 'references', 'citations', 'pet care sources', 'veterinary sources', 'evidence-based', 'content sources', 'research sources', 'citation practices'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Sources & References | Nearby Pet Care',
-    description: 'Sources and references used in our educational pet care content. Learn about our sourcing practices.',
-    type: 'website',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Sources & References - Nearby Pet Care',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Sources & References | Nearby Pet Care',
-    description: 'Sources and references used in our educational pet care content.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'og:updated_time': modifiedTime,
-  },
-};
-
-export default function SourcesPage() {
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Sources',
-        item: pageUrl,
-      },
-    ],
-  };
-
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
-    name: 'Sources & References',
-    description: 'Sources and references used in our educational pet care content. Learn about our sourcing practices.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Sources and References',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Sources & References',
+  description: 'Sources and references used in our pet care content. Learn about our sourcing practices and authoritative sources for accurate, evidence-based information.',
+  keywords: [
+    'sources',
+    'references',
+    'citations',
+    'pet care sources',
+    'veterinary sources',
+    'evidence-based',
+    'content sources',
+    'research sources',
+    'citation practices',
+  ],
+  pathname: '/sources',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
       width: 1200,
       height: 630,
+      alt: 'Sources & References - Nearby Pet Care',
+      type: 'image/png',
     },
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
+  ],
+  locale: 'en_US',
+  alternates: {
+    languages: {
+      'en-US': '/sources',
+      'en-GB': '/sources',
+      'en-CA': '/sources',
+      'en-AU': '/sources',
     },
-  };
+  },
+  breadcrumbs: [
+    { name: 'Home', url: '/' },
+    { name: 'Sources', url: '/sources' },
+  ],
+});
+
+export default function SourcesPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Sources', url: '/sources' },
+  ];
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Sources & References',
+    description: 'Sources and references used in our educational pet care content. Learn about our sourcing practices.',
+    url: '/sources',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <>
       {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
         <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
           <div className="container mx-auto max-w-4xl">
@@ -299,3 +231,4 @@ export default function SourcesPage() {
     </>
   );
 }
+

@@ -254,6 +254,45 @@ export default function SymptomCheckerClient() {
             </div>
           </div>
 
+          {/* How Symptom Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Pet Symptom Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our pet symptom checker helps you identify potential health issues by analyzing the symptoms you observe in your pet. Simply select the symptoms your pet is experiencing, and the tool will provide information about potential causes, severity levels, and recommended actions. The tool uses a database of common pet health symptoms and their associated conditions to provide guidance.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Symptom Severity</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Symptoms are categorized by severity: mild symptoms may be monitored at home, moderate symptoms typically require veterinary consultation, and severe symptoms require immediate emergency care. The tool helps you understand when to seek professional help and provides guidance on what to do while waiting for veterinary care.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Is this symptom checker a substitute for veterinary care?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  No, this tool is for informational purposes only and is NOT a substitute for professional veterinary diagnosis or treatment. If your pet is experiencing severe symptoms, appears to be in distress, or you have any concerns, seek immediate veterinary care. Always consult with a licensed veterinarian for proper diagnosis and treatment.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What should I do if my pet has emergency symptoms?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  If your pet is experiencing emergency symptoms such as difficulty breathing, seizures, collapse, bloated abdomen, pale gums, or inability to urinate, seek immediate veterinary care. Contact your nearest emergency veterinary clinic or animal poison control center immediately. Do not wait.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know if my pet needs to see a veterinarian?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  If your pet has severe symptoms, multiple symptoms, symptoms that persist for more than 24 hours, or if you have any concerns about your pet's health, consult with a veterinarian. It's always better to err on the side of caution when it comes to your pet's health.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Related Links */}
           <div className="mt-8 mb-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>

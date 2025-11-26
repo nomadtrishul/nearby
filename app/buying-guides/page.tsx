@@ -2,70 +2,37 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BlogSidebar from '@/components/BlogSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Buying Guides: How to Choose the Best Products for Your Pet | Nearby Pet Care',
-  description: 'Make informed purchasing decisions with our comprehensive pet buying guides. Expert advice on choosing the best pet food, pet insurance, cat litter, and other pet products for your dog or cat.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Buying Guides: How to Choose the Best Products for Your Pet',
+  description: 'Comprehensive pet buying guides with expert advice on choosing the best pet food, insurance, cat litter, and other products for your pet.',
   keywords: ['pet buying guides', 'how to choose pet products', 'best pet food guide', 'pet product buying guide', 'pet shopping guides', 'pet product recommendations', 'what to buy for a pet', 'pet product reviews', 'best pet products'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Pet Buying Guides: How to Choose the Best Products for Your Pet | Nearby Pet Care',
-    description: 'Make informed purchasing decisions with our comprehensive pet buying guides. Expert advice on choosing the best pet food, pet insurance, cat litter, and other pet products.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/buying-guides',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Buying Guides - How to Choose the Best Products for Your Pet',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Buying Guides: How to Choose the Best Products for Your Pet | Nearby Pet Care',
-    description: 'Make informed purchasing decisions with our comprehensive pet buying guides. Expert advice on choosing the best pet products.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+  pathname: '/buying-guides',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Buying Guides - How to Choose the Best Products for Your Pet',
+      type: 'image/png',
+    },
+  ],
   alternates: {
-    canonical: 'https://nearbypetcare.com/buying-guides',
     languages: {
-      'en-US': 'https://nearbypetcare.com/buying-guides',
-      'en-GB': 'https://nearbypetcare.com/buying-guides',
-      'en-CA': 'https://nearbypetcare.com/buying-guides',
-      'en-AU': 'https://nearbypetcare.com/buying-guides',
+      'en-US': '/buying-guides',
+      'en-GB': '/buying-guides',
+      'en-CA': '/buying-guides',
+      'en-AU': '/buying-guides',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
   },
   other: {
     'og:updated_time': new Date().toISOString(),
   },
-};
+});
 
 export default function BuyingGuidesPage() {
   const baseUrl = 'https://nearbypetcare.com';

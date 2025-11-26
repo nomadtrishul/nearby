@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Cocker Spaniel Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Cocker Spaniel Breed Guide',
   description: 'Complete guide to Cocker Spaniels. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Cocker Spaniel', 'Cocker Spaniel breed', 'Cocker Spaniel care', 'spaniel'],
-  openGraph: { title: 'Cocker Spaniel Breed Guide | Nearby Pet Care', description: 'Complete guide to Cocker Spaniels.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/cocker-spaniel' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/cocker-spaniel' },
-};
+  pathname: '/pet-breeds/dogs/cocker-spaniel',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Cocker Spaniel Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CockerSpanielPage() {
   return (

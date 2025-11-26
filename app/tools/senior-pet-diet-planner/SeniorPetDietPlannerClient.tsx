@@ -265,6 +265,68 @@ export default function SeniorPetDietPlannerClient() {
             </div>
           )}
 
+          {/* How Senior Pet Diet Planner Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Senior Pet Diet Planner Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our senior pet diet planner creates personalized diet recommendations based on your pet's age, weight, activity level, and health conditions. The tool calculates adjusted calorie needs (typically 20% less than adult maintenance due to slower metabolism), recommends appropriate nutrient levels for aging pets, and considers health conditions that affect dietary requirements such as kidney disease, heart disease, diabetes, and arthritis.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Senior Pet Nutrition</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Senior pets have different nutritional needs than adult pets. They typically need fewer calories due to reduced activity and slower metabolism, but still require high-quality protein for muscle maintenance. Health conditions significantly affect dietary needs - for example, kidney disease requires lower protein and phosphorus, while heart disease needs low sodium. Always consult your veterinarian for condition-specific dietary recommendations.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What should I feed my senior pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Senior pets typically need: high-quality, easily digestible protein; moderate fat (10-15% for dogs, 9-15% for cats); fiber for digestive health; and antioxidants (vitamins E, C). Calorie needs are usually reduced (about 20% less than adult maintenance) due to slower metabolism. Senior-specific commercial diets are formulated for aging pets and may include joint-supporting nutrients and cognitive health supplements.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do health conditions affect a senior pet's diet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Health conditions significantly affect dietary needs. For example: kidney disease requires lower protein and phosphorus; heart disease needs low sodium; diabetes requires high fiber and consistent meal timing; arthritis benefits from omega-3 fatty acids and weight management; dental problems may require soft or wet food. Always consult your veterinarian for condition-specific dietary recommendations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How much should I feed my senior pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Senior pets typically need 20% fewer calories than adult maintenance due to reduced activity and slower metabolism. Feed 2-3 smaller meals per day for better digestion. Monitor weight monthly and adjust portions as needed. Always consult your veterinarian for personalized feeding recommendations based on your pet's specific needs, health conditions, and activity level.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate senior pet calorie needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Determine proper portion sizes</p>
+              </a>
+              <a href="/senior-pets" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Senior Pet Care Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Comprehensive senior pet resources</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet nutrition basics</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This planner provides general guidelines. Senior pets with health conditions should be on diets recommended by your veterinarian. Always consult with your vet before making significant dietary changes.

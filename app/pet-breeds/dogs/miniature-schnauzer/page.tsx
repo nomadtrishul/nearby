@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Miniature Schnauzer Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Miniature Schnauzer Breed Guide',
   description: 'Complete guide to Miniature Schnauzers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Miniature Schnauzer', 'Miniature Schnauzer breed', 'Miniature Schnauzer care', 'Miniature Schnauzer temperament'],
-  openGraph: { title: 'Miniature Schnauzer Breed Guide | Nearby Pet Care', description: 'Complete guide to Miniature Schnauzers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/miniature-schnauzer' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/miniature-schnauzer' },
-};
+  pathname: '/pet-breeds/dogs/miniature-schnauzer',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Miniature Schnauzer Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function MiniatureSchnauzerPage() {
   return (

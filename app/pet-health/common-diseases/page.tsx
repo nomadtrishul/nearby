@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide | Nearby Pet Care',
-  description: 'Comprehensive guide to common pet diseases affecting dogs and cats. Learn about symptoms, prevention methods, treatment options, and when to seek veterinary care for parvovirus, distemper, kennel cough, and more.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide',
+  description: 'Comprehensive guide to common pet diseases affecting dogs and cats. Learn about symptoms, prevention methods, and when to seek veterinary care.',
   keywords: ['pet diseases', 'dog diseases', 'cat diseases', 'pet illness symptoms', 'pet disease prevention', 'parvovirus', 'distemper', 'kennel cough', 'heartworm disease', 'feline leukemia', 'pet health conditions', 'common pet illnesses'],
-  openGraph: {
-    title: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide | Nearby Pet Care',
-    description: 'Learn about common diseases affecting pets, their symptoms, prevention methods, and when to seek veterinary care.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/common-diseases',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Common Pet Diseases Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Common Pet Diseases: Symptoms & Prevention | Nearby Pet Care',
-    description: 'Learn about common diseases affecting pets, their symptoms, and prevention methods.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/common-diseases' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/common-diseases',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Common Pet Diseases Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CommonDiseasesPage() {
   const breadcrumbStructuredData = {

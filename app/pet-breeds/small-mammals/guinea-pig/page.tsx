@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Guinea Pig Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Guinea Pig Care Guide',
   description: 'Complete guide to keeping guinea pigs as pets. Learn about guinea pig care, housing, diet, and health considerations.',
   keywords: ['guinea pig', 'guinea pig care', 'cavy', 'guinea pig housing', 'guinea pig diet'],
-  openGraph: { title: 'Guinea Pig Care Guide | Nearby Pet Care', description: 'Complete guide to keeping guinea pigs as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/guinea-pig' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/guinea-pig' },
-};
+  pathname: '/pet-breeds/small-mammals/guinea-pig',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Guinea Pig Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function GuineaPigPage() {
   return (

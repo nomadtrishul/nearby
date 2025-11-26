@@ -284,6 +284,68 @@ export default function MultivitaminNeedsAnalyzerClient() {
             </div>
           )}
 
+          {/* How Multivitamin Needs Analyzer Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Multivitamin Needs Analyzer Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our multivitamin needs analyzer evaluates your pet's vitamin requirements based on age, diet type, and health conditions. The tool considers that pets on complete commercial diets typically receive adequate vitamins, while pets on homemade or raw diets often need supplementation. The analyzer also accounts for life stage (puppies, kittens, seniors) and specific health conditions that may increase vitamin needs.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Vitamin Needs</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Most pets on complete commercial diets do not need multivitamins, as these diets are formulated to be nutritionally complete. However, pets on homemade or raw diets typically need multivitamins to ensure all essential vitamins and minerals are provided. Senior pets, pregnant/nursing pets, and pets with specific health conditions may also benefit from targeted vitamin supplements, but always under veterinary guidance.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Do pets need multivitamins?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Most pets on complete commercial diets do not need multivitamins, as commercial diets are formulated to be nutritionally complete. However, pets on homemade or raw diets typically need multivitamins to ensure all essential vitamins and minerals are provided. Senior pets, pregnant/nursing pets, and pets with specific health conditions may also benefit from targeted vitamin supplements. Always consult your veterinarian before adding vitamins.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What vitamins do pets need?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Essential vitamins for pets include: Vitamin A (vision, skin), B vitamins (energy, nervous system), Vitamin C (antioxidant, immune system), Vitamin D (bone health), Vitamin E (antioxidant, immune system), and Vitamin K (blood clotting). Cats also require taurine, an essential amino acid. However, pets on complete commercial diets typically receive adequate vitamins. Only supplement if recommended by a veterinarian.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I give my pet human vitamins?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  No, you should not give your pet human vitamins. Human vitamins can be harmful to pets, as they may contain ingredients toxic to pets or incorrect dosages. Always use pet-specific vitamins and supplements, and only give them under veterinary guidance. Some vitamins can be toxic in excess, so proper dosage is critical.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/nutrient-deficiency-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Nutrient Deficiency Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify potential nutrient deficiencies</p>
+              </a>
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily nutritional needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper feeding amounts</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This analyzer provides general guidance. Always consult your veterinarian before adding any vitamins or supplements. Pets on complete commercial diets typically do not need additional vitamins unless recommended by a veterinarian.

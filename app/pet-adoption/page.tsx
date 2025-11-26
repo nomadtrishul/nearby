@@ -2,57 +2,30 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdoptionSidebar from '@/components/AdoptionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Adoption Guide: How to Adopt a Dog or Cat | Nearby Pet Care',
-  description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our adoption checklist, and successfully transition a rescue pet. Expert advice for first-time and experienced pet adopters.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Adoption Guide: How to Adopt a Dog or Cat',
+  description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our checklist, and transition a rescue pet.',
   keywords: ['pet adoption', 'how to adopt a pet', 'adopting a dog', 'adopting a cat', 'rescue pets', 'pet rescue guide', 'adoption checklist', 'preparing for pet adoption', 'rescue pet care', 'pet adoption process', 'adopt a rescue dog', 'adopt a rescue cat', 'pet adoption tips', 'rescue pet transition'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Pet Adoption & Rescue Guide: Complete Guide to Adopting Pets | Nearby Pet Care',
-    description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our adoption checklist, and successfully transition a rescue pet.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-adoption',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Adoption & Rescue Guide - Complete Guide to Adopting Dogs and Cats',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Adoption & Rescue Guide: Complete Guide to Adopting Pets',
-    description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, and successfully transition a rescue pet.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-adoption',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-adoption',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Adoption & Rescue Guide - Complete Guide to Adopting Dogs and Cats',
+      type: 'image/png',
     },
-  },
+  ],
   other: {
     'article:published_time': '2024-01-01T00:00:00Z',
     'article:modified_time': new Date().toISOString(),
   },
-};
+});
 
 export default function PetAdoptionPage() {
   const baseUrl = 'https://nearbypetcare.com';
@@ -90,7 +63,7 @@ export default function PetAdoptionPage() {
     '@type': 'WebPage',
     '@id': `${baseUrl}/pet-adoption#webpage`,
     name: 'Pet Adoption & Rescue Guide',
-    description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our adoption checklist, and successfully transition a rescue pet.',
+    description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our checklist, and transition a rescue pet.',
     url: `${baseUrl}/pet-adoption`,
     inLanguage: 'en-US',
     isPartOf: {

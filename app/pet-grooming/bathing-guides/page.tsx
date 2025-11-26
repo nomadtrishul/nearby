@@ -2,60 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Bathing Guides - Complete Guide to Bathing Dogs & Cats | Nearby Pet Care',
-  description: 'Comprehensive guide to bathing your pet safely and effectively. Learn how often to bathe, choose the right products, and master step-by-step bathing techniques for dogs and cats.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Bathing Guides - Complete Guide to Bathing Dogs & Cats',
+  description: 'Comprehensive guide to bathing your pet safely and effectively. Learn how often to bathe, choose the right products, and master bathing techniques.',
   keywords: ['pet bathing', 'how to bathe dog', 'how to bathe cat', 'pet shampoo', 'pet bathing tips', 'dog bathing guide', 'cat bathing guide', 'pet hygiene', 'bathing frequency'],
-  openGraph: {
-    title: 'Pet Bathing Guides - Complete Guide | Nearby Pet Care',
-    description: 'Learn how to properly bathe your pet with comprehensive step-by-step guides for dogs and cats.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-grooming/bathing-guides',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    section: 'Pet Grooming',
-    tags: ['pet bathing', 'dog grooming', 'cat grooming', 'pet hygiene', 'pet care'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Bathing Guides',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Bathing Guides | Nearby Pet Care',
-    description: 'Complete guide to bathing your pet safely and effectively.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-grooming/bathing-guides',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00Z',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Grooming',
-  },
-};
+  pathname: '/pet-grooming/bathing-guides',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Bathing Guides - Complete Guide to Bathing Dogs & Cats',
+    type: 'image/png',
+  }],
+});
 
 export default function BathingGuidesPage() {
   // Article Structured Data for SEO
@@ -63,7 +25,7 @@ export default function BathingGuidesPage() {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Pet Bathing Guides - Complete Guide to Bathing Dogs & Cats',
-    description: 'Comprehensive guide to bathing your pet safely and effectively. Learn how often to bathe, choose the right products, and master step-by-step bathing techniques for dogs and cats.',
+    description: 'Comprehensive guide to bathing your pet safely and effectively. Learn how often to bathe, choose the right products, and master bathing techniques.',
     image: 'https://nearbypetcare.com/og-image.png',
     datePublished: '2024-01-01T00:00:00Z',
     dateModified: new Date().toISOString(),

@@ -192,6 +192,68 @@ export default function PregnancyDueDateCalculatorPage() {
             </div>
           )}
 
+          {/* How Pregnancy Due Date Calculator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Pregnancy Due Date Calculator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our pregnancy due date calculator calculates your pet's due date based on the breeding date and pet type. Dogs typically have a gestation period of 58-68 days (average 63 days), while cats typically have a gestation period of 63-67 days (average 65 days). The tool provides a week-by-week development timeline, showing fetal development stages and care recommendations for each week of pregnancy.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Pet Pregnancy</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Pet pregnancy requires careful monitoring and proper care. Pregnant pets need gradual increases in food starting week 5-6, a quiet nesting area, limited strenuous exercise in later stages, and regular veterinary checkups. It's important to track the breeding date accurately and monitor for signs of complications. Always consult your veterinarian for proper prenatal care and emergency contact information.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How long is a dog's pregnancy?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  A dog's pregnancy (gestation period) typically lasts 58-68 days, with an average of 63 days from breeding. The exact length can vary by breed and individual dog. It's important to track the breeding date and monitor the pregnancy closely. Schedule a veterinary checkup around day 30-35 for confirmation and health check.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How long is a cat's pregnancy?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  A cat's pregnancy (gestation period) typically lasts 63-67 days, with an average of 65 days from breeding. The exact length can vary by individual cat. Monitor the pregnancy closely and schedule a veterinary checkup around day 30-35 for confirmation and health check. Provide a quiet nesting area as the due date approaches.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What care does a pregnant pet need?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Pregnant pets need: 1) Gradual increase in food starting week 5-6 (25-50% increase, up to 50-100% in later stages); 2) Quiet, comfortable nesting/whelping area; 3) Limited strenuous exercise in later stages; 4) Regular veterinary checkups (around day 30-35 for confirmation); 5) Monitoring for signs of complications (discharge, lethargy, loss of appetite); 6) Emergency veterinary contact ready. Always consult your veterinarian for proper prenatal care.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/heat-cycle-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Heat Cycle Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track reproductive cycles</p>
+              </a>
+              <a href="/tools/vaccination-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccination Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create vaccination schedules</p>
+              </a>
+              <a href="/tools/vaccine-reminder" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccine Reminder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track vaccination schedules</p>
+              </a>
+              <a href="/pet-health" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Health Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet health and wellness</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Gestation periods can vary. Dogs: 58-68 days (average 63). Cats: 63-67 days (average 65). Always consult with your veterinarian for proper prenatal care and monitoring.

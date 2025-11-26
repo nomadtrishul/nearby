@@ -5,7 +5,7 @@ import AdoptionSidebar from '@/components/AdoptionSidebar';
 
 export const metadata: Metadata = {
   title: 'Preparing Your Home for a New Pet: Complete Guide | Nearby Pet Care',
-  description: 'Complete guide to preparing your home for a new pet. Learn essential supplies, pet-proofing tips, safety measures, and how to create a welcoming environment for dogs and cats. Expert advice for first-time pet owners.',
+  description: 'Complete guide to preparing your home for a new pet. Learn essential supplies, pet-proofing tips, safety measures, and how to create a welcoming environment.',
   keywords: ['preparing for pet', 'pet proofing', 'new pet preparation', 'pet supplies', 'pet home preparation', 'pet safety', 'pet-proofing home', 'new dog preparation', 'new cat preparation', 'pet supplies checklist'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',

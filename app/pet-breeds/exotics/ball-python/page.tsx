@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Ball Python Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Ball Python Care Guide',
   description: 'Complete guide to keeping ball pythons as pets. Learn about their care, habitat, diet, and health considerations.',
   keywords: ['ball python', 'ball python care', 'snake pets', 'ball python habitat', 'ball python diet'],
-  openGraph: { title: 'Ball Python Care Guide | Nearby Pet Care', description: 'Complete guide to keeping ball pythons as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/exotics/ball-python' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/exotics/ball-python' },
-};
+  pathname: '/pet-breeds/exotics/ball-python',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Ball Python Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BallPythonPage() {
   return (

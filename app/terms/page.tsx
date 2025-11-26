@@ -1,142 +1,73 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import {
+  generateSEOMetadata,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/terms`;
-const publishedTime = '2024-01-01T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
-  title: 'Terms of Service | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Terms of Service',
   description: 'Terms of Service for Nearby Pet Care. Read our terms and conditions for using our educational pet care platform and content. Updated November 2025.',
-  keywords: ['terms of service', 'terms and conditions', 'user agreement', 'website terms', 'legal terms', 'service terms', 'terms of use', 'user terms'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Terms of Service | Nearby Pet Care',
-    description: 'Read our terms and conditions for using our educational pet care platform and content.',
-    type: 'website',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Terms of Service - Nearby Pet Care',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Terms of Service | Nearby Pet Care',
-    description: 'Read our terms and conditions for using our educational pet care platform and content.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'og:updated_time': modifiedTime,
-  },
-};
-
-export default function TermsPage() {
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Terms of Service',
-        item: pageUrl,
-      },
-    ],
-  };
-
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
-    name: 'Terms of Service',
-    description: 'Terms of Service for Nearby Pet Care. Read our terms and conditions for using our educational pet care platform.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Terms of Service',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+  keywords: [
+    'terms of service',
+    'terms and conditions',
+    'user agreement',
+    'website terms',
+    'legal terms',
+    'service terms',
+    'terms of use',
+    'user terms',
+  ],
+  pathname: '/terms',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
       width: 1200,
       height: 630,
+      alt: 'Terms of Service - Nearby Pet Care',
+      type: 'image/png',
     },
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
+  ],
+  locale: 'en_US',
+  alternates: {
+    languages: {
+      'en-US': '/terms',
+      'en-GB': '/terms',
+      'en-CA': '/terms',
+      'en-AU': '/terms',
     },
-  };
+  },
+  breadcrumbs: [
+    { name: 'Home', url: '/' },
+    { name: 'Terms of Service', url: '/terms' },
+  ],
+});
+
+export default function TermsPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Terms of Service', url: '/terms' },
+  ];
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Terms of Service',
+    description: 'Terms of Service for Nearby Pet Care. Read our terms and conditions for using our educational pet care platform.',
+    url: '/terms',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <>
       {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
         <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
           <div className="container mx-auto max-w-7xl">
@@ -323,8 +254,25 @@ export default function TermsPage() {
                 <p className="mb-3">
                   The inclusion of any link does not imply endorsement by Nearby Pet Care. We encourage you to review the terms of service and privacy policies of any third-party sites you visit. Your use of third-party websites is at your own risk.
                 </p>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  Third-Party Advertising
+                </h3>
+                <p className="mb-3">
+                  We may display third-party content, including advertisements, on our website. Specifically, we use Google AdSense to serve advertisements on our platform. By using our Services, you acknowledge and agree that:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li>We use Google AdSense and other advertising services to display personalized advertisements based on your browsing history and interests</li>
+                  <li>These advertising services use cookies and similar tracking technologies to serve relevant ads</li>
+                  <li>We are not responsible for the accuracy, completeness, or reliability of third-party advertisements</li>
+                  <li>Any interactions with advertisements, including clicks, purchases, or other actions, are solely between you and the advertiser</li>
+                  <li>We do not endorse or guarantee any products or services advertised on our website</li>
+                  <li>You can control personalized advertising through our cookie consent banner or by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Google's Ads Settings</a></li>
+                </ul>
+                <p className="mb-3">
+                  We comply with Google AdSense Publisher Policies and ensure that advertisements do not interfere with our educational content or user experience. We do not place ads in a way that mimics site navigation or is deceptive to users.
+                </p>
                 <p>
-                  We may also display third-party content, such as advertisements, on our website. We are not responsible for the accuracy, completeness, or reliability of third-party content. Any interactions with third-party content are solely between you and the third party.
+                  For more information about how we handle advertising and your privacy, please review our <Link href="/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">Privacy Policy</Link>, which provides detailed information about our use of Google AdSense, cookies, and your rights regarding personalized advertising.
                 </p>
               </section>
 
@@ -488,3 +436,4 @@ export default function TermsPage() {
     </>
   );
 }
+

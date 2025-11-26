@@ -2,49 +2,25 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Grooming Guide: How to Groom Your Dog or Cat at Home | Nearby Pet Care',
-  description: 'Learn how to groom your pet at home with step-by-step guides. Expert tips on dog grooming, cat grooming, bathing, nail trimming, dental care, and maintaining your pet\'s coat and hygiene.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Grooming Guide: How to Groom Your Dog or Cat at Home',
+  description: 'Learn how to groom your pet at home with step-by-step guides. Expert tips on dog and cat grooming, bathing, nail trimming, and dental care.',
   keywords: ['pet grooming', 'how to groom a dog', 'how to groom a cat', 'dog grooming tips', 'cat grooming tips', 'pet bathing', 'pet nail trimming', 'pet dental care', 'pet hygiene', 'grooming at home'],
-  openGraph: {
-    title: 'Pet Grooming Guide: How to Groom Your Dog or Cat at Home | Nearby Pet Care',
-    description: 'Learn how to groom your pet at home with step-by-step guides on dog grooming, cat grooming, bathing, nail trimming, and dental care.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-grooming',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Grooming & Hygiene Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Grooming & Hygiene - Complete Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to pet grooming and hygiene including bathing, brushing, and dental care.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-grooming',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-grooming',
+  type: 'website',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Grooming & Hygiene Guide',
+      type: 'image/png',
     },
-  },
-};
+  ],
+});
 
 export default function PetGroomingPage() {
   const guides = [

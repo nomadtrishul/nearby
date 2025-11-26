@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Crested Gecko Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Crested Gecko Care Guide',
   description: 'Complete guide to keeping crested geckos as pets. Learn about their care, habitat, diet, and health considerations.',
   keywords: ['crested gecko', 'crested gecko care', 'reptile pets', 'gecko care', 'crested gecko habitat'],
-  openGraph: { title: 'Crested Gecko Care Guide | Nearby Pet Care', description: 'Complete guide to keeping crested geckos as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/exotics/crested-gecko' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/exotics/crested-gecko' },
-};
+  pathname: '/pet-breeds/exotics/crested-gecko',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Crested Gecko Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CrestedGeckoPage() {
   return (

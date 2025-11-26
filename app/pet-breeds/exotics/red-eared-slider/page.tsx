@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Red-Eared Slider Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Red-Eared Slider Care Guide',
   description: 'Complete guide to keeping red-eared slider turtles as pets. Learn about their care, habitat, diet, and health considerations.',
   keywords: ['red-eared slider', 'turtle pets', 'red-eared slider care', 'turtle habitat', 'turtle diet'],
-  openGraph: { title: 'Red-Eared Slider Care Guide | Nearby Pet Care', description: 'Complete guide to keeping red-eared slider turtles as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/exotics/red-eared-slider' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/exotics/red-eared-slider' },
-};
+  pathname: '/pet-breeds/exotics/red-eared-slider',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Red-Eared Slider Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RedEaredSliderPage() {
   return (

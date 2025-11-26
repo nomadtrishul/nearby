@@ -2,63 +2,31 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat | Nearby Pet Care',
-  description: 'Learn what to feed your pet with our comprehensive pet nutrition guide. Expert advice on choosing pet food, understanding pet food ingredients, feeding schedules, portion sizes, and creating a healthy diet plan for your dog or cat.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat',
+  description: 'Comprehensive pet nutrition guide with expert advice on choosing food, understanding ingredients, feeding schedules, and diet planning.',
   keywords: ['pet nutrition', 'what to feed a dog', 'what to feed a cat', 'pet food guide', 'dog nutrition', 'cat nutrition', 'pet feeding schedule', 'pet food ingredients', 'pet diet plan', 'how much to feed a dog', 'how much to feed a cat', 'best pet food', 'AAFCO pet food', 'pet nutrition facts', 'pet diet planning'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat | Nearby Pet Care',
-    description: 'Learn what to feed your pet with expert advice on choosing pet food, understanding ingredients, feeding schedules, and creating a healthy diet plan.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-nutrition',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Nutrition Guide - Complete Guide to Feeding Your Pet',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Nutrition & Diet - Complete Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to pet nutrition and diet. Learn about pet food ingredients, feeding schedules, and creating the perfect diet plan.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition',
+  pathname: '/pet-nutrition',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Nutrition Guide - Complete Guide to Feeding Your Pet',
+      type: 'image/png',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  ],
+  alternates: {
+    languages: {
+      'en-US': '/pet-nutrition',
+      'en-GB': '/pet-nutrition',
+      'en-CA': '/pet-nutrition',
+      'en-AU': '/pet-nutrition',
     },
   },
   other: {
@@ -66,7 +34,7 @@ export const metadata: Metadata = {
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
   },
-};
+});
 
 export default function PetNutritionPage() {
   const currentDate = new Date().toISOString().split('T')[0];

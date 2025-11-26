@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Rabbit Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Rabbit Care Guide',
   description: 'Complete guide to keeping rabbits as pets. Learn about rabbit care, housing, diet, and health considerations.',
   keywords: ['rabbit', 'rabbit care', 'pet rabbit', 'rabbit housing', 'rabbit diet'],
-  openGraph: { title: 'Rabbit Care Guide | Nearby Pet Care', description: 'Complete guide to keeping rabbits as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/rabbit' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/rabbit' },
-};
+  pathname: '/pet-breeds/small-mammals/rabbit',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Rabbit Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RabbitPage() {
   return (

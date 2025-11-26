@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Behavior Pillar: Calm Routines, Better Communication | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Behavior Pillar: Calm Routines, Better Communication',
   description: 'Comprehensive pet behavior pillar guide covering stress triggers, enrichment, safe management, and step-by-step plans to build calmer habits.',
   keywords: [
     'pet behavior pillar',
@@ -14,24 +15,16 @@ export const metadata: Metadata = {
     'behavior modification steps',
     'behavior management for pets',
   ],
-  openGraph: {
-    title: 'Pet Behavior Pillar: Calm Routines, Better Communication | Nearby Pet Care',
-    description: 'Decode pet stress signals and build a customized behavior plan with positive, science-backed methods.',
-    url: 'https://nearbypetcare.com/pet-behavior/pillar',
-    type: 'article',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Behavior Pillar Guide',
-      },
-    ],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-behavior/pillar',
-  },
-};
+  pathname: '/pet-behavior/pillar',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Behavior Pillar Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function PetBehaviorPillarPage() {
   const currentDate = new Date().toISOString();

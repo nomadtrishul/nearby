@@ -5,7 +5,7 @@ import PetProductsSidebar from '@/components/PetProductsSidebar';
 
 export const metadata: Metadata = {
   title: 'Best Grooming Tools - Reviews & Buying Guide | Nearby Pet Care',
-  description: 'Comprehensive reviews and buying guide for the best pet grooming tools. Find brushes, clippers, nail trimmers, and more to keep your pet looking and feeling great.',
+  description: 'Comprehensive reviews and buying guide for the best pet grooming tools. Find brushes, clippers, nail trimmers, and more for your pet.',
   keywords: ['best grooming tools', 'pet grooming tools', 'dog grooming tools', 'cat grooming tools', 'pet brushes', 'nail clippers', 'grooming supplies'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

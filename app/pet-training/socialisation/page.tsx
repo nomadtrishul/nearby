@@ -2,25 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Socialisation Guide: How to Socialize Puppies and Kittens | Nearby Pet Care',
-  description: 'Master pet socialization with our comprehensive guide. Learn about the critical socialization period, how to expose pets to new experiences, and build confidence in puppies and kittens.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Socialisation Guide: How to Socialize Puppies and Kittens',
+  description: 'Master pet socialization with our comprehensive guide. Learn about the critical socialization period and how to build confidence in puppies and kittens.',
   keywords: ['pet socialization', 'puppy socialization', 'kitten socialization', 'socializing pets', 'puppy socialization checklist', 'socialization period'],
-  openGraph: { 
-    title: 'Pet Socialisation Guide: How to Socialize Puppies and Kittens | Nearby Pet Care', 
-    description: 'Master pet socialization with our comprehensive guide. Learn about the critical socialization period and how to build confidence in your pet.', 
-    type: 'article', 
-    url: 'https://nearbypetcare.com/pet-training/socialisation',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Pet Socialisation Guide',
-    }],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-training/socialisation' },
-};
+  pathname: '/pet-training/socialisation',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Socialisation Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SocialisationPage() {
   const currentDate = new Date().toISOString();

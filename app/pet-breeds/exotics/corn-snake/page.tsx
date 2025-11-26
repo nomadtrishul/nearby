@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Corn Snake Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Corn Snake Care Guide',
   description: 'Complete guide to keeping corn snakes as pets. Learn about their care, habitat, diet, and health considerations.',
   keywords: ['corn snake', 'corn snake care', 'snake pets', 'corn snake habitat', 'corn snake diet'],
-  openGraph: { title: 'Corn Snake Care Guide | Nearby Pet Care', description: 'Complete guide to keeping corn snakes as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/exotics/corn-snake' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/exotics/corn-snake' },
-};
+  pathname: '/pet-breeds/exotics/corn-snake',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Corn Snake Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CornSnakePage() {
   return (

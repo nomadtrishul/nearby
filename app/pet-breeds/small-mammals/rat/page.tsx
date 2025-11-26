@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Rat Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Rat Care Guide',
   description: 'Complete guide to keeping rats as pets. Learn about rat care, housing, diet, and health considerations.',
   keywords: ['rat', 'pet rat', 'rat care', 'rat housing', 'rat diet'],
-  openGraph: { title: 'Rat Care Guide | Nearby Pet Care', description: 'Complete guide to keeping rats as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/rat' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/rat' },
-};
+  pathname: '/pet-breeds/small-mammals/rat',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Rat Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RatPage() {
   return (

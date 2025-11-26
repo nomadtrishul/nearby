@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Hedgehog Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Hedgehog Care Guide',
   description: 'Complete guide to keeping hedgehogs as pets. Learn about their care, housing, diet, and health considerations.',
   keywords: ['hedgehog', 'hedgehog care', 'pet hedgehog', 'hedgehog housing', 'hedgehog diet'],
-  openGraph: { title: 'Hedgehog Care Guide | Nearby Pet Care', description: 'Complete guide to keeping hedgehogs as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/hedgehog' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/hedgehog' },
-};
+  pathname: '/pet-breeds/small-mammals/hedgehog',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Hedgehog Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function HedgehogPage() {
   return (

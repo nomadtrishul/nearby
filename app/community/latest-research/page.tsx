@@ -2,78 +2,34 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BlogSidebar from '@/components/BlogSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Latest Pet Care Research: Evidence-Based Information | Nearby Pet Care',
-  description: 'Stay updated with the latest pet care research and scientific findings. Evidence-based information about pet health, nutrition, behavior, and wellness from veterinary journals and research institutions.',
-  keywords: ['pet care research', 'pet health research', 'veterinary research', 'pet science', 'pet nutrition research', 'pet behavior research', 'evidence-based pet care', 'pet wellness research'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Latest Pet Care Research | Nearby Pet Care',
-    description: 'Stay updated with the latest pet care research and scientific findings. Evidence-based information about pet health and wellness.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/community/latest-research',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Latest Pet Care Research - Evidence-Based Information',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Community',
-    tags: ['pet care research', 'veterinary research', 'pet science', 'evidence-based'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Latest Pet Care Research | Nearby Pet Care',
-    description: 'Stay updated with the latest pet care research and scientific findings. Evidence-based information about pet health and wellness.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/community/latest-research',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/community/latest-research',
-      'en-GB': 'https://nearbypetcare.com/community/latest-research',
-      'en-CA': 'https://nearbypetcare.com/community/latest-research',
-      'en-AU': 'https://nearbypetcare.com/community/latest-research',
+  description:
+    'Stay updated with the latest pet care research and scientific findings. Evidence-based information about pet health, nutrition, and wellness.',
+  keywords: [
+    'pet care research',
+    'pet health research',
+    'veterinary research',
+    'pet science',
+    'pet nutrition research',
+    'pet behavior research',
+    'evidence-based pet care',
+    'pet wellness research',
+  ],
+  pathname: '/community/latest-research',
+  type: 'article',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Latest Pet Care Research - Evidence-Based Information',
+      type: 'image/png',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00Z',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Community',
-    'article:tag': 'pet care research, veterinary research, pet science, evidence-based',
-  },
-};
+  ],
+});
 
 export default function LatestResearchPage() {
   const baseUrl = 'https://nearbypetcare.com';
@@ -321,8 +277,6 @@ export default function LatestResearchPage() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Main Content */}
             <div className="flex-1 max-w-4xl">
-              <h1 className="sr-only" itemProp="headline">Latest Pet Care Research</h1>
-              
               <div className="prose prose-lg dark:prose-invert max-w-none" itemProp="articleBody">
                 <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                   The world of pet care is constantly evolving, with researchers uncovering new insights about our furry companions every day. Here, we dive into the latest scientific discoveries that can help you make better decisions for your pet's health and wellbeing. We translate complex research into practical, actionable information you can actually use.

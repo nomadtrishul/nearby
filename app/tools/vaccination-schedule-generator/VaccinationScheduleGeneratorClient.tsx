@@ -227,6 +227,68 @@ export default function VaccinationScheduleGeneratorClient() {
             </div>
           )}
 
+          {/* How Vaccination Schedule Generator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Vaccination Schedule Generator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our vaccination schedule generator creates a complete vaccination timeline for your pet from birth to adulthood. The tool considers your pet's age, type (dog or cat), and lifestyle to recommend appropriate vaccines. It includes core vaccines (essential for all pets) and non-core vaccines (based on lifestyle and risk factors). The schedule shows when each vaccine should be given and provides information about vaccine types and purposes.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Pet Vaccinations</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Puppies and kittens typically receive their first vaccines at 6-8 weeks of age, with booster shots at 10-12 weeks and 14-16 weeks to build full immunity. Core vaccines (like DHPP for dogs and FVRCP for cats) are essential for all pets. Non-core vaccines depend on lifestyle, location, and risk factors. Adult pets need annual boosters for most core vaccines, though some may be given every 1-3 years depending on local regulations and vaccine type.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should my puppy or kitten get their first vaccines?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Puppies and kittens typically receive their first vaccines at 6-8 weeks of age. This includes core vaccines like DHPP for dogs and FVRCP for cats. They'll need booster shots at 10-12 weeks and 14-16 weeks to build full immunity. Rabies vaccines are usually given at 14-16 weeks.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often do adult pets need vaccines?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Adult pets need annual boosters for most core vaccines, though some vaccines (like rabies) may be given every 1-3 years depending on local regulations and vaccine type. Your veterinarian will create a personalized schedule based on your pet's health, lifestyle, and local requirements.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Are all vaccines necessary for my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Core vaccines (like DHPP for dogs and FVRCP for cats) are essential for all pets. Non-core vaccines (like Lyme disease or FeLV) depend on your pet's lifestyle, location, and risk factors. Your veterinarian can help determine which vaccines are necessary based on your pet's specific situation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/vaccine-reminder" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccine Reminder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track vaccination schedules</p>
+              </a>
+              <a href="/tools/heat-cycle-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Heat Cycle Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track reproductive cycles</p>
+              </a>
+              <a href="/tools/pregnancy-due-date-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pregnancy Due Date Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate pregnancy due dates</p>
+              </a>
+              <a href="/pet-health" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Health Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet health and wellness</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This schedule is a general guideline. Always consult with your veterinarian for a personalized vaccination schedule based on your pet's specific needs, health status, local regulations, and risk factors.

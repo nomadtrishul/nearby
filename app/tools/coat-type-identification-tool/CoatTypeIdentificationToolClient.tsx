@@ -257,6 +257,68 @@ export default function CoatTypeIdentificationToolClient() {
             </div>
           )}
 
+          {/* How Coat Type Identification Tool Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Coat Type Identification Tool Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our coat type identification tool analyzes your pet's coat characteristics to determine their coat type. By selecting features such as hair length, texture, number of layers, shedding amount, and overall feel, the tool matches these characteristics to common coat types. Once identified, the tool provides personalized grooming recommendations, tool suggestions, and care instructions specific to that coat type.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Coat Characteristics</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Coat identification is based on observable characteristics: length (short, medium, long), texture (smooth, wiry, curly), layers (single or double coat), shedding patterns, and overall feel. Each combination of characteristics corresponds to a specific coat type with unique grooming requirements. Proper identification ensures you use the right tools and techniques for your pet's specific needs.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are the different types of pet coats?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common coat types include: Short/Smooth (minimal grooming, weekly brushing), Medium (moderate grooming, 2-3 times per week), Long (daily brushing, frequent bathing), Double Coat (heavy shedding, daily brushing especially during shedding season), Curly (frequent brushing to prevent matting), and Wiry (coarse hair, may need hand-stripping). Each coat type has specific grooming requirements.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I identify my pet's coat type?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To identify your pet's coat type, observe: hair length (short, medium, long), texture (smooth, wiry, curly), number of layers (single or double coat), shedding amount, and overall feel (soft, coarse, oily). Select these characteristics in our tool to get an identification and personalized grooming recommendations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Why is knowing my pet's coat type important?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Knowing your pet's coat type is important because different coats require different grooming routines, tools, and frequencies. For example, long coats need daily brushing to prevent matting, while short coats may only need weekly brushing. Using the wrong grooming approach can cause skin irritation, matting, or damage to the coat. Proper identification helps you provide appropriate care.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right grooming tools</p>
+              </a>
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/bath-frequency-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Bath Frequency Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Determine optimal bathing frequency</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This tool provides general guidance based on coat characteristics. For specific breed information or if you're unsure about your pet's coat type, consult a professional groomer or veterinarian.

@@ -2,78 +2,34 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BlogSidebar from '@/components/BlogSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Owner Stories: Inspiring Experiences & Community | Nearby Pet Care',
-  description: 'Read inspiring stories from pet owners. Share experiences, tips, and connect with the pet care community. Discover adoption stories, training successes, health journeys, and special bonds.',
-  keywords: ['pet owner stories', 'pet stories', 'pet experiences', 'pet community', 'adoption stories', 'pet training stories', 'pet health stories', 'pet owner experiences'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Pet Owner Stories | Nearby Pet Care',
-    description: 'Read inspiring stories from pet owners. Share experiences, tips, and connect with the pet care community.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/community/pet-owner-stories',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Owner Stories - Inspiring Experiences',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Community',
-    tags: ['pet stories', 'pet community', 'pet experiences', 'pet owner stories'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-  title: 'Pet Owner Stories | Nearby Pet Care',
-  description: 'Read inspiring stories from pet owners. Share experiences, tips, and connect with the pet care community.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/community/pet-owner-stories',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/community/pet-owner-stories',
-      'en-GB': 'https://nearbypetcare.com/community/pet-owner-stories',
-      'en-CA': 'https://nearbypetcare.com/community/pet-owner-stories',
-      'en-AU': 'https://nearbypetcare.com/community/pet-owner-stories',
+  description:
+    'Read inspiring stories from pet owners. Share experiences, tips, and connect with the pet care community. Discover adoption stories and training successes.',
+  keywords: [
+    'pet owner stories',
+    'pet stories',
+    'pet experiences',
+    'pet community',
+    'adoption stories',
+    'pet training stories',
+    'pet health stories',
+    'pet owner experiences',
+  ],
+  pathname: '/community/pet-owner-stories',
+  type: 'article',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Owner Stories - Inspiring Experiences',
+      type: 'image/png',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00Z',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Community',
-    'article:tag': 'pet stories, pet community, pet experiences, pet owner stories',
-  },
-};
+  ],
+});
 
 export default function PetOwnerStoriesPage() {
   const baseUrl = 'https://nearbypetcare.com';
@@ -321,8 +277,6 @@ export default function PetOwnerStoriesPage() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Main Content */}
             <div className="flex-1 max-w-4xl">
-              <h1 className="sr-only" itemProp="headline">Pet Owner Stories</h1>
-              
               <div className="prose prose-lg dark:prose-invert max-w-none" itemProp="articleBody">
                 <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                   Every pet owner has a story worth telling. Whether it's the moment you first met your furry friend, the challenges you've overcome together, or the everyday moments that make your bond special—these stories connect us, inspire us, and remind us why we do what we do for our pets. Here, we celebrate the real experiences of pet owners, sharing both the triumphs and the struggles that come with caring for our animal companions.

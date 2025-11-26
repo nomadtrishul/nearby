@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Norwegian Forest Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Norwegian Forest Cat Breed Guide',
   description: 'Complete guide to Norwegian Forest Cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Norwegian Forest Cat', 'Wegie', 'Norwegian Forest Cat breed', 'Norwegian Forest Cat care'],
-  openGraph: { title: 'Norwegian Forest Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Norwegian Forest Cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/norwegian-forest-cat' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/norwegian-forest-cat' },
-};
+  pathname: '/pet-breeds/cats/norwegian-forest-cat',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Norwegian Forest Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function NorwegianForestCatPage() {
   return (

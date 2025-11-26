@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Diagnostics & Tests: Complete Guide to Veterinary Testing | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Diagnostics & Tests: Complete Guide to Veterinary Testing',
   description: 'Learn about common veterinary diagnostic tests and procedures. Understand what tests your pet might need, why they\'re performed, and how to prepare your pet for testing.',
   keywords: ['pet diagnostics', 'veterinary tests', 'pet blood tests', 'pet x-rays', 'pet health screening', 'veterinary diagnostics', 'pet lab tests', 'pet health tests'],
-  openGraph: {
-    title: 'Pet Diagnostics & Tests: Complete Guide to Veterinary Testing | Nearby Pet Care',
-    description: 'Learn about common veterinary diagnostic tests and procedures and what they can tell you about your pet\'s health.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/diagnostics-and-tests',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Diagnostics & Tests Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Diagnostics & Tests: Complete Guide | Nearby Pet Care',
-    description: 'Learn about common veterinary diagnostic tests and procedures.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/diagnostics-and-tests' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/diagnostics-and-tests',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Diagnostics & Tests Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function DiagnosticsAndTestsPage() {
   const breadcrumbStructuredData = {

@@ -1,186 +1,97 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import {
+  generateSEOMetadata,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/privacy`;
-const publishedTime = '2024-01-01T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Nearby Pet Care',
-  description: 'Privacy Policy for Nearby Pet Care. Learn how we collect, use, and protect your personal information when you use our educational pet care platform. Compliant with GDPR, CCPA, and Google AdSense requirements.',
-  keywords: ['privacy policy', 'data protection', 'GDPR', 'CCPA', 'cookie policy', 'data privacy', 'user privacy', 'personal information', 'privacy rights', 'data collection'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Privacy Policy | Nearby Pet Care',
-    description: 'Learn how we collect, use, and protect your personal information. Compliant with GDPR, CCPA, and Google AdSense requirements.',
-    type: 'website',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Privacy Policy - Nearby Pet Care',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Privacy Policy | Nearby Pet Care',
-    description: 'Learn how we collect, use, and protect your personal information. Compliant with GDPR, CCPA, and Google AdSense requirements.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'og:updated_time': modifiedTime,
-  },
-};
-
-export default function PrivacyPage() {
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Privacy Policy',
-        item: pageUrl,
-      },
-    ],
-  };
-
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
-    name: 'Privacy Policy',
-    description: 'Privacy Policy for Nearby Pet Care. Learn how we collect, use, and protect your personal information.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Privacy Policy',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Privacy Policy',
+  description: 'Privacy Policy for Nearby Pet Care. Learn how we collect, use, and protect your personal information. Compliant with GDPR and CCPA requirements.',
+  keywords: [
+    'privacy policy',
+    'data protection',
+    'GDPR',
+    'CCPA',
+    'cookie policy',
+    'data privacy',
+    'user privacy',
+    'personal information',
+    'privacy rights',
+    'data collection',
+  ],
+  pathname: '/privacy',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
       width: 1200,
       height: 630,
+      alt: 'Privacy Policy - Nearby Pet Care',
+      type: 'image/png',
     },
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
+  ],
+  locale: 'en_US',
+  alternates: {
+    languages: {
+      'en-US': '/privacy',
+      'en-GB': '/privacy',
+      'en-CA': '/privacy',
+      'en-AU': '/privacy',
     },
-  };
+  },
+  breadcrumbs: [
+    { name: 'Home', url: '/' },
+    { name: 'Privacy Policy', url: '/privacy' },
+  ],
+});
 
-  // FAQPage Structured Data
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What information does Nearby Pet Care collect?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We collect minimal information necessary to provide our services, including email addresses when you subscribe, information you provide through contact forms, and automatically collected data such as IP address, browser type, and usage data. We also use cookies and similar tracking technologies as described in our Privacy Policy.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How does Nearby Pet Care use Google AdSense?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We use Google AdSense to display personalized advertisements on our website. Google AdSense uses cookies and similar technologies to serve ads based on your browsing history and interests. You can control advertising cookies through our cookie consent banner or your browser settings. We comply with Google AdSense policies and disclose our use of advertising services in our Privacy Policy.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I opt out of data collection?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, you have several options to control data collection. You can manage cookie preferences through our cookie consent banner, opt out of marketing communications by unsubscribing, and exercise your rights under GDPR or CCPA by contacting us. You can also use browser settings to control cookies and opt-out tools provided by advertising networks.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does Nearby Pet Care comply with GDPR and CCPA?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, we comply with GDPR (General Data Protection Regulation) for European users and CCPA (California Consumer Privacy Act) for California residents. We provide detailed information about your rights under these laws in our Privacy Policy, including how to access, correct, or delete your personal information.',
-        },
-      },
-    ],
-  };
+export default function PrivacyPage() {
+  const baseUrl = getBaseUrl();
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Privacy Policy', url: '/privacy' },
+  ];
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Privacy Policy',
+    description: 'Privacy Policy for Nearby Pet Care. Learn how we collect, use, and protect your personal information.',
+    url: '/privacy',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What information does Nearby Pet Care collect?',
+      answer: 'We collect minimal information necessary to provide our services, including email addresses when you subscribe, information you provide through contact forms, and automatically collected data such as IP address, browser type, and usage data. We also use cookies and similar tracking technologies as described in our Privacy Policy.',
+    },
+    {
+      question: 'How does Nearby Pet Care use Google AdSense?',
+      answer: 'We use Google AdSense to display personalized advertisements on our website. Google AdSense uses cookies and similar technologies to serve ads based on your browsing history and interests. You can control advertising cookies through our cookie consent banner or your browser settings. We comply with Google AdSense policies and disclose our use of advertising services in our Privacy Policy.',
+    },
+    {
+      question: 'Can I opt out of data collection?',
+      answer: 'Yes, you have several options to control data collection. You can manage cookie preferences through our cookie consent banner, opt out of marketing communications by unsubscribing, and exercise your rights under GDPR or CCPA by contacting us. You can also use browser settings to control cookies and opt-out tools provided by advertising networks.',
+    },
+    {
+      question: 'Does Nearby Pet Care comply with GDPR and CCPA?',
+      answer: 'Yes, we comply with GDPR (General Data Protection Regulation) for European users and CCPA (California Consumer Privacy Act) for California residents. We provide detailed information about your rights under these laws in our Privacy Policy, including how to access, correct, or delete your personal information.',
+    },
+  ]);
 
   return (
     <>
       {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-      />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
         <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors">
           <div className="container mx-auto max-w-7xl">
@@ -432,7 +343,7 @@ export default function PrivacyPage() {
                   <li><strong>Google AdSense:</strong> Advertising service (requires marketing consent) - We use Google AdSense to display personalized advertisements. Google AdSense uses cookies to serve ads based on your prior visits to our website and other websites. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Google's Ads Settings</a> or by using the <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Digital Advertising Alliance opt-out page</a>. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">Google Privacy Policy</a></li>
                 </ul>
                 <p className="mb-3">
-                  <strong>Google AdSense Disclosure (Updated November 2025):</strong> As required by Google AdSense policies, we disclose that:
+                  <strong>Google AdSense Disclosure (Updated November 2025):</strong> As required by Google AdSense Publisher Policies and Program Policies effective November 2025, we disclose that:
                 </p>
                 <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
                   <li>We use Google AdSense to display advertisements on our website</li>
@@ -507,6 +418,22 @@ export default function PrivacyPage() {
                 </p>
                 
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
+                  GDPR Principles
+                </h3>
+                <p className="mb-3">
+                  We process personal data in accordance with the core principles of GDPR:
+                </p>
+                <ul className="list-disc list-inside space-y-2 mb-4 ml-4">
+                  <li><strong>Lawfulness, Fairness, and Transparency:</strong> We process personal data lawfully, fairly, and in a transparent manner</li>
+                  <li><strong>Purpose Limitation:</strong> We collect personal data only for specified, explicit, and legitimate purposes and do not process it in a manner incompatible with those purposes</li>
+                  <li><strong>Data Minimization:</strong> We collect only the personal data that is adequate, relevant, and limited to what is necessary for the purposes for which it is processed</li>
+                  <li><strong>Accuracy:</strong> We take reasonable steps to ensure personal data is accurate and kept up to date, and we erase or rectify inaccurate data without delay</li>
+                  <li><strong>Storage Limitation:</strong> We retain personal data only for as long as necessary for the purposes for which it is processed (see Section 9: Data Retention)</li>
+                  <li><strong>Integrity and Confidentiality:</strong> We implement appropriate technical and organizational measures to ensure personal data is processed in a manner that ensures appropriate security, including protection against unauthorized or unlawful processing and against accidental loss, destruction, or damage</li>
+                  <li><strong>Accountability:</strong> We are responsible for demonstrating compliance with GDPR principles and maintain records of our processing activities</li>
+                </ul>
+                
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
                   Legal Basis for Processing
                 </h3>
                 <p className="mb-3">
@@ -532,8 +459,11 @@ export default function PrivacyPage() {
                   <li><strong>Right to Data Portability (Article 20):</strong> You can request a copy of your data in a structured, machine-readable format</li>
                   <li><strong>Right to Object (Article 21):</strong> You can object to processing based on legitimate interests or for direct marketing purposes</li>
                   <li><strong>Right to Withdraw Consent:</strong> You can withdraw consent at any time where processing is based on consent</li>
-                  <li><strong>Right to Lodge a Complaint:</strong> You have the right to file a complaint with your local data protection authority</li>
+                  <li><strong>Right to Lodge a Complaint (Article 77):</strong> You have the right to file a complaint with your local data protection authority (supervisory authority) if you believe that our processing of your personal data violates GDPR. You can find your local data protection authority at <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">European Data Protection Board</a> or contact your national data protection authority</li>
                 </ul>
+                <p className="mb-3">
+                  <strong>How to Exercise Your Rights:</strong> To exercise any of these GDPR rights, please contact us at <a href="mailto:privacy@nearbypetcare.com" className="text-blue-600 dark:text-blue-400 hover:underline">privacy@nearbypetcare.com</a> with "GDPR Request" in the subject line. We will respond to your request within one month (or inform you if we need additional time, up to a maximum of three months for complex requests). We may need to verify your identity before processing your request to protect your privacy and security.
+                </p>
 
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 mt-4 transition-colors">
                   Data Controller and Data Protection Officer
@@ -754,3 +684,4 @@ export default function PrivacyPage() {
     </>
   );
 }
+

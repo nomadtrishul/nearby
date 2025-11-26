@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Sphynx Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Sphynx Cat Breed Guide',
   description: 'Complete guide to Sphynx cats. Learn about their characteristics, hairless appearance, and special care requirements.',
   keywords: ['Sphynx', 'Sphynx cat', 'hairless cat', 'Sphynx breed', 'Sphynx care'],
-  openGraph: { title: 'Sphynx Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Sphynx cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/sphynx' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/sphynx' },
-};
+  pathname: '/pet-breeds/cats/sphynx',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Sphynx Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SphynxPage() {
   return (

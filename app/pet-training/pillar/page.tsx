@@ -2,25 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Training & Behavior: Complete Overview Guide | Nearby Pet Care',
-  description: 'Comprehensive overview of pet training and behavior. Learn about effective training methods, addressing behavioral issues, and building a strong bond with your pet.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Training & Behavior: Complete Overview Guide',
+  description: 'Comprehensive overview of pet training and behavior. Learn about effective training methods, addressing behavioral issues, and building strong bonds.',
   keywords: ['pet training overview', 'pet behavior', 'training basics', 'dog training', 'cat training', 'pet behavior guide'],
-  openGraph: { 
-    title: 'Pet Training & Behavior: Complete Overview Guide | Nearby Pet Care', 
-    description: 'Comprehensive overview of pet training and behavior. Learn about effective training methods and building a strong bond with your pet.', 
-    type: 'article', 
-    url: 'https://nearbypetcare.com/pet-training/pillar',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Pet Training & Behavior Overview',
-    }],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-training/pillar' },
-};
+  pathname: '/pet-training/pillar',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Training & Behavior Overview',
+    type: 'image/png',
+  }],
+});
 
 export default function PetTrainingPillarPage() {
   const currentDate = new Date().toISOString();

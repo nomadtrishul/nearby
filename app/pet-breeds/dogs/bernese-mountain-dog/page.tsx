@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Bernese Mountain Dog Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Bernese Mountain Dog Breed Guide',
   description: 'Complete guide to Bernese Mountain Dogs. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Bernese Mountain Dog', 'Bernese breed', 'Bernese care', 'Bernese temperament'],
-  openGraph: { title: 'Bernese Mountain Dog Breed Guide | Nearby Pet Care', description: 'Complete guide to Bernese Mountain Dogs.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/bernese-mountain-dog' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/bernese-mountain-dog' },
-};
+  pathname: '/pet-breeds/dogs/bernese-mountain-dog',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Bernese Mountain Dog Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BerneseMountainDogPage() {
   return (

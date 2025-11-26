@@ -2,60 +2,27 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Senior Pet Care Guide: How to Care for an Aging Dog or Cat | Nearby Pet Care',
-  description: 'Learn how to care for your senior pet with our comprehensive guide. Expert advice on senior dog care, senior cat care, mobility support, diet changes, and end-of-life care for aging pets.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Senior Pet Care Guide: How to Care for an Aging Dog or Cat',
+  description: 'Comprehensive guide to senior pet care. Expert advice on senior dog and cat care, mobility support, diet changes, and end-of-life care.',
   keywords: ['senior pet care', 'how to care for senior pet', 'elderly pet care', 'aging pet care', 'senior dog care', 'senior cat care', 'old dog care', 'old cat care', 'senior pet health', 'aging pet health'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Senior Pet Care Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to caring for senior pets. Expert advice on mobility support, nutrition, and comfort care for aging dogs and cats.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/senior-pets',
-    siteName: 'Nearby Pet Care',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Senior Pet Care Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Senior Pet Care Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to caring for senior pets. Expert advice on mobility support, nutrition, and comfort care for aging dogs and cats.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/senior-pets',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Senior Pet Care Guide',
+      type: 'image/png',
     },
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/senior-pets',
-  },
-  category: 'Pet Care',
-};
+  ],
+  section: 'Pet Care',
+});
 
 export default function SeniorPetsPage() {
   const guides = [

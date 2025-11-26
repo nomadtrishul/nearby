@@ -2,78 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import BlogSidebar from '@/components/BlogSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Best Dog Food for Small Breeds - Buying Guide | Nearby Pet Care',
-  description: 'Complete buying guide for the best dog food for small breeds. Compare top brands and find the perfect food for your small dog. Learn about nutritional needs, kibble size, and feeding recommendations.',
+  description: 'Complete buying guide for the best dog food for small breeds. Compare top brands and find the perfect food for your small dog. Learn about nutritional needs.',
   keywords: ['best dog food small breeds', 'small dog food', 'small breed dog food', 'dog food small dogs', 'best food for small dogs', 'small dog nutrition', 'small breed dog food guide'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Best Dog Food for Small Breeds - Buying Guide | Nearby Pet Care',
-    description: 'Complete buying guide for the best dog food for small breeds. Compare top brands and find the perfect food for your small dog.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/buying-guides/best-dog-food-for-small-breeds',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Best Dog Food for Small Breeds - Buying Guide',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Buying Guides',
-    tags: ['dog food', 'small breeds', 'pet nutrition', 'buying guide'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Dog Food for Small Breeds - Buying Guide | Nearby Pet Care',
-    description: 'Complete buying guide for the best dog food for small breeds. Compare top brands and find the perfect food for your small dog.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/buying-guides/best-dog-food-for-small-breeds',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/buying-guides/best-dog-food-for-small-breeds',
-      'en-GB': 'https://nearbypetcare.com/buying-guides/best-dog-food-for-small-breeds',
-      'en-CA': 'https://nearbypetcare.com/buying-guides/best-dog-food-for-small-breeds',
-      'en-AU': 'https://nearbypetcare.com/buying-guides/best-dog-food-for-small-breeds',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00Z',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Buying Guides',
-    'article:tag': 'dog food, small breeds, pet nutrition, buying guide',
-  },
-};
+  pathname: '/buying-guides/best-dog-food-for-small-breeds',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Best Dog Food for Small Breeds - Buying Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BestDogFoodSmallBreedsPage() {
   const baseUrl = 'https://nearbypetcare.com';
@@ -113,7 +57,7 @@ export default function BestDogFoodSmallBreedsPage() {
     '@type': 'Article',
     '@id': `${pageUrl}#article`,
     headline: 'Best Dog Food for Small Breeds - Buying Guide',
-    description: 'Complete buying guide for the best dog food for small breeds. Compare top brands and find the perfect food for your small dog. Learn about nutritional needs, kibble size, and feeding recommendations.',
+    description: 'Complete buying guide for the best dog food for small breeds. Compare top brands and find the perfect food for your small dog. Learn about nutritional needs and feeding recommendations.',
     image: {
       '@type': 'ImageObject',
       url: `${baseUrl}/og-image.png`,

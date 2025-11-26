@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Doberman Pinscher Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Doberman Pinscher Breed Guide',
   description: 'Complete guide to Doberman Pinschers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Doberman Pinscher', 'Doberman breed', 'Doberman care', 'Doberman temperament'],
-  openGraph: { title: 'Doberman Pinscher Breed Guide | Nearby Pet Care', description: 'Complete guide to Doberman Pinschers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/doberman-pinscher' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/doberman-pinscher' },
-};
+  pathname: '/pet-breeds/dogs/doberman-pinscher',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Doberman Pinscher Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function DobermanPinscherPage() {
   return (

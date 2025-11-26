@@ -187,6 +187,68 @@ export default function FirstAidKitChecklistGeneratorClient() {
             </div>
           )}
 
+          {/* How First Aid Kit Checklist Generator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How First Aid Kit Checklist Generator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our first aid kit checklist generator creates comprehensive checklists for pet first aid kits by organizing essential supplies, medications, and tools by category. The tool provides both basic and advanced kit options, with items organized into categories such as essential supplies (gauze, bandages, scissors), wound care (antiseptic, antibiotic ointment), medications, emergency tools (muzzle, blanket), and important documents. It helps ensure you have everything needed for pet emergencies.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Pet First Aid</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                A pet first aid kit should include essential supplies, wound care items, medications (only with veterinary guidance), emergency tools, and important documents. Check your kit every 3-6 months to ensure all items are present and medications haven't expired. Use a first aid kit for minor injuries and emergencies while seeking or waiting for veterinary care. However, always seek veterinary care for serious injuries, poisoning, difficulty breathing, or any condition that seems severe.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What should be in a pet first aid kit?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  A pet first aid kit should include: essential supplies (gauze, bandages, adhesive tape, cotton balls, tweezers, scissors, thermometer, gloves), wound care (antiseptic solution, antibiotic ointment, saline solution), medications (hydrogen peroxide for inducing vomiting - only with vet guidance, activated charcoal), emergency tools (muzzle, blanket, flashlight), and important documents (veterinarian contact, pet medical records, emergency clinic info). Keep the kit easily accessible and check expiration dates regularly.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I check my pet first aid kit?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Check your pet first aid kit every 3-6 months to ensure all items are present, medications haven't expired, and supplies are in good condition. Replace expired medications, restock used items, and update contact information. Keep the kit in an easily accessible location and make sure all family members know where it is. Consider having a smaller travel kit for car trips.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should I use a pet first aid kit?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Use a pet first aid kit for minor injuries and emergencies while seeking or waiting for veterinary care. It can help with: minor cuts and scrapes, removing splinters or ticks, cleaning wounds, stabilizing injuries before transport, and managing minor burns. However, always seek veterinary care for serious injuries, poisoning, difficulty breathing, or any condition that seems severe. First aid is not a substitute for professional veterinary care.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/symptom-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Symptom Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify health symptoms</p>
+              </a>
+              <a href="/tools/toxic-foods-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Toxic Foods Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Check if foods are safe for pets</p>
+              </a>
+              <a href="/pet-health" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Health Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet health and wellness</p>
+              </a>
+              <a href="/pet-safety" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Safety Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet safety</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> A first aid kit is for minor emergencies only. For serious injuries or emergencies, seek immediate veterinary care. Never use human medications without veterinary approval.

@@ -345,6 +345,68 @@ export default function VitaminSupplementSuggestionToolClient() {
             </div>
           )}
 
+          {/* How Vitamin Supplement Suggestion Tool Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Vitamin Supplement Suggestion Tool Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our vitamin supplement suggestion tool provides personalized supplement recommendations based on your pet's age, diet type, and health conditions. The tool considers that pets on complete commercial diets typically don't need additional vitamins, while pets on homemade or raw diets may need multivitamins. It also suggests condition-specific supplements such as joint health supplements, skin/coat supplements, digestive health probiotics, and antioxidants for senior pets.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Pet Supplements</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Pets on complete commercial diets typically don't need additional vitamins, as commercial diets are formulated to be nutritionally complete. However, pets on homemade or raw diets may need multivitamins. Specific supplements may be beneficial for joint health, skin/coat, digestive health, and senior pets. Always consult your veterinarian before adding supplements, as some can be toxic in excess or interact with medications. Never give human vitamins to pets.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What vitamins and supplements do pets need?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Pets on complete commercial diets typically don't need additional vitamins, as commercial diets are formulated to be nutritionally complete. However, pets on homemade or raw diets may need multivitamins. Specific supplements may be beneficial for: joint health (glucosamine, chondroitin, omega-3), skin/coat (omega-3, biotin), digestive health (probiotics), senior pets (antioxidants), and specific health conditions. Always consult your veterinarian before adding supplements, as some can be toxic in excess.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I give my pet human vitamins?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  No, you should not give human vitamins to pets. Human vitamins may contain ingredients toxic to pets, have incorrect dosages, or lack nutrients pets need (like taurine for cats). Always use pet-specific vitamins and supplements, and only give them under veterinary guidance. Some vitamins (like vitamin A and D) can be toxic in excess, so proper dosage is critical. Quality matters - choose reputable pet supplement brands.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should I give my pet supplements?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Give supplements when: 1) Recommended by your veterinarian for a specific condition; 2) Your pet is on a homemade or raw diet (may need multivitamins); 3) Your pet has a specific health need (e.g., joint supplements for arthritis, omega-3 for skin issues); 4) Your veterinarian identifies a deficiency. However, pets on complete commercial diets typically don't need additional vitamins unless recommended by a veterinarian. More is not always better - some vitamins can be toxic in excess.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/multivitamin-needs-analyzer" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Multivitamin Needs Analyzer</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Determine if supplements are needed</p>
+              </a>
+              <a href="/tools/nutrient-deficiency-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Nutrient Deficiency Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify potential deficiencies</p>
+              </a>
+              <a href="/tools/homemade-food-nutrition-analyzer" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Homemade Food Nutrition Analyzer</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Analyze homemade diet nutrition</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This tool provides general suggestions. Always consult your veterinarian before starting any supplements, especially if your pet has health conditions or is on medication.

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Shih Tzu Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Shih Tzu Breed Guide',
   description: 'Complete guide to Shih Tzus. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Shih Tzu', 'Shih Tzu breed', 'Shih Tzu care', 'lion dog'],
-  openGraph: { title: 'Shih Tzu Breed Guide | Nearby Pet Care', description: 'Complete guide to Shih Tzus.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/shih-tzu' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/shih-tzu' },
-};
+  pathname: '/pet-breeds/dogs/shih-tzu',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Shih Tzu Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ShihTzuPage() {
   return (

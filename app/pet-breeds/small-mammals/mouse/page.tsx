@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Mouse Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Mouse Care Guide',
   description: 'Complete guide to keeping mice as pets. Learn about mouse care, housing, diet, and health considerations.',
   keywords: ['mouse', 'pet mouse', 'mouse care', 'mouse housing', 'mouse diet'],
-  openGraph: { title: 'Mouse Care Guide | Nearby Pet Care', description: 'Complete guide to keeping mice as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/mouse' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/mouse' },
-};
+  pathname: '/pet-breeds/small-mammals/mouse',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Mouse Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function MousePage() {
   return (

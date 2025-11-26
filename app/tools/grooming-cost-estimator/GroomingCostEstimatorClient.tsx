@@ -267,6 +267,68 @@ export default function GroomingCostEstimatorClient() {
             </div>
           )}
 
+          {/* How Grooming Cost Estimator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Grooming Cost Estimator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our grooming cost estimator calculates costs based on multiple factors: pet size (small, medium, large, extra large), coat type and condition (long or matted coats cost more), services needed (full grooming vs. individual services), location (urban areas typically cost 20-30% more than rural), and grooming frequency. The tool provides both per-visit and annual cost estimates, along with a service breakdown.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Cost Factors</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Pet size is the primary cost factor, with larger pets requiring more time and products. Coat condition significantly affects cost - matted coats require extra time and may incur dematting fees. Location impacts pricing, with urban areas typically charging more. Additional services like teeth cleaning, nail grinding, or specialty treatments add to the base cost. Regular grooming schedules can help prevent matting and reduce long-term costs.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How much does pet grooming cost?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Pet grooming costs vary widely based on several factors: pet size (small pets $30-50, medium $45-65, large $60-80, extra large $75-100+), coat type (long or matted coats cost more), services needed (full grooming vs. bath only), location (urban areas cost 20-30% more), and groomer experience. On average, expect to pay $40-80 per visit for full grooming, with annual costs ranging from $480-960 for monthly grooming.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What factors affect grooming costs?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Factors affecting grooming costs include: pet size (larger pets cost more), coat type and condition (matted coats require extra time and cost more), services needed (full grooming vs. individual services), location (urban vs. rural), groomer experience and reputation, pet behavior (difficult pets may incur additional fees), and add-on services (teeth cleaning, nail grinding, etc.). First-time visits may also cost more.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I save money on pet grooming?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To save money on grooming: maintain regular grooming schedules to prevent matting (which costs extra to remove), learn basic grooming skills for between-visit maintenance, look for package deals or loyalty programs, consider mobile groomers for convenience (though they may cost more), groom during off-peak times, ask about add-on service costs upfront, and maintain your pet's coat between professional visits with regular brushing.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right grooming tools</p>
+              </a>
+              <a href="/tools/bath-frequency-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Bath Frequency Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Determine optimal bathing frequency</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> These are estimated costs and may vary significantly based on your location, groomer experience, pet behavior, and specific services needed. Always get quotes from local groomers for accurate pricing. Prices are in USD and may vary by region.

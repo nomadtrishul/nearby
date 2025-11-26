@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Vaccination Schedules: Complete Guide for Dogs & Cats | Nearby Pet Care',
-  description: 'Complete guide to pet vaccination schedules for dogs and cats. Learn about core vaccines, timing, booster requirements, puppy and kitten vaccination schedules, and when to vaccinate your pet.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Vaccination Schedules: Complete Guide for Dogs & Cats',
+  description: 'Complete guide to pet vaccination schedules for dogs and cats. Learn about core vaccines, timing, booster requirements, and when to vaccinate.',
   keywords: ['pet vaccinations', 'dog vaccines', 'cat vaccines', 'vaccination schedule', 'pet immunization', 'puppy vaccines', 'kitten vaccines', 'core vaccines', 'booster shots', 'pet vaccination guide'],
-  openGraph: {
-    title: 'Pet Vaccination Schedules: Complete Guide for Dogs & Cats | Nearby Pet Care',
-    description: 'Complete guide to pet vaccination schedules for dogs and cats, including core vaccines, timing, and booster requirements.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/vaccination-schedules',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Vaccination Schedules Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Vaccination Schedules: Complete Guide | Nearby Pet Care',
-    description: 'Complete guide to pet vaccination schedules for dogs and cats.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/vaccination-schedules' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/vaccination-schedules',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Vaccination Schedules Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function VaccinationSchedulesPage() {
   const breadcrumbStructuredData = {

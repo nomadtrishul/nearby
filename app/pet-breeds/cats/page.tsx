@@ -2,14 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Cat Breeds Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Cat Breeds Guide',
   description: 'Comprehensive guide to cat breeds. Learn about different cat breeds, their characteristics, temperament, and care requirements.',
   keywords: ['cat breeds', 'cat breed guide', 'cat breed information', 'cat characteristics'],
-  openGraph: { title: 'Cat Breeds Guide | Nearby Pet Care', description: 'Comprehensive guide to cat breeds and their characteristics.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats' },
-};
+  pathname: '/pet-breeds/cats',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Cat Breeds Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CatBreedsPage() {
   return (

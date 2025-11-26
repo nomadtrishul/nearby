@@ -2,76 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Best Pet Supplements Guide - Omega-3, Probiotics & More | Nearby Pet Care',
   description: 'Learn about essential supplements for pets including omega-3 fatty acids, probiotics, vitamins, and minerals. When and why to supplement your pet\'s diet. Veterinary recommendations.',
   keywords: ['pet supplements', 'dog supplements', 'cat supplements', 'omega 3 for pets', 'pet probiotics', 'pet vitamins', 'pet joint supplements', 'pet health supplements'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Best Pet Supplements Guide | Nearby Pet Care',
-    description: 'Learn about essential supplements for pets including omega-3, probiotics, and vitamins.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-nutrition/best-pet-supplements-guide',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Best Pet Supplements Guide - Complete Guide to Pet Supplements',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Pet Supplements Guide | Nearby Pet Care',
-    description: 'Learn about essential supplements for pets including omega-3, probiotics, and vitamins.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition/best-pet-supplements-guide',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition/best-pet-supplements-guide',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition/best-pet-supplements-guide',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition/best-pet-supplements-guide',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition/best-pet-supplements-guide',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Nutrition',
-    'article:tag': 'pet supplements, omega-3, probiotics, pet vitamins',
-  },
-};
+  pathname: '/pet-nutrition/best-pet-supplements-guide',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Best Pet Supplements Guide - Complete Guide to Pet Supplements',
+    type: 'image/png',
+  }],
+});
 
 export default function BestPetSupplementsPage() {
   const currentDate = new Date().toISOString();

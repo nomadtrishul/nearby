@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'French Bulldog Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'French Bulldog Breed Guide',
   description: 'Complete guide to French Bulldogs. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['French Bulldog', 'Frenchie', 'French Bulldog breed', 'French Bulldog care'],
-  openGraph: { title: 'French Bulldog Breed Guide | Nearby Pet Care', description: 'Complete guide to French Bulldogs.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/french-bulldog' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/french-bulldog' },
-};
+  pathname: '/pet-breeds/dogs/french-bulldog',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'French Bulldog Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function FrenchBulldogPage() {
   return (

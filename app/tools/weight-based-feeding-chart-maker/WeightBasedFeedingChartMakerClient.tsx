@@ -169,6 +169,68 @@ export default function WeightBasedFeedingChartMakerClient() {
             </div>
           )}
 
+          {/* How Weight-Based Feeding Chart Maker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Weight-Based Feeding Chart Maker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our weight-based feeding chart maker generates feeding charts by calculating daily calorie needs for different weight ranges using the Resting Energy Requirement (RER) formula. The tool uses average weights within each range to calculate maintenance calories, then converts these to cups and grams based on the calories per cup you provide. This creates an easy-to-reference chart showing recommended daily amounts for different weight ranges.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Feeding Charts</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                A weight-based feeding chart shows recommended daily food amounts for different weight ranges. Find your pet's weight range in the chart, then use the corresponding daily calories, cups, or grams. Divide the daily amount into 2-3 meals. These are general guidelines - individual pets may need adjustments based on activity level, age, metabolism, and health status. Always consult your veterinarian for personalized recommendations.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I use a weight-based feeding chart?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  A weight-based feeding chart shows recommended daily food amounts for different weight ranges. Find your pet's weight range in the chart, then use the corresponding daily calories, cups, or grams. Divide the daily amount into 2-3 meals. Remember that these are general guidelines - individual pets may need adjustments based on activity level, age, metabolism, and health status. Always consult your veterinarian for personalized recommendations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know how many calories are in my pet's food?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Check the pet food label for the calorie content, usually listed as "kcal/cup" or "kcal/kg". This information is typically found in the guaranteed analysis section or nutritional information panel. If not listed, contact the manufacturer. The calorie content varies significantly between different foods, so it's important to use the correct value for accurate feeding calculations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Should I adjust the feeding chart based on my pet's activity level?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Yes, activity level significantly affects calorie needs. Active pets may need 20-40% more calories, while sedentary pets may need 10-20% less. Puppies and kittens need more calories for growth, while senior pets typically need fewer calories. Pregnant or nursing pets need significantly more calories. Always monitor your pet's weight and body condition, and adjust portions accordingly. Consult your veterinarian for personalized recommendations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper portion sizes</p>
+              </a>
+              <a href="/tools/weight-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Weight Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate your pet's weight and BMI</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This chart provides general guidelines. Always consult with your veterinarian for personalized feeding recommendations.

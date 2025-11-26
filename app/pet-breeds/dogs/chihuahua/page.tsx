@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Chihuahua Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Chihuahua Breed Guide',
   description: 'Complete guide to Chihuahuas. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Chihuahua', 'Chihuahua breed', 'Chihuahua care', 'smallest dog breed'],
-  openGraph: { title: 'Chihuahua Breed Guide | Nearby Pet Care', description: 'Complete guide to Chihuahuas.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/chihuahua' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/chihuahua' },
-};
+  pathname: '/pet-breeds/dogs/chihuahua',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Chihuahua Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ChihuahuaPage() {
   return (

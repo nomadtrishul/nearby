@@ -2,25 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Crate Training for Pets: Complete Step-by-Step Guide | Nearby Pet Care',
-  description: 'Master crate training with our comprehensive guide. Learn how to make the crate a safe, comfortable space your pet loves. Step-by-step instructions for successful crate training.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Crate Training for Pets: Complete Step-by-Step Guide',
+  description: 'Master crate training with our comprehensive guide. Learn how to make the crate a safe, comfortable space your pet loves. Step-by-step instructions included.',
   keywords: ['crate training', 'dog crate training', 'pet crate', 'crate training tips', 'how to crate train a dog', 'crate training puppies'],
-  openGraph: { 
-    title: 'Crate Training for Pets: Complete Guide | Nearby Pet Care', 
-    description: 'Master crate training with our comprehensive guide. Learn how to make the crate a safe, comfortable space your pet loves.', 
-    type: 'article', 
-    url: 'https://nearbypetcare.com/pet-training/crate-training',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Crate Training for Pets',
-    }],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-training/crate-training' },
-};
+  pathname: '/pet-training/crate-training',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Crate Training for Pets',
+    type: 'image/png',
+  }],
+});
 
 export default function CrateTrainingPage() {
   const currentDate = new Date().toISOString();

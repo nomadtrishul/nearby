@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'First Aid for Pets: Emergency Care Guide & Procedures | Nearby Pet Care',
-  description: 'Essential first aid guide for pets. Learn how to handle common emergencies, create a pet first aid kit, perform basic first aid procedures, and know when to seek immediate veterinary care.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'First Aid for Pets: Emergency Care Guide & Procedures',
+  description: 'Essential first aid guide for pets. Learn how to handle common emergencies, create a pet first aid kit, and know when to seek immediate veterinary care.',
   keywords: ['pet first aid', 'pet emergency care', 'pet first aid kit', 'pet emergency', 'pet injury', 'pet first aid procedures', 'emergency pet care', 'pet CPR', 'pet choking', 'pet bleeding'],
-  openGraph: {
-    title: 'First Aid for Pets: Emergency Care Guide & Procedures | Nearby Pet Care',
-    description: 'Essential first aid guide for pets including emergency care procedures and first aid kit essentials.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/first-aid-for-pets',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet First Aid Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'First Aid for Pets: Emergency Care Guide | Nearby Pet Care',
-    description: 'Essential first aid guide for pets including emergency care procedures.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/first-aid-for-pets' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/first-aid-for-pets',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet First Aid Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function FirstAidForPetsPage() {
   const breadcrumbStructuredData = {

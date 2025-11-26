@@ -5,7 +5,7 @@ import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
 
 export const metadata: Metadata = {
   title: 'End-of-Life Care for Senior Pets: Compassionate Guide | Nearby Pet Care',
-  description: 'Compassionate guide to end-of-life care for senior pets. Learn about quality of life assessment, palliative care, making difficult decisions, and supporting your pet through their final days.',
+  description: 'Compassionate guide to end-of-life care for senior pets. Learn about quality of life assessment, palliative care, and making difficult decisions.',
   keywords: ['end of life pet care', 'pet palliative care', 'pet quality of life', 'pet hospice', 'pet euthanasia', 'senior pet care', 'pet loss support', 'pet quality of life assessment'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',

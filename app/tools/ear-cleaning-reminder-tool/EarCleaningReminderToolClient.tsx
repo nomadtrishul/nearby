@@ -244,6 +244,68 @@ export default function EarCleaningReminderToolClient() {
             </div>
           )}
 
+          {/* How Ear Cleaning Reminder Tool Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Ear Cleaning Reminder Tool Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our ear cleaning reminder tool helps you track your pet's ear cleaning schedule based on ear type, condition, and the date of the last cleaning. The tool calculates when the next cleaning is due based on recommended frequencies (floppy-eared dogs typically need weekly cleaning, while upright ears may need cleaning every 2 weeks). It provides status updates (on schedule, due soon, overdue, long overdue) and personalized cleaning instructions.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Ear Cleaning Frequency</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Ear cleaning frequency depends on your pet's ear type and condition. Most pets need ear cleaning every 1-2 weeks. Floppy-eared dogs may need weekly cleaning, while upright ears may need cleaning every 2 weeks. Pets with waxy ears, allergies, or excess ear hair may need more frequent cleaning. Always check ears weekly for signs of problems, and clean when they appear dirty or waxy. Never insert anything deep into the ear canal.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I clean my pet's ears?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Ear cleaning frequency depends on your pet's ear type and condition. Most pets need ear cleaning every 1-2 weeks. Floppy-eared dogs may need weekly cleaning, while upright ears may need cleaning every 2 weeks. Pets with waxy ears, allergies, or excess ear hair may need more frequent cleaning. Always check ears weekly for signs of problems, and clean when they appear dirty or waxy.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I clean my pet's ears safely?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To clean ears safely: use a pet-specific ear cleaner recommended by your veterinarian, apply cleaner to the ear canal, gently massage the base of the ear, let your pet shake their head, then wipe away debris from the outer ear and visible parts of the ear canal with a soft cloth or cotton ball. Never use cotton swabs deep in the ear canal, and stop if your pet shows signs of pain or discomfort.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are signs of ear problems in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Signs of ear problems include: redness or swelling, foul odor, discharge (brown, yellow, or bloody), excessive scratching or head shaking, pain when touching ears, tilting head to one side, loss of balance, or behavioral changes. If you notice any of these signs, stop cleaning and consult your veterinarian immediately. Do not attempt to clean infected ears without veterinary guidance.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/pet-smell-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Smell Diagnosis Tool</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify ear odor causes</p>
+              </a>
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right ear cleaning tools</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Warning:</strong> Never insert anything deep into your pet's ear canal. If you notice signs of infection (redness, swelling, foul odor, discharge, excessive scratching), stop cleaning and consult your veterinarian immediately. Do not clean infected ears without veterinary guidance.

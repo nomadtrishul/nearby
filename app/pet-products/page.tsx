@@ -2,72 +2,39 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetProductsSidebar from '@/components/PetProductsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Best Pet Products: Reviews & Buying Guides for Dogs & Cats | Nearby Pet Care',
-  description: 'Find the best pet products with our comprehensive reviews and buying guides. Expert reviews of pet food, toys, beds, grooming tools, and accessories to help you choose the right products for your pet.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Best Pet Products: Reviews & Buying Guides for Dogs & Cats',
+  description: 'Find the best pet products with comprehensive reviews and buying guides. Expert reviews of food, toys, beds, grooming tools, and accessories.',
   keywords: ['best pet products', 'pet product reviews', 'best dog food', 'best cat food', 'best pet toys', 'best pet beds', 'pet buying guides', 'pet product comparison', 'dog products', 'cat products', 'pet supplies', 'pet accessories'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Pet Products Reviews & Buying Guides | Nearby Pet Care',
-    description: 'Comprehensive reviews and buying guides for pet products. Expert reviews of pet food, toys, beds, grooming tools, and accessories.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-products',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Products Reviews & Buying Guides',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Products Reviews & Buying Guides | Nearby Pet Care',
-    description: 'Comprehensive reviews and buying guides for pet products. Expert reviews to help you choose the right products for your pet.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-products',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Products Reviews & Buying Guides',
+      type: 'image/png',
     },
-  },
+  ],
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-products',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-products',
-      'en-GB': 'https://nearbypetcare.com/pet-products',
-      'en-CA': 'https://nearbypetcare.com/pet-products',
-      'en-AU': 'https://nearbypetcare.com/pet-products',
+      'en-US': '/pet-products',
+      'en-GB': '/pet-products',
+      'en-CA': '/pet-products',
+      'en-AU': '/pet-products',
     },
   },
+  section: 'Pet Products',
   other: {
     'article:published_time': new Date().toISOString(),
     'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Products',
   },
-};
+});
 
 export default function PetProductsPage() {
   const products = [

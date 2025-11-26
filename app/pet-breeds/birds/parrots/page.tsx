@@ -2,14 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Parrots as Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Parrots as Pets Guide',
   description: 'Complete guide to keeping parrots as pets. Learn about parrot species, characteristics, care requirements, diet, and health considerations.',
   keywords: ['parrots', 'parrot care', 'parrot species', 'parrot pets', 'parrot guide', 'parrot diet', 'parrot health'],
-  openGraph: { title: 'Parrots as Pets Guide | Nearby Pet Care', description: 'Complete guide to keeping parrots as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/birds/parrots' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/birds/parrots' },
-};
+  pathname: '/pet-breeds/birds/parrots',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Parrots as Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ParrotsPage() {
   return (

@@ -283,6 +283,68 @@ export default function IntelligencePlayStyleTestClient() {
             </div>
           )}
 
+          {/* How Intelligence & Play Style Test Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Intelligence & Play Style Test Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our intelligence and play style test evaluates your pet's cognitive abilities and play preferences through a comprehensive questionnaire covering problem-solving ability, learning speed, attention span, curiosity, and play preferences. The tool calculates intelligence level (High, Moderate, or Basic) and identifies play style (High-Energy Interactive, Problem-Solving/Mental, Physical/Active, or Independent/Self-Entertainment), providing personalized activity recommendations based on the results.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Intelligence and Play Styles</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Pet intelligence is measured by problem-solving ability, learning speed, attention span, curiosity, and adaptability. Intelligence varies significantly between individual pets and breeds. High intelligence doesn't always mean easier training - intelligent pets may also be more independent or easily bored. Common play styles include high-energy interactive, problem-solving/mental, physical/active, and independent/self-entertainment. Understanding your pet's intelligence and play style helps you provide appropriate activities and enrichment.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do you measure pet intelligence?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Pet intelligence is measured by factors such as: problem-solving ability (how quickly they solve puzzles), learning speed (how fast they learn new commands), attention span (ability to focus on tasks), curiosity (interest in exploring new things), and adaptability. Intelligence varies significantly between individual pets and breeds. High intelligence doesn't always mean easier training - intelligent pets may also be more independent or easily bored.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are different play styles in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common play styles include: High-Energy Interactive (loves active play with owner, high energy), Problem-Solving/Mental (enjoys puzzles and mental challenges), Physical/Active (prefers running, fetching, physical activities), and Independent/Self-Entertainment (enjoys playing alone with toys). Understanding your pet's play style helps you provide appropriate activities and enrichment.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I provide appropriate activities for my pet's intelligence and play style?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Match activities to your pet's intelligence and play style: High-intelligence pets need challenging puzzles and varied training. High-energy pets need plenty of physical exercise. Problem-solving pets enjoy puzzle toys and games. Independent pets benefit from self-entertaining toys. Provide both mental and physical stimulation, rotate activities to prevent boredom, and adjust difficulty based on your pet's abilities.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/activity-exercise-level-planner" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Activity & Exercise Level Planner</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create personalized exercise plans</p>
+              </a>
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track training progress</p>
+              </a>
+              <a href="/tools/obedience-level-assessment-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Obedience Level Assessment</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Evaluate current training level</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Intelligence and play style can vary significantly between individual pets, even within the same breed. This test provides general guidance. Adjust activities based on your pet's individual preferences and abilities.

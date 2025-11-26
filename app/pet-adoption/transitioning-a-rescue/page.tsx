@@ -5,14 +5,14 @@ import AdoptionSidebar from '@/components/AdoptionSidebar';
 
 export const metadata: Metadata = {
   title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust | Nearby Pet Care',
-  description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, handle common challenges, and understand the 3-3-3 rule. Expert tips for helping rescue pets feel safe and secure.',
+  description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, handle challenges, and the 3-3-3 rule.',
   keywords: ['rescue pet transition', 'adopting rescue pet', 'rescue pet adjustment', 'new rescue pet', 'rescue pet trust', 'rescue pet behavior', '3-3-3 rule', 'rescue pet challenges', 'building trust with rescue pet'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',
   publisher: 'Nearby Pet Care',
   openGraph: {
     title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust | Nearby Pet Care',
-    description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, and handle common challenges.',
+    description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, and handle challenges.',
     type: 'article',
     url: 'https://nearbypetcare.com/pet-adoption/transitioning-a-rescue',
     siteName: 'Nearby Pet Care',

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Bengal Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Bengal Cat Breed Guide',
   description: 'Complete guide to Bengal cats. Learn about their characteristics, active temperament, and care requirements.',
   keywords: ['Bengal', 'Bengal cat', 'Bengal breed', 'Bengal care', 'active cat breed'],
-  openGraph: { title: 'Bengal Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Bengal cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/bengal' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/bengal' },
-};
+  pathname: '/pet-breeds/cats/bengal',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Bengal Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BengalPage() {
   return (

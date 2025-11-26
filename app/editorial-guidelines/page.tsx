@@ -1,213 +1,102 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import {
+  generateSEOMetadata,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/editorial-guidelines`;
-const publishedTime = '2024-01-01T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
-  title: 'Editorial Guidelines & Policy | Nearby Pet Care',
-  description: 'Learn about our editorial guidelines, content standards, and sourcing policies. Discover how we ensure quality, accuracy, and trustworthiness in our educational pet care content through rigorous research and review processes.',
-  keywords: ['editorial guidelines', 'content policy', 'editorial standards', 'content quality', 'pet care content', 'content standards', 'editorial process', 'content accuracy', 'pet care information', 'editorial policy'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Editorial Guidelines & Policy | Nearby Pet Care',
-    description: 'Learn about our editorial guidelines, content standards, and sourcing policies. How we ensure quality and accuracy in our educational pet care content.',
-    type: 'article',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime,
-    modifiedTime,
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Editorial Guidelines & Policy - Nearby Pet Care',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Editorial Guidelines & Policy | Nearby Pet Care',
-    description: 'Learn about our editorial guidelines and content standards for educational pet care information.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'og:updated_time': modifiedTime,
-  },
-};
-
-export default function EditorialGuidelinesPage() {
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Editorial Guidelines',
-        item: pageUrl,
-      },
-    ],
-  };
-
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
-    name: 'Editorial Guidelines & Policy',
-    description: 'Learn about our editorial guidelines, content standards, and sourcing policies. How we ensure quality and accuracy in our educational pet care content.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Editorial Guidelines',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Editorial Guidelines & Policy',
+  description: 'Learn about our editorial guidelines, content standards, and sourcing policies. Discover how we ensure quality and accuracy in our educational pet care content.',
+  keywords: [
+    'editorial guidelines',
+    'content policy',
+    'editorial standards',
+    'content quality',
+    'pet care content',
+    'content standards',
+    'editorial process',
+    'content accuracy',
+    'pet care information',
+    'editorial policy',
+  ],
+  pathname: '/editorial-guidelines',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00Z',
+  modifiedTime: new Date().toISOString(),
+  images: [
+    {
+      url: '/og-image.png',
       width: 1200,
       height: 630,
+      alt: 'Editorial Guidelines & Policy - Nearby Pet Care',
+      type: 'image/png',
     },
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Editorial Guidelines',
-          item: pageUrl,
-        },
-      ],
+  ],
+  locale: 'en_US',
+  alternates: {
+    languages: {
+      'en-US': '/editorial-guidelines',
+      'en-GB': '/editorial-guidelines',
+      'en-CA': '/editorial-guidelines',
+      'en-AU': '/editorial-guidelines',
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-    },
-  };
+  },
+  breadcrumbs: [
+    { name: 'Home', url: '/' },
+    { name: 'Editorial Guidelines', url: '/editorial-guidelines' },
+  ],
+});
 
-  // FAQPage Structured Data
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What are your editorial standards for content?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Our editorial standards require all content to be accurate, clear, helpful, and complete. We base our information on widely accepted pet care practices, verify facts with reputable sources, write in clear and accessible language, and ensure content provides practical, actionable guidance. All content is reviewed by our editorial team before publication.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do you ensure content accuracy?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We ensure accuracy by sourcing information from reputable sources like veterinary medical associations, peer-reviewed journals, established pet care organizations, certified veterinary professionals, and government agencies. All content is fact-checked, reviewed for accuracy, and regularly updated to reflect current best practices. We clearly distinguish between established facts and emerging research.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What sources do you use for your content?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We prioritize information from veterinary medical associations, peer-reviewed veterinary journals, established pet care organizations, certified veterinary professionals, government agencies like the FDA and USDA, and academic institutions. We evaluate all sources for authority, credibility, recency, objectivity, and alignment with widely accepted practices.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How often is your content updated?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We regularly review and update our content to ensure it remains current and accurate. Content is updated when new information becomes available, when best practices change, or when errors are identified. We also monitor feedback and questions to identify areas for improvement. Significant updates are reflected in the modification date.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are you independent and objective in your content?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, we maintain strict editorial independence. We do not accept payment for positive coverage, our content is not influenced by advertisers or sponsors, we clearly disclose any potential conflicts of interest, and we do not represent any business, clinic, or service provider. Our recommendations are based on educational value, not commercial relationships.',
-        },
-      },
-    ],
-  };
+export default function EditorialGuidelinesPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Editorial Guidelines', url: '/editorial-guidelines' },
+  ];
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Editorial Guidelines & Policy',
+    description: 'Learn about our editorial guidelines, content standards, and sourcing policies. How we ensure quality and accuracy in our educational pet care content.',
+    url: '/editorial-guidelines',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What are your editorial standards for content?',
+      answer: 'Our editorial standards require all content to be accurate, clear, helpful, and complete. We base our information on widely accepted pet care practices, verify facts with reputable sources, write in clear and accessible language, and ensure content provides practical, actionable guidance. All content is reviewed by our editorial team before publication.',
+    },
+    {
+      question: 'How do you ensure content accuracy?',
+      answer: 'We ensure accuracy by sourcing information from reputable sources like veterinary medical associations, peer-reviewed journals, established pet care organizations, certified veterinary professionals, and government agencies. All content is fact-checked, reviewed for accuracy, and regularly updated to reflect current best practices. We clearly distinguish between established facts and emerging research.',
+    },
+    {
+      question: 'What sources do you use for your content?',
+      answer: 'We prioritize information from veterinary medical associations, peer-reviewed veterinary journals, established pet care organizations, certified veterinary professionals, government agencies like the FDA and USDA, and academic institutions. We evaluate all sources for authority, credibility, recency, objectivity, and alignment with widely accepted practices.',
+    },
+    {
+      question: 'How often is your content updated?',
+      answer: 'We regularly review and update our content to ensure it remains current and accurate. Content is updated when new information becomes available, when best practices change, or when errors are identified. We also monitor feedback and questions to identify areas for improvement. Significant updates are reflected in the modification date.',
+    },
+    {
+      question: 'Are you independent and objective in your content?',
+      answer: 'Yes, we maintain strict editorial independence. We do not accept payment for positive coverage, our content is not influenced by advertisers or sponsors, we clearly disclose any potential conflicts of interest, and we do not represent any business, clinic, or service provider. Our recommendations are based on educational value, not commercial relationships.',
+    },
+  ]);
 
   return (
     <>
       {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-      />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
@@ -550,3 +439,4 @@ export default function EditorialGuidelinesPage() {
     </>
   );
 }
+

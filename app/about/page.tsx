@@ -1,83 +1,102 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import {
+  generateSEOMetadata,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'About Us - Trusted Pet Care Information & Education | Nearby Pet Care',
-  description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips, guides, and information. We help pet owners learn how to care for dogs, cats, and pets with practical, evidence-based advice.',
-  keywords: ['about pet care', 'pet care education', 'pet care information', 'pet care tips', 'how to care for pets', 'pet care guide', 'trusted pet care advice', 'pet care resources', 'pet care platform', 'pet owner education'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'About Us - Independent Educational Pet Care Platform | Nearby Pet Care',
-    description: 'An independent educational platform providing practical guidance on pet nutrition, health, grooming, training, and overall wellbeing.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/about',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'About Nearby Pet Care - Independent Educational Pet Care Platform',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'About Us - Independent Educational Pet Care Platform | Nearby Pet Care',
-    description: 'An independent educational platform providing practical guidance on pet nutrition, health, grooming, training, and overall wellbeing.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'About Us - Trusted Pet Care Information & Education',
+  description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips and guides. Practical, evidence-based advice for pet owners.',
+  keywords: [
+    'about pet care',
+    'pet care education',
+    'pet care information',
+    'pet care tips',
+    'how to care for pets',
+    'pet care guide',
+    'trusted pet care advice',
+    'pet care resources',
+    'pet care platform',
+    'pet owner education',
+  ],
+  pathname: '/about',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'About Nearby Pet Care - Independent Educational Pet Care Platform',
+      type: 'image/png',
+    },
+  ],
+  locale: 'en_US',
   alternates: {
-    canonical: 'https://nearbypetcare.com/about',
     languages: {
-      'en-US': 'https://nearbypetcare.com/about',
-      'en-GB': 'https://nearbypetcare.com/about',
-      'en-CA': 'https://nearbypetcare.com/about',
-      'en-AU': 'https://nearbypetcare.com/about',
+      'en-US': '/about',
+      'en-GB': '/about',
+      'en-CA': '/about',
+      'en-AU': '/about',
     },
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  other: {
-    'article:author': 'Nearby Pet Care Team',
-    'og:updated_time': new Date().toISOString(),
-  },
-};
+  breadcrumbs: [
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' },
+  ],
+});
 
 export default function AboutPage() {
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
 
-  // Enhanced AboutPage Structured Data (Schema.org)
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' },
+  ];
+
+  // Generate structured data using SEO utils
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'About Us - Nearby Pet Care',
+    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips, guides, and information.',
+    url: '/about',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What is Nearby Pet Care?',
+      answer: 'Nearby Pet Care is an independent educational platform providing trusted pet care tips, guides, and information. We help pet owners learn how to care for dogs, cats, and pets with practical, evidence-based advice.',
+    },
+    {
+      question: 'Is Nearby Pet Care affiliated with any pet care businesses?',
+      answer: 'No, we are completely independent. We do not sell pet food, run veterinary clinics, or represent any pet care business. Our only job is to help you understand pet care topics so you can make better decisions for your pets.',
+    },
+    {
+      question: 'What kind of pet care information do you provide?',
+      answer: 'We provide comprehensive guides covering pet nutrition, health, grooming, training, safety, and adoption. Our content includes step-by-step instructions, practical tips, and evidence-based advice that pet owners can easily understand and apply.',
+    },
+    {
+      question: 'How do you ensure the quality of your pet care information?',
+      answer: 'All our content is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior. We focus on providing practical, evidence-based guidance that helps pet owners make informed decisions.',
+    },
+  ]);
+
+  // Custom AboutPage structured data (not in utils, but using jsonLdScriptProps)
   const aboutStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     '@id': `${baseUrl}/about`,
     name: 'About Nearby Pet Care',
     headline: 'About Us - Trusted Pet Care Information & Education',
-    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips, guides, and information. We help pet owners learn how to care for dogs, cats, and pets with practical, evidence-based advice.',
+    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips and guides. Practical, evidence-based advice for pet owners.',
     url: `${baseUrl}/about`,
     inLanguage: 'en-US',
     datePublished: '2024-01-01T00:00:00Z',
@@ -131,130 +150,7 @@ export default function AboutPage() {
       name: 'Nearby Pet Care',
       url: baseUrl,
     },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'About',
-          item: `${baseUrl}/about`,
-        },
-      ],
-    },
-  };
-
-  // Enhanced WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${baseUrl}/about#webpage`,
-    name: 'About Us - Nearby Pet Care',
-    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips, guides, and information.',
-    url: `${baseUrl}/about`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Organization',
-      '@id': `${baseUrl}#organization`,
-      name: 'Nearby Pet Care',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
-      width: 1200,
-      height: 630,
-    },
-    datePublished: '2024-01-01T00:00:00Z',
-    dateModified: currentDate,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'About',
-          item: `${baseUrl}/about`,
-        },
-      ],
-    },
-  };
-
-  // Breadcrumb Structured Data (separate for better compatibility)
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'About',
-        item: `${baseUrl}/about`,
-      },
-    ],
-  };
-
-  // FAQ Structured Data for common questions
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is Nearby Pet Care?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Nearby Pet Care is an independent educational platform providing trusted pet care tips, guides, and information. We help pet owners learn how to care for dogs, cats, and pets with practical, evidence-based advice.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is Nearby Pet Care affiliated with any pet care businesses?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No, we are completely independent. We do not sell pet food, run veterinary clinics, or represent any pet care business. Our only job is to help you understand pet care topics so you can make better decisions for your pets.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What kind of pet care information do you provide?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We provide comprehensive guides covering pet nutrition, health, grooming, training, safety, and adoption. Our content includes step-by-step instructions, practical tips, and evidence-based advice that pet owners can easily understand and apply.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How do you ensure the quality of your pet care information?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'All our content is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior. We focus on providing practical, evidence-based guidance that helps pet owners make informed decisions.',
-        },
-      },
-    ],
+    breadcrumb: breadcrumbStructuredData,
   };
 
   const values = [
@@ -283,30 +179,10 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors" role="main" aria-label="About Nearby Pet Care">
       {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(aboutStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqStructuredData),
-        }}
-      />
+      <script {...jsonLdScriptProps(aboutStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       {/* Hero Section - Optimized for Core Web Vitals */}
       <section 
         className="relative pb-16 sm:pb-20 md:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors"
@@ -518,14 +394,14 @@ export default function AboutPage() {
             <nav className="flex flex-col sm:flex-row gap-4 justify-center" aria-label="Main navigation">
               <Link
                 href="/pet-care-tips"
-                className="inline-block px-6 sm:px-8 py-3 sm:py-4 min-h-[48px] flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 min-h-[48px] flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 aria-label="Browse all pet care guides"
               >
                 Browse All Guides
               </Link>
               <Link
                 href="/blog"
-                className="inline-block px-6 sm:px-8 py-3 sm:py-4 min-h-[48px] flex items-center justify-center bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-200 dark:hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                className="px-6 sm:px-8 py-3 sm:py-4 min-h-[48px] flex items-center justify-center bg-gray-100 dark:bg-white/10 backdrop-blur-sm text-gray-900 dark:text-white border border-gray-300 dark:border-white/20 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-200 dark:hover:bg-white/20 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                 aria-label="Read our blog articles"
               >
                 Read Our Blog

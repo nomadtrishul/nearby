@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Signs Your Pet Needs a Vet: When to Seek Veterinary Care | Nearby Pet Care',
-  description: 'Learn to recognize signs that indicate your pet needs veterinary attention. Know when symptoms require immediate emergency care versus when to schedule a regular appointment.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Signs Your Pet Needs a Vet: When to Seek Veterinary Care',
+  description: 'Learn to recognize signs that indicate your pet needs veterinary attention. Know when symptoms require immediate emergency care or regular appointments.',
   keywords: ['pet emergency signs', 'when to take pet to vet', 'pet illness symptoms', 'pet health warning signs', 'pet emergency', 'signs pet needs vet', 'pet health symptoms'],
-  openGraph: {
-    title: 'Signs Your Pet Needs a Vet: When to Seek Veterinary Care | Nearby Pet Care',
-    description: 'Learn to recognize signs that indicate your pet needs veterinary attention and when to seek emergency care.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/signs-your-pet-needs-a-vet',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Signs Your Pet Needs a Vet Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Signs Your Pet Needs a Vet: When to Seek Care | Nearby Pet Care',
-    description: 'Learn to recognize signs that indicate your pet needs veterinary attention.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/signs-your-pet-needs-a-vet' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/signs-your-pet-needs-a-vet',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Signs Your Pet Needs a Vet Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SignsYourPetNeedsVetPage() {
   const breadcrumbStructuredData = {

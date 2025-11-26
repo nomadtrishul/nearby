@@ -290,6 +290,68 @@ export default function FurSheddingLevelCheckerClient() {
             </div>
           )}
 
+          {/* How Fur Shedding Level Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Fur Shedding Level Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our fur shedding level checker assesses your pet's shedding level by analyzing coat type, shedding amount, and current season. The tool considers that different coat types have different shedding patterns: low-shedding breeds shed minimally year-round, moderate-shedding breeds shed regularly with seasonal increases, and heavy-shedding breeds (especially double-coated) shed heavily during spring and fall coat changes. The tool provides management strategies and grooming recommendations based on the assessed level.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Shedding Patterns</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Normal shedding varies by breed and coat type. Low-shedding breeds (like Poodles, Bichons) shed minimally year-round. Moderate-shedding breeds shed regularly with seasonal increases. Heavy-shedding breeds (especially double-coated breeds like Huskies, Golden Retrievers) shed heavily, especially during spring and fall coat changes. Some shedding is always normal, but excessive or sudden changes may indicate health issues such as allergies, skin conditions, nutritional deficiencies, or stress.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How much shedding is normal for pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Normal shedding varies by breed and coat type. Low-shedding breeds (like Poodles, Bichons) shed minimally year-round. Moderate-shedding breeds shed regularly with seasonal increases. Heavy-shedding breeds (especially double-coated breeds like Huskies, Golden Retrievers) shed heavily, especially during spring and fall coat changes. Some shedding is always normal, but excessive or sudden changes may indicate health issues.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I reduce my pet's shedding?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To reduce shedding: brush your pet regularly (daily for heavy shedders, 2-3 times per week for moderate shedders), use appropriate deshedding tools (undercoat rakes, Furminators), bathe regularly with deshedding shampoos, ensure a healthy diet with omega-3 fatty acids, keep your pet well-hydrated, and consider professional deshedding treatments. Regular grooming is the most effective way to manage shedding.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should I be concerned about excessive shedding?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Be concerned about shedding if you notice: sudden increase in shedding, bald patches or thinning areas, skin irritation or redness, excessive scratching, changes in coat texture, or if shedding is accompanied by other symptoms like lethargy or appetite changes. These may indicate health issues such as allergies, skin infections, parasites, nutritional deficiencies, or stress. Consult your veterinarian if you notice unusual shedding patterns.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find deshedding tools</p>
+              </a>
+              <a href="/tools/coat-type-identification-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Coat Type Identification Tool</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify your pet's coat type</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Shedding is normal for most pets. However, excessive or sudden changes in shedding may indicate health issues such as allergies, skin conditions, nutritional deficiencies, or stress. If you notice unusual shedding patterns, consult your veterinarian.

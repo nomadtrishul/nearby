@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Border Collie Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Border Collie Breed Guide',
   description: 'Complete guide to Border Collies. Learn about their characteristics, intelligence, temperament, and care requirements.',
   keywords: ['Border Collie', 'Border Collie breed', 'Border Collie care', 'most intelligent dog'],
-  openGraph: { title: 'Border Collie Breed Guide | Nearby Pet Care', description: 'Complete guide to Border Collies.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/border-collie' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/border-collie' },
-};
+  pathname: '/pet-breeds/dogs/border-collie',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Border Collie Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BorderColliePage() {
   return (

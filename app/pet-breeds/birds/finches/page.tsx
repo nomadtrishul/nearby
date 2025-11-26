@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Finches as Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Finches as Pets Guide',
   description: 'Complete guide to keeping finches as pets. Learn about finch care, housing, diet, and health considerations.',
   keywords: ['finches', 'finch care', 'finch pets', 'finch guide', 'finch diet', 'finch health'],
-  openGraph: { title: 'Finches as Pets Guide | Nearby Pet Care', description: 'Complete guide to keeping finches as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/birds/finches' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/birds/finches' },
-};
+  pathname: '/pet-breeds/birds/finches',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Finches as Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function FinchesPage() {
   return (

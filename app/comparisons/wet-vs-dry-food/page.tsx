@@ -2,81 +2,28 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import ComparisonsSidebar from '@/components/ComparisonsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/comparisons/wet-vs-dry-food`;
-const publishedTime = '2024-01-20T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Wet vs Dry Pet Food - Complete Comparison Guide | Nearby Pet Care',
-  description: 'Comprehensive comparison of wet vs dry pet food. Expert analysis of benefits, drawbacks, nutrition, hydration, cost, and dental health to help you choose the best option for your pet.',
+  description: 'Comprehensive comparison of wet vs dry pet food. Expert analysis of benefits, drawbacks, nutrition, and cost to help you choose the best option.',
   keywords: ['wet vs dry food', 'wet food vs dry food', 'pet food comparison', 'dog food wet dry', 'cat food wet dry', 'canned vs kibble', 'best pet food type', 'wet food benefits', 'dry food benefits'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Wet vs Dry Pet Food - Complete Comparison Guide | Nearby Pet Care',
-    description: 'Comprehensive comparison of wet vs dry pet food. Expert analysis of benefits, drawbacks, nutrition, and feeding recommendations.',
-    type: 'article',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime,
-    modifiedTime,
-    authors: ['Nearby Pet Care Team'],
-    section: 'Comparisons',
-    tags: ['pet food', 'wet food', 'dry food', 'pet nutrition', 'feeding guide', 'pet care'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Wet vs Dry Pet Food Comparison Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Wet vs Dry Pet Food - Complete Comparison Guide | Nearby Pet Care',
-    description: 'Comprehensive comparison of wet vs dry pet food. Expert analysis to help you choose the best option for your pet.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': publishedTime,
-    'article:modified_time': modifiedTime,
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Comparisons',
-    'article:tag': 'pet food, wet food, dry food, pet nutrition, feeding guide',
-  },
-};
+  pathname: '/comparisons/wet-vs-dry-food',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Wet vs Dry Pet Food Comparison Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function WetVsDryFoodPage() {
+  const baseUrl = 'https://nearbypetcare.com';
+  const pageUrl = `${baseUrl}/comparisons/wet-vs-dry-food`;
+  const publishedTime = '2024-01-20T00:00:00Z';
+  const modifiedTime = new Date().toISOString();
   // Breadcrumb Structured Data
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',

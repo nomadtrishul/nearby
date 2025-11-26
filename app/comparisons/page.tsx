@@ -2,67 +2,39 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import ComparisonsSidebar from '@/components/ComparisonsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/comparisons`;
-
-export const metadata: Metadata = {
-  title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side | Nearby Pet Care',
-  description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis, ingredient reviews, and real-world results.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side',
+  description: 'Compare pet products side-by-side. Detailed comparisons of pet food brands, wet vs dry food, and other products with expert analysis and reviews.',
   keywords: ['pet product comparisons', 'compare pet food', 'pet food comparison', 'wet vs dry food', 'pet product comparison', 'compare pet products', 'dog food comparison', 'cat food comparison', 'pet food reviews', 'best pet food'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side | Nearby Pet Care',
-    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis.',
-    type: 'website',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Pet Product Comparisons',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side | Nearby Pet Care',
-    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons with expert analysis.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+  pathname: '/comparisons',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Product Comparisons',
+      type: 'image/png',
+    },
+  ],
   alternates: {
-    canonical: pageUrl,
     languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
+      'en-US': '/comparisons',
+      'en-GB': '/comparisons',
+      'en-CA': '/comparisons',
+      'en-AU': '/comparisons',
     },
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-};
+});
 
 export default function ComparisonsPage() {
+  const baseUrl = getBaseUrl();
+  const pageUrl = `${baseUrl}/comparisons`;
   const comparisons = [
     { title: 'Royal Canin vs Pedigree', href: '/comparisons/royal-canin-vs-pedigree' },
     { title: 'Wet vs Dry Food', href: '/comparisons/wet-vs-dry-food' },
@@ -73,7 +45,7 @@ export default function ComparisonsPage() {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: 'Pet Product Comparisons',
-    description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products with expert analysis.',
+    description: 'Compare pet products side-by-side. Detailed comparisons of pet food brands, wet vs dry food, and other products with expert analysis.',
     url: pageUrl,
     inLanguage: 'en-US',
     isPartOf: {

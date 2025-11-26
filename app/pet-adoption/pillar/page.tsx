@@ -5,14 +5,14 @@ import AdoptionSidebar from '@/components/AdoptionSidebar';
 
 export const metadata: Metadata = {
   title: 'Pet Adoption & Rescue Overview: Complete Guide | Nearby Pet Care',
-  description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, essential topics for successful adoption, understanding rescue pet behavior, and building trust. Your comprehensive guide to pet adoption.',
+  description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, essential topics for successful adoption, and trust building.',
   keywords: ['pet adoption overview', 'rescue pets', 'adopting a pet', 'pet adoption guide', 'rescue pet guide', 'pet adoption process', 'adoption overview', 'rescue pet information'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',
   publisher: 'Nearby Pet Care',
   openGraph: {
     title: 'Pet Adoption & Rescue Overview: Complete Guide | Nearby Pet Care',
-    description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, and essential topics for successful adoption.',
+    description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, and essential topics for successful pet adoption.',
     type: 'article',
     url: 'https://nearbypetcare.com/pet-adoption/pillar',
     siteName: 'Nearby Pet Care',

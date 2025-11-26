@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Gerbil Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Gerbil Care Guide',
   description: 'Complete guide to keeping gerbils as pets. Learn about gerbil care, housing, diet, and health considerations.',
   keywords: ['gerbil', 'gerbil care', 'pet gerbil', 'gerbil housing', 'gerbil diet'],
-  openGraph: { title: 'Gerbil Care Guide | Nearby Pet Care', description: 'Complete guide to keeping gerbils as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/gerbil' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/gerbil' },
-};
+  pathname: '/pet-breeds/small-mammals/gerbil',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Gerbil Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function GerbilPage() {
   return (

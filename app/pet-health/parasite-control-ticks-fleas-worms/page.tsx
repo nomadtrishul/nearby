@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Parasite Control for Pets: Complete Guide to Ticks, Fleas & Worms | Nearby Pet Care',
-  description: 'Complete guide to parasite control for pets. Learn about preventing and treating ticks, fleas, heartworms, and intestinal parasites. Step-by-step prevention methods and treatment options.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Parasite Control for Pets: Complete Guide to Ticks, Fleas & Worms',
+  description: 'Complete guide to parasite control for pets. Learn about preventing and treating ticks, fleas, heartworms, and intestinal parasites.',
   keywords: ['pet parasites', 'flea control', 'tick prevention', 'heartworm prevention', 'pet deworming', 'flea treatment', 'tick removal', 'intestinal parasites', 'pet parasite prevention', 'flea and tick control'],
-  openGraph: {
-    title: 'Parasite Control for Pets: Complete Guide to Ticks, Fleas & Worms | Nearby Pet Care',
-    description: 'Complete guide to parasite control for pets including ticks, fleas, heartworms, and intestinal parasites.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Parasite Control Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Parasite Control for Pets: Complete Guide | Nearby Pet Care',
-    description: 'Complete guide to parasite control for pets including ticks, fleas, and worms.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/parasite-control-ticks-fleas-worms',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Parasite Control Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ParasiteControlPage() {
   const breadcrumbStructuredData = {

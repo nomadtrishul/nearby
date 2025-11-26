@@ -267,6 +267,68 @@ export default function IdealWeightCheckerClient() {
             </div>
           )}
 
+          {/* How Ideal Weight Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Ideal Weight Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our ideal weight checker helps determine if your pet is at their ideal weight by comparing their current weight to breed-specific ideal weight ranges and considering their body condition score. The tool calculates the weight difference and percentage from ideal, providing a status assessment (ideal weight, underweight, or overweight). It offers personalized recommendations for weight management based on the assessment.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Ideal Weight</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Ideal weight varies by breed, age, and individual body structure. You can determine if your pet is at ideal weight by checking breed-specific ranges, using body condition scoring (you should be able to feel ribs with light pressure, see a waist from above, and see an abdominal tuck from the side), and consulting your veterinarian. Body condition score uses a 1-9 scale where 4-5 is ideal weight.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know if my pet is at their ideal weight?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  You can determine if your pet is at their ideal weight by: 1) Checking breed-specific ideal weight ranges; 2) Using body condition scoring (BCS) - you should be able to feel ribs with light pressure, see a waist when viewed from above, and see an abdominal tuck when viewed from the side; 3) Consulting your veterinarian for a professional assessment. Ideal weight varies by breed, age, and individual body structure.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What is body condition score (BCS)?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Body condition score (BCS) is a standardized way to assess a pet's body fat. It typically uses a 1-9 scale where: 1-3 = underweight (ribs, spine, and hip bones easily visible), 4-5 = ideal weight (ribs easily felt, visible waist, abdominal tuck), 6-7 = overweight (ribs difficult to feel, no waist, rounded abdomen), 8-9 = obese (ribs not felt, no waist, prominent fat deposits). Your veterinarian can help you assess your pet's BCS.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I help my pet reach their ideal weight?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To help your pet reach their ideal weight: 1) Consult your veterinarian for a weight management plan; 2) Measure food portions accurately and avoid free-feeding; 3) Reduce treats and table scraps; 4) Increase exercise gradually (appropriate for your pet's age and health); 5) Consider weight management pet food; 6) Monitor progress monthly; 7) Be patient - healthy weight loss is gradual (1-2% body weight per week). Never put your pet on a crash diet without veterinary supervision.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/weight-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Weight Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate your pet's weight and BMI</p>
+              </a>
+              <a href="/tools/pet-bmi-body-condition-score" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet BMI / Body Condition Score</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess body condition score</p>
+              </a>
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/pet-health" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Health Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet health and wellness</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This tool provides general guidelines. Individual pets may have different ideal weights based on frame size, muscle mass, and other factors. Always consult with your veterinarian for personalized recommendations.

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Siamese Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Siamese Cat Breed Guide',
   description: 'Complete guide to Siamese cats. Learn about their characteristics, temperament, vocal nature, and care requirements.',
   keywords: ['Siamese cat', 'Siamese breed', 'Siamese cat care', 'Siamese cat temperament', 'vocal cat breed'],
-  openGraph: { title: 'Siamese Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Siamese cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/siamese' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/siamese' },
-};
+  pathname: '/pet-breeds/cats/siamese',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Siamese Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SiameseCatPage() {
   return (

@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Behavior Guide: Calm, Confident Dogs & Cats | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Behavior Guide: Calm, Confident Dogs & Cats',
   description: 'Understand pet behavior, decode stress signals, and learn science-backed techniques to solve common behavior problems with confidence.',
   keywords: [
     'pet behavior',
@@ -15,34 +16,20 @@ export const metadata: Metadata = {
     'behavior training for dogs',
     'behavior training for cats',
   ],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Pet Behavior Guide: Calm, Confident Dogs & Cats | Nearby Pet Care',
-    description: 'Comprehensive guides to understand and improve your pet’s behavior with humane, positive strategies.',
-    url: 'https://nearbypetcare.com/pet-behavior',
-    type: 'website',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Behavior Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Behavior Guide | Nearby Pet Care',
-    description: 'Decode pet body language and solve behavior issues with confidence.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-behavior',
-  },
-  category: 'Pet Behavior',
-};
+  pathname: '/pet-behavior',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Behavior Guide',
+      type: 'image/png',
+    },
+  ],
+  section: 'Pet Behavior',
+});
 
 const guides = [
   {

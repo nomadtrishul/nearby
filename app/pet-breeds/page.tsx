@@ -2,33 +2,24 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Breeds Guide: Dog Breeds, Cat Breeds & Breed-Specific Care | Nearby Pet Care',
-  description: 'Explore different pet breeds and learn about breed-specific care. Comprehensive guides on dog breeds, cat breeds, and their unique characteristics, health needs, and care requirements.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Breeds Guide: Dog Breeds, Cat Breeds & Breed-Specific Care',
+  description: 'Explore different pet breeds and learn about breed-specific care. Comprehensive guides on dog breeds, cat breeds, and their unique characteristics.',
   keywords: ['pet breeds', 'dog breeds', 'cat breeds', 'breed guide', 'breed care', 'dog breed information', 'cat breed information', 'breed characteristics', 'breed health', 'breed-specific care'],
-  openGraph: {
-    title: 'Pet Breeds & Breed-Specific Care | Nearby Pet Care',
-    description: 'Comprehensive guide to pet breeds and breed-specific care.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-breeds',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Breeds & Breed-Specific Care',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Breeds & Breed-Specific Care | Nearby Pet Care',
-    description: 'Comprehensive guide to pet breeds and breed-specific care.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds' },
-};
+  pathname: '/pet-breeds',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Breeds & Breed-Specific Care',
+      type: 'image/png',
+    },
+  ],
+});
 
 export default function PetBreedsPage() {
   const categories = [

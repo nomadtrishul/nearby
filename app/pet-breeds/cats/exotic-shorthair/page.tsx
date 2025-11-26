@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Exotic Shorthair Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Exotic Shorthair Cat Breed Guide',
   description: 'Complete guide to Exotic Shorthair cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Exotic Shorthair', 'Exotic Shorthair cat', 'Exotic Shorthair breed', 'Exotic Shorthair care'],
-  openGraph: { title: 'Exotic Shorthair Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Exotic Shorthair cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/exotic-shorthair' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/exotic-shorthair' },
-};
+  pathname: '/pet-breeds/cats/exotic-shorthair',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Exotic Shorthair Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ExoticShorthairPage() {
   return (

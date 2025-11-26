@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Dachshund Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Dachshund Breed Guide',
   description: 'Complete guide to Dachshunds. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Dachshund', 'Wiener dog', 'Dachshund breed', 'Dachshund care'],
-  openGraph: { title: 'Dachshund Breed Guide | Nearby Pet Care', description: 'Complete guide to Dachshunds.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/dachshund' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/dachshund' },
-};
+  pathname: '/pet-breeds/dogs/dachshund',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Dachshund Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function DachshundPage() {
   return (

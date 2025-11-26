@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Nail Trimming for Pets - Complete Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Nail Trimming for Pets - Complete Guide',
   description: 'Learn how to safely trim your pet\'s nails. Step-by-step guide with tips for making nail trimming stress-free.',
   keywords: ['pet nail trimming', 'dog nail trimming', 'cat nail trimming', 'pet nail care'],
-  openGraph: { title: 'Nail Trimming for Pets | Nearby Pet Care', description: 'Learn how to safely trim your pet\'s nails.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/nail-trimming' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/nail-trimming' },
-};
+  pathname: '/pet-grooming/nail-trimming',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Nail Trimming for Pets - Complete Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function NailTrimmingPage() {
   return (

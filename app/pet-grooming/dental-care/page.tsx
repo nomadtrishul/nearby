@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Dental Care - Complete Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Dental Care - Complete Guide',
   description: 'Learn about pet dental care including brushing, dental chews, and professional cleanings. Prevent dental disease in your pet.',
   keywords: ['pet dental care', 'dog dental care', 'cat dental care', 'pet teeth brushing', 'pet dental health'],
-  openGraph: { title: 'Pet Dental Care | Nearby Pet Care', description: 'Learn about pet dental care including brushing and professional cleanings.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/dental-care' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/dental-care' },
-};
+  pathname: '/pet-grooming/dental-care',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Dental Care - Complete Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function DentalCarePage() {
   return (

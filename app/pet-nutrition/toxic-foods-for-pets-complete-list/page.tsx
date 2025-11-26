@@ -2,76 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Toxic Foods for Pets - Complete List with Vet Warnings | Nearby Pet Care',
-  description: 'Complete list of foods that are toxic or dangerous for dogs, cats, and other pets. Learn what foods to avoid and what to do if your pet ingests something toxic. Emergency contact information included.',
+  description: 'Complete list of foods that are toxic or dangerous for dogs, cats, and other pets. Learn what foods to avoid and what to do if your pet ingests something toxic.',
   keywords: ['toxic foods for pets', 'foods dogs cant eat', 'foods cats cant eat', 'poisonous foods pets', 'pet food safety', 'pet poisoning', 'emergency pet care', 'ASPCA poison control'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Toxic Foods for Pets - Complete List | Nearby Pet Care',
-    description: 'Complete list of foods that are toxic or dangerous for dogs, cats, and other pets. Learn what foods to avoid and emergency procedures.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-nutrition/toxic-foods-for-pets-complete-list',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Toxic Foods for Pets - Complete Safety Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Toxic Foods for Pets - Complete List | Nearby Pet Care',
-    description: 'Complete list of foods that are toxic or dangerous for dogs, cats, and other pets.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition/toxic-foods-for-pets-complete-list',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition/toxic-foods-for-pets-complete-list',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition/toxic-foods-for-pets-complete-list',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition/toxic-foods-for-pets-complete-list',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition/toxic-foods-for-pets-complete-list',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Nutrition',
-    'article:tag': 'toxic foods, pet safety, pet poisoning, emergency pet care',
-  },
-};
+  pathname: '/pet-nutrition/toxic-foods-for-pets-complete-list',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Toxic Foods for Pets - Complete Safety Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ToxicFoodsPage() {
   const currentDate = new Date().toISOString();

@@ -278,6 +278,68 @@ export default function SocializationReadinessTestClient() {
             </div>
           )}
 
+          {/* How Socialization Readiness Test Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Socialization Readiness Test Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our socialization readiness test assesses if your pet is ready for socialization activities by evaluating age, health status, vaccination status, and current behavior. The tool considers the critical socialization period (8-16 weeks for puppies, 2-7 weeks for kittens) and provides a readiness score with recommendations for safe socialization activities. It helps ensure your pet is ready and safe to begin socialization experiences.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Socialization</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                The critical socialization period is a window when pets are most receptive to new experiences. For puppies, this is 8-16 weeks of age. For kittens, it's 2-7 weeks. During this time, positive experiences with people, animals, sounds, and environments help shape a confident, well-adjusted pet. However, ensure your pet is fully vaccinated and healthy before socializing with other animals. Always prioritize safety and positive experiences.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should I start socializing my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  The critical socialization period is 8-16 weeks for puppies and 2-7 weeks for kittens. However, socialization should continue throughout your pet's life. Start as soon as your pet is fully vaccinated and healthy. Early, positive socialization experiences are crucial for preventing fear and aggression later in life.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What is the critical socialization period?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  The critical socialization period is a window when pets are most receptive to new experiences. For puppies, this is 8-16 weeks of age. For kittens, it's 2-7 weeks. During this time, positive experiences with people, animals, sounds, and environments help shape a confident, well-adjusted pet. Missing this window can make socialization more difficult later.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I socialize my pet safely?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Socialize safely by: ensuring your pet is fully vaccinated before meeting other animals, starting with controlled, low-stress situations, using positive reinforcement (treats, praise), gradually increasing exposure, watching for signs of stress and stopping if needed, introducing to calm, vaccinated pets first, and avoiding overwhelming situations. Always prioritize your pet's safety and comfort.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track training progress</p>
+              </a>
+              <a href="/tools/obedience-level-assessment-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Obedience Level Assessment</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Evaluate current training level</p>
+              </a>
+              <a href="/tools/vaccination-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccination Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create vaccination schedules</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Socialization is crucial for pets, especially during the critical period (8-16 weeks for puppies, 2-7 weeks for kittens). However, ensure your pet is fully vaccinated and healthy before socializing with other animals. Always prioritize safety and positive experiences.

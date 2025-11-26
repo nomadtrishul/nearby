@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Burmese Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Burmese Cat Breed Guide',
   description: 'Complete guide to Burmese cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Burmese', 'Burmese cat', 'Burmese breed', 'Burmese care'],
-  openGraph: { title: 'Burmese Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Burmese cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/burmese' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/burmese' },
-};
+  pathname: '/pet-breeds/cats/burmese',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Burmese Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BurmesePage() {
   return (

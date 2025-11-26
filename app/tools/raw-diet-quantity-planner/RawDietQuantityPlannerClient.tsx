@@ -281,6 +281,68 @@ export default function RawDietQuantityPlannerClient() {
             </div>
           )}
 
+          {/* How Raw Diet Quantity Planner Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Raw Diet Quantity Planner Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our raw diet quantity planner calculates the correct quantity of raw food for your pet based on weight, age, and activity level using the BARF (Biologically Appropriate Raw Food) model. The tool calculates daily feeding amounts as a percentage of body weight (typically 2-3% for adult dogs, 5-10% for puppies, 2-4% for adult cats) and provides a breakdown of meal components including muscle meat, organ meats, raw meaty bones, vegetables, and fruits.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Raw Diets</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Raw diets can be safe if properly formulated and handled, but they carry risks including bacterial contamination, nutritional imbalances, and potential for parasites. Raw diets require careful planning to ensure all essential nutrients are provided, proper food handling to prevent contamination, and regular veterinary monitoring. A balanced raw diet should include muscle meat, organ meats, raw meaty bones, vegetables and fruits, and supplements. Always work with a veterinary nutritionist to formulate a complete and balanced raw diet.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How much raw food should I feed my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Raw food quantities depend on your pet's weight, age, and activity level. Generally, adult dogs need 2-3% of their body weight per day, while puppies need 5-10% of their expected adult weight. Adult cats typically need 2-4% of their body weight. Active pets may need more, while sedentary pets may need less. Always consult with a veterinary nutritionist or veterinarian experienced with raw diets to ensure proper nutrition and portion sizes.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Is a raw diet safe for pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Raw diets can be safe if properly formulated and handled, but they carry risks including bacterial contamination (Salmonella, E. coli), nutritional imbalances, and potential for parasites. Raw diets require careful planning to ensure all essential nutrients are provided, proper food handling to prevent contamination, and regular veterinary monitoring. Always consult with a board-certified veterinary nutritionist before starting a raw diet, and ensure you follow proper food safety protocols.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What should be included in a raw diet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  A balanced raw diet should include: muscle meat (variety of sources), organ meats (liver, kidney, heart), raw meaty bones (for calcium and dental health), vegetables and fruits (for fiber and nutrients), and supplements (to ensure complete nutrition, including calcium, vitamins, and minerals). The exact ratios depend on your pet's species (dog vs cat) and individual needs. Cats require more protein and taurine. Always work with a veterinary nutritionist to formulate a complete and balanced raw diet.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/homemade-food-nutrition-analyzer" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Homemade Food Nutrition Analyzer</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Analyze homemade diet nutrition</p>
+              </a>
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper portion sizes</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This calculator provides general guidelines based on the BARF (Biologically Appropriate Raw Food) model. Raw diets require careful planning, proper handling, and may need supplementation. Always consult with a veterinarian or board-certified veterinary nutritionist before starting a raw diet, especially for puppies, kittens, senior pets, or pets with health conditions.

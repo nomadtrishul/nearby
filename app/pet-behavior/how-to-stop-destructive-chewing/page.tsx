@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'How to Stop Destructive Chewing in Pets | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'How to Stop Destructive Chewing in Pets',
   description: 'Identify the root cause of destructive chewing and replace it with enrichment, management, and focused training.',
   keywords: [
     'stop destructive chewing',
@@ -13,24 +14,16 @@ export const metadata: Metadata = {
     'pet enrichment ideas',
     'chew training plan',
   ],
-  openGraph: {
-    title: 'How to Stop Destructive Chewing in Pets | Nearby Pet Care',
-    description: 'A practical plan to redirect chewing with enrichment, supervision, and habit swaps.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-behavior/how-to-stop-destructive-chewing',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Stop Destructive Chewing Guide',
-      },
-    ],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-behavior/how-to-stop-destructive-chewing',
-  },
-};
+  pathname: '/pet-behavior/how-to-stop-destructive-chewing',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Stop Destructive Chewing Guide',
+    type: 'image/png',
+  }],
+});
 
 const chewingCauses = [
   { label: 'Boredom / under-stimulation', solution: 'Increase mental games (snuffle mats, scent work) and add two short training sessions daily.' },

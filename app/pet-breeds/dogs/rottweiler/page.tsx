@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Rottweiler Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Rottweiler Breed Guide',
   description: 'Complete guide to Rottweilers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Rottweiler', 'Rottweiler breed', 'Rottweiler care', 'Rottweiler temperament'],
-  openGraph: { title: 'Rottweiler Breed Guide | Nearby Pet Care', description: 'Complete guide to Rottweilers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/rottweiler' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/rottweiler' },
-};
+  pathname: '/pet-breeds/dogs/rottweiler',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Rottweiler Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RottweilerPage() {
   return (

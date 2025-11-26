@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
 import PetBMIBodyConditionScoreClient from './PetBMIBodyConditionScoreClient';
-import { generateToolMetadata, generateToolStructuredData } from '@/lib/tool-seo-helper';
+import {
+  generateSEOMetadata,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
   title: 'Pet BMI / Body Condition Score Calculator | 9-Point BCS Assessment Tool',
-  description: 'Free pet BMI and body condition score calculator assesses your pet using the 9-point scale. Get BCS assessment, visual guides, and personalized weight management recommendations.',
+  description: 'Free pet BMI and body condition score calculator assesses your pet using the 9-point scale. Get BCS assessment and weight management recommendations.',
   keywords: ['pet body condition score', 'pet BCS', 'pet BMI', 'body condition score calculator', 'pet weight assessment', 'pet body condition', 'pet weight score', 'pet health assessment'],
   slug: 'pet-bmi-body-condition-score',
   category: 'Health & Wellness',
@@ -31,27 +37,52 @@ const config = {
   ],
 };
 
-export const metadata: Metadata = generateToolMetadata(config);
+export const metadata: Metadata = generateSEOMetadata({
+  title: config.title,
+  description: config.description,
+  keywords: config.keywords,
+  pathname: `/tools/${config.slug}`,
+  type: 'website',
+});
 
 export default function PetBMIBodyConditionScorePage() {
-  const { webApplication, breadcrumb, faq } = generateToolStructuredData(config);
+  const baseUrl = getBaseUrl();
+  const toolUrl = ensureAbsoluteUrl(`/tools/${config.slug}`);
+  const toolTitle = config.title.split('|')[0].trim();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools' },
+    { name: toolTitle, url: `/tools/${config.slug}` },
+  ];
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+  
+  const faqStructuredData = config.faqs && config.faqs.length > 0 
+    ? generateFAQStructuredData(config.faqs)
+    : null;
+
+  const webApplicationStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: toolTitle,
+    description: config.description,
+    url: toolUrl,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: config.features || [],
+  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplication) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      {faq && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
-        />
-      )}
+      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <PetBMIBodyConditionScoreClient />
     </>
   );

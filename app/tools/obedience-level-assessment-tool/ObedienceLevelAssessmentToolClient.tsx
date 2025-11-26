@@ -208,6 +208,68 @@ export default function ObedienceLevelAssessmentToolClient() {
             </div>
           )}
 
+          {/* How Obedience Level Assessment Tool Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Obedience Level Assessment Tool Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our obedience level assessment tool evaluates your pet's obedience through a comprehensive questionnaire covering basic commands (sit, stay, come, down, leave it, heel), reliability, response time, and performance with distractions. The tool calculates a score based on your responses and determines the obedience level (Advanced, Intermediate, Beginner, or Needs Training). It identifies strengths and areas for improvement, providing personalized training recommendations.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Obedience Levels</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Obedience levels typically include: Advanced (85%+) - excellent reliability even with distractions, Intermediate (65-84%) - good basic obedience with some inconsistency, Beginner (40-64%) - learning basics but needs more practice, and Needs Training (&lt;40%) - requires fundamental training. Levels are based on consistency, reliability, and performance with distractions. Regular training and practice will improve obedience over time.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I assess my pet's obedience level?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Assess obedience by evaluating how reliably your pet responds to basic commands (sit, stay, come, down, leave it, heel) in different situations and with distractions. Consider consistency, response time, and whether commands work in various environments. Our assessment tool provides a structured way to evaluate multiple aspects of obedience and get personalized recommendations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are the different obedience levels?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Obedience levels typically include: Advanced (85%+) - excellent reliability even with distractions, Intermediate (65-84%) - good basic obedience with some inconsistency, Beginner (40-64%) - learning basics but needs more practice, and Needs Training (&lt;40%) - requires fundamental training. Levels are based on consistency, reliability, and performance with distractions.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I improve my pet's obedience level?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Improve obedience by: practicing commands regularly and consistently, using positive reinforcement, gradually increasing difficulty and distractions, practicing in different environments, keeping training sessions short and positive, focusing on one command at a time, and considering professional training or obedience classes. Consistency and patience are key to improving obedience.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track training progress</p>
+              </a>
+              <a href="/tools/behavior-problem-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Behavior Problem Diagnosis</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify behavior issues</p>
+              </a>
+              <a href="/tools/separation-anxiety-risk-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Separation Anxiety Risk Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess anxiety risk factors</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This assessment provides a general overview. Obedience levels can vary based on environment, distractions, and individual pet characteristics. Regular training and practice will improve obedience over time.

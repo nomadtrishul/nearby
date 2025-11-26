@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Chinchilla Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Chinchilla Care Guide',
   description: 'Complete guide to keeping chinchillas as pets. Learn about their care, housing, diet, and health considerations.',
   keywords: ['chinchilla', 'chinchilla care', 'pet chinchilla', 'chinchilla housing', 'chinchilla diet'],
-  openGraph: { title: 'Chinchilla Care Guide | Nearby Pet Care', description: 'Complete guide to keeping chinchillas as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/chinchilla' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/chinchilla' },
-};
+  pathname: '/pet-breeds/small-mammals/chinchilla',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Chinchilla Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ChinchillaPage() {
   return (

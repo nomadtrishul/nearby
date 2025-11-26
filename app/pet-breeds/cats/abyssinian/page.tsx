@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Abyssinian Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Abyssinian Cat Breed Guide',
   description: 'Complete guide to Abyssinian cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Abyssinian', 'Abyssinian cat', 'Abyssinian breed', 'Abyssinian care'],
-  openGraph: { title: 'Abyssinian Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Abyssinian cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/abyssinian' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/abyssinian' },
-};
+  pathname: '/pet-breeds/cats/abyssinian',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Abyssinian Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function AbyssinianPage() {
   return (

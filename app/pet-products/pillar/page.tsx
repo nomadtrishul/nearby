@@ -5,7 +5,7 @@ import PetProductsSidebar from '@/components/PetProductsSidebar';
 
 export const metadata: Metadata = {
   title: 'Pet Products Overview | Nearby Pet Care',
-  description: 'Comprehensive overview of pet products reviews and buying guides. Find the best products for your pet across all categories including food, beds, grooming tools, and more.',
+  description: 'Comprehensive overview of pet products reviews and buying guides. Find the best products for your pet across all categories.',
   keywords: ['pet products overview', 'pet product reviews', 'pet buying guides', 'best pet products', 'pet supplies'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

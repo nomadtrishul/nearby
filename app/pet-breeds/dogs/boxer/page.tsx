@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Boxer Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Boxer Breed Guide',
   description: 'Complete guide to Boxers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Boxer', 'Boxer breed', 'Boxer care', 'Boxer temperament'],
-  openGraph: { title: 'Boxer Breed Guide | Nearby Pet Care', description: 'Complete guide to Boxers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/boxer' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/boxer' },
-};
+  pathname: '/pet-breeds/dogs/boxer',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Boxer Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BoxerPage() {
   return (

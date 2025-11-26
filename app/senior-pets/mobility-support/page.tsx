@@ -5,7 +5,7 @@ import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
 
 export const metadata: Metadata = {
   title: 'Mobility Support for Senior Pets: Joint Health & Arthritis Care | Nearby Pet Care',
-  description: 'Learn how to support mobility and joint health in senior pets. Practical tips for managing arthritis, improving comfort, and maintaining quality of life for aging dogs and cats.',
+  description: 'Learn how to support mobility and joint health in senior pets. Practical tips for managing arthritis, improving comfort, and maintaining quality of life.',
   keywords: ['senior pet mobility', 'pet arthritis', 'elderly pet mobility', 'joint health pets', 'senior dog mobility', 'senior cat mobility', 'pet joint supplements', 'arthritis in pets', 'senior pet joint care'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',

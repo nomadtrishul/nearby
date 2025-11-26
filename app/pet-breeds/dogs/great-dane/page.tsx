@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Great Dane Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Great Dane Breed Guide',
   description: 'Complete guide to Great Danes. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Great Dane', 'Great Dane breed', 'Great Dane care', 'gentle giant'],
-  openGraph: { title: 'Great Dane Breed Guide | Nearby Pet Care', description: 'Complete guide to Great Danes.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/great-dane' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/great-dane' },
-};
+  pathname: '/pet-breeds/dogs/great-dane',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Great Dane Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function GreatDanePage() {
   return (

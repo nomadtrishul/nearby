@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Ear and Eye Care for Pets | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Ear and Eye Care for Pets',
   description: 'Learn how to properly clean and care for your pet\'s ears and eyes. Prevent infections and maintain good hygiene.',
   keywords: ['pet ear care', 'pet eye care', 'cleaning pet ears', 'pet eye cleaning'],
-  openGraph: { title: 'Ear and Eye Care for Pets | Nearby Pet Care', description: 'Learn how to properly clean and care for your pet\'s ears and eyes.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/ear-and-eye-care' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/ear-and-eye-care' },
-};
+  pathname: '/pet-grooming/ear-and-eye-care',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Ear and Eye Care for Pets',
+    type: 'image/png',
+  }],
+});
 
 export default function EarAndEyeCarePage() {
   return (

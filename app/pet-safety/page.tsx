@@ -2,72 +2,39 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Safety Guide: How to Keep Your Pet Safe at Home & While Traveling | Nearby Pet Care',
-  description: 'Learn how to keep your pet safe with our comprehensive pet safety guide. Expert tips on traveling with pets, pet-proofing your home, emergency preparedness, and seasonal pet safety. Essential safety information for responsible pet owners.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Safety Guide: How to Keep Your Pet Safe at Home & While Traveling',
+  description: 'Comprehensive pet safety guide with expert tips on traveling with pets, pet-proofing your home, emergency preparedness, and seasonal safety.',
   keywords: ['pet safety', 'how to keep pet safe', 'traveling with pets', 'pet travel tips', 'pet home safety', 'pet proofing', 'pet emergency', 'pet safety tips', 'dog safety', 'cat safety', 'pet safety guide', 'pet protection'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Pet Safety & Travel Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to pet safety and travel. Expert tips on keeping your pet safe at home, while traveling, during emergencies, and throughout the seasons.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-safety',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Safety & Travel Guide - Comprehensive Pet Safety Information',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Safety & Travel Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to pet safety and travel. Expert tips for keeping your pet safe.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+  pathname: '/pet-safety',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Safety & Travel Guide - Comprehensive Pet Safety Information',
+      type: 'image/png',
+    },
+  ],
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-safety',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-safety',
-      'en-GB': 'https://nearbypetcare.com/pet-safety',
-      'en-CA': 'https://nearbypetcare.com/pet-safety',
-      'en-AU': 'https://nearbypetcare.com/pet-safety',
+      'en-US': '/pet-safety',
+      'en-GB': '/pet-safety',
+      'en-CA': '/pet-safety',
+      'en-AU': '/pet-safety',
     },
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  section: 'Pet Safety',
   other: {
     'article:published_time': '2024-01-01T00:00:00+00:00',
     'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Safety',
   },
-};
+});
 
 export default function PetSafetyPage() {
   const currentDate = new Date().toISOString();

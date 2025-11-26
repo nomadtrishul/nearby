@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: "Nearby Pet Care - Professional Pet Care Services Near You",
     template: "%s | Nearby Pet Care"
   },
-  description: "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services. Connect with experienced pet care professionals who treat your pets like family.",
+  description: "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services from experienced professionals.",
   keywords: ['pet care services', 'dog grooming', 'pet boarding', 'pet daycare', 'pet training', 'pet care near me', 'professional pet care', 'mobile pet care', 'pet grooming services', 'dog boarding', 'cat boarding'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',
@@ -72,13 +72,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: 'any' },
       { url: '/logo-2.png', sizes: 'any' },
       { url: '/logo-2.png', type: 'image/png' },
     ],
     apple: [
       { url: '/logo-2.png', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/logo-2.png',
+    shortcut: '/favicon.ico',
   },
   manifest: '/manifest.webmanifest',
   appleWebApp: {
@@ -117,7 +118,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         
         {/* Favicon */}
-        <link rel="icon" href="/logo-2.png" type="image/png" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/logo-2.png" type="image/png" sizes="any" />
         <link rel="apple-touch-icon" href="/logo-2.png" />
         
         {/* Preconnect to External Domains for Performance */}

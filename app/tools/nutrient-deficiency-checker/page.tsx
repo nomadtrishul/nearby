@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
 import NutrientDeficiencyCheckerClient from './NutrientDeficiencyCheckerClient';
-import { generateToolMetadata, generateToolStructuredData } from '@/lib/tool-seo-helper';
+import {
+  generateSEOMetadata,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
   title: 'Nutrient Deficiency Checker',
-  description: 'Identify potential nutrient deficiencies in your pet based on symptoms. Get information about protein, vitamins, minerals, and fatty acid deficiencies with food sources and recommendations.',
+  description: 'Identify potential nutrient deficiencies in your pet based on symptoms. Get information about protein, vitamins, minerals, and fatty acid deficiencies.',
   keywords: ['pet nutrient deficiency', 'dog nutrient deficiency', 'cat nutrient deficiency', 'pet nutrition', 'vitamin deficiency pets', 'mineral deficiency pets', 'pet diet analysis', 'nutritional deficiencies'],
   slug: 'nutrient-deficiency-checker',
   category: 'Nutrition',
@@ -31,27 +37,52 @@ const config = {
   ],
 };
 
-export const metadata: Metadata = generateToolMetadata(config);
+export const metadata: Metadata = generateSEOMetadata({
+  title: config.title,
+  description: config.description,
+  keywords: config.keywords,
+  pathname: `/tools/${config.slug}`,
+  type: 'website',
+});
 
 export default function NutrientDeficiencyCheckerPage() {
-  const { webApplication, breadcrumb, faq } = generateToolStructuredData(config);
+  const baseUrl = getBaseUrl();
+  const toolUrl = ensureAbsoluteUrl(`/tools/${config.slug}`);
+  const toolTitle = config.title.split('|')[0].trim();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools' },
+    { name: toolTitle, url: `/tools/${config.slug}` },
+  ];
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+  
+  const faqStructuredData = config.faqs && config.faqs.length > 0 
+    ? generateFAQStructuredData(config.faqs)
+    : null;
+
+  const webApplicationStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: toolTitle,
+    description: config.description,
+    url: toolUrl,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: config.features || [],
+  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplication) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      {faq && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
-        />
-      )}
+      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <NutrientDeficiencyCheckerClient />
     </>
   );

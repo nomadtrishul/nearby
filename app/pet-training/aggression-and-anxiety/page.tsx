@@ -2,25 +2,24 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Aggression and Anxiety: Understanding and Managing Behavioral Issues | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Aggression and Anxiety: Understanding and Managing Behavioral Issues',
   description: 'Learn how to identify, understand, and manage aggression and anxiety in pets. Get expert guidance on recognizing warning signs and finding effective solutions.',
   keywords: ['pet aggression', 'pet anxiety', 'behavioral issues', 'aggressive pet', 'anxious pet', 'dog aggression', 'cat anxiety', 'separation anxiety', 'fearful pet'],
-  openGraph: { 
-    title: 'Pet Aggression and Anxiety: Understanding and Managing Behavioral Issues | Nearby Pet Care', 
-    description: 'Learn how to identify, understand, and manage aggression and anxiety in pets. Get expert guidance on recognizing warning signs and finding effective solutions.', 
-    type: 'article', 
-    url: 'https://nearbypetcare.com/pet-training/aggression-and-anxiety',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Pet Aggression and Anxiety',
-    }],
-  },
+  pathname: '/pet-training/aggression-and-anxiety',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Aggression and Anxiety',
+    type: 'image/png',
+  }],
+
   alternates: { canonical: 'https://nearbypetcare.com/pet-training/aggression-and-anxiety' },
-};
+});
 
 export default function AggressionAndAnxietyPage() {
   const currentDate = new Date().toISOString();

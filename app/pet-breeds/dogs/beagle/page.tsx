@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Beagle Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Beagle Breed Guide',
   description: 'Complete guide to Beagles. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Beagle', 'Beagle breed', 'Beagle care', 'Beagle temperament'],
-  openGraph: { title: 'Beagle Breed Guide | Nearby Pet Care', description: 'Complete guide to Beagles.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/beagle' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/beagle' },
-};
+  pathname: '/pet-breeds/dogs/beagle',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Beagle Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BeaglePage() {
   return (

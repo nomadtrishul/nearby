@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Ferret Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Ferret Care Guide',
   description: 'Complete guide to keeping ferrets as pets. Learn about ferret care, housing, diet, and health considerations.',
   keywords: ['ferret', 'ferret care', 'pet ferret', 'ferret housing', 'ferret diet'],
-  openGraph: { title: 'Ferret Care Guide | Nearby Pet Care', description: 'Complete guide to keeping ferrets as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/ferret' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/ferret' },
-};
+  pathname: '/pet-breeds/small-mammals/ferret',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Ferret Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function FerretPage() {
   return (

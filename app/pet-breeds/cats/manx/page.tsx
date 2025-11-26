@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Manx Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Manx Cat Breed Guide',
   description: 'Complete guide to Manx cats. Learn about their characteristics, tailless feature, temperament, and care requirements.',
   keywords: ['Manx', 'Manx cat', 'Manx breed', 'Manx care', 'tailless cat'],
-  openGraph: { title: 'Manx Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Manx cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/manx' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/manx' },
-};
+  pathname: '/pet-breeds/cats/manx',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Manx Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ManxPage() {
   return (

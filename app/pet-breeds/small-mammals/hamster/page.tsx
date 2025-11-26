@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Hamster Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Hamster Care Guide',
   description: 'Complete guide to keeping hamsters as pets. Learn about hamster care, housing, diet, and health considerations.',
   keywords: ['hamster', 'hamster care', 'pet hamster', 'hamster housing', 'hamster diet'],
-  openGraph: { title: 'Hamster Care Guide | Nearby Pet Care', description: 'Complete guide to keeping hamsters as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/small-mammals/hamster' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/small-mammals/hamster' },
-};
+  pathname: '/pet-breeds/small-mammals/hamster',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Hamster Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function HamsterPage() {
   return (

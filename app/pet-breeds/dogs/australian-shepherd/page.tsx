@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Australian Shepherd Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Australian Shepherd Breed Guide',
   description: 'Complete guide to Australian Shepherds. Learn about their characteristics, intelligence, temperament, and care requirements.',
   keywords: ['Australian Shepherd', 'Aussie', 'Australian Shepherd breed', 'Aussie care'],
-  openGraph: { title: 'Australian Shepherd Breed Guide | Nearby Pet Care', description: 'Complete guide to Australian Shepherds.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/australian-shepherd' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/australian-shepherd' },
-};
+  pathname: '/pet-breeds/dogs/australian-shepherd',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Australian Shepherd Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function AustralianShepherdPage() {
   return (

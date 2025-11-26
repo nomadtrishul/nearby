@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Saint Bernard Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Saint Bernard Breed Guide',
   description: 'Complete guide to Saint Bernards. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Saint Bernard', 'Saint Bernard breed', 'Saint Bernard care', 'gentle giant'],
-  openGraph: { title: 'Saint Bernard Breed Guide | Nearby Pet Care', description: 'Complete guide to Saint Bernards.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/saint-bernard' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/saint-bernard' },
-};
+  pathname: '/pet-breeds/dogs/saint-bernard',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Saint Bernard Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SaintBernardPage() {
   return (

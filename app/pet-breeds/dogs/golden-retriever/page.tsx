@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Golden Retriever Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Golden Retriever Breed Guide',
   description: 'Complete guide to Golden Retrievers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Golden Retriever', 'Golden Retriever breed', 'Golden Retriever care', 'Golden Retriever temperament'],
-  openGraph: { title: 'Golden Retriever Breed Guide | Nearby Pet Care', description: 'Complete guide to Golden Retrievers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/golden-retriever' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/golden-retriever' },
-};
+  pathname: '/pet-breeds/dogs/golden-retriever',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Golden Retriever Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function GoldenRetrieverPage() {
   return (

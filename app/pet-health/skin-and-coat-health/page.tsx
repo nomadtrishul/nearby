@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Skin and Coat Health: Complete Care Guide | Nearby Pet Care',
-  description: 'Learn how to maintain healthy skin and coat for your pet. Tips on grooming, nutrition, identifying skin problems, and promoting healthy skin and coat through proper care.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Skin and Coat Health: Complete Care Guide',
+  description: 'Learn how to maintain healthy skin and coat for your pet. Tips on grooming, nutrition, identifying skin problems, and proper care.',
   keywords: ['pet skin health', 'pet coat health', 'pet grooming', 'pet skin problems', 'healthy pet coat', 'pet skin care', 'dog skin health', 'cat skin health', 'pet coat care'],
-  openGraph: {
-    title: 'Pet Skin and Coat Health: Complete Care Guide | Nearby Pet Care',
-    description: 'Learn how to maintain healthy skin and coat for your pet through proper grooming, nutrition, and care.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/skin-and-coat-health',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Skin and Coat Health Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Skin and Coat Health: Complete Care Guide | Nearby Pet Care',
-    description: 'Learn how to maintain healthy skin and coat for your pet.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/skin-and-coat-health' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/skin-and-coat-health',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Skin and Coat Health Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SkinAndCoatHealthPage() {
   const breadcrumbStructuredData = {

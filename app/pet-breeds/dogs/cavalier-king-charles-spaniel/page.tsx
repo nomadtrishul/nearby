@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Cavalier King Charles Spaniel Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Cavalier King Charles Spaniel Breed Guide',
   description: 'Complete guide to Cavalier King Charles Spaniels. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Cavalier King Charles Spaniel', 'Cavalier breed', 'Cavalier care', 'Cavalier temperament'],
-  openGraph: { title: 'Cavalier King Charles Spaniel Breed Guide | Nearby Pet Care', description: 'Complete guide to Cavalier King Charles Spaniels.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/cavalier-king-charles-spaniel' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/cavalier-king-charles-spaniel' },
-};
+  pathname: '/pet-breeds/dogs/cavalier-king-charles-spaniel',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Cavalier King Charles Spaniel Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CavalierKingCharlesSpanielPage() {
   return (

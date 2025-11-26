@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Maine Coon Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Maine Coon Cat Breed Guide',
   description: 'Complete guide to Maine Coon cats. Learn about their characteristics, size, temperament, and care requirements.',
   keywords: ['Maine Coon', 'Maine Coon cat', 'Maine Coon breed', 'Maine Coon care', 'large cat breed'],
-  openGraph: { title: 'Maine Coon Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Maine Coon cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/maine-coon' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/maine-coon' },
-};
+  pathname: '/pet-breeds/cats/maine-coon',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Maine Coon Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function MaineCoonPage() {
   return (

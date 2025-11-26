@@ -5,7 +5,7 @@ import PetProductsSidebar from '@/components/PetProductsSidebar';
 
 export const metadata: Metadata = {
   title: 'Best Pet Beds - Reviews & Buying Guide | Nearby Pet Care',
-  description: 'Comprehensive reviews and buying guide for the best pet beds. Find comfortable, durable beds for dogs and cats that support joint health and provide restful sleep.',
+  description: 'Comprehensive reviews and buying guide for the best pet beds. Find comfortable, durable beds for dogs and cats that support joint health.',
   keywords: ['best pet beds', 'dog beds', 'cat beds', 'pet bed reviews', 'orthopedic pet beds', 'pet furniture', 'pet sleeping'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

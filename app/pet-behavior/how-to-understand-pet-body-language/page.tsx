@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'How to Understand Pet Body Language | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'How to Understand Pet Body Language',
   description: 'A practical visual guide to dog and cat body language cues so you can respond before stress turns into problem behavior.',
   keywords: [
     'pet body language',
@@ -14,24 +15,16 @@ export const metadata: Metadata = {
     'signs of stress in cats',
     'pet communication cues',
   ],
-  openGraph: {
-    title: 'How to Understand Pet Body Language | Nearby Pet Care',
-    description: 'Decode subtle stress signals, calming gestures, and warning signs to keep pets feeling safe.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-behavior/how-to-understand-pet-body-language',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Body Language Guide',
-      },
-    ],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-behavior/how-to-understand-pet-body-language',
-  },
-};
+  pathname: '/pet-behavior/how-to-understand-pet-body-language',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Body Language Guide',
+    type: 'image/png',
+  }],
+});
 
 const signalGroups = [
   {

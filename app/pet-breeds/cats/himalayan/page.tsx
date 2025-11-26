@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Himalayan Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Himalayan Cat Breed Guide',
   description: 'Complete guide to Himalayan cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Himalayan', 'Himalayan cat', 'Himalayan breed', 'Himalayan care', 'Himalayan Persian'],
-  openGraph: { title: 'Himalayan Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Himalayan cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/himalayan' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/himalayan' },
-};
+  pathname: '/pet-breeds/cats/himalayan',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Himalayan Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function HimalayanPage() {
   return (

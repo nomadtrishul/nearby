@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
 import DogFoodServingSizeCalculatorClient from './DogFoodServingSizeCalculatorClient';
-import { generateToolMetadata, generateToolStructuredData } from '@/lib/tool-seo-helper';
+import {
+  generateSEOMetadata,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
   title: 'Dog Food Serving Size Calculator | Daily Portion Size Calculator',
-  description: 'Free dog food serving size calculator determines perfect portions based on weight, age, and activity level. Get RER and DER calculations and personalized feeding recommendations.',
+  description: 'Free dog food serving size calculator determines perfect portions based on weight, age, and activity level. Get RER and DER calculations.',
   keywords: ['dog food serving size', 'dog food calculator', 'dog portion calculator', 'dog feeding calculator', 'dog food portions', 'dog serving size', 'dog feeding guide', 'dog nutrition calculator'],
   slug: 'dog-food-serving-size-calculator',
   category: 'Nutrition',
@@ -31,27 +37,52 @@ const config = {
   ],
 };
 
-export const metadata: Metadata = generateToolMetadata(config);
+export const metadata: Metadata = generateSEOMetadata({
+  title: config.title,
+  description: config.description,
+  keywords: config.keywords,
+  pathname: `/tools/${config.slug}`,
+  type: 'website',
+});
 
 export default function DogFoodServingSizeCalculatorPage() {
-  const { webApplication, breadcrumb, faq } = generateToolStructuredData(config);
+  const baseUrl = getBaseUrl();
+  const toolUrl = ensureAbsoluteUrl(`/tools/${config.slug}`);
+  const toolTitle = config.title.split('|')[0].trim();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools' },
+    { name: toolTitle, url: `/tools/${config.slug}` },
+  ];
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+  
+  const faqStructuredData = config.faqs && config.faqs.length > 0 
+    ? generateFAQStructuredData(config.faqs)
+    : null;
+
+  const webApplicationStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: toolTitle,
+    description: config.description,
+    url: toolUrl,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: config.features || [],
+  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplication) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      {faq && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
-        />
-      )}
+      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <DogFoodServingSizeCalculatorClient />
     </>
   );

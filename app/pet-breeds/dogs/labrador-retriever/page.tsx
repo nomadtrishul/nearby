@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Labrador Retriever Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Labrador Retriever Breed Guide',
   description: 'Complete guide to Labrador Retrievers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Labrador Retriever', 'Labrador breed', 'Labrador care', 'Labrador temperament'],
-  openGraph: { title: 'Labrador Retriever Breed Guide | Nearby Pet Care', description: 'Complete guide to Labrador Retrievers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/labrador-retriever' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/labrador-retriever' },
-};
+  pathname: '/pet-breeds/dogs/labrador-retriever',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Labrador Retriever Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function LabradorRetrieverPage() {
   return (

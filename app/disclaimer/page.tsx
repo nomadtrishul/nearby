@@ -1,210 +1,98 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
+import {
+  generateSEOMetadata,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/disclaimer`;
-const publishedTime = '2024-01-01T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
-  title: 'Medical & Informational Disclaimer | Nearby Pet Care',
-  description: 'Important disclaimer regarding medical and informational content on Nearby Pet Care. Learn when to consult a veterinarian, understand our educational content limitations, and ensure your pet receives proper professional care. Always consult with a veterinarian for professional advice.',
-  keywords: ['disclaimer', 'medical disclaimer', 'pet care disclaimer', 'veterinary advice', 'pet health disclaimer', 'educational content disclaimer', 'pet care information', 'when to see a vet', 'pet emergency'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Medical & Informational Disclaimer | Nearby Pet Care',
-    description: 'Important disclaimer regarding medical and informational content on our educational platform. Learn when to consult a veterinarian and understand our content limitations.',
-    type: 'website',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Medical & Informational Disclaimer - Nearby Pet Care',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Medical & Informational Disclaimer | Nearby Pet Care',
-    description: 'Important disclaimer regarding medical and informational content. Always consult with a veterinarian for professional advice.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'og:updated_time': modifiedTime,
-  },
-};
-
-export default function DisclaimerPage() {
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Disclaimer',
-        item: pageUrl,
-      },
-    ],
-  };
-
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${pageUrl}#webpage`,
-    name: 'Medical & Informational Disclaimer',
-    description: 'Important disclaimer regarding medical and informational content on Nearby Pet Care. Learn when to consult a veterinarian and understand our educational content limitations.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Medical Disclaimer',
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Medical & Informational Disclaimer',
+  description: 'Important disclaimer regarding medical and informational content. Learn when to consult a veterinarian and understand our content limitations.',
+  keywords: [
+    'disclaimer',
+    'medical disclaimer',
+    'pet care disclaimer',
+    'veterinary advice',
+    'pet health disclaimer',
+    'educational content disclaimer',
+    'pet care information',
+    'when to see a vet',
+    'pet emergency',
+  ],
+  pathname: '/disclaimer',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
       width: 1200,
       height: 630,
+      alt: 'Medical & Informational Disclaimer - Nearby Pet Care',
+      type: 'image/png',
     },
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Disclaimer',
-          item: pageUrl,
-        },
-      ],
+  ],
+  locale: 'en_US',
+  alternates: {
+    languages: {
+      'en-US': '/disclaimer',
+      'en-GB': '/disclaimer',
+      'en-CA': '/disclaimer',
+      'en-AU': '/disclaimer',
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-    },
-  };
+  },
+  breadcrumbs: [
+    { name: 'Home', url: '/' },
+    { name: 'Disclaimer', url: '/disclaimer' },
+  ],
+});
 
-  // FAQPage Structured Data for common questions
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Is the information on Nearby Pet Care a substitute for veterinary advice?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No, the information on Nearby Pet Care is for educational purposes only and is not a substitute for professional veterinary advice, diagnosis, or treatment. Always consult with your veterinarian for personalized advice about your pet\'s health and care needs.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'When should I contact my veterinarian instead of using this website?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'You should contact your veterinarian immediately if your pet shows signs of an emergency (difficulty breathing, collapse, seizures, severe vomiting or diarrhea with blood, inability to urinate, extreme pain, suspected poisoning, or severe allergic reactions). For any health concerns, behavior changes, or before making significant changes to your pet\'s diet, exercise, or medication, consult your veterinarian.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I use the information on this site to diagnose or treat my pet?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No, you should never use information from this website to diagnose or treat your pet. We are an educational platform, not a veterinary service. Only a licensed veterinarian can properly diagnose and treat your pet\'s health conditions. Always seek professional veterinary care for your pet\'s medical needs.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Does Nearby Pet Care provide veterinary services?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No, Nearby Pet Care is an independent educational platform that provides general pet care information and guidance. We do not provide veterinary services, medical advice, professional consultations, or emergency services. We are not a veterinary practice, clinic, or professional service provider.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How accurate and up-to-date is the information on this website?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We strive to provide accurate, up-to-date information based on widely accepted pet care practices. However, pet care knowledge evolves, and we cannot guarantee that all information is current or complete. We regularly review and update our content, but veterinary medicine continues to evolve. Always consult your veterinarian for the most current advice tailored to your pet\'s specific needs.',
-        },
-      },
-    ],
-  };
+export default function DisclaimerPage() {
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Disclaimer', url: '/disclaimer' },
+  ];
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Medical & Informational Disclaimer',
+    description: 'Important disclaimer regarding medical and informational content on Nearby Pet Care. Learn when to consult a veterinarian and understand our educational content limitations.',
+    url: '/disclaimer',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'Is the information on Nearby Pet Care a substitute for veterinary advice?',
+      answer: 'No, the information on Nearby Pet Care is for educational purposes only and is not a substitute for professional veterinary advice, diagnosis, or treatment. Always consult with your veterinarian for personalized advice about your pet\'s health and care needs.',
+    },
+    {
+      question: 'When should I contact my veterinarian instead of using this website?',
+      answer: 'You should contact your veterinarian immediately if your pet shows signs of an emergency (difficulty breathing, collapse, seizures, severe vomiting or diarrhea with blood, inability to urinate, extreme pain, suspected poisoning, or severe allergic reactions). For any health concerns, behavior changes, or before making significant changes to your pet\'s diet, exercise, or medication, consult your veterinarian.',
+    },
+    {
+      question: 'Can I use the information on this site to diagnose or treat my pet?',
+      answer: 'No, you should never use information from this website to diagnose or treat your pet. We are an educational platform, not a veterinary service. Only a licensed veterinarian can properly diagnose and treat your pet\'s health conditions. Always seek professional veterinary care for your pet\'s medical needs.',
+    },
+    {
+      question: 'Does Nearby Pet Care provide veterinary services?',
+      answer: 'No, Nearby Pet Care is an independent educational platform that provides general pet care information and guidance. We do not provide veterinary services, medical advice, professional consultations, or emergency services. We are not a veterinary practice, clinic, or professional service provider.',
+    },
+    {
+      question: 'How accurate and up-to-date is the information on this website?',
+      answer: 'We strive to provide accurate, up-to-date information based on widely accepted pet care practices. However, pet care knowledge evolves, and we cannot guarantee that all information is current or complete. We regularly review and update our content, but veterinary medicine continues to evolve. Always consult your veterinarian for the most current advice tailored to your pet\'s specific needs.',
+    },
+  ]);
   return (
     <>
       {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-      />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
@@ -439,3 +327,4 @@ export default function DisclaimerPage() {
     </>
   );
 }
+

@@ -279,6 +279,68 @@ export default function HomemadeFoodNutritionAnalyzerClient() {
             </div>
           )}
 
+          {/* How Homemade Food Nutrition Analyzer Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Homemade Food Nutrition Analyzer Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our homemade food nutrition analyzer evaluates the nutritional content of homemade pet food recipes by calculating calories, protein, fat, carbohydrates, and fiber based on the ingredients and quantities you provide. The tool uses approximate nutritional values for common pet food ingredients and compares the results to recommended nutrient levels for dogs and cats. It provides warnings about potential deficiencies or imbalances.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Homemade Pet Food</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Homemade pet food can be safe if properly formulated and supplemented. However, it requires careful planning to ensure all essential nutrients, vitamins, and minerals are provided in correct amounts. Homemade diets are more prone to nutrient deficiencies or imbalances. Pets need proper protein, fat, carbohydrates, fiber, vitamins, and minerals in the right ratios. The calcium:phosphorus ratio is critical. Always consult with a board-certified veterinary nutritionist before feeding homemade diets long-term.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Is homemade pet food safe?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Homemade pet food can be safe if properly formulated and supplemented. However, it requires careful planning to ensure all essential nutrients, vitamins, and minerals are provided in correct amounts. Homemade diets are more prone to nutrient deficiencies or imbalances. Always consult with a board-certified veterinary nutritionist before feeding homemade diets long-term to ensure your pet receives complete and balanced nutrition.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What nutrients do pets need in homemade food?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Pets need: protein (18-25% for dogs, 26-40% for cats), fat (5-15% for dogs, 9-15% for cats), carbohydrates, fiber, vitamins (A, B complex, C, D, E, K), minerals (calcium, phosphorus, iron, zinc, etc.), and for cats, taurine (essential amino acid). The calcium:phosphorus ratio is critical (1.2:1 to 2:1). Homemade diets require proper supplementation to meet all nutritional needs.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What ingredients are safe for homemade pet food?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Safe ingredients include: lean meats (chicken, turkey, beef), fish (salmon, tuna), eggs, cooked grains (rice, oats), vegetables (carrots, sweet potatoes, broccoli, pumpkin), and small amounts of fruits. Always avoid toxic foods like onions, garlic, grapes, raisins, chocolate, and xylitol. Ensure all ingredients are properly cooked and prepared. Consult a veterinary nutritionist for complete recipe formulation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper portion sizes</p>
+              </a>
+              <a href="/tools/nutrient-deficiency-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Nutrient Deficiency Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify potential deficiencies</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This analyzer uses approximate nutritional values. For complete homemade diet planning, consult with a board-certified veterinary nutritionist to ensure your pet receives all necessary nutrients, vitamins, and minerals.

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Canaries as Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Canaries as Pets Guide',
   description: 'Complete guide to keeping canaries as pets. Learn about canary care, housing, diet, and health considerations.',
   keywords: ['canaries', 'canary care', 'canary pets', 'canary guide', 'canary diet', 'canary health'],
-  openGraph: { title: 'Canaries as Pets Guide | Nearby Pet Care', description: 'Complete guide to keeping canaries as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/birds/canaries' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/birds/canaries' },
-};
+  pathname: '/pet-breeds/birds/canaries',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Canaries as Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CanariesPage() {
   return (

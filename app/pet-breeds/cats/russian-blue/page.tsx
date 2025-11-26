@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Russian Blue Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Russian Blue Cat Breed Guide',
   description: 'Complete guide to Russian Blue cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['Russian Blue', 'Russian Blue cat', 'Russian Blue breed', 'Russian Blue care'],
-  openGraph: { title: 'Russian Blue Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Russian Blue cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/russian-blue' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/russian-blue' },
-};
+  pathname: '/pet-breeds/cats/russian-blue',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Russian Blue Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RussianBluePage() {
   return (

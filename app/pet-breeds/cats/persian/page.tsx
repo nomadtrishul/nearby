@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Persian Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Persian Cat Breed Guide',
   description: 'Complete guide to Persian cats. Learn about their characteristics, temperament, grooming needs, and care requirements.',
   keywords: ['Persian cat', 'Persian breed', 'Persian cat care', 'Persian cat temperament', 'long-haired cat'],
-  openGraph: { title: 'Persian Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Persian cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/persian' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/persian' },
-};
+  pathname: '/pet-breeds/cats/persian',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Persian Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function PersianCatPage() {
   return (

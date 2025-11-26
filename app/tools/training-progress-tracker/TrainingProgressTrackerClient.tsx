@@ -218,6 +218,91 @@ export default function TrainingProgressTrackerClient() {
             </div>
           )}
 
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/behavior-problem-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Behavior Problem Diagnosis</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify training challenges</p>
+              </a>
+              <a href="/tools/separation-anxiety-risk-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Separation Anxiety Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess anxiety-related issues</p>
+              </a>
+              <a href="/tools/obedience-level-assessment-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Obedience Level Assessment</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Evaluate current training level</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training methods</p>
+              </a>
+            </div>
+          </div>
+
+          {/* How Training Progress Tracker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Training Progress Tracker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our training progress tracker helps you monitor your pet's training progress across multiple commands and behaviors. You can track each command or behavior at different levels: not started, learning, improving, or mastered. The tool calculates overall progress based on the number of commands mastered and provides personalized recommendations for next training steps. Regular tracking helps identify areas that need more practice and celebrate achievements.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Training Progress</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Training progress varies by pet, command complexity, and consistency. Basic commands like "sit" may take a few days to a week, while more complex behaviors may take weeks or months. Consistency, positive reinforcement, and regular practice are key to successful training. Tracking progress helps you stay organized, identify areas needing attention, and maintain motivation by seeing improvements over time.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I track my pet's training progress?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Track training progress by: setting clear goals for each command or behavior, practicing regularly and consistently, marking progress levels (not started, learning, improving, mastered), updating your tracker regularly, and celebrating milestones. Use our training progress tracker to monitor multiple commands and behaviors at once and get personalized recommendations.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How long does it take to train a pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Training time varies by pet, command complexity, and consistency. Basic commands like "sit" may take a few days to a week, while more complex behaviors like "stay" or "come" may take weeks or months. House training typically takes 4-6 months. Consistency, positive reinforcement, and regular practice are key to successful training.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What should I do if my pet isn't making progress?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  If training isn't progressing: review your training methods (use positive reinforcement), break behaviors into smaller steps, ensure you're being consistent, check for distractions or environmental issues, consider if the pet is ready for that level of training, consult a professional trainer for guidance, and rule out medical issues that might affect learning.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/behavior-problem-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Behavior Problem Diagnosis</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify behavior issues</p>
+              </a>
+              <a href="/tools/separation-anxiety-risk-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Separation Anxiety Risk Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess anxiety risk factors</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+              <a href="/pet-behavior" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Behavior Resources</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Understand pet behavior better</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Training progress varies for each pet. Be patient and consistent. Update this tracker regularly to monitor progress. Remember that training is an ongoing process, and even "mastered" behaviors need occasional reinforcement.

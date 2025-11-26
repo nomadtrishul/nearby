@@ -196,6 +196,68 @@ export default function HeatCycleTrackerClient() {
             </div>
           )}
 
+          {/* How Heat Cycle Tracker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Heat Cycle Tracker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our heat cycle tracker helps you monitor your pet's reproductive cycle by tracking the date of the last heat cycle and calculating when the next cycle is expected. The tool considers that dogs typically go into heat every 5-8 months (average 6 months), while cats are seasonally polyestrous with cycles every 2-3 weeks during breeding season. It identifies the current phase of the cycle and provides information about cycle length and fertility periods.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Heat Cycles</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Dogs typically go into heat every 5-8 months, with an average of 6 months. The heat cycle lasts approximately 2-3 weeks, with the fertile period usually occurring on days 10-18. Cats are seasonally polyestrous, having multiple heat cycles every 2-3 weeks during the breeding season (spring through fall). Each cat heat cycle typically lasts 4-7 days if the cat is not bred. Cycle length can vary between individuals, so tracking helps predict timing.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often do dogs go into heat?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Dogs typically go into heat every 5-8 months, with an average of 6 months (approximately 180 days). The heat cycle lasts approximately 2-3 weeks, with the fertile period usually occurring on days 10-18 of the cycle. However, cycle length can vary between individual dogs and breeds.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often do cats go into heat?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Cats are seasonally polyestrous, meaning they have multiple heat cycles during the breeding season (typically spring through fall). Heat cycles occur every 2-3 weeks during the breeding season, and cats can have multiple cycles until bred or the season ends. Each heat cycle typically lasts 4-7 days if the cat is not bred.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are the phases of a dog's heat cycle?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  A dog's heat cycle has four phases: 1) Proestrus (Days 1-9) - bleeding/swelling, not receptive to males; 2) Estrus (Days 10-18) - receptive to males, fertile period, discharge changes to pink/straw-colored; 3) Diestrus (Days 19-60) - not receptive, pregnancy or false pregnancy possible; 4) Anestrus (Days 61-180) - resting phase, no reproductive activity.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/pregnancy-due-date-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pregnancy Due Date Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate pregnancy due dates</p>
+              </a>
+              <a href="/tools/vaccination-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccination Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create vaccination schedules</p>
+              </a>
+              <a href="/tools/vaccine-reminder" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Vaccine Reminder</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track vaccination schedules</p>
+              </a>
+              <a href="/pet-health" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Health Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about pet health and wellness</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Heat cycles can vary between individuals. This tool provides estimates based on average cycle lengths. Always consult with your veterinarian about spaying/neutering and reproductive health.

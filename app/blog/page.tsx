@@ -4,70 +4,37 @@ import { getAllPosts, getAllCategories, getAllTags } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import { getBaseUrl } from '@/lib/site-config';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners | Nearby Pet Care',
-  description: 'Read expert pet care articles, training tips, health guides, and pet care news. Learn how to keep your dog or cat healthy and happy with practical advice from our pet care blog.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners',
+  description: 'Read expert pet care articles, training tips, and health guides. Learn how to keep your dog or cat healthy with practical advice from our blog.',
   keywords: ['pet care blog', 'pet care articles', 'dog care tips', 'cat care guide', 'pet health articles', 'pet training tips', 'pet grooming tips', 'pet care advice', 'pet care news', 'pet care resources', 'pet owner education'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Pet Care Blog - Tips, Guides & News | Nearby Pet Care',
-    description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/blog',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Care Blog - Expert Advice, Tips & Guides for Pet Owners',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Care Blog - Tips, Guides & News | Nearby Pet Care',
-    description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+  pathname: '/blog',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Care Blog - Expert Advice, Tips & Guides for Pet Owners',
+      type: 'image/png',
+    },
+  ],
+  locale: 'en_US',
   alternates: {
-    canonical: 'https://nearbypetcare.com/blog',
     languages: {
-      'en-US': 'https://nearbypetcare.com/blog',
-      'en-GB': 'https://nearbypetcare.com/blog',
-      'en-CA': 'https://nearbypetcare.com/blog',
-      'en-AU': 'https://nearbypetcare.com/blog',
+      'en-US': '/blog',
+      'en-GB': '/blog',
+      'en-CA': '/blog',
+      'en-AU': '/blog',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
   },
   other: {
     'og:updated_time': new Date().toISOString(),
   },
-};
+});
 
 export default function BlogPage() {
   const posts = getAllPosts();

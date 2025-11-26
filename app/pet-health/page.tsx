@@ -2,52 +2,28 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Health Guide: How to Keep Your Dog or Cat Healthy | Nearby Pet Care',
-  description: 'Learn how to keep your pet healthy with our comprehensive pet health guide. Get expert advice on pet vaccinations, common pet diseases, pet first aid, parasite control, and recognizing when your pet needs a vet.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Health Guide: How to Keep Your Dog or Cat Healthy',
+  description: 'Comprehensive pet health guide with expert advice on vaccinations, common diseases, first aid, parasite control, and recognizing when your pet needs a vet.',
   keywords: ['pet health', 'how to keep pet healthy', 'pet health care', 'dog health', 'cat health', 'pet wellness', 'pet vaccinations', 'pet diseases', 'pet first aid', 'pet health tips', 'signs pet needs vet', 'pet parasite control'],
-  openGraph: {
-    title: 'Pet Health Guide: How to Keep Your Dog or Cat Healthy | Nearby Pet Care',
-    description: 'Learn how to keep your pet healthy with expert advice on pet vaccinations, common pet diseases, pet first aid, and recognizing when your pet needs a vet.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-health',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Health & Wellness Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Health & Wellness - Complete Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to pet health and wellness. Learn about common diseases, vaccinations, and maintaining your pet\'s health.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-health',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-health',
+  type: 'website',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Health & Wellness Guide',
+      type: 'image/png',
     },
-  },
+  ],
   other: {
     'google-ai-mode': 'default',
   },
-};
+});
 
 export default function PetHealthPage() {
   const webpageStructuredData = {

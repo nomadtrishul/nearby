@@ -247,6 +247,68 @@ export default function BathFrequencyCalculatorClient() {
             </div>
           )}
 
+          {/* How Bath Frequency Calculator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Bath Frequency Calculator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our bath frequency calculator analyzes multiple factors to determine the ideal bathing schedule for your pet. The tool considers coat type (short coats need less frequent bathing than long coats), lifestyle (outdoor pets need more frequent bathing), activity level (highly active pets may need more frequent bathing), and skin condition (dry or sensitive skin needs less frequent bathing). The calculator provides a recommended frequency range and explains how each factor influences the recommendation.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Bathing Frequency</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Most pets need bathing every 4-8 weeks, but this varies significantly based on individual factors. Over-bathing can strip natural oils and cause skin problems, while under-bathing can lead to odor and hygiene issues. The calculator balances these factors to provide a personalized recommendation that maintains healthy skin and coat while keeping your pet clean and comfortable.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I bathe my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Bathing frequency depends on several factors: coat type (short coats every 6-8 weeks, long coats every 3-4 weeks), lifestyle (outdoor pets need more frequent bathing), activity level (highly active pets may need more frequent bathing), and skin condition (dry or sensitive skin needs less frequent bathing). Most pets need bathing every 4-8 weeks. Bathe when your pet is dirty or smelly, and avoid over-bathing which can strip natural oils.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I bathe my pet too often?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Yes, over-bathing can be harmful. Bathing too frequently can strip the natural oils from your pet's skin and coat, leading to dryness, irritation, and increased risk of skin infections. Most pets should not be bathed more than once a week, and many pets only need bathing every 4-8 weeks. Signs of over-bathing include dry, flaky skin, excessive scratching, and a dull coat. If your pet needs frequent cleaning, consider spot cleaning or using waterless shampoos between full baths.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What factors affect how often I should bathe my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Factors affecting bathing frequency include: coat type (long coats may need more frequent bathing), lifestyle (outdoor pets get dirtier), activity level (highly active pets may need more frequent bathing), skin condition (dry or sensitive skin needs less frequent bathing), and individual needs (some pets have naturally oily coats or skin conditions requiring specific schedules). Always consider your pet's individual needs and consult your veterinarian for pets with skin conditions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/coat-type-identification-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Coat Type Identification Tool</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify your pet's coat type</p>
+              </a>
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right grooming tools</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This calculator provides general guidelines. Adjust based on your pet's individual needs. Bathe when your pet is dirty or smelly, and avoid over-bathing which can cause dry skin. For pets with skin conditions, follow your veterinarian's specific recommendations.

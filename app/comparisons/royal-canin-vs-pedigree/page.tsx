@@ -2,81 +2,28 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import ComparisonsSidebar from '@/components/ComparisonsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-const baseUrl = 'https://nearbypetcare.com';
-const pageUrl = `${baseUrl}/comparisons/royal-canin-vs-pedigree`;
-const publishedTime = '2024-01-15T00:00:00Z';
-const modifiedTime = new Date().toISOString();
-
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Royal Canin vs Pedigree - Dog Food Comparison | Nearby Pet Care',
-  description: 'Comprehensive comparison of Royal Canin vs Pedigree dog food. Expert analysis of ingredients, nutrition, price, veterinary recommendations, and real-world results to help you choose the best food for your dog.',
+  description: 'Comprehensive comparison of Royal Canin vs Pedigree dog food. Expert analysis of ingredients, nutrition, price, and recommendations.',
   keywords: ['Royal Canin vs Pedigree', 'dog food comparison', 'Royal Canin review', 'Pedigree review', 'best dog food', 'premium vs budget dog food', 'dog food brands comparison', 'veterinary recommended dog food'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL(baseUrl),
-  openGraph: {
-    title: 'Royal Canin vs Pedigree - Dog Food Comparison | Nearby Pet Care',
-    description: 'Comprehensive comparison of Royal Canin vs Pedigree dog food. Expert analysis of ingredients, nutrition, price, and veterinary recommendations.',
-    type: 'article',
-    url: pageUrl,
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime,
-    modifiedTime,
-    authors: ['Nearby Pet Care Team'],
-    section: 'Comparisons',
-    tags: ['dog food', 'pet nutrition', 'Royal Canin', 'Pedigree', 'dog food comparison', 'pet care'],
-    images: [
-      {
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: 'Royal Canin vs Pedigree Dog Food Comparison',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Royal Canin vs Pedigree - Dog Food Comparison | Nearby Pet Care',
-    description: 'Comprehensive comparison of Royal Canin vs Pedigree dog food. Expert analysis to help you choose the best food for your dog.',
-    images: [`${baseUrl}/og-image.png`],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: pageUrl,
-    languages: {
-      'en-US': pageUrl,
-      'en-GB': pageUrl,
-      'en-CA': pageUrl,
-      'en-AU': pageUrl,
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': publishedTime,
-    'article:modified_time': modifiedTime,
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Comparisons',
-    'article:tag': 'dog food, pet nutrition, Royal Canin, Pedigree, dog food comparison',
-  },
-};
+  pathname: '/comparisons/royal-canin-vs-pedigree',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Royal Canin vs Pedigree Dog Food Comparison',
+    type: 'image/png',
+  }],
+});
 
 export default function RoyalCaninVsPedigreePage() {
+  const baseUrl = 'https://nearbypetcare.com';
+  const pageUrl = `${baseUrl}/comparisons/royal-canin-vs-pedigree`;
+  const publishedTime = '2024-01-15T00:00:00Z';
+  const modifiedTime = new Date().toISOString();
   // Breadcrumb Structured Data
   const breadcrumbStructuredData = {
     '@context': 'https://schema.org',

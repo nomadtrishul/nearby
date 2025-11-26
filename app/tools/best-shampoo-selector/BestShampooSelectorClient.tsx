@@ -259,6 +259,68 @@ export default function BestShampooSelectorClient() {
             </div>
           )}
 
+          {/* How Best Shampoo Selector Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Best Shampoo Selector Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our best shampoo selector helps you find the ideal shampoo for your pet by analyzing coat type, skin condition, and age. The tool considers factors such as coat length and texture, skin sensitivity, existing skin conditions, and life stage to recommend appropriate shampoo types. It also provides guidance on key ingredients to look for and warnings about ingredients to avoid based on your pet's specific needs.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Shampoo Selection</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                The best shampoo depends on your pet's individual needs. For normal skin and coat, use a general purpose, pH-balanced pet shampoo. For sensitive or dry skin, choose hypoallergenic or moisturizing shampoos with oatmeal or aloe vera. For oily coats, use clarifying shampoos. For itchy skin, consider medicated or soothing shampoos. Puppies and kittens need tear-free, extra-mild formulas. Always use pet-specific shampoos, never human shampoos, as they have different pH levels.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What shampoo should I use for my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  The best shampoo depends on your pet's coat type, skin condition, and age. For normal skin and coat, use a general purpose, pH-balanced pet shampoo. For sensitive or dry skin, choose hypoallergenic or moisturizing shampoos with oatmeal or aloe vera. For oily coats, use clarifying shampoos. For itchy skin, consider medicated or soothing shampoos. Puppies and kittens need tear-free, extra-mild formulas. Always use pet-specific shampoos, never human shampoos.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I use human shampoo on my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  No, you should never use human shampoo on pets. Human shampoos have different pH levels (around 5.5) compared to pet skin (around 6.2-7.4 for dogs, 6.0-6.5 for cats). Using human shampoo can disrupt the skin's natural pH balance, cause dryness, irritation, and make pets more susceptible to skin infections. Always use shampoos specifically formulated for pets.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I bathe my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Bathing frequency depends on your pet's coat type and lifestyle. Most pets need bathing every 4-8 weeks. Short-coated pets may need bathing every 4-8 weeks, while long-coated pets may need bathing every 3-4 weeks. Outdoor pets or those with skin conditions may need more frequent bathing. Over-bathing can strip natural oils and cause dry skin, so avoid bathing too frequently unless recommended by your veterinarian.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/bath-frequency-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Bath Frequency Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Determine optimal bathing frequency</p>
+              </a>
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right grooming tools</p>
+              </a>
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Always use pet-specific shampoos. Human shampoos have different pH levels and can cause skin irritation. For persistent skin issues, consult your veterinarian who may recommend medicated shampoos.

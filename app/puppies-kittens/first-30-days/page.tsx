@@ -5,7 +5,7 @@ import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
 
 export const metadata: Metadata = {
   title: 'First 30 Days with Your New Puppy or Kitten: Complete Care Guide | Nearby Pet Care',
-  description: 'Complete guide to the first 30 days with your new puppy or kitten. Essential tips for care, health, bonding, house training, and setting up routines. Expert advice for new pet parents.',
+  description: 'Complete guide to the first 30 days with your new puppy or kitten. Essential tips for care, health, bonding, house training, and setting up routines.',
   keywords: ['first 30 days puppy', 'first 30 days kitten', 'new puppy guide', 'new kitten guide', 'puppy care first month', 'kitten care first month', 'bringing home puppy', 'bringing home kitten'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',

@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
 import MultivitaminNeedsAnalyzerClient from './MultivitaminNeedsAnalyzerClient';
-import { generateToolMetadata, generateToolStructuredData } from '@/lib/tool-seo-helper';
+import {
+  generateSEOMetadata,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
   title: 'Multivitamin Needs Analyzer',
-  description: 'Determine if your pet needs multivitamins or specific vitamin supplements based on age, diet type, and health conditions. Get personalized vitamin recommendations with dosage guidance.',
+  description: 'Determine if your pet needs multivitamins or specific vitamin supplements based on age, diet type, and health conditions. Get personalized recommendations.',
   keywords: ['pet multivitamins', 'dog vitamins', 'cat vitamins', 'pet supplements', 'vitamin supplements pets', 'pet nutrition supplements', 'multivitamin pets', 'pet vitamin needs'],
   slug: 'multivitamin-needs-analyzer',
   category: 'Nutrition',
@@ -31,27 +37,52 @@ const config = {
   ],
 };
 
-export const metadata: Metadata = generateToolMetadata(config);
+export const metadata: Metadata = generateSEOMetadata({
+  title: config.title,
+  description: config.description,
+  keywords: config.keywords,
+  pathname: `/tools/${config.slug}`,
+  type: 'website',
+});
 
 export default function MultivitaminNeedsAnalyzerPage() {
-  const { webApplication, breadcrumb, faq } = generateToolStructuredData(config);
+  const baseUrl = getBaseUrl();
+  const toolUrl = ensureAbsoluteUrl(`/tools/${config.slug}`);
+  const toolTitle = config.title.split('|')[0].trim();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools' },
+    { name: toolTitle, url: `/tools/${config.slug}` },
+  ];
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+  
+  const faqStructuredData = config.faqs && config.faqs.length > 0 
+    ? generateFAQStructuredData(config.faqs)
+    : null;
+
+  const webApplicationStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: toolTitle,
+    description: config.description,
+    url: toolUrl,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: config.features || [],
+  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplication) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      {faq && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
-        />
-      )}
+      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <MultivitaminNeedsAnalyzerClient />
     </>
   );

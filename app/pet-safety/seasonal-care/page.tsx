@@ -6,7 +6,7 @@ import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Seasonal Pet Safety Guide - Year-Round Protection for Your Pet | Nearby Pet Care',
-  description: 'Seasonal safety tips for pets. Learn how to keep your pet safe during different seasons and weather conditions. Expert advice for summer, winter, spring, and fall pet care.',
+  description: 'Seasonal safety tips for pets. Learn how to keep your pet safe during different seasons and weather conditions. Expert advice for all seasons.',
   keywords: ['seasonal pet safety', 'winter pet safety', 'summer pet safety', 'pet weather safety', 'hot weather pets', 'cold weather pets', 'seasonal pet care'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

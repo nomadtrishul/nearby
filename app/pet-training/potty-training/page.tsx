@@ -2,63 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Potty Training for Pets: Complete House Training Guide | Nearby Pet Care',
-  description: 'Master potty training with our comprehensive guide. Learn effective house training techniques for dogs and litter box training for cats. Get practical tips that actually work.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Potty Training for Pets: Complete House Training Guide',
+  description: 'Master potty training with our comprehensive guide. Learn effective house training techniques for dogs and litter box training for cats.',
   keywords: ['potty training', 'house training', 'litter box training', 'pet toilet training', 'puppy potty training', 'kitten litter training', 'housebreaking', 'dog house training', 'cat litter training'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Potty Training for Pets: Complete House Training Guide | Nearby Pet Care',
-    description: 'Master potty training with our comprehensive guide. Learn effective house training techniques for dogs and litter box training for cats.',
-    type: 'article',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/pet-training/potty-training',
-    siteName: 'Nearby Pet Care',
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    section: 'Pet Training',
-    tags: ['potty training', 'house training', 'litter box training', 'puppy training', 'kitten training'],
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Potty Training for Pets - Complete Guide',
-      type: 'image/png',
-    }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Potty Training for Pets: Complete Guide | Nearby Pet Care',
-    description: 'Master potty training with our comprehensive guide. Learn effective house training techniques for dogs and litter box training for cats.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-training/potty-training',
-  },
-  category: 'Pet Training',
-};
+  pathname: '/pet-training/potty-training',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Potty Training for Pets - Complete Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function PottyTrainingPage() {
   const currentDate = new Date().toISOString();

@@ -6,7 +6,7 @@ import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Home Proofing - Complete Safety Guide | Nearby Pet Care',
-  description: 'Complete guide to pet-proofing your home. Learn how to identify and eliminate common household hazards to keep your pet safe. Expert tips for creating a pet-safe environment.',
+  description: 'Complete guide to pet-proofing your home. Learn how to identify and eliminate common household hazards to keep your pet safe. Expert tips included.',
   keywords: ['pet proofing', 'home safety pets', 'pet hazards', 'pet home safety', 'pet proofing checklist', 'dog proofing', 'cat proofing', 'pet safety home'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

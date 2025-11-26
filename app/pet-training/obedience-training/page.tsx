@@ -2,65 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands | Nearby Pet Care',
-  description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement techniques that actually work.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands',
+  description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement.',
   keywords: ['obedience training', 'dog training commands', 'pet training basics', 'positive reinforcement', 'how to train a dog', 'dog training tips', 'teaching dogs commands', 'puppy training', 'cat training', 'dog obedience'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands | Nearby Pet Care',
-    description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement techniques that actually work.',
-    type: 'article',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/pet-training/obedience-training',
-    siteName: 'Nearby Pet Care',
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    section: 'Pet Training',
-    tags: ['obedience training', 'dog training', 'pet training', 'positive reinforcement', 'puppy training'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Obedience Training for Pets - Complete Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Obedience Training for Pets: Complete Guide | Nearby Pet Care',
-    description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-training/obedience-training',
-  },
-  category: 'Pet Training',
-};
+  pathname: '/pet-training/obedience-training',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Obedience Training for Pets - Complete Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ObedienceTrainingPage() {
   const currentDate = new Date().toISOString();
@@ -70,7 +27,7 @@ export default function ObedienceTrainingPage() {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands',
-    description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement techniques that actually work.',
+    description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement.',
     url: 'https://nearbypetcare.com/pet-training/obedience-training',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,

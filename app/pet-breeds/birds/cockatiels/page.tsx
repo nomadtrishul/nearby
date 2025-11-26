@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Cockatiels as Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Cockatiels as Pets Guide',
   description: 'Complete guide to keeping cockatiels as pets. Learn about cockatiel care, training, diet, and health considerations.',
   keywords: ['cockatiels', 'cockatiel care', 'cockatiel pets', 'cockatiel guide', 'cockatiel diet', 'cockatiel health'],
-  openGraph: { title: 'Cockatiels as Pets Guide | Nearby Pet Care', description: 'Complete guide to keeping cockatiels as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/birds/cockatiels' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/birds/cockatiels' },
-};
+  pathname: '/pet-breeds/birds/cockatiels',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Cockatiels as Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function CockatielsPage() {
   return (

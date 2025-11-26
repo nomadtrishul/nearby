@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Ragdoll Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Ragdoll Cat Breed Guide',
   description: 'Complete guide to Ragdoll cats. Learn about their characteristics, docile temperament, and care requirements.',
   keywords: ['Ragdoll', 'Ragdoll cat', 'Ragdoll breed', 'Ragdoll care', 'docile cat breed'],
-  openGraph: { title: 'Ragdoll Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to Ragdoll cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/ragdoll' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/ragdoll' },
-};
+  pathname: '/pet-breeds/cats/ragdoll',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Ragdoll Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RagdollPage() {
   return (

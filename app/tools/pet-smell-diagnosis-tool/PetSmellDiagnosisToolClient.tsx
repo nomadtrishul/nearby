@@ -316,6 +316,68 @@ export default function PetSmellDiagnosisToolClient() {
             </div>
           )}
 
+          {/* How Pet Smell Diagnosis Tool Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Pet Smell Diagnosis Tool Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our pet smell diagnosis tool helps identify potential causes of unpleasant odors in your pet by analyzing the location of the smell (mouth, ears, skin, general), type of smell (foul, musty, fishy, etc.), and accompanying symptoms. The tool matches these characteristics to common causes such as dental disease, ear infections, skin infections, anal gland issues, or other health conditions. It provides urgency assessment and treatment recommendations.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Pet Odors</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Different types of odors can indicate different conditions: bad breath often indicates dental disease, foul ear odor suggests ear infections, musty or yeasty smells may indicate skin infections or yeast overgrowth, and fishy smells often come from anal gland issues. The location and type of smell, along with other symptoms, help identify the underlying cause. Persistent or severe odors, especially with other symptoms, should be evaluated by a veterinarian.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Why does my pet smell bad?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common causes of bad smells in pets include: dental disease (bad breath), ear infections (foul ear odor), skin infections or yeast overgrowth (musty or yeasty smell), anal gland issues (fishy smell), lack of regular grooming, rolling in something unpleasant, or underlying health conditions. The location and type of smell can help identify the cause. Persistent or severe odors, especially with other symptoms, should be evaluated by a veterinarian.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What does it mean if my pet's breath smells bad?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Bad breath in pets is most commonly caused by dental disease (plaque, tartar, gingivitis, periodontal disease). Other causes include oral infections or abscesses, foreign objects stuck in teeth, kidney disease (ammonia-like smell), or diabetes (sweet or fruity smell). Regular dental care, including brushing and professional cleanings, can help prevent dental disease. If bad breath persists or is severe, consult your veterinarian.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">When should I be concerned about my pet's smell?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Be concerned and seek veterinary care if: the smell is severe or sudden, it's accompanied by other symptoms (lethargy, loss of appetite, excessive scratching, discharge), the smell persists despite regular grooming, your pet shows signs of pain or discomfort, or the smell is from a specific area (ears, mouth, skin) that may indicate infection. Some conditions, like severe infections or anal gland abscesses, require immediate veterinary attention.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/dental-health-score-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Dental Health Score Tool</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess your pet's dental health</p>
+              </a>
+              <a href="/tools/symptom-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Symptom Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify other health symptoms</p>
+              </a>
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
             <p className="text-sm text-red-800 dark:text-red-200">
               <strong>Important:</strong> This tool provides general guidance only and is not a substitute for professional veterinary care. If your pet has a persistent or severe odor, especially with other symptoms, consult your veterinarian immediately. Some conditions require prompt medical attention.

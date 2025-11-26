@@ -233,6 +233,68 @@ export default function MultiPetFeedingPlannerClient() {
             </div>
           )}
 
+          {/* How Multi-Pet Feeding Planner Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Multi-Pet Feeding Planner Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our multi-pet feeding planner helps you create individual feeding plans for each pet in your household by calculating daily calorie needs and feeding amounts based on each pet's weight, age, activity level, and life stage. The tool generates separate feeding plans for each pet, allowing you to coordinate schedules and ensure each pet receives nutrition appropriate for their individual needs, even when they have different dietary requirements.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Multi-Pet Feeding</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                To feed multiple pets with different needs: feed each pet separately in different locations to prevent food stealing, use different foods if needed (e.g., puppy food vs senior food, prescription diets), monitor each pet's food intake, feed at the same times but in separate areas, and consider using microchip-activated feeders for automatic separation. Each pet should have a feeding plan tailored to their individual needs.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I feed multiple pets with different needs?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To feed multiple pets with different needs: 1) Feed each pet separately in different locations to prevent food stealing; 2) Use different foods if needed (e.g., puppy food vs senior food, prescription diets); 3) Monitor each pet's food intake to ensure they're eating their own food; 4) Feed at the same times but in separate areas; 5) Consider using microchip-activated feeders for automatic separation; 6) Monitor each pet's weight and body condition separately. Each pet should have a feeding plan tailored to their individual needs.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Should all my pets eat the same food?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Not necessarily. Pets may need different foods based on: age (puppies/kittens vs adults vs seniors), health conditions (prescription diets), activity level, weight management needs, and food allergies. While it's convenient to feed the same food, it's more important that each pet receives nutrition appropriate for their individual needs. Consult your veterinarian to determine if your pets can share food or need different diets.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I prevent one pet from eating another pet's food?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To prevent food stealing: 1) Feed pets in separate rooms or areas; 2) Use physical barriers (baby gates, closed doors); 3) Supervise meal times; 4) Use microchip-activated feeders that only open for the specific pet; 5) Feed at the same time so pets are occupied with their own meals; 6) Remove food bowls after meals; 7) Train pets to stay in their designated feeding areas. This is especially important when one pet needs a prescription diet or weight management food.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper portion sizes</p>
+              </a>
+              <a href="/tools/weight-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Weight Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate your pet's weight and BMI</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This planner provides general guidelines. Individual pets may have different needs. Always consult with your veterinarian for personalized feeding recommendations.

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'American Shorthair Cat Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'American Shorthair Cat Breed Guide',
   description: 'Complete guide to American Shorthair cats. Learn about their characteristics, temperament, and care requirements.',
   keywords: ['American Shorthair', 'American Shorthair cat', 'American Shorthair breed', 'American Shorthair care'],
-  openGraph: { title: 'American Shorthair Cat Breed Guide | Nearby Pet Care', description: 'Complete guide to American Shorthair cats.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/cats/american-shorthair' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/cats/american-shorthair' },
-};
+  pathname: '/pet-breeds/cats/american-shorthair',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'American Shorthair Cat Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function AmericanShorthairPage() {
   return (

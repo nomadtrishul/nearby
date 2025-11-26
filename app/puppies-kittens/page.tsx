@@ -2,60 +2,27 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Puppy & Kitten Care Guide: How to Care for a New Puppy or Kitten | Nearby Pet Care',
-  description: 'Learn how to care for a new puppy or kitten with our complete guide. Expert advice on the first 30 days, puppy and kitten vaccination schedules, training basics, and everything you need to know about caring for young pets.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Puppy & Kitten Care Guide: How to Care for a New Puppy or Kitten',
+  description: 'Complete guide to caring for new puppies and kittens. Expert advice on the first 30 days, vaccination schedules, training basics, and young pet care.',
   keywords: ['puppy care', 'kitten care', 'how to care for a puppy', 'how to care for a kitten', 'new puppy guide', 'new kitten guide', 'puppy first 30 days', 'kitten first 30 days', 'puppy vaccinations', 'kitten vaccinations', 'puppy training', 'kitten training'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Puppies & Kittens Care Guide | Nearby Pet Care',
-    description: 'Complete guide to caring for puppies and kittens. Expert advice on the first 30 days, vaccination schedules, and training basics.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/puppies-kittens',
-    siteName: 'Nearby Pet Care',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Puppies & Kittens Care Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Puppies & Kittens Care Guide | Nearby Pet Care',
-    description: 'Complete guide to caring for puppies and kittens. Expert advice on the first 30 days, vaccination schedules, and training basics.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/puppies-kittens',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Puppies & Kittens Care Guide',
+      type: 'image/png',
     },
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/puppies-kittens',
-  },
-  category: 'Pet Care',
-};
+  ],
+  section: 'Pet Care',
+});
 
 export default function PuppiesKittensPage() {
   const guides = [

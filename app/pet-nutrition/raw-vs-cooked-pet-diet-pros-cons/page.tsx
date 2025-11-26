@@ -2,76 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Raw vs Cooked Pet Diet - Pros & Cons | Nearby Pet Care',
-  description: 'Compare raw and cooked diets for pets with science-backed information. Learn the pros, cons, and safety considerations for each approach. Veterinary nutritionist insights.',
+  description: 'Compare raw and cooked diets for pets with science-backed information. Learn the pros, cons, and safety considerations for each approach.',
   keywords: ['raw pet food', 'cooked pet food', 'raw diet for pets', 'BARF diet', 'pet diet comparison', 'raw food safety', 'cooked pet food recipes'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Raw vs Cooked Pet Diet - Pros & Cons | Nearby Pet Care',
-    description: 'Compare raw and cooked diets for pets with science-backed information.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Raw vs Cooked Pet Diet Comparison Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Raw vs Cooked Pet Diet - Pros & Cons | Nearby Pet Care',
-    description: 'Compare raw and cooked diets for pets with science-backed information.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Nutrition',
-    'article:tag': 'raw pet food, cooked pet food, BARF diet, pet diet comparison',
-  },
-};
+  pathname: '/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Raw vs Cooked Pet Diet Comparison Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function RawVsCookedDietPage() {
   const currentDate = new Date().toISOString();

@@ -2,78 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import BlogSidebar from '@/components/BlogSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Best Pet Insurance - Buying Guide | Nearby Pet Care',
-  description: 'Complete buying guide for pet insurance. Compare plans, coverage options, and find the best pet insurance for your needs. Learn about deductibles, reimbursement rates, and coverage types.',
+  description: 'Complete buying guide for pet insurance. Compare plans, coverage options, and find the best pet insurance for your needs.',
   keywords: ['best pet insurance', 'pet insurance guide', 'pet insurance comparison', 'dog insurance', 'cat insurance', 'pet health insurance', 'pet insurance plans'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Best Pet Insurance - Buying Guide | Nearby Pet Care',
-    description: 'Complete buying guide for pet insurance. Compare plans, coverage options, and find the best pet insurance for your needs.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/buying-guides/best-pet-insurance',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Best Pet Insurance - Buying Guide',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Buying Guides',
-    tags: ['pet insurance', 'insurance guide', 'pet health', 'buying guide'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Pet Insurance - Buying Guide | Nearby Pet Care',
-    description: 'Complete buying guide for pet insurance. Compare plans, coverage options, and find the best pet insurance for your needs.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/buying-guides/best-pet-insurance',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/buying-guides/best-pet-insurance',
-      'en-GB': 'https://nearbypetcare.com/buying-guides/best-pet-insurance',
-      'en-CA': 'https://nearbypetcare.com/buying-guides/best-pet-insurance',
-      'en-AU': 'https://nearbypetcare.com/buying-guides/best-pet-insurance',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00Z',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Buying Guides',
-    'article:tag': 'pet insurance, insurance guide, pet health, buying guide',
-  },
-};
+  pathname: '/buying-guides/best-pet-insurance',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Best Pet Insurance - Buying Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BestPetInsurancePage() {
   const baseUrl = 'https://nearbypetcare.com';

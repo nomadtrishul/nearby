@@ -2,78 +2,34 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BlogSidebar from '@/components/BlogSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Care Trends 2025: Latest Innovations & Practices | Nearby Pet Care',
-  description: 'Explore the latest pet care trends for 2025. Discover emerging products, services, and practices in the pet care industry including personalized nutrition, smart technology, sustainability, and holistic care.',
-  keywords: ['pet care trends', 'pet trends 2025', 'pet industry trends', 'pet care innovations', 'pet technology 2025', 'sustainable pet care', 'holistic pet care', 'pet wellness trends'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  metadataBase: new URL('https://nearbypetcare.com'),
-  openGraph: {
-    title: 'Pet Care Trends 2025 | Nearby Pet Care',
-    description: 'Explore the latest pet care trends for 2025. Discover emerging products, services, and practices in the pet care industry.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/community/trends-2025',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Care Trends 2025 - Latest Innovations',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Community',
-    tags: ['pet care trends', 'pet industry', 'pet innovations', '2025 trends'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Care Trends 2025 | Nearby Pet Care',
-    description: 'Explore the latest pet care trends for 2025. Discover emerging products, services, and practices in the pet care industry.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/community/trends-2025',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/community/trends-2025',
-      'en-GB': 'https://nearbypetcare.com/community/trends-2025',
-      'en-CA': 'https://nearbypetcare.com/community/trends-2025',
-      'en-AU': 'https://nearbypetcare.com/community/trends-2025',
+  description:
+    'Explore the latest pet care trends for 2025. Discover emerging products, services, and practices including personalized nutrition and smart technology.',
+  keywords: [
+    'pet care trends',
+    'pet trends 2025',
+    'pet industry trends',
+    'pet care innovations',
+    'pet technology 2025',
+    'sustainable pet care',
+    'holistic pet care',
+    'pet wellness trends',
+  ],
+  pathname: '/community/trends-2025',
+  type: 'article',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Care Trends 2025 - Latest Innovations',
+      type: 'image/png',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00Z',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Community',
-    'article:tag': 'pet care trends, pet industry, pet innovations, 2025 trends',
-  },
-};
+  ],
+});
 
 export default function Trends2025Page() {
   const baseUrl = 'https://nearbypetcare.com';
@@ -321,8 +277,6 @@ export default function Trends2025Page() {
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Main Content */}
             <div className="flex-1 max-w-4xl">
-              <h1 className="sr-only" itemProp="headline">Pet Care Trends 2025</h1>
-              
               <div className="prose prose-lg dark:prose-invert max-w-none" itemProp="articleBody">
                 <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed">
                   The pet care world is evolving faster than ever, and 2025 brings exciting innovations that are reshaping how we care for our companions. From personalized nutrition plans to smart technology that monitors your pet's health, this year's trends reflect a deeper understanding of what our pets truly need. Let's explore what's new, what's meaningful, and what might actually make a difference in your pet's life.

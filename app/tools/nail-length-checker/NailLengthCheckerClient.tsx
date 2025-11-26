@@ -260,6 +260,68 @@ export default function NailLengthCheckerClient() {
             </div>
           )}
 
+          {/* How Nail Length Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Nail Length Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our nail length checker uses your pet's size and measured nail length to determine if nails are at an ideal length. The tool compares your pet's nail length against size-based ideal ranges: small pets (under 10 lbs) should have 3-4mm nails, medium pets (10-40 lbs) should have 4-6mm nails, and large pets (over 40 lbs) should have 5-7mm nails. The tool also considers whether nails touch the ground when standing, which is the most important indicator.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Nail Length Assessment</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                The ideal nail length is when nails don't touch the ground when your pet is standing on a flat surface. If you can hear nails clicking on the floor, they need trimming. Regular trimming every 2-4 weeks helps keep the quick (blood vessel) short, making future trims easier and safer. Very long nails can cause pain, difficulty walking, and even permanent damage to toe structure.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How long should my pet's nails be?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Ideal nail length varies by pet size, but generally nails should not touch the ground when your pet is standing. For small pets (under 10 lbs), ideal length is typically 3-4mm. For medium pets (10-40 lbs), ideal length is 4-6mm. For large pets (over 40 lbs), ideal length is 5-7mm. The most important indicator is whether you can hear nails clicking on the floor - if so, they need trimming.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I trim my pet's nails?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Most pets need nail trimming every 2-4 weeks. Active pets that walk on hard surfaces may need less frequent trimming, while less active pets or those that walk primarily on soft surfaces may need more frequent trimming. Check nails weekly and trim when they start to touch the ground. Regular trimming helps keep the quick (blood vessel) short, making future trims easier.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What happens if my pet's nails are too long?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Long nails can cause several problems: pain and discomfort when walking, difficulty walking or running, changes in posture and gait, increased risk of nail breakage or splitting, potential for nails to curl and grow into the paw pad, and permanent damage to toe structure. Very long nails can also cause the quick (blood vessel) to extend, making future trimming more difficult. Trim long nails gradually over multiple sessions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/grooming-schedule-generator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Schedule Generator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create a complete grooming schedule</p>
+              </a>
+              <a href="/tools/grooming-tools-recommender" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Tools Recommender</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Find the right nail trimming tools</p>
+              </a>
+              <a href="/tools/grooming-cost-estimator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Grooming Cost Estimator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Estimate professional grooming costs</p>
+              </a>
+              <a href="/pet-grooming" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Grooming Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn professional grooming techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This tool provides general guidance. Nail length can vary between individual pets and breeds. The most important indicator is whether nails touch the ground when your pet is standing. If you're unsure about trimming nails, consult a professional groomer or veterinarian.

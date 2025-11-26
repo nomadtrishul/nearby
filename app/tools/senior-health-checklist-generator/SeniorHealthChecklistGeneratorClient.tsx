@@ -219,6 +219,68 @@ export default function SeniorHealthChecklistGeneratorClient() {
             </div>
           )}
 
+          {/* How Senior Health Checklist Generator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Senior Health Checklist Generator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our senior health checklist generator creates comprehensive health checklists for senior pets by organizing monitoring items, veterinary care recommendations, and wellness guidelines based on your pet's age and type. The tool provides age-appropriate checklists covering weight monitoring, appetite and water intake, mobility assessment, dental care, vision and hearing checks, and behavioral changes. It helps you stay organized and proactive about your senior pet's health.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Senior Pet Health</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Senior pets need more frequent veterinary checkups (at least every 6 months), regular monitoring of weight, appetite, and behavior, appropriate exercise adjusted for mobility, comfortable bedding, senior-appropriate diet, dental care, and environmental modifications. Monitor for changes in appetite, water intake, mobility, behavior, dental problems, vision or hearing changes, and lumps or bumps. Work with your veterinarian to develop a personalized senior care plan.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What health issues should I monitor in senior pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Monitor senior pets for: changes in appetite or water intake, weight changes, mobility issues (stiffness, limping, difficulty getting up), changes in behavior (confusion, disorientation, increased sleeping), dental problems, vision or hearing changes, lumps or bumps, changes in urination or defecation, coughing or breathing changes, and skin/coat changes. Senior pets should have veterinary checkups every 6 months (or more frequently if health issues are present) to catch problems early.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should senior pets see the veterinarian?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Senior pets should see the veterinarian at least every 6 months for wellness exams, even if they appear healthy. More frequent visits (every 3-4 months) may be recommended if your pet has chronic health conditions. Regular checkups allow for early detection of age-related diseases, monitoring of existing conditions, and adjustments to medications or treatments. Blood work, urinalysis, and other diagnostic tests are often recommended annually or semi-annually for senior pets.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What special care do senior pets need?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Senior pets need: 1) More frequent veterinary checkups (every 6 months); 2) Regular monitoring of weight, appetite, and behavior; 3) Appropriate exercise (adjusted for mobility); 4) Comfortable bedding and easy access to food/water; 5) Senior-appropriate diet; 6) Dental care; 7) Joint supplements if needed; 8) Environmental modifications (ramps, non-slip surfaces); 9) Mental stimulation; 10) Patience and understanding of age-related changes. Work with your veterinarian to develop a senior care plan tailored to your pet's needs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/senior-pet-diet-planner" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Senior Pet Diet Planner</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Create diet plans for senior pets</p>
+              </a>
+              <a href="/tools/chronic-disease-management-planner" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Chronic Disease Management Planner</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Manage chronic health conditions</p>
+              </a>
+              <a href="/tools/symptom-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Symptom Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify health symptoms</p>
+              </a>
+              <a href="/senior-pets" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Senior Pet Care Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Comprehensive senior pet resources</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This checklist provides general guidelines. Senior pets have individual needs. Work closely with your veterinarian to develop a personalized care plan for your senior pet.

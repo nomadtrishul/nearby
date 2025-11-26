@@ -274,6 +274,68 @@ export default function PuppyPottyTrainingScheduleGeneratorClient() {
             </div>
           )}
 
+          {/* How Puppy Potty Training Schedule Generator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Puppy Potty Training Schedule Generator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our puppy potty training schedule generator creates personalized day-by-day schedules based on your puppy's age and your daily routine (wake time and bedtime). The tool calculates potty break frequency using the rule that puppies can hold their bladder for their age in months plus one hour, then generates a detailed schedule with meal times, potty breaks, and training tips. It provides a complete timeline from establishing routine to full house training.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Potty Training</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Most puppies are fully house trained by 4-6 months of age. Puppies need frequent potty breaks - very young puppies (8-10 weeks) need breaks every 1-2 hours, while older puppies (12-16 weeks) can go 2-3 hours. Always take puppies outside immediately after waking, eating, playing, and before bedtime. Consistency, patience, and positive reinforcement are key to successful potty training. If accidents happen, don't punish - clean thoroughly and focus on prevention.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How often should I take my puppy outside to potty?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Puppies need frequent potty breaks. A general rule is that puppies can hold their bladder for their age in months plus one hour (e.g., an 8-week-old puppy can hold it for about 2-3 hours). Very young puppies (8-10 weeks) need potty breaks every 1-2 hours, while older puppies (12-16 weeks) can go 2-3 hours. Always take puppies outside immediately after waking, eating, playing, and before bedtime.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How long does it take to potty train a puppy?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Most puppies are fully house trained by 4-6 months of age, though some may take longer. The process typically follows this timeline: Week 1-2 (establish routine, frequent breaks), Week 3-4 (puppy begins understanding routine), Week 5-8 (fewer accidents), Week 9-12 (mostly house trained), and 3-6 months (fully house trained). Consistency, patience, and positive reinforcement are key.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What should I do if my puppy has an accident?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  If you catch your puppy in the act, interrupt with a clap or "no" and immediately take them outside. If you find an accident after it happened, do not punish your puppy - they won't understand. Clean the area thoroughly with an enzyme cleaner to remove odors. Focus on prevention by following the schedule and supervising closely. Accidents are normal during training.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track training progress</p>
+              </a>
+              <a href="/tools/obedience-level-assessment-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Obedience Level Assessment</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Evaluate current training level</p>
+              </a>
+              <a href="/tools/socialization-readiness-test" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Socialization Readiness Test</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Assess socialization readiness</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This schedule is a guideline. Adjust based on your puppy's individual needs. Some puppies may need more frequent potty breaks, while others may be able to hold it longer. Consistency and patience are key to successful potty training.

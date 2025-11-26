@@ -2,76 +2,35 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Nutrition Diet Plan - Complete Guide | Nearby Pet Care',
-  description: 'Learn how to create a comprehensive nutrition plan tailored to your pet\'s specific needs, age, breed, and lifestyle. Expert guidance on pet diet planning with AAFCO standards and veterinary recommendations.',
-  keywords: ['pet diet plan', 'pet nutrition plan', 'dog diet plan', 'cat diet plan', 'pet meal planning', 'pet nutrition guide', 'AAFCO pet food', 'pet nutrition requirements', 'custom pet diet'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Pet Nutrition Diet Plan - Complete Guide | Nearby Pet Care',
-    description: 'Learn how to create a comprehensive nutrition plan tailored to your pet\'s specific needs, age, and lifestyle.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Nutrition Diet Plan Guide - Complete Guide to Creating a Pet Diet Plan',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Nutrition Diet Plan - Complete Guide | Nearby Pet Care',
-    description: 'Learn how to create a comprehensive nutrition plan tailored to your pet\'s specific needs, age, and lifestyle.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Nutrition Diet Plan - Complete Guide',
+  description:
+    "Learn how to create a comprehensive nutrition plan tailored to your pet's specific needs, age, breed, and lifestyle. Expert guidance on pet diet planning with AAFCO standards and veterinary recommendations.",
+  keywords: [
+    'pet diet plan',
+    'pet nutrition plan',
+    'dog diet plan',
+    'cat diet plan',
+    'pet meal planning',
+    'pet nutrition guide',
+    'AAFCO pet food',
+    'pet nutrition requirements',
+    'custom pet diet',
+  ],
+  pathname: '/pet-nutrition/pet-nutrition-diet-plan',
+  type: 'article',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Nutrition Diet Plan Guide - Complete Guide to Creating a Pet Diet Plan',
+      type: 'image/png',
     },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Nutrition',
-    'article:tag': 'pet nutrition, diet plan, pet food, dog nutrition, cat nutrition',
-  },
-};
+  ],
+});
 
 export default function PetNutritionDietPlanPage() {
   const currentDate = new Date().toISOString();

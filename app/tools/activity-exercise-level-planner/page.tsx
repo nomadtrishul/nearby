@@ -2,11 +2,17 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import Breadcrumb from '@/components/Breadcrumb';
 import ActivityExerciseLevelPlannerClient from './ActivityExerciseLevelPlannerClient';
-import { generateToolMetadata, generateToolStructuredData } from '@/lib/tool-seo-helper';
+import {
+  generateSEOMetadata,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps,
+} from '@/lib/seo-utils';
+import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
   title: 'Activity & Exercise Level Planner | Pet Activity Plan Generator',
-  description: 'Free activity and exercise level planner creates personalized daily and weekly routines for dogs and cats based on breed, age, weight, and current activity level.',
+  description: 'Free activity and exercise level planner creates personalized daily and weekly routines for dogs and cats based on breed, age, and activity level.',
   keywords: ['pet exercise plan', 'dog exercise planner', 'cat exercise plan', 'pet activity planner', 'exercise schedule', 'pet fitness plan', 'daily exercise pets', 'pet exercise routine'],
   slug: 'activity-exercise-level-planner',
   category: 'Training & Behavior',
@@ -42,10 +48,45 @@ const escapeHtml = (value: string) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
-export const metadata: Metadata = generateToolMetadata(config);
+export const metadata: Metadata = generateSEOMetadata({
+  title: config.title,
+  description: config.description,
+  keywords: config.keywords,
+  pathname: `/tools/${config.slug}`,
+  type: 'website',
+});
 
 export default function ActivityExerciseLevelPlannerPage() {
-  const { webApplication, breadcrumb, faq } = generateToolStructuredData(config);
+  const baseUrl = getBaseUrl();
+  const toolUrl = ensureAbsoluteUrl(`/tools/${config.slug}`);
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Tools', url: '/tools' },
+    { name: toolTitle, url: `/tools/${config.slug}` },
+  ];
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+  
+  const faqStructuredData = config.faqs.length > 0 
+    ? generateFAQStructuredData(config.faqs)
+    : null;
+
+  const webApplicationStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: toolTitle,
+    description: config.description,
+    url: toolUrl,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'Any',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    featureList: config.features,
+  };
 
   const breadcrumbItems = [
     { name: 'Home', href: '/' },
@@ -62,20 +103,9 @@ export default function ActivityExerciseLevelPlannerPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplication) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }}
-      />
-      {faq && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
-        />
-      )}
+      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
 
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
         <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
@@ -164,9 +194,9 @@ export default function ActivityExerciseLevelPlannerPage() {
         </section>
         <noscript
           dangerouslySetInnerHTML={{
-            __html: `<section aria-label="Activity & Exercise Planner fallback"><h1>${escapeHtml(
+            __html: `<section aria-label="Activity & Exercise Planner fallback"><h2>${escapeHtml(
               toolTitle
-            )}</h1><p>${escapeHtml(config.description)}</p>${faqMarkup}</section>`,
+            )}</h2><p>${escapeHtml(config.description)}</p>${faqMarkup}</section>`,
           }}
         />
       </main>

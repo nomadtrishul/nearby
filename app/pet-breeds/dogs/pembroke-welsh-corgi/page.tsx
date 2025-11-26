@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pembroke Welsh Corgi Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pembroke Welsh Corgi Breed Guide',
   description: 'Complete guide to Pembroke Welsh Corgis. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Pembroke Welsh Corgi', 'Corgi breed', 'Corgi care', 'Corgi temperament'],
-  openGraph: { title: 'Pembroke Welsh Corgi Breed Guide | Nearby Pet Care', description: 'Complete guide to Pembroke Welsh Corgis.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/pembroke-welsh-corgi' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/pembroke-welsh-corgi' },
-};
+  pathname: '/pet-breeds/dogs/pembroke-welsh-corgi',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pembroke Welsh Corgi Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function PembrokeWelshCorgiPage() {
   return (

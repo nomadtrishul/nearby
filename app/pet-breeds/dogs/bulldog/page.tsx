@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Bulldog Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Bulldog Breed Guide',
   description: 'Complete guide to Bulldogs. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Bulldog', 'Bulldog breed', 'Bulldog care', 'Bulldog temperament'],
-  openGraph: { title: 'Bulldog Breed Guide | Nearby Pet Care', description: 'Complete guide to Bulldogs.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/bulldog' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/bulldog' },
-};
+  pathname: '/pet-breeds/dogs/bulldog',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Bulldog Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function BulldogPage() {
   return (

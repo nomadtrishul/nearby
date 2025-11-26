@@ -5,7 +5,7 @@ import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
 
 export const metadata: Metadata = {
   title: 'Puppy & Kitten Vaccination Timeline: Complete Schedule Guide | Nearby Pet Care',
-  description: 'Complete vaccination timeline for puppies and kittens. Learn when to vaccinate, which vaccines are essential, and what to expect at vaccination appointments. Expert guide for pet parents.',
+  description: 'Complete vaccination timeline for puppies and kittens. Learn when to vaccinate, which vaccines are essential, and what to expect at vaccination appointments.',
   keywords: ['puppy vaccination', 'kitten vaccination', 'vaccination schedule', 'puppy vaccines', 'kitten vaccines', 'DHPP vaccine', 'FVRCP vaccine', 'rabies vaccine', 'pet vaccination schedule'],
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',

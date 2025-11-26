@@ -235,6 +235,68 @@ export default function FeedingCostCalculatorClient() {
             </div>
           )}
 
+          {/* How Feeding Cost Calculator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Feeding Cost Calculator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our feeding cost calculator helps you estimate the cost of feeding your pet by calculating daily, weekly, monthly, and yearly costs based on food type, price per unit, and daily feeding amounts. The tool considers your pet's weight, activity level, and life stage to determine calorie needs, then calculates how much food is needed and the associated costs. It provides a cost breakdown and recommendations for budget planning.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Pet Food Costs</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                The cost of feeding a pet varies significantly based on pet size, food quality, food type (dry vs wet vs raw), and location. Small dogs may cost $20-40/month, medium dogs $40-80/month, large dogs $60-120/month. Cats typically cost $20-50/month. Premium or prescription diets can cost significantly more. Dry food is typically cheaper per calorie than wet food, but consider your pet's preferences and health needs when choosing.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How much does it cost to feed a pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  The cost of feeding a pet varies significantly based on: pet size (larger pets eat more), food quality (premium foods cost more), food type (dry vs wet vs raw), and location. Small dogs may cost $20-40/month, medium dogs $40-80/month, large dogs $60-120/month. Cats typically cost $20-50/month. Premium or prescription diets can cost significantly more. Use our calculator to estimate costs based on your specific pet and food choices.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Is it cheaper to feed dry or wet food?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Dry food is typically cheaper per calorie than wet food. However, wet food may be more palatable and provide more moisture, which can be beneficial for some pets. The cost difference depends on the specific brands and formulations. Some pets may need a combination of both. Consider your pet's preferences, health needs, and your budget when choosing. Premium dry foods may cost more than basic wet foods, so compare costs per calorie or per serving rather than just per package.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I reduce pet food costs?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To reduce pet food costs: 1) Buy in bulk (larger bags often cost less per pound); 2) Look for sales and coupons; 3) Consider store brands or mid-range options (ensure they meet nutritional standards); 4) Avoid overfeeding (measure portions accurately); 5) Limit treats and table scraps; 6) Compare costs per calorie rather than per package. However, don't compromise on nutrition - choose foods that meet AAFCO standards and are appropriate for your pet's life stage and health needs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily calorie needs</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper portion sizes</p>
+              </a>
+              <a href="/tools/weight-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Weight Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate your pet's weight and BMI</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This calculator provides estimates based on standard maintenance calorie requirements. Actual costs may vary based on your pet's individual needs, activity level, and food prices in your area.

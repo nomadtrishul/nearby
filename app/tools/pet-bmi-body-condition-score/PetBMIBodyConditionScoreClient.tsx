@@ -300,6 +300,20 @@ export default function PetBMIBodyConditionScoreClient() {
             </div>
           </div>
 
+          {/* How Pet BMI / Body Condition Score Calculator Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Pet BMI / Body Condition Score Calculator Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our pet BMI and body condition score calculator uses the standardized 9-point scale to assess your pet's body condition. The assessment is based on three key visual and tactile indicators: rib palpation (feeling the ribs), waist visibility (viewing from above), and abdominal tuck (viewing from the side). This method is more accurate than weight alone because it accounts for body composition, muscle mass, and frame size.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding the 9-Point Scale</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                The 9-point body condition scale ranges from 1 (emaciated) to 9 (morbidly obese), with 4-5 being ideal. At the ideal score, ribs can be easily felt but not seen, there's a visible waist when viewed from above, and an abdominal tuck when viewed from the side. This score indicates your pet has appropriate body fat and muscle mass for optimal health.
+              </p>
+            </div>
+          </div>
+
           {/* Visible FAQ Section */}
           <div className="mt-8 mb-8">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>

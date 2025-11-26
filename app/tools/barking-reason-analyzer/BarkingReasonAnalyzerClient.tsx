@@ -308,6 +308,68 @@ export default function BarkingReasonAnalyzerClient() {
             </div>
           )}
 
+          {/* How Barking Reason Analyzer Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Barking Reason Analyzer Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our barking reason analyzer helps identify why your dog is barking by analyzing the context (when and where barking occurs), type of bark (alert, attention-seeking, excitement, fear, etc.), frequency, duration, and triggers. The tool matches these characteristics to common reasons for barking such as territorial/alert barking, attention-seeking, excitement, fear or anxiety, boredom, separation anxiety, or reactivity. It provides targeted solutions based on the identified cause.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Barking Behavior</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Barking is a normal form of communication for dogs, but excessive, constant, or prolonged barking may indicate an underlying problem. Different types of barking have different causes and require different solutions. Territorial barking needs different management than attention-seeking barking, and fear-based barking requires different approaches than boredom-related barking. Understanding the specific reason is essential for effective training.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Why do dogs bark?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Dogs bark for many reasons: alerting to danger or intruders (territorial/alert barking), seeking attention, expressing excitement, showing fear or anxiety, responding to boredom, separation anxiety when left alone, reactivity to other dogs or people, or learned behavior. Understanding the specific reason for barking is essential for effective training.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How can I stop my dog from excessive barking?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  To reduce excessive barking: identify the cause (use our analyzer), address the underlying issue (boredom, anxiety, etc.), teach a "quiet" command using positive reinforcement, provide adequate exercise and mental stimulation, avoid reinforcing barking (don't give attention when barking), use desensitization for specific triggers, and consider professional training for persistent issues. Never use punishment or bark collars, as they can worsen the problem.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Is it normal for dogs to bark?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Yes, barking is a normal form of communication for dogs. However, excessive, constant, or prolonged barking may indicate an underlying problem such as anxiety, boredom, lack of training, or medical issues. If barking is causing problems or seems excessive, it's worth investigating the cause and working on training solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/behavior-problem-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Behavior Problem Diagnosis</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Diagnose other behavior issues</p>
+              </a>
+              <a href="/tools/aggression-type-checker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Aggression Type Checker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify aggression triggers</p>
+              </a>
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track training progress</p>
+              </a>
+              <a href="/pet-training" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Training Guides</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn effective training techniques</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> Excessive barking can be a sign of underlying issues. If barking is constant, prolonged, or causing problems with neighbors, consider consulting a professional dog trainer or behaviorist. Never use bark collars or punishment-based methods, as they can worsen the problem.

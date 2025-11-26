@@ -2,14 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Dog Breeds Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Dog Breeds Guide',
   description: 'Comprehensive guide to dog breeds. Learn about different dog breeds, their characteristics, temperament, and care requirements.',
   keywords: ['dog breeds', 'dog breed guide', 'dog breed information', 'dog characteristics'],
-  openGraph: { title: 'Dog Breeds Guide | Nearby Pet Care', description: 'Comprehensive guide to dog breeds and their characteristics.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs' },
-};
+  pathname: '/pet-breeds/dogs',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Dog Breeds Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function DogBreedsPage() {
   return (

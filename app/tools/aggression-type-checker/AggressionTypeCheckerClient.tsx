@@ -352,6 +352,68 @@ export default function AggressionTypeCheckerClient() {
             </div>
           )}
 
+          {/* How Aggression Type Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Aggression Type Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our aggression type checker helps identify the type of aggression your pet displays by analyzing triggers (what causes the aggression), targets (who or what the aggression is directed at), and behaviors observed. The tool matches these patterns to common aggression types such as resource guarding, territorial aggression, fear-based aggression, inter-dog/cat aggression, pain-induced aggression, protective aggression, or dominance aggression. Each type requires different treatment approaches.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Aggression Types</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Different types of aggression have different causes and require different treatment approaches. Resource guarding involves protecting food, toys, or items. Territorial aggression involves protecting home or territory. Fear-based aggression is a defensive response to fear. Pain-induced aggression occurs in response to pain or discomfort. Identifying the specific type helps determine the appropriate treatment strategy. Any aggression, especially involving biting, requires immediate professional help.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are the different types of aggression in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common types of aggression include: resource guarding (protecting food, toys, or items), territorial aggression (protecting home/territory), fear-based aggression (defensive response to fear), inter-dog/cat aggression (aggression toward other animals), pain-induced aggression (response to pain or discomfort), protective aggression (protecting owner), and dominance aggression. Each type requires different treatment approaches.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know if my pet's aggression is serious?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Aggression is serious if: your pet has bitten or attempted to bite, aggression is escalating, aggression occurs frequently, or it poses a safety risk. Any aggression, especially involving biting, requires immediate professional help from a certified animal behaviorist or veterinarian. Never attempt to handle severe aggression on your own.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can aggression be treated?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Yes, many types of aggression can be treated or managed with professional help, behavior modification, and in some cases, medication. Treatment success depends on the type and severity of aggression, underlying causes, and consistency of treatment. Resource guarding and fear-based aggression often respond well to behavior modification. Always work with a certified professional for aggression issues.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/behavior-problem-diagnosis-tool" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Behavior Problem Diagnosis</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Diagnose other behavior issues</p>
+              </a>
+              <a href="/tools/barking-reason-analyzer" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Barking Reason Analyzer</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Identify barking causes</p>
+              </a>
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Track behavior modification progress</p>
+              </a>
+              <a href="/pet-behavior" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Behavior Resources</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Understand pet behavior better</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 mb-12 space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">How the Aggression Type Checker Helps</h2>
             <p className="text-base text-gray-700 dark:text-gray-300">

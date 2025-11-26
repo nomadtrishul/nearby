@@ -7,6 +7,7 @@ import CopyButton from '@/components/CopyButton';
 import TipsSidebar from '@/components/TipsSidebar';
 import RelatedTips from '@/components/RelatedTips';
 import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from '@/lib/site-config';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -29,65 +30,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const baseUrl = getBaseUrl();
   const publishedTime = new Date(tip.date).toISOString();
   const modifiedTime = new Date(tip.dateModified || tip.date).toISOString();
-  const tipUrl = `${baseUrl}/pet-care-tips/${slug}`;
-  const tipImage = tip.image ? ensureAbsoluteUrl(tip.image) : getDefaultOgImage();
+  const tipImage = tip.image ? tip.image : '/og-image.png';
 
-  return {
+  return generateSEOMetadata({
     title: `${tip.title} | Pet Care Tips | Nearby Pet Care`,
     description: tip.excerpt,
     keywords: tip.tags || [],
-    authors: [{ name: tip.author || 'Nearby Pet Care Team' }],
-    openGraph: {
-      title: tip.title,
-      description: tip.excerpt,
-      type: 'article',
-      publishedTime,
-      modifiedTime,
-      authors: [tip.author || 'Nearby Pet Care Team'],
-      tags: tip.tags || [],
-      url: tipUrl,
-      images: [
-        {
-          url: tipImage,
-          width: 1200,
-          height: 630,
-          alt: tip.title,
-        },
-      ],
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: tip.title,
-      description: tip.excerpt,
-      images: [tipImage],
-    },
-    alternates: {
-      canonical: tipUrl,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    // Additional metadata for better SEO and other search engines
-    other: {
-      'article:published_time': publishedTime,
-      'article:modified_time': modifiedTime,
-      'article:author': tip.author || 'Nearby Pet Care Team',
-      'article:section': tip.category || 'General',
-      // Additional robots directives for other search engines
-      'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-    },
-  };
+    pathname: `/pet-care-tips/${slug}`,
+    type: 'article',
+    images: [{
+      url: tipImage,
+      width: 1200,
+      height: 630,
+      alt: tip.title,
+      type: 'image/png',
+    }],
+    publishedTime,
+    modifiedTime,
+    author: tip.author || 'Nearby Pet Care Team',
+    section: tip.category || 'General',
+    tags: tip.tags || [],
+  });
 }
 
 export default async function PetTipPage({ params }: PageProps) {

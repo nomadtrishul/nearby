@@ -2,37 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Mental Health & Anxiety: Complete Guide | Nearby Pet Care',
-  description: 'Learn about pet mental health, anxiety, and stress. Understand signs of anxiety in pets, common causes, and how to help anxious pets feel more comfortable and secure.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Mental Health & Anxiety: Complete Guide',
+  description: 'Learn about pet mental health, anxiety, and stress. Understand signs of anxiety in pets, common causes, and how to help anxious pets feel more comfortable.',
   keywords: ['pet anxiety', 'pet mental health', 'pet stress', 'separation anxiety', 'pet behavior', 'anxious pets', 'pet anxiety symptoms', 'pet stress management', 'pet mental wellness'],
-  openGraph: {
-    title: 'Pet Mental Health & Anxiety: Complete Guide | Nearby Pet Care',
-    description: 'Learn about pet mental health, anxiety, and stress management for dogs and cats.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/mental-health-anxiety',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Mental Health & Anxiety Guide',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Mental Health & Anxiety: Complete Guide | Nearby Pet Care',
-    description: 'Learn about pet mental health, anxiety, and stress management.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-health/mental-health-anxiety' },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/mental-health-anxiety',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Mental Health & Anxiety Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function MentalHealthAnxietyPage() {
   const breadcrumbStructuredData = {

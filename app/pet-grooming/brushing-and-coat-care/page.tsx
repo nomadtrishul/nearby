@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Brushing and Coat Care for Pets | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Brushing and Coat Care for Pets',
   description: 'Learn how to properly brush your pet and maintain their coat. Tips for different coat types and brushing techniques.',
   keywords: ['pet brushing', 'coat care', 'pet grooming brush', 'pet coat maintenance'],
-  openGraph: { title: 'Brushing and Coat Care for Pets | Nearby Pet Care', description: 'Learn how to properly brush your pet and maintain their coat.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/brushing-and-coat-care' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/brushing-and-coat-care' },
-};
+  pathname: '/pet-grooming/brushing-and-coat-care',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Brushing and Coat Care for Pets',
+    type: 'image/png',
+  }],
+});
 
 export default function BrushingAndCoatCarePage() {
   return (

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Pet Care Tips - Expert Advice & Guides | Nearby Pet Care',
-  description: 'Discover expert pet care tips, guides, and advice for keeping your pets healthy and happy. Learn about grooming, nutrition, training, and more from trusted pet care professionals.',
+  description: 'Discover expert pet care tips, guides, and advice for keeping your pets healthy and happy. Learn about grooming, nutrition, and training.',
   keywords: ['pet care tips', 'pet care advice', 'pet care guides', 'dog care tips', 'cat care tips', 'pet health tips', 'pet grooming tips', 'pet training tips'],
   openGraph: {
     title: 'Pet Care Tips - Expert Advice & Guides | Nearby Pet Care',

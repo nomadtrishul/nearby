@@ -2,60 +2,27 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Training Guide: How to Train Your Dog or Cat | Nearby Pet Care',
-  description: 'Learn how to train your pet with effective dog training tips and cat training techniques. Expert guides on potty training, obedience training, crate training, and solving common pet behavior problems.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Training Guide: How to Train Your Dog or Cat',
+  description: 'Learn how to train your pet with effective dog and cat training tips. Expert guides on potty training, obedience, crate training, and behavior problems.',
   keywords: ['pet training', 'how to train a dog', 'how to train a cat', 'dog training tips', 'cat training', 'potty training', 'obedience training', 'crate training', 'pet behavior', 'dog behavior problems', 'cat behavior', 'puppy training', 'kitten training'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Pet Training Guide: How to Train Your Dog or Cat | Nearby Pet Care',
-    description: 'Learn how to train your pet with effective dog training tips and cat training techniques. Expert guides on potty training, obedience training, and solving behavior problems.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/pet-training',
-    siteName: 'Nearby Pet Care',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Training & Behavior Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Training & Behavior - Complete Guide | Nearby Pet Care',
-    description: 'Comprehensive guide to pet training and behavior.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-training',
+  type: 'website',
+  author: 'Nearby Pet Care Team',
+  locale: 'en_US',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pet Training & Behavior Guide',
+      type: 'image/png',
     },
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-training',
-  },
-  category: 'Pet Training',
-};
+  ],
+  section: 'Pet Training',
+});
 
 export default function PetTrainingPage() {
   const guides = [

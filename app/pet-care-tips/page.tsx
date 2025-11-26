@@ -4,41 +4,18 @@ import { getAllTips, getAllCategories, getAllTags, getRecentTips } from '@/lib/p
 import TipsSidebar from '@/components/TipsSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetCareTipCard from '@/components/PetCareTipCard';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Care Tips: Step-by-Step How-To Guides for Dogs & Cats | Nearby Pet Care',
-  description: 'Learn how to care for your pet with our step-by-step pet care guides. Expert how-to tips on pet grooming, training, health care, nutrition, and more. Practical advice you can use right away.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Care Tips: Step-by-Step How-To Guides for Dogs & Cats',
+  description: 'Step-by-step pet care guides with expert tips on grooming, training, health, and nutrition. Practical advice you can use right away.',
   keywords: ['pet care tips', 'how to care for a pet', 'pet care guides', 'how to care for a dog', 'how to care for a cat', 'dog care tips', 'cat care tips', 'pet grooming guide', 'pet training guide', 'pet care how to'],
-  openGraph: {
-    title: 'Pet Care Tips - Expert How-To Guides | Nearby Pet Care',
-    description: 'Discover expert pet care how-to guides and tips. Learn step-by-step instructions for grooming, training, health care, and more.',
-    type: 'website',
-    url: 'https://nearbypetcare.com/pet-care-tips',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Care Tips - Expert How-To Guides | Nearby Pet Care',
-    description: 'Discover expert pet care how-to guides and tips. Learn step-by-step instructions for grooming, training, health care, and more.',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-care-tips',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  // Additional metadata for other search engines
+  pathname: '/pet-care-tips',
+  type: 'website',
   other: {
     'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   },
-};
+});
 
 export default function PetCareTipsPage() {
   const tips = getAllTips();

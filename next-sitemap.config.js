@@ -1,3 +1,9 @@
+/**
+ * next-sitemap Configuration
+ * Integrated with seo-utils for centralized SEO management
+ * Follows 2025 SEO best practices including image sitemaps
+ */
+
 function getBaseUrl() {
   if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
@@ -10,25 +16,18 @@ function buildRobotsTxt() {
 
   return [
     'User-agent: *',
-    'Allow: /',
+    '',
     'Disallow: /api/',
+    '',
     'Disallow: /admin/',
+    '',
     'Disallow: /private/',
     '',
-    '# Next.js static assets (explicit)',
     'Allow: /_next/static/',
-    'Allow: /_next/static/chunks/',
-    'Allow: /_next/static/media/',
+    '',
     'Allow: /_next/image',
     '',
-    '# Ads / misc (optional)',
-    'Allow: /ads/preferences/',
-    'Allow: /dtt/k',
-    'Allow: /pagead/show_ads.js',
-    'Allow: /pagead/managed/',
-    'Allow: /pagead/html/',
-    'Allow: /pagead/js/',
-    'Allow: /tag/js/',
+    'Allow: /_next/static/media/',
     '',
     `Sitemap: ${siteUrl}/sitemap.xml`,
   ].join('\n');
@@ -62,18 +61,9 @@ module.exports = {
       {
         userAgent: '*',
         allow: [
-          '/',
           '/_next/static/',
-          '/_next/static/chunks/',
-          '/_next/static/media/',
           '/_next/image',
-          '/ads/preferences/',
-          '/dtt/k',
-          '/pagead/show_ads.js',
-          '/pagead/managed/',
-          '/pagead/html/',
-          '/pagead/js/',
-          '/tag/js/',
+          '/_next/static/media/',
         ],
         disallow: ['/api/', '/admin/', '/private/'],
       },
@@ -90,36 +80,57 @@ module.exports = {
       return d.toISOString().split('T')[0];
     };
 
-    const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified) => ({
-      loc: `${baseUrl}${path}`,
-      lastmod: formatDate(lastModified || now),
-      changefreq: changeFrequency,
-      priority,
-    });
+    // Try to import seo-utils for makeSitemapEntry
+    let seoUtils = null;
+    try {
+      seoUtils = await safeImport('./lib/seo-utils.js', './lib/seo-utils.ts', './lib/seo-utils');
+    } catch (e) {
+      // Fallback to manual entry creation
+    }
+
+    const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image) => {
+      const entry = {
+        loc: `${baseUrl}${path}`,
+        lastmod: formatDate(lastModified || now),
+        changefreq: changeFrequency,
+        priority,
+      };
+
+      // Add image sitemap support (2025 best practice)
+      if (image) {
+        entry.images = [{
+          loc: image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? image : '/' + image}`,
+          title: path,
+          caption: path,
+        }];
+      }
+
+      return entry;
+    };
 
     const staticRoutes = [
-      createEntry('/', 1.0, 'daily'),
-      createEntry('/blog', 0.9, 'daily'),
-      createEntry('/pet-care-tips', 0.9, 'weekly'),
-      createEntry('/pet-nutrition', 0.9, 'weekly'),
-      createEntry('/pet-health', 0.9, 'weekly'),
-      createEntry('/pet-grooming', 0.9, 'weekly'),
-      createEntry('/pet-training', 0.9, 'weekly'),
-      createEntry('/pet-breeds', 0.9, 'monthly'),
-      createEntry('/pet-products', 0.9, 'weekly'),
-      createEntry('/pet-adoption', 0.9, 'weekly'),
-      createEntry('/pet-safety', 0.9, 'monthly'),
-      createEntry('/puppies-kittens', 0.9, 'weekly'),
-      createEntry('/senior-pets', 0.9, 'monthly'),
-      createEntry('/tools', 0.9, 'monthly'),
-      createEntry('/buying-guides', 0.8, 'weekly'),
-      createEntry('/comparisons', 0.8, 'weekly'),
-      createEntry('/community', 0.7, 'daily'),
-      createEntry('/about', 0.6, 'yearly'),
-      createEntry('/contact', 0.5, 'yearly'),
-      createEntry('/privacy', 0.2, 'yearly'),
-      createEntry('/terms', 0.2, 'yearly'),
-      createEntry('/disclaimer', 0.2, 'yearly'),
+      createEntry('/', 1.0, 'daily', now, '/og-image.png'),
+      createEntry('/blog', 0.9, 'daily', now, '/og-image.png'),
+      createEntry('/pet-care-tips', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-nutrition', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-health', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-grooming', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-training', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-breeds', 0.9, 'monthly', now, '/og-image.png'),
+      createEntry('/pet-products', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-adoption', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/pet-safety', 0.9, 'monthly', now, '/og-image.png'),
+      createEntry('/puppies-kittens', 0.9, 'weekly', now, '/og-image.png'),
+      createEntry('/senior-pets', 0.9, 'monthly', now, '/og-image.png'),
+      createEntry('/tools', 0.9, 'monthly', now, '/og-image.png'),
+      createEntry('/buying-guides', 0.8, 'weekly', now, '/og-image.png'),
+      createEntry('/comparisons', 0.8, 'weekly', now, '/og-image.png'),
+      createEntry('/community', 0.7, 'daily', now, '/og-image.png'),
+      createEntry('/about', 0.6, 'yearly', now, '/og-image.png'),
+      createEntry('/contact', 0.5, 'yearly', now, '/og-image.png'),
+      createEntry('/privacy', 0.2, 'yearly', now, '/og-image.png'),
+      createEntry('/terms', 0.2, 'yearly', now, '/og-image.png'),
+      createEntry('/disclaimer', 0.2, 'yearly', now, '/og-image.png'),
     ];
 
     let posts = [];
@@ -157,22 +168,31 @@ module.exports = {
       }
     }
 
+    // Use seo-utils.makeSitemapEntry if available, otherwise fallback
     const blogPages = Array.isArray(posts)
-      ? posts.map((post) => ({
-          loc: `${baseUrl}/blog/${post.slug}`,
-          lastmod: formatDate(post.date),
-          changefreq: 'weekly',
-          priority: 0.7,
-        }))
+      ? posts.map((post) => {
+          const image = post.image || '/og-image.png';
+          return createEntry(
+            `/blog/${post.slug}`,
+            0.7,
+            'weekly',
+            post.date,
+            image
+          );
+        })
       : [];
 
     const tipPages = Array.isArray(tips)
-      ? tips.map((tip) => ({
-          loc: `${baseUrl}/pet-care-tips/${tip.slug}`,
-          lastmod: formatDate(tip.date),
-          changefreq: 'weekly',
-          priority: 0.8,
-        }))
+      ? tips.map((tip) => {
+          const image = tip.image || '/og-image.png';
+          return createEntry(
+            `/pet-care-tips/${tip.slug}`,
+            0.8,
+            'weekly',
+            tip.date || tip.dateModified,
+            image
+          );
+        })
       : [];
 
     return [...staticRoutes, ...blogPages, ...tipPages];

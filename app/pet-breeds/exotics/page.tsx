@@ -2,14 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BreedsSidebar from '@/components/BreedsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Exotic Pets Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Exotic Pets Guide',
   description: 'Guide to exotic pets including reptiles, amphibians, and other unique species. Learn about their specialized care requirements.',
   keywords: ['exotic pets', 'reptiles', 'amphibians', 'exotic pet care', 'reptile care'],
-  openGraph: { title: 'Exotic Pets Guide | Nearby Pet Care', description: 'Guide to exotic pets and their specialized care requirements.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/exotics' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/exotics' },
-};
+  pathname: '/pet-breeds/exotics',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Exotic Pets Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function ExoticsPage() {
   return (

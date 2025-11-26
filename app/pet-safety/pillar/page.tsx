@@ -6,7 +6,7 @@ import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Pet Safety & Travel Overview - Comprehensive Guide | Nearby Pet Care',
-  description: 'Comprehensive overview of pet safety and travel topics. Learn how to keep your pet safe at home, while traveling, during emergencies, and throughout the seasons. Essential safety information for pet owners.',
+  description: 'Comprehensive overview of pet safety and travel topics. Learn how to keep your pet safe at home, while traveling, during emergencies, and throughout seasons.',
   keywords: ['pet safety overview', 'pet travel', 'pet home safety', 'pet safety guide', 'pet safety tips', 'pet protection', 'pet care safety'],
   authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
   creator: 'Nearby Pet Care',

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Haircuts and Styles Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Haircuts and Styles Guide',
   description: 'Learn about different pet haircuts and styles. When to trim, popular styles, and whether to DIY or visit a professional groomer.',
   keywords: ['pet haircuts', 'dog haircuts', 'pet grooming styles', 'pet trim'],
-  openGraph: { title: 'Pet Haircuts and Styles Guide | Nearby Pet Care', description: 'Learn about different pet haircuts and styles.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/haircuts-and-styles' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/haircuts-and-styles' },
-};
+  pathname: '/pet-grooming/haircuts-and-styles',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Haircuts and Styles Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function HaircutsAndStylesPage() {
   return (

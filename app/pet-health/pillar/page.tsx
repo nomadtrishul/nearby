@@ -2,39 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Health & Wellness Overview: Complete Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Health & Wellness Overview: Complete Guide',
   description: 'Comprehensive overview of pet health and wellness topics. Learn about maintaining your pet\'s health through preventive care, early detection, and understanding common health topics.',
   keywords: ['pet health overview', 'pet wellness', 'pet preventive care', 'pet health guide', 'pet health topics', 'pet wellness guide'],
-  openGraph: {
-    title: 'Pet Health & Wellness Overview: Complete Guide | Nearby Pet Care',
-    description: 'Comprehensive overview of pet health and wellness topics and how to maintain your pet\'s health.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-health/pillar',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Health & Wellness Overview',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Health & Wellness Overview | Nearby Pet Care',
-    description: 'Comprehensive overview of pet health and wellness topics.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-health/pillar',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+  pathname: '/pet-health/pillar',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Pet Health & Wellness Overview',
+    type: 'image/png',
+  }],
+});
 
 export default function PetHealthPillarPage() {
   const breadcrumbStructuredData = {

@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'German Shorthaired Pointer Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'German Shorthaired Pointer Breed Guide',
   description: 'Complete guide to German Shorthaired Pointers. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['German Shorthaired Pointer', 'GSP breed', 'German Shorthaired Pointer care', 'German Shorthaired Pointer temperament'],
-  openGraph: { title: 'German Shorthaired Pointer Breed Guide | Nearby Pet Care', description: 'Complete guide to German Shorthaired Pointers.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/german-shorthaired-pointer' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/german-shorthaired-pointer' },
-};
+  pathname: '/pet-breeds/dogs/german-shorthaired-pointer',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'German Shorthaired Pointer Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function GermanShorthairedPointerPage() {
   return (

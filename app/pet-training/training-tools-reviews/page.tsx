@@ -2,25 +2,24 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Training Tools Reviews: Best Pet Training Products & Equipment | Nearby Pet Care',
-  description: 'Discover the best pet training tools and equipment. Reviews of clickers, treats, leashes, harnesses, and training aids that make training more effective and enjoyable.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Training Tools Reviews: Best Pet Training Products & Equipment',
+  description: 'Discover the best pet training tools and equipment. Reviews of clickers, treats, leashes, harnesses, and training aids for effective training.',
   keywords: ['pet training tools', 'dog training tools', 'training clicker', 'training treats', 'dog training equipment', 'training aids', 'clicker training'],
-  openGraph: { 
-    title: 'Training Tools Reviews: Best Pet Training Products | Nearby Pet Care', 
-    description: 'Discover the best pet training tools and equipment. Reviews of clickers, treats, leashes, and training aids.', 
-    type: 'article', 
-    url: 'https://nearbypetcare.com/pet-training/training-tools-reviews',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Training Tools Reviews',
-    }],
-  },
+  pathname: '/pet-training/training-tools-reviews',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Training Tools Reviews',
+    type: 'image/png',
+  }],
+
   alternates: { canonical: 'https://nearbypetcare.com/pet-training/training-tools-reviews' },
-};
+});
 
 export default function TrainingToolsReviewsPage() {
   const currentDate = new Date().toISOString();

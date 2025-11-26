@@ -3,51 +3,34 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '@/lib/blog';
 import ResourceCards from '@/components/ResourceCards';
-import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
+import { getBaseUrl } from '@/lib/site-config';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
-  description: 'Learn how to care for a dog, cat, or any pet with our practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, training, and behavior. Trusted pet care information for pet owners.',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets',
+  description: 'Learn how to care for your dog, cat, or pet with practical tips and guides. Expert advice on nutrition, health, grooming, training, and behavior.',
   keywords: ['how to care for a dog', 'how to care for a cat', 'pet care tips', 'pet care guide', 'dog care tips', 'cat care tips', 'pet nutrition', 'pet health', 'dog grooming', 'cat grooming', 'pet training', 'dog training tips', 'pet care advice', 'pet care information', 'how to care for pets'],
-  openGraph: {
-    title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets | Nearby Pet Care',
-    description: 'Learn how to care for your pet with practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, and training from trusted pet care resources.',
-    type: 'website',
-    url: getBaseUrl(),
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    images: [
-      {
-        url: getDefaultOgImage(),
-        width: 1200,
-        height: 630,
-        alt: 'Nearby Pet Care - Educational Pet Care Resources',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets',
-    description: 'Learn how to care for your pet with practical pet care tips and guides. Expert advice on pet nutrition, health, grooming, and training.',
-    images: [getDefaultOgImage()],
-  },
+  pathname: '/',
+  type: 'website',
+  images: [
+    {
+      url: '/og-image.png',
+      width: 1200,
+      height: 630,
+      alt: 'Nearby Pet Care - Educational Pet Care Resources',
+      type: 'image/png',
+    },
+  ],
+  locale: 'en_US',
   alternates: {
-    canonical: getBaseUrl(),
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+    languages: {
+      'en-US': '/',
+      'en-GB': '/',
+      'en-CA': '/',
+      'en-AU': '/',
     },
   },
-};
+});
 
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);

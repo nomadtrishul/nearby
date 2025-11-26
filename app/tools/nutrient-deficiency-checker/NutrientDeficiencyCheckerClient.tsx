@@ -249,6 +249,68 @@ export default function NutrientDeficiencyCheckerClient() {
             </div>
           )}
 
+          {/* How Nutrient Deficiency Checker Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Nutrient Deficiency Checker Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Our nutrient deficiency checker analyzes symptoms you observe in your pet to identify potential nutrient deficiencies. The tool considers symptoms such as dull coat, hair loss, weakness, poor growth, and other signs that may indicate deficiencies in protein, vitamins, minerals, or fatty acids. The tool also accounts for diet type (commercial, homemade, raw) as different diets have different risks for deficiencies.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Understanding Nutrient Deficiencies</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                Nutrient deficiencies can occur when pets don't receive adequate amounts of essential nutrients from their diet. Common deficiencies include protein, omega-3 fatty acids, calcium, vitamins A and B, iron, and zinc. However, many symptoms can indicate multiple conditions, so professional veterinary evaluation through blood tests and physical examination is essential for accurate diagnosis. Never supplement without veterinary guidance.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What are common nutrient deficiencies in pets?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Common nutrient deficiencies in pets include: protein (poor growth, muscle wasting), omega-3 fatty acids (dull coat, dry skin), calcium (bone deformities, dental problems), vitamin A (vision problems, poor growth), B vitamins (lethargy, anemia, neurological issues), iron (anemia, weakness), and zinc (poor wound healing, hair loss). However, many symptoms can indicate multiple conditions, so professional veterinary evaluation is essential.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know if my pet has a nutrient deficiency?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Symptoms of nutrient deficiencies can include: dull coat, hair loss, dry or flaky skin, weakness, lethargy, poor growth, weight loss, muscle wasting, bone deformities, dental problems, vision problems, neurological issues, anemia, or poor wound healing. However, these symptoms can indicate many different conditions. Always consult your veterinarian for proper diagnosis through blood tests and physical examination.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Can I supplement my pet's diet without veterinary guidance?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  No, you should never supplement your pet's diet without veterinary guidance. Some nutrients can be toxic in excess (like vitamin A in cats), and improper supplementation can cause imbalances. Nutrient deficiencies require proper veterinary diagnosis through blood tests and physical examination. Your veterinarian can recommend appropriate supplements and dosages based on your pet's specific needs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate daily nutritional needs</p>
+              </a>
+              <a href="/tools/multivitamin-needs-analyzer" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Multivitamin Needs Analyzer</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Determine if supplements are needed</p>
+              </a>
+              <a href="/pet-nutrition" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Nutrition Guide</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Learn about balanced pet nutrition</p>
+              </a>
+              <a href="/tools/feeding-portion-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Feeding Portion Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate proper feeding amounts</p>
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Note:</strong> This tool provides general information only. Nutrient deficiencies require proper veterinary diagnosis through blood tests and physical examination. Never supplement without veterinary guidance.

@@ -2,76 +2,22 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Homemade Pet Food Recipes - Safe & Nutritious | Nearby Pet Care',
-  description: 'Safe and nutritious homemade pet food recipes with proper nutritional guidelines. Learn how to prepare balanced meals for your pets at home. Veterinary nutritionist approved recipes.',
+  description: 'Safe and nutritious homemade pet food recipes with proper nutritional guidelines. Learn how to prepare balanced meals for your pets at home.',
   keywords: ['homemade pet food', 'dog food recipes', 'cat food recipes', 'homemade pet meals', 'pet food recipes', 'veterinary nutrition', 'balanced pet diet'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Homemade Pet Food Recipes - Safe & Nutritious | Nearby Pet Care',
-    description: 'Safe and nutritious homemade pet food recipes with proper nutritional guidelines.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-nutrition/homemade-pet-food-recipes-guide',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Homemade Pet Food Recipes Guide - Safe and Nutritious Recipes',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Homemade Pet Food Recipes - Safe & Nutritious | Nearby Pet Care',
-    description: 'Safe and nutritious homemade pet food recipes with proper nutritional guidelines.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  alternates: {
-    canonical: 'https://nearbypetcare.com/pet-nutrition/homemade-pet-food-recipes-guide',
-    languages: {
-      'en-US': 'https://nearbypetcare.com/pet-nutrition/homemade-pet-food-recipes-guide',
-      'en-GB': 'https://nearbypetcare.com/pet-nutrition/homemade-pet-food-recipes-guide',
-      'en-CA': 'https://nearbypetcare.com/pet-nutrition/homemade-pet-food-recipes-guide',
-      'en-AU': 'https://nearbypetcare.com/pet-nutrition/homemade-pet-food-recipes-guide',
-    },
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Nutrition',
-    'article:tag': 'homemade pet food, pet food recipes, veterinary nutrition',
-  },
-};
+  pathname: '/pet-nutrition/homemade-pet-food-recipes-guide',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Homemade Pet Food Recipes Guide - Safe and Nutritious Recipes',
+    type: 'image/png',
+  }],
+});
 
 export default function HomemadePetFoodRecipesPage() {
   const currentDate = new Date().toISOString();

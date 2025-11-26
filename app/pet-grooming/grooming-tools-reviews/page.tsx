@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import GroomingSidebar from '@/components/GroomingSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Grooming Tools Reviews - Best Pet Grooming Products | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Grooming Tools Reviews - Best Pet Grooming Products',
   description: 'Reviews and recommendations for the best pet grooming tools including brushes, clippers, nail trimmers, and more.',
   keywords: ['pet grooming tools', 'dog grooming tools', 'cat grooming tools', 'grooming brush reviews'],
-  openGraph: { title: 'Grooming Tools Reviews | Nearby Pet Care', description: 'Reviews and recommendations for the best pet grooming tools.', type: 'article', url: 'https://nearbypetcare.com/pet-grooming/grooming-tools-reviews' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-grooming/grooming-tools-reviews' },
-};
+  pathname: '/pet-grooming/grooming-tools-reviews',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Grooming Tools Reviews - Best Pet Grooming Products',
+    type: 'image/png',
+  }],
+});
 
 export default function GroomingToolsReviewsPage() {
   return (

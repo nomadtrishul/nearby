@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import BreedHero from '@/components/BreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Leopard Gecko Care Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Leopard Gecko Care Guide',
   description: 'Complete guide to keeping leopard geckos as pets. Learn about their care, habitat, diet, and health considerations.',
   keywords: ['leopard gecko', 'leopard gecko care', 'gecko pets', 'leopard gecko habitat', 'leopard gecko diet'],
-  openGraph: { title: 'Leopard Gecko Care Guide | Nearby Pet Care', description: 'Complete guide to keeping leopard geckos as pets.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/exotics/leopard-gecko' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/exotics/leopard-gecko' },
-};
+  pathname: '/pet-breeds/exotics/leopard-gecko',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Leopard Gecko Care Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function LeopardGeckoPage() {
   return (

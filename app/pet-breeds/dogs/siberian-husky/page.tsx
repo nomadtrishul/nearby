@@ -1,14 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import DogBreedHero from '@/components/DogBreedHero';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Siberian Husky Breed Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Siberian Husky Breed Guide',
   description: 'Complete guide to Siberian Huskies. Learn about their characteristics, temperament, care requirements, and health considerations.',
   keywords: ['Siberian Husky', 'Husky', 'Siberian Husky breed', 'Husky care'],
-  openGraph: { title: 'Siberian Husky Breed Guide | Nearby Pet Care', description: 'Complete guide to Siberian Huskies.', type: 'article', url: 'https://nearbypetcare.com/pet-breeds/dogs/siberian-husky' },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-breeds/dogs/siberian-husky' },
-};
+  pathname: '/pet-breeds/dogs/siberian-husky',
+  type: 'article',
+  images: [{
+    url: '/og-image.png',
+    width: 1200,
+    height: 630,
+    alt: 'Siberian Husky Breed Guide',
+    type: 'image/png',
+  }],
+});
 
 export default function SiberianHuskyPage() {
   return (
