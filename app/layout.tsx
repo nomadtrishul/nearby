@@ -97,31 +97,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KVZJ3QXM24" suppressHydrationWarning></script>
-        <script
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-KVZJ3QXM24');
-            `,
-          }}
-        />
+
         {/* Viewport Meta Tag - Critical for Mobile-First Indexing */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
-        
+
         {/* Theme Color for Mobile Browsers */}
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-        
+
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="/logo-2.png" type="image/png" sizes="any" />
         <link rel="apple-touch-icon" href="/logo-2.png" />
-        
+
         {/* Preconnect to External Domains for Performance */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -172,13 +160,7 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* Google AdSense */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2513522563082642"
-          crossOrigin="anonymous"
-          suppressHydrationWarning
-        />
+
         {/* Analytics scripts will be loaded dynamically by AnalyticsLoader component after consent */}
         <script
           suppressHydrationWarning
@@ -263,7 +245,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* BreadcrumbList for Homepage */}
         <script
           type="application/ld+json"
