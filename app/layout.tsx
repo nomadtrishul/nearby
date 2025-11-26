@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -283,6 +284,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <ConsentBanner />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
