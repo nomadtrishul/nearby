@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "npx next-sitemap",
+    "postbuild": "npx next-sitemap && node scripts/submit-indexnow.js",
     "start": "next start",
     "lint": "next lint",
-    "seo:check": "ts-node --compiler-options '{\"module\":\"commonjs\"}' -r tsconfig-paths/register scripts/seo-check.js"
+    "seo:check": "ts-node --compiler-options '{\"module\":\"commonjs\"}' -r tsconfig-paths/register scripts/seo-check.js",
+    "indexnow:submit": "node scripts/submit-indexnow.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
