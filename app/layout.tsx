@@ -114,25 +114,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/logo-2.png" />
 
         {/* Preconnect to External Domains for Performance */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         
-        {/* Google Tag Manager */}
-        <script
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-W8HWTDWN');
-            `,
-          }}
-        />
-        {/* End Google Tag Manager */}
         
         {/* Initialize Google Consent Mode v2 - Must be loaded before any analytics scripts */}
         <script
@@ -304,16 +289,6 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-white dark:bg-black transition-colors`}>
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-W8HWTDWN"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-        {/* End Google Tag Manager (noscript) */}
         <ThemeProvider>
           <AnalyticsLoader />
           <Header />
