@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import GroomingSidebar from '@/components/GroomingSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Grooming Guide: How to Groom Your Dog or Cat at Home',
@@ -10,7 +17,7 @@ export const metadata: Metadata = generateSEOMetadata({
   keywords: ['pet grooming', 'how to groom a dog', 'how to groom a cat', 'dog grooming tips', 'cat grooming tips', 'pet bathing', 'pet nail trimming', 'pet dental care', 'pet hygiene', 'grooming at home'],
   pathname: '/pet-grooming',
   type: 'website',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -33,8 +40,41 @@ export default function PetGroomingPage() {
     { title: 'Haircuts and Styles', href: '/pet-grooming/haircuts-and-styles', icon: '💇', description: 'Popular pet haircut styles and techniques for different breeds and coat lengths.' },
   ];
 
+  const baseUrl = getBaseUrl();
+  
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Grooming', url: '/pet-grooming' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
+    name: 'Pet Grooming & Hygiene Guide',
+    description: 'Learn how to groom your pet at home with step-by-step guides. Expert tips on dog and cat grooming, bathing, nail trimming, and dental care.',
+    url: '/pet-grooming',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Grooming & Hygiene Guide',
+    description: 'Learn how to groom your pet at home with step-by-step guides. Expert tips on dog and cat grooming, bathing, nail trimming, and dental care.',
+    url: '/pet-grooming',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">

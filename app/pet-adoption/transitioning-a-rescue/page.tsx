@@ -2,57 +2,30 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdoptionSidebar from '@/components/AdoptionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust',
   description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, handle challenges, and the 3-3-3 rule.',
   keywords: ['rescue pet transition', 'adopting rescue pet', 'rescue pet adjustment', 'new rescue pet', 'rescue pet trust', 'rescue pet behavior', '3-3-3 rule', 'rescue pet challenges', 'building trust with rescue pet'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust | Nearby Pet Care',
-    description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, and handle challenges.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-adoption/transitioning-a-rescue',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Transitioning a Rescue Pet - Complete Guide',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Pet Adoption',
-    tags: ['pet adoption', 'rescue pet', 'pet transition', 'building trust'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust',
-    description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, and handle common challenges.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-adoption/transitioning-a-rescue',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-adoption/transitioning-a-rescue',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00Z',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Adoption',
+  tags: ['pet adoption', 'rescue pet', 'pet transition', 'building trust'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/pet-adoption/transitioning-a-rescue',
+      'en-GB': '/pet-adoption/transitioning-a-rescue',
+      'en-CA': '/pet-adoption/transitioning-a-rescue',
+      'en-AU': '/pet-adoption/transitioning-a-rescue',
     },
   },
-};
+});
 
 export default function TransitioningRescuePage() {
   const baseUrl = 'https://nearbypetcare.com';

@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BlogSidebar from '@/components/BlogSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Care Community: Latest News, Research & Pet Owner Stories',
@@ -11,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/community',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -35,8 +42,7 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function CommunityPage() {
-  const baseUrl = 'https://nearbypetcare.com';
-  const currentDate = new Date().toISOString();
+  const baseUrl = getBaseUrl();
   
   const sections = [
     { 
@@ -59,98 +65,39 @@ export default function CommunityPage() {
     },
   ];
 
-  // CollectionPage Structured Data for community sections
-  const collectionPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${baseUrl}/community#collectionpage`,
-    name: 'Pet Care Community',
-    description: 'Stay connected with the latest pet care news, research, trends, and stories from our community.',
-    url: `${baseUrl}/community`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: sections.length,
-      itemListElement: sections.map((section, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'Article',
-          '@id': `${baseUrl}${section.href}`,
-          headline: section.title,
-          description: section.description,
-          url: `${baseUrl}${section.href}`,
-        },
-      })),
-    },
-  };
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Community', url: '/community' },
+  ];
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${baseUrl}/community#webpage`,
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Care Community',
     description: 'Stay connected with the latest pet care news, research, trends, and stories from our community.',
-    url: `${baseUrl}/community`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
-      width: 1200,
-      height: 630,
-    },
-    dateModified: currentDate,
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Community',
-          item: `${baseUrl}/community`,
-        },
-      ],
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Pet Care Community',
-    },
-  };
+    url: '/community',
+    numberOfItems: sections.length,
+    items: sections.map((section) => ({
+      name: section.title,
+      url: section.href,
+    })),
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Care Community',
+    description: 'Stay connected with the latest pet care news, research, trends, and stories from our community.',
+    url: '/community',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label="Pet Care Community">
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       
       {/* Hero Section - Optimized for Core Web Vitals */}
       <section 

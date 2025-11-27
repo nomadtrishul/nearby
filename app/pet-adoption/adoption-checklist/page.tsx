@@ -2,216 +2,107 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdoptionSidebar from '@/components/AdoptionSidebar';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateHowToStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Pet Adoption Checklist: Complete Pre-Adoption Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Adoption Checklist: Complete Pre-Adoption Guide',
   description: 'Complete pet adoption checklist covering lifestyle assessment, financial planning, home preparation, and adoption day essentials. Ensure you\'re fully prepared to adopt a dog or cat with this comprehensive guide.',
   keywords: ['pet adoption checklist', 'adoption requirements', 'pet adoption preparation', 'adoption day checklist', 'pre-adoption checklist', 'pet adoption guide', 'adoption preparation', 'adopting a pet checklist'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Pet Adoption Checklist: Complete Pre-Adoption Guide | Nearby Pet Care',
-    description: 'Complete pet adoption checklist covering lifestyle assessment, financial planning, home preparation, and adoption day essentials.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-adoption/adoption-checklist',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Adoption Checklist - Complete Pre-Adoption Guide',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Pet Adoption',
-    tags: ['pet adoption', 'adoption checklist', 'pet preparation'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Adoption Checklist: Complete Pre-Adoption Guide',
-    description: 'Complete pet adoption checklist covering lifestyle assessment, financial planning, and adoption day essentials.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-adoption/adoption-checklist',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-adoption/adoption-checklist',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00Z',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Adoption',
+  tags: ['pet adoption', 'adoption checklist', 'pet preparation'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/pet-adoption/adoption-checklist',
+      'en-GB': '/pet-adoption/adoption-checklist',
+      'en-CA': '/pet-adoption/adoption-checklist',
+      'en-AU': '/pet-adoption/adoption-checklist',
     },
   },
-};
+});
 
 export default function AdoptionChecklistPage() {
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
   const publishedDate = '2024-01-01T00:00:00Z';
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${baseUrl}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Adoption',
-        item: `${baseUrl}/pet-adoption`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Adoption Checklist',
-        item: `${baseUrl}/pet-adoption/adoption-checklist`,
-      },
-    ],
-  };
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Adoption', url: '/pet-adoption' },
+    { name: 'Adoption Checklist', url: '/pet-adoption/adoption-checklist' },
+  ];
 
-  // Article Structured Data
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    '@id': `${baseUrl}/pet-adoption/adoption-checklist#article`,
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Adoption Checklist: Complete Pre-Adoption Guide',
     description: 'Complete pet adoption checklist covering lifestyle assessment, financial planning, home preparation, and adoption day essentials.',
-    image: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
-      width: 1200,
-      height: 630,
-    },
+    url: '/pet-adoption/adoption-checklist',
     datePublished: publishedDate,
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care Team',
-      url: `${baseUrl}/about`,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${baseUrl}/pet-adoption/adoption-checklist#webpage`,
-    },
-    articleSection: 'Pet Adoption',
-    keywords: 'pet adoption checklist, adoption requirements, pet adoption preparation',
-    inLanguage: 'en-US',
-  };
+    author: 'Nearby Pet Care Team',
+  });
 
-  // HowTo Structured Data
-  const howToStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
+  const howToStructuredData = generateHowToStructuredData({
     name: 'How to Prepare for Pet Adoption',
     description: 'Step-by-step checklist for preparing to adopt a pet, including lifestyle assessment, financial planning, and adoption day preparation.',
-    image: `${baseUrl}/og-image.png`,
+    datePublished: publishedDate,
+    dateModified: currentDate,
+    author: 'Nearby Pet Care Team',
     totalTime: 'PT1W',
-    step: [
+    steps: [
       {
-        '@type': 'HowToStep',
-        position: 1,
         name: 'Assess Your Lifestyle',
         text: 'Evaluate your schedule, living space, activity level, and research breeds or species that match your lifestyle. Consider your work hours, travel frequency, and daily routine.',
       },
       {
-        '@type': 'HowToStep',
-        position: 2,
         name: 'Plan Financially',
         text: 'Budget for initial costs (adoption fees, supplies), monthly expenses (food, care), and unexpected costs (emergency vet visits). Consider pet insurance or an emergency fund.',
       },
       {
-        '@type': 'HowToStep',
-        position: 3,
         name: 'Prepare Your Home',
         text: 'Pet-proof your home, gather essential supplies, set up a quiet space, and ensure all family members are on board with the adoption decision.',
       },
       {
-        '@type': 'HowToStep',
-        position: 4,
         name: 'Find a Veterinarian',
         text: 'Research and select a local veterinarian before adoption. Schedule a meet-and-greet or initial wellness visit to establish a relationship.',
       },
       {
-        '@type': 'HowToStep',
-        position: 5,
         name: 'Prepare for Adoption Day',
         text: 'Gather required documentation, prepare transportation supplies, bring comfort items, and prepare questions to ask the shelter staff about the pet.',
       },
     ],
-  };
+  });
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${baseUrl}/pet-adoption/adoption-checklist#webpage`,
+  const webPageStructuredData = generateWebPageStructuredData({
     name: 'Pet Adoption Checklist',
     description: 'Complete checklist for pet adoption',
-    url: `${baseUrl}/pet-adoption/adoption-checklist`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-    },
-    breadcrumb: breadcrumbStructuredData,
-    datePublished: publishedDate,
-    dateModified: currentDate,
-    mainEntity: articleStructuredData,
-  };
+    url: '/pet-adoption/adoption-checklist',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label="Pet Adoption Checklist Guide">
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(howToStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(howToStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden" aria-label="Hero Section">
         {/* Decorative background elements */}

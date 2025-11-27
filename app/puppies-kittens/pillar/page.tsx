@@ -2,124 +2,73 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Puppies & Kittens Care Overview: Complete Guide for Young Pets | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Puppies & Kittens Care Overview: Complete Guide for Young Pets',
   description: 'Complete overview of puppies and kittens care topics. Essential guides covering the first 30 days, vaccinations, training, nutrition, and health for young pets.',
   keywords: ['puppy care overview', 'kitten care overview', 'young pet care', 'puppy care guide', 'kitten care guide', 'new pet care'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Puppies & Kittens Care Overview | Nearby Pet Care',
-    description: 'Complete overview of puppies and kittens care topics. Essential guides for caring for young pets.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/puppies-kittens/pillar',
-    siteName: 'Nearby Pet Care',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Puppies & Kittens Care Overview',
-      type: 'image/png',
-    }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Puppies & Kittens Care Overview | Nearby Pet Care',
-    description: 'Complete overview of puppies and kittens care topics. Essential guides for caring for young pets.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/puppies-kittens/pillar',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Puppies & Kittens',
+  tags: ['puppy care', 'kitten care', 'young pet care', 'puppy care guide', 'kitten care guide'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/puppies-kittens/pillar',
+      'en-GB': '/puppies-kittens/pillar',
+      'en-CA': '/puppies-kittens/pillar',
+      'en-AU': '/puppies-kittens/pillar',
     },
   },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/puppies-kittens/pillar',
-  },
-  category: 'Pet Care',
-};
+});
 
 export default function PuppiesKittensPillarPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
   
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Puppies & Kittens Care Overview',
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Puppies & Kittens', url: '/puppies-kittens' },
+    { name: 'Overview', url: '/puppies-kittens/pillar' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
+    headline: 'Puppies & Kittens Care Overview',
     description: 'Complete overview of puppies and kittens care topics. Essential guides covering the first 30 days, vaccinations, training, nutrition, and health for young pets.',
-    url: 'https://nearbypetcare.com/puppies-kittens/pillar',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Puppy and Kitten Care',
-    },
+    url: '/puppies-kittens/pillar',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-  };
+    author: 'Nearby Pet Care Team',
+  });
 
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Puppies & Kittens',
-        item: 'https://nearbypetcare.com/puppies-kittens',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Overview',
-        item: 'https://nearbypetcare.com/puppies-kittens/pillar',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Puppies & Kittens Care Overview',
+    description: 'Complete overview of puppies and kittens care topics. Essential guides covering the first 30 days, vaccinations, training, nutrition, and health for young pets.',
+    url: '/puppies-kittens/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/WebPage">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}

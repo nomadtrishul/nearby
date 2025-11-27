@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdoptionSidebar from '@/components/AdoptionSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Adoption Guide: How to Adopt a Dog or Cat',
@@ -11,7 +19,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/pet-adoption',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -28,8 +36,7 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetAdoptionPage() {
-  const baseUrl = 'https://nearbypetcare.com';
-  const currentDate = new Date().toISOString();
+  const baseUrl = getBaseUrl();
   
   const guides = [
     { title: 'Preparing Your Home', href: '/pet-adoption/preparing-home', icon: '🏡', description: 'Essential steps to prepare your home and create a safe, welcoming environment for your new pet.' },
@@ -37,150 +44,60 @@ export default function PetAdoptionPage() {
     { title: 'Adoption Checklist', href: '/pet-adoption/adoption-checklist', icon: '📋', description: 'Complete checklist to ensure you\'re fully prepared for pet adoption, from supplies to vet visits.' },
   ];
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${baseUrl}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Adoption',
-        item: `${baseUrl}/pet-adoption`,
-      },
-    ],
-  };
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Adoption', url: '/pet-adoption' },
+  ];
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${baseUrl}/pet-adoption#webpage`,
-    name: 'Pet Adoption & Rescue Guide',
-    description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our checklist, and transition a rescue pet.',
-    url: `${baseUrl}/pet-adoption`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    breadcrumb: breadcrumbStructuredData,
-    datePublished: '2024-01-01T00:00:00Z',
-    dateModified: currentDate,
-    mainEntity: {
-      '@type': 'ItemList',
-      name: 'Pet Adoption Guides',
-      description: 'Comprehensive guides for pet adoption and rescue',
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `${baseUrl}${guide.href}`,
-      })),
-    },
-  };
-
-  // CollectionPage Structured Data
-  const collectionPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${baseUrl}/pet-adoption#collectionpage`,
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Adoption & Rescue Guide',
     description: 'Complete collection of pet adoption guides and resources',
-    url: `${baseUrl}/pet-adoption`,
-    inLanguage: 'en-US',
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: guides.length,
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'Article',
-          name: guide.title,
-          description: guide.description,
-          url: `${baseUrl}${guide.href}`,
-        },
-      })),
-    },
-  };
+    url: '/pet-adoption',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Adoption & Rescue Guide',
+    description: 'Complete guide to pet adoption and rescue. Learn how to adopt a dog or cat, prepare your home, use our checklist, and transition a rescue pet.',
+    url: '/pet-adoption',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   // FAQ Structured Data
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How do I adopt a pet?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'To adopt a pet, start by researching local shelters and rescue organizations. Complete an adoption application, meet with potential pets, and prepare your home. Our comprehensive adoption checklist and guides will help you through every step of the process.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What should I prepare before adopting a pet?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Before adopting, prepare your home with essential supplies like food bowls, beds, toys, and safety items. Pet-proof your home by removing hazards, securing electrical cords, and creating a safe space. Review our preparing your home guide for a complete checklist.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How long does it take for a rescue pet to adjust?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Rescue pets typically follow the 3-3-3 rule: 3 days to decompress, 3 weeks to start settling in, and 3 months to feel at home. However, every pet is different, and some may need more or less time. Patience, consistency, and understanding are key during the transition period.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is included in an adoption checklist?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'An adoption checklist includes lifestyle assessment, financial planning, finding a veterinarian, pet-proofing your home, gathering essential supplies, setting up a quiet space, and preparing for adoption day. Our comprehensive checklist covers everything you need to know.',
-        },
-      },
-    ],
-  };
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'How do I adopt a pet?',
+      answer: 'To adopt a pet, start by researching local shelters and rescue organizations. Complete an adoption application, meet with potential pets, and prepare your home. Our comprehensive adoption checklist and guides will help you through every step of the process.',
+    },
+    {
+      question: 'What should I prepare before adopting a pet?',
+      answer: 'Before adopting, prepare your home with essential supplies like food bowls, beds, toys, and safety items. Pet-proof your home by removing hazards, securing electrical cords, and creating a safe space. Review our preparing your home guide for a complete checklist.',
+    },
+    {
+      question: 'How long does it take for a rescue pet to adjust?',
+      answer: 'Rescue pets typically follow the 3-3-3 rule: 3 days to decompress, 3 weeks to start settling in, and 3 months to feel at home. However, every pet is different, and some may need more or less time. Patience, consistency, and understanding are key during the transition period.',
+    },
+    {
+      question: 'What is included in an adoption checklist?',
+      answer: 'An adoption checklist includes lifestyle assessment, financial planning, finding a veterinarian, pet-proofing your home, gathering essential supplies, setting up a quiet space, and preparing for adoption day. Our comprehensive checklist covers everything you need to know.',
+    },
+  ]);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label="Pet Adoption Guide">
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden" aria-label="Pet Adoption Hero Section">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">

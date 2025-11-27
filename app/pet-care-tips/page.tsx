@@ -4,7 +4,14 @@ import { getAllTips, getAllCategories, getAllTags, getRecentTips } from '@/lib/p
 import TipsSidebar from '@/components/TipsSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetCareTipCard from '@/components/PetCareTipCard';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Care Tips: Step-by-Step How-To Guides for Dogs & Cats',
@@ -21,74 +28,41 @@ export default function PetCareTipsPage() {
   const tips = getAllTips();
   const categories = getAllCategories();
   const tags = getAllTags();
+  const baseUrl = getBaseUrl();
 
-  // CollectionPage Structured Data
-  const collectionStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Care Tips', url: '/pet-care-tips' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Care Tips',
     description: 'Expert pet care how-to guides and tips with step-by-step instructions.',
-    url: 'https://nearbypetcare.com/pet-care-tips',
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png'
-      }
-    },
-    // Add ItemList to represent the collection of HowTo items
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: tips.length,
-      itemListElement: tips.map((tip, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'HowTo',
-          name: tip.title,
-          description: tip.excerpt,
-          url: `https://nearbypetcare.com/pet-care-tips/${tip.slug}`
-        }
-      }))
-    }
-  };
+    url: '/pet-care-tips',
+    numberOfItems: tips.length,
+    items: tips.map((tip) => ({
+      name: tip.title,
+      url: `/pet-care-tips/${tip.slug}`,
+    })),
+  });
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Care Tips',
-        item: 'https://nearbypetcare.com/pet-care-tips',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Care Tips',
+    description: 'Expert pet care how-to guides and tips with step-by-step instructions.',
+    url: '/pet-care-tips',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
 
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

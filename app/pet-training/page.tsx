@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Training Guide: How to Train Your Dog or Cat',
@@ -11,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/pet-training',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -34,82 +41,41 @@ export default function PetTrainingPage() {
     { title: 'Training Tools Reviews', href: '/pet-training/training-tools-reviews', icon: '🛠️', description: 'Expert reviews and recommendations for the best training tools and equipment.' },
   ];
 
-  const currentDate = new Date().toISOString();
+  const baseUrl = getBaseUrl();
+  
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Training', url: '/pet-training' },
+  ];
 
-  // CollectionPage Structured Data for main category page
-  const collectionStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Training & Behavior Guide',
     description: 'Comprehensive guides on pet training and behavior. Learn how to train your dog or cat with effective techniques.',
-    url: 'https://nearbypetcare.com/pet-training',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `https://nearbypetcare.com${guide.href}`,
-      })),
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: 'https://nearbypetcare.com',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Pet Training',
-          item: 'https://nearbypetcare.com/pet-training',
-        },
-      ],
-    },
-  };
+    url: '/pet-training',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Training',
-        item: 'https://nearbypetcare.com/pet-training',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Training & Behavior Guide',
+    description: 'Comprehensive guides on pet training and behavior. Learn how to train your dog or cat with effective techniques.',
+    url: '/pet-training',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/CollectionPage">
-      {/* CollectionPage Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionStructuredData) }}
-      />
-      {/* Breadcrumb Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden">

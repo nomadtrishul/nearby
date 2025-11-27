@@ -2,168 +2,75 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdoptionSidebar from '@/components/AdoptionSidebar';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Pet Adoption & Rescue Overview: Complete Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Adoption & Rescue Overview: Complete Guide',
   description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, essential topics for successful adoption, and trust building.',
   keywords: ['pet adoption overview', 'rescue pets', 'adopting a pet', 'pet adoption guide', 'rescue pet guide', 'pet adoption process', 'adoption overview', 'rescue pet information'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Pet Adoption & Rescue Overview: Complete Guide | Nearby Pet Care',
-    description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, and essential topics for successful pet adoption.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-adoption/pillar',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Adoption & Rescue Overview - Complete Guide',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Pet Adoption',
-    tags: ['pet adoption', 'rescue pets', 'adoption overview'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Adoption & Rescue Overview: Complete Guide',
-    description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, and essential topics for successful adoption.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-adoption/pillar',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-adoption/pillar',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00Z',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Adoption',
+  tags: ['pet adoption', 'rescue pets', 'adoption overview'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/pet-adoption/pillar',
+      'en-GB': '/pet-adoption/pillar',
+      'en-CA': '/pet-adoption/pillar',
+      'en-AU': '/pet-adoption/pillar',
     },
   },
-};
+});
 
 export default function PetAdoptionPillarPage() {
-  const baseUrl = 'https://nearbypetcare.com';
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
   const publishedDate = '2024-01-01T00:00:00Z';
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: `${baseUrl}/`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Adoption',
-        item: `${baseUrl}/pet-adoption`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Overview',
-        item: `${baseUrl}/pet-adoption/pillar`,
-      },
-    ],
-  };
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Adoption', url: '/pet-adoption' },
+    { name: 'Overview', url: '/pet-adoption/pillar' },
+  ];
 
-  // Article Structured Data
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    '@id': `${baseUrl}/pet-adoption/pillar#article`,
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Adoption & Rescue Overview: Complete Guide',
     description: 'Complete overview of pet adoption and rescue. Learn why to adopt, what to expect, essential topics for successful adoption, understanding rescue pet behavior, and building trust.',
-    image: {
-      '@type': 'ImageObject',
-      url: `${baseUrl}/og-image.png`,
-      width: 1200,
-      height: 630,
-    },
+    url: '/pet-adoption/pillar',
     datePublished: publishedDate,
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care Team',
-      url: `${baseUrl}/about`,
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${baseUrl}/pet-adoption/pillar#webpage`,
-    },
-    articleSection: 'Pet Adoption',
-    keywords: 'pet adoption overview, rescue pets, adopting a pet',
-    inLanguage: 'en-US',
-  };
+    author: 'Nearby Pet Care Team',
+    tags: ['pet adoption overview', 'rescue pets', 'adopting a pet'],
+  });
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${baseUrl}/pet-adoption/pillar#webpage`,
+  const webPageStructuredData = generateWebPageStructuredData({
     name: 'Pet Adoption & Rescue Overview',
     description: 'Complete overview of pet adoption and rescue topics',
-    url: `${baseUrl}/pet-adoption/pillar`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-    },
-    breadcrumb: breadcrumbStructuredData,
-    datePublished: publishedDate,
-    dateModified: currentDate,
-    mainEntity: articleStructuredData,
-  };
+    url: '/pet-adoption/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label="Pet Adoption & Rescue Overview">
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden" aria-label="Hero Section">
         {/* Decorative background elements */}

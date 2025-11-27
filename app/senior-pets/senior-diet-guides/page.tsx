@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Senior Pet Diet Guides | Nearby Pet Care',
     description: 'Complete guide to nutrition for senior pets. Learn about dietary needs, weight management, and special considerations.',
     type: 'article',
-    locale: 'en_US',
+    locale: 'en-US',
     url: 'https://nearbypetcare.com/senior-pets/senior-diet-guides',
     siteName: 'Nearby Pet Care',
     publishedTime: '2024-01-01T00:00:00+00:00',

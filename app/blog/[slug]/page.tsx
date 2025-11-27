@@ -7,6 +7,12 @@ import BlogSidebar from '@/components/BlogSidebar';
 import CopyButton from '@/components/CopyButton';
 import RelatedArticles from '@/components/RelatedArticles';
 import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from '@/lib/site-config';
+import { 
+  generateSEOMetadata, 
+  generateBlogPostingStructuredData, 
+  generateBreadcrumbStructuredData, 
+  jsonLdScriptProps 
+} from '@/lib/seo-utils';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -29,86 +35,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const baseUrl = 'https://nearbypetcare.com';
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
-  const postUrl = `${baseUrl}/blog/${slug}`;
-  const postImage = post.image || `${baseUrl}/og-image.png`;
+  const postImage = post.image || '/og-image.png';
 
-  const truncatedExcerpt = post.excerpt.length > 160 ? post.excerpt.substring(0, 157) + '...' : post.excerpt;
-  
-  return {
-    title: `${post.title} | Nearby Pet Care Blog`,
-    description: truncatedExcerpt,
+  return generateSEOMetadata({
+    title: post.title,
+    description: post.excerpt,
     keywords: post.tags || [],
-    authors: [{ name: post.author || 'Nearby Pet Care Team' }],
-    creator: post.author || 'Nearby Pet Care Team',
-    publisher: 'Nearby Pet Care',
-    metadataBase: new URL(baseUrl),
-    openGraph: {
-      title: post.title,
-      description: truncatedExcerpt,
-      type: 'article',
-      publishedTime,
-      modifiedTime,
-      authors: [post.author || 'Nearby Pet Care Team'],
-      tags: post.tags || [],
-      url: postUrl,
-      siteName: 'Nearby Pet Care',
-      locale: 'en_US',
-      alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-      images: [
-        {
-          url: postImage,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-          type: 'image/png',
-        },
-      ],
-      section: post.category || 'General',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description: truncatedExcerpt,
-      images: [postImage],
-      creator: '@nearbypetcare',
-      site: '@nearbypetcare',
-    },
-    alternates: {
-      canonical: postUrl,
-      languages: {
-        'en-US': postUrl,
-        'en-GB': postUrl,
-        'en-CA': postUrl,
-        'en-AU': postUrl,
-      },
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
-    other: {
-      'article:published_time': publishedTime,
-      'article:modified_time': modifiedTime,
-      'article:author': post.author || 'Nearby Pet Care Team',
-      'article:section': post.category || 'General',
-      ...(post.tags && post.tags.length > 0 && { 'article:tag': post.tags.join(', ') }),
-    },
-  };
+    pathname: `/blog/${slug}`,
+    type: 'article',
+    publishedTime,
+    modifiedTime,
+    author: post.author || 'Nearby Pet Care Team',
+    section: post.category || 'General',
+    tags: post.tags || [],
+    image: postImage,
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog' },
+      { name: post.title, url: `/blog/${slug}` },
+    ],
+  });
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
@@ -129,140 +77,39 @@ export default async function BlogPostPage({ params }: PageProps) {
   const publishedTime = new Date(post.date).toISOString();
   const modifiedTime = new Date(post.date).toISOString();
   const postUrl = `${baseUrl}/blog/${slug}`;
-  const postImage = post.image ? ensureAbsoluteUrl(post.image) : getDefaultOgImage();
+  const postImage = post.image || '/og-image.png';
   const wordCount = post.content.split(' ').length;
   const readingTime = post.readingTime || Math.ceil(wordCount / 200);
 
-  // Enhanced Article Structured Data (Schema.org)
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    '@id': `${postUrl}#blogposting`,
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+    { name: post.title, url: `/blog/${slug}` },
+  ];
+
+  // Generate structured data using centralized utilities
+  const articleStructuredData = generateBlogPostingStructuredData({
     headline: post.title,
     description: post.excerpt,
-    image: {
-      '@type': 'ImageObject',
-      url: postImage,
-      width: 1200,
-      height: 630,
-    },
+    url: `/blog/${slug}`,
     datePublished: publishedTime,
     dateModified: modifiedTime,
-    author: {
-      '@type': 'Person',
-      '@id': `${baseUrl}/about#author`,
-      name: post.author || 'Nearby Pet Care Team',
-      url: `${baseUrl}/about`,
-    },
-    publisher: {
-      '@type': 'Organization',
-      '@id': `${baseUrl}#organization`,
-      name: 'Nearby Pet Care',
-      legalName: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-      url: baseUrl,
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${postUrl}#webpage`,
-      url: postUrl,
-    },
-    articleSection: post.category || 'General',
-    keywords: post.tags?.join(', ') || '',
+    author: post.author || 'Nearby Pet Care Team',
+    image: postImage,
     wordCount: wordCount,
     timeRequired: `PT${readingTime}M`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'Blog',
-      '@id': `${baseUrl}/blog#blog`,
-      name: 'Pet Care Blog',
-      url: `${baseUrl}/blog`,
-    },
-    ...(post.tags && post.tags.length > 0 && {
-      about: post.tags.map((tag) => ({
-        '@type': 'Thing',
-        name: tag,
-      })),
-    }),
-  };
+    blogUrl: '/blog',
+    tags: post.tags || [],
+  });
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${postUrl}#webpage`,
-    name: post.title,
-    description: post.excerpt,
-    url: postUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    primaryImageOfPage: {
-      '@type': 'ImageObject',
-      url: postImage,
-      width: 1200,
-      height: 630,
-    },
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-  };
-
-  // Breadcrumb Structured Data (separate for better compatibility)
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: `${baseUrl}/blog`,
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: post.title,
-        item: postUrl,
-      },
-    ],
-  };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label={`Article: ${post.title}`}>
       {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(articleStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
+      <script {...jsonLdScriptProps(articleStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {/* Hero Section - Optimized for Core Web Vitals */}
       <section 
         className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"

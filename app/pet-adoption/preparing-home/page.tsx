@@ -2,57 +2,30 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import AdoptionSidebar from '@/components/AdoptionSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Preparing Your Home for a New Pet: Complete Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Preparing Your Home for a New Pet: Complete Guide',
   description: 'Complete guide to preparing your home for a new pet. Learn essential supplies, pet-proofing tips, safety measures, and how to create a welcoming environment.',
   keywords: ['preparing for pet', 'pet proofing', 'new pet preparation', 'pet supplies', 'pet home preparation', 'pet safety', 'pet-proofing home', 'new dog preparation', 'new cat preparation', 'pet supplies checklist'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Preparing Your Home for a New Pet: Complete Guide | Nearby Pet Care',
-    description: 'Complete guide to preparing your home for a new pet. Learn essential supplies, pet-proofing tips, and safety measures for dogs and cats.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-adoption/preparing-home',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Preparing Your Home for a New Pet - Complete Guide',
-        type: 'image/png',
-      },
-    ],
-    publishedTime: '2024-01-01T00:00:00Z',
-    modifiedTime: new Date().toISOString(),
-    section: 'Pet Adoption',
-    tags: ['pet adoption', 'pet preparation', 'pet proofing', 'pet supplies'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Preparing Your Home for a New Pet: Complete Guide',
-    description: 'Complete guide to preparing your home for a new pet. Learn essential supplies, pet-proofing tips, and safety measures.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-  },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/pet-adoption/preparing-home',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/pet-adoption/preparing-home',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00Z',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Adoption',
+  tags: ['pet adoption', 'pet preparation', 'pet proofing', 'pet supplies'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/pet-adoption/preparing-home',
+      'en-GB': '/pet-adoption/preparing-home',
+      'en-CA': '/pet-adoption/preparing-home',
+      'en-AU': '/pet-adoption/preparing-home',
     },
   },
-};
+});
 
 export default function PreparingHomePage() {
   const baseUrl = 'https://nearbypetcare.com';

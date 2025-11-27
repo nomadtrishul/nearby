@@ -38,7 +38,19 @@ export interface SeoInput {
   title?: string;
   /** Meta description (120-160 chars ideal) */
   description?: string;
-  /** Keywords array */
+  /** 
+   * Keywords array (INTERNAL USE ONLY)
+   * 
+   * NOTE: Google and other major search engines ignore the keywords meta tag.
+   * Keywords are included for internal tracking/analytics purposes only.
+   * Do not expect SEO value from keywords meta tags.
+   * 
+   * For actual SEO, focus on:
+   * - Quality content with natural keyword usage
+   * - Proper title and description tags
+   * - Structured data (JSON-LD)
+   * - Internal linking
+   */
   keywords?: string[];
   /** Canonical pathname (e.g., '/blog/my-post') */
   pathname?: string;
@@ -137,15 +149,26 @@ export interface TagObject {
 /**
  * Check if we're in a production environment
  * Prevents accidental indexing of staging/preview deployments
+ *
+ * Based on Next.js 16.x and Vercel environment detection:
+ * - NODE_ENV: 'production' | 'development' | 'test'
+ * - VERCEL_ENV: 'production' | 'preview' | 'development' (when deployed on Vercel)
+ * - Production indexing should only occur in actual production deployments
  */
-function isProductionEnvironment(): boolean {
-  if (typeof process === 'undefined') return true;
-  
+export function isProductionEnvironment(): boolean {
+  // Server-side check only (client-side should not index)
+  if (typeof process === 'undefined') return false;
+
   const nodeEnv = process.env.NODE_ENV;
   const vercelEnv = process.env.VERCEL_ENV;
-  const isPreview = process.env.VERCEL === '1' && vercelEnv !== 'production';
-  
-  return nodeEnv === 'production' && !isPreview && vercelEnv === 'production';
+
+  // For Vercel deployments: VERCEL_ENV must be 'production'
+  if (vercelEnv) {
+    return vercelEnv === 'production' && nodeEnv === 'production';
+  }
+
+  // For other hosting platforms: rely on NODE_ENV
+  return nodeEnv === 'production';
 }
 
 /**
@@ -242,12 +265,14 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   }
   
   // Handle pagination canonical URLs
-  if (isPaginated && page && page > 1) {
-    // Keep paginated URL for pages > 1
-    canonicalUrl = canonicalUrl;
-  } else if (isPaginated && page === 1) {
-    // First page canonicalizes to base URL
-    canonicalUrl = canonicalUrl.split('?')[0].replace(/\/page\/1$/, '');
+  if (isPaginated) {
+    if (page && page > 1) {
+      // Keep paginated URL for pages > 1 (already correct)
+      // No change needed
+    } else if (page === 1 || !page) {
+      // First page canonicalizes to base URL (remove /page/1 or /page)
+      canonicalUrl = canonicalUrl.split('?')[0].replace(/\/page\/1$/, '').replace(/\/page$/, '');
+    }
   }
 
   // Build title
@@ -315,7 +340,10 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   const finalAlternates = alternates || {};
   if (!finalAlternates.languages) {
     finalAlternates.languages = {
-    'en-US': canonicalUrl,
+      'en-US': canonicalUrl,
+      'en-GB': canonicalUrl,
+      'en-CA': canonicalUrl,
+      'en-AU': canonicalUrl,
     };
   }
 
@@ -347,6 +375,7 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
 /**
  * Build canonical URL from pathname
  * Converts relative pathname to absolute canonical URL
+ * Strips query parameters (UTM params, etc.) for canonical URLs
  * 
  * @param pathname - Relative pathname (e.g., '/blog/my-post')
  * @returns Absolute canonical URL
@@ -362,7 +391,10 @@ export function buildCanonical(pathname?: string): string {
   // Remove trailing slash (except for root)
   const cleanPath = normalizedPath === '/' ? '/' : normalizedPath.replace(/\/$/, '');
   
-  return `${SITE.domain}${cleanPath}`;
+  // Strip query parameters (UTM params, etc.) for canonical URLs
+  const urlWithoutQuery = cleanPath.split('?')[0];
+  
+  return `${SITE.domain}${urlWithoutQuery}`;
 }
 
 /**
@@ -414,18 +446,33 @@ export function generateJsonLd(merged: MergedSeo): string {
 
   // Article-specific fields
   if (merged.type === 'article') {
-    if (merged.publishedTime) {
+    // Validate required fields for Article schema
+    const missingFields: string[] = [];
+    
+    if (!merged.publishedTime) {
+      missingFields.push('datePublished');
+    } else {
       baseStructuredData.datePublished = merged.publishedTime;
     }
+    
     if (merged.modifiedTime) {
       baseStructuredData.dateModified = merged.modifiedTime;
     }
-    if (merged.author) {
+    
+    if (!merged.author) {
+      missingFields.push('author');
+    } else {
       baseStructuredData.author = {
-      '@type': 'Person',
+        '@type': 'Person',
         name: merged.author,
       };
     }
+    
+    // Warn in development if required fields are missing
+    if (missingFields.length > 0 && typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+      console.warn(`⚠️ Article schema missing required fields: ${missingFields.join(', ')}. Schema may be invalid.`);
+    }
+    
     if (merged.section) {
       baseStructuredData.articleSection = merged.section;
     }
@@ -433,7 +480,7 @@ export function generateJsonLd(merged: MergedSeo): string {
       baseStructuredData.keywords = merged.tags.join(', ');
     }
 
-    // Publisher
+    // Publisher (required for Article)
     baseStructuredData.publisher = {
       '@type': 'Organization',
       name: SITE.name,
@@ -494,7 +541,8 @@ export function buildMetaTags(merged: MergedSeo): TagObject[] {
     },
   });
 
-  // Keywords (if provided)
+  // Keywords (if provided) - INTERNAL USE ONLY, Google ignores this
+  // Included for internal tracking/analytics, not for SEO value
   if (merged.keywords && merged.keywords.length > 0) {
     tags.push({
       tag: 'meta',
@@ -840,9 +888,69 @@ export function validateSeoForPage(merged: MergedSeo): string[] {
     warnings.push(`OG image is not absolute: ${merged.image}`);
   }
 
+  // Image dimension validation (OG image recommended: 1200x630)
+  if (merged.images && merged.images.length > 0) {
+    const primaryImage = merged.images[0];
+    const recommendedWidth = 1200;
+    const recommendedHeight = 630;
+    const aspectRatio = recommendedWidth / recommendedHeight; // 1.904...
+    
+    if (primaryImage.width && primaryImage.height) {
+      const imageAspectRatio = primaryImage.width / primaryImage.height;
+      const aspectRatioDiff = Math.abs(imageAspectRatio - aspectRatio);
+      
+      // Warn if aspect ratio is significantly different (more than 10% off)
+      if (aspectRatioDiff > 0.1) {
+        warnings.push(`OG image aspect ratio (${primaryImage.width}x${primaryImage.height}) differs from recommended (1200x630). Current ratio: ${imageAspectRatio.toFixed(2)}, Recommended: ${aspectRatio.toFixed(2)}`);
+      }
+      
+      // Warn if dimensions are too small
+      if (primaryImage.width < 600 || primaryImage.height < 315) {
+        warnings.push(`OG image dimensions (${primaryImage.width}x${primaryImage.height}) are below minimum recommended size (600x315). Recommended: 1200x630`);
+      }
+    } else {
+      warnings.push('OG image missing width or height dimensions');
+    }
+  }
+
   // Canonical validation
   if (!merged.canonical || !merged.canonical.startsWith('http')) {
     warnings.push(`Canonical URL is not absolute: ${merged.canonical}`);
+  }
+
+  // Breadcrumb validation
+  const breadcrumbs = merged.breadcrumbs;
+  if (breadcrumbs && breadcrumbs.length > 0) {
+    // Breadcrumbs should start with Home
+    const firstBreadcrumb = breadcrumbs[0];
+    if (firstBreadcrumb.name.toLowerCase() !== 'home' && firstBreadcrumb.url !== '/') {
+      warnings.push('Breadcrumbs should start with Home');
+    }
+    
+    // Validate URL structure
+    breadcrumbs.forEach((crumb, index) => {
+      if (!crumb.url || (!crumb.url.startsWith('http') && !crumb.url.startsWith('/'))) {
+        warnings.push(`Breadcrumb ${index + 1} has invalid URL: ${crumb.url}`);
+      }
+      
+      // Check if breadcrumb URLs match page hierarchy
+      if (index > 0) {
+        const prevBreadcrumb = breadcrumbs[index - 1];
+        const prevUrl = prevBreadcrumb.url;
+        const currentUrl = crumb.url;
+        // Basic check: current URL should contain previous URL path (for hierarchical structure)
+        if (!currentUrl.includes(prevUrl.replace(/\/$/, '')) && prevUrl !== '/') {
+          warnings.push(`Breadcrumb hierarchy may be incorrect: ${prevUrl} -> ${currentUrl}`);
+        }
+      }
+    });
+    
+    // Last breadcrumb should match current page canonical
+    const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
+    const canonicalPath = merged.canonical.replace(SITE.domain, '');
+    if (lastBreadcrumb.url !== canonicalPath && lastBreadcrumb.url !== merged.canonical) {
+      warnings.push(`Last breadcrumb URL (${lastBreadcrumb.url}) should match canonical path (${canonicalPath})`);
+    }
   }
 
   // Article-specific validation
@@ -879,6 +987,41 @@ export function collectSeoWarnings(allMerged: MergedSeo[]): Record<string, strin
 }
 
 /**
+ * Calculate lastmod date for sitemap
+ * Centralized logic: prefer modifiedTime > publishedTime > current date
+ * 
+ * @param modifiedTime - Modified time (ISO 8601)
+ * @param publishedTime - Published time (ISO 8601)
+ * @param fallbackDate - Fallback date if neither provided
+ * @returns ISO date string (YYYY-MM-DD)
+ */
+export function calculateLastmod(
+  modifiedTime?: string,
+  publishedTime?: string,
+  fallbackDate?: Date
+): string {
+  // Prefer modifiedTime > publishedTime > current date
+  if (modifiedTime) {
+    try {
+      return new Date(modifiedTime).toISOString().split('T')[0];
+    } catch {
+      // Invalid date, fall through
+    }
+  }
+  
+  if (publishedTime) {
+    try {
+      return new Date(publishedTime).toISOString().split('T')[0];
+    } catch {
+      // Invalid date, fall through
+    }
+  }
+  
+  const date = fallbackDate || new Date();
+  return date.toISOString().split('T')[0];
+}
+
+/**
  * Make sitemap entry from merged SEO
  * Converts merged SEO to sitemap entry format
  * 
@@ -906,9 +1049,15 @@ export function makeSitemapEntry(
     lastmod,
   } = options;
 
+  // Use centralized lastmod calculation
+  const calculatedLastmod = lastmod || calculateLastmod(
+    merged.modifiedTime,
+    merged.publishedTime
+  );
+
   const entry: any = {
     loc: merged.canonical,
-    lastmod: lastmod || merged.modifiedTime || merged.publishedTime || new Date().toISOString().split('T')[0],
+    lastmod: calculatedLastmod,
     changefreq,
     priority,
   };
@@ -935,6 +1084,14 @@ export function makeSitemapEntry(
 export function generateSEOMetadata(input: SeoInput): Metadata {
   const merged = mergeSeo(input);
   
+  // Validate in development mode
+  if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+    const warnings = validateSeoForPage(merged);
+    if (warnings.length > 0) {
+      console.warn(`⚠️ SEO warnings for ${merged.canonical}:`, warnings);
+    }
+  }
+  
   const metadata: Metadata = {
     title: merged.title,
     description: merged.description,
@@ -949,7 +1106,7 @@ export function generateSEOMetadata(input: SeoInput): Metadata {
       description: merged.description,
       url: merged.canonical,
       siteName: SITE.name,
-      locale: merged.locale,
+      locale: merged.locale.replace('-', '_'), // Convert en-US to en_US for OpenGraph
       images: merged.images.map(img => ({
         url: img.url,
         width: img.width,
@@ -1074,6 +1231,415 @@ export function generateFAQStructuredData(
 }
 
 /**
+ * Generate Blog structured data
+ * Creates schema.org Blog JSON-LD
+ * 
+ * @param input - Blog configuration
+ * @returns Blog structured data object
+ */
+export function generateBlogStructuredData(input: {
+  name: string;
+  headline: string;
+  description: string;
+  url: string;
+  datePublished?: string;
+  dateModified?: string;
+  blogPosts?: Array<{
+    '@id': string;
+    headline: string;
+    description?: string;
+    url: string;
+    datePublished: string;
+    dateModified?: string;
+    author?: string;
+    image?: string;
+  }>;
+}): object {
+  const baseUrl = getBaseUrl();
+  const absoluteUrl = ensureAbsoluteUrl(input.url);
+
+  const structuredData: any = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    '@id': `${absoluteUrl}#blog`,
+    name: input.name,
+    headline: input.headline,
+    description: input.description,
+    url: absoluteUrl,
+    inLanguage: 'en-US',
+    publisher: {
+      '@type': 'Organization',
+      '@id': `${baseUrl}#organization`,
+      name: SITE.name,
+      legalName: SITE.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
+      },
+      url: baseUrl,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${absoluteUrl}#webpage`,
+    },
+  };
+
+  if (input.datePublished) {
+    structuredData.datePublished = input.datePublished;
+  }
+  if (input.dateModified) {
+    structuredData.dateModified = input.dateModified;
+  }
+  if (input.blogPosts && input.blogPosts.length > 0) {
+    structuredData.blogPost = input.blogPosts.map(post => ({
+      '@type': 'BlogPosting',
+      '@id': post['@id'],
+      headline: post.headline,
+      ...(post.description && { description: post.description }),
+      url: post.url,
+      datePublished: post.datePublished,
+      ...(post.dateModified && { dateModified: post.dateModified }),
+      ...(post.author && {
+        author: {
+          '@type': 'Person',
+          name: post.author,
+        },
+      }),
+      ...(post.image && { image: ensureAbsoluteUrl(post.image) }),
+    }));
+  }
+
+  return structuredData;
+}
+
+/**
+ * Generate CollectionPage structured data
+ * Creates schema.org CollectionPage JSON-LD
+ * 
+ * @param input - CollectionPage configuration
+ * @returns CollectionPage structured data object
+ */
+export function generateCollectionPageStructuredData(input: {
+  name: string;
+  description: string;
+  url: string;
+  items: Array<{
+    '@id'?: string;
+    headline?: string;
+    name?: string;
+    url: string;
+    datePublished?: string;
+  }>;
+  numberOfItems?: number;
+}): object {
+  const baseUrl = getBaseUrl();
+  const absoluteUrl = ensureAbsoluteUrl(input.url);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${absoluteUrl}#collectionpage`,
+    name: input.name,
+    description: input.description,
+    url: absoluteUrl,
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${baseUrl}#website`,
+      name: SITE.name,
+      url: baseUrl,
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: input.numberOfItems || input.items.length,
+      itemListElement: input.items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'BlogPosting',
+          ...(item['@id'] && { '@id': item['@id'] }),
+          ...(item.headline && { headline: item.headline }),
+          ...(item.name && { name: item.name }),
+          url: ensureAbsoluteUrl(item.url),
+          ...(item.datePublished && { datePublished: item.datePublished }),
+        },
+      })),
+    },
+  };
+}
+
+/**
+ * Generate BlogPosting structured data
+ * Creates schema.org BlogPosting JSON-LD (extends Article)
+ * 
+ * @param input - BlogPosting configuration
+ * @returns BlogPosting structured data object
+ */
+export function generateBlogPostingStructuredData(input: {
+  headline: string;
+  description: string;
+  url: string;
+  datePublished: string;
+  dateModified?: string;
+  author?: string;
+  image?: string;
+  wordCount?: number;
+  timeRequired?: string;
+  blogUrl?: string;
+  tags?: string[];
+}): object {
+  const baseUrl = getBaseUrl();
+  const absoluteUrl = ensureAbsoluteUrl(input.url);
+  const blogUrl = input.blogUrl ? ensureAbsoluteUrl(input.blogUrl) : `${baseUrl}/blog`;
+
+  const structuredData: any = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    '@id': `${absoluteUrl}#blogposting`,
+    headline: input.headline,
+    description: input.description,
+    url: absoluteUrl,
+    datePublished: input.datePublished,
+    ...(input.dateModified && { dateModified: input.dateModified }),
+    ...(input.author && {
+      author: {
+        '@type': 'Person',
+        name: input.author,
+      },
+    }),
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
+      },
+    },
+    isPartOf: {
+      '@type': 'Blog',
+      '@id': `${blogUrl}#blog`,
+      name: 'Pet Care Blog',
+      url: blogUrl,
+    },
+    inLanguage: 'en-US',
+  };
+
+  if (input.image) {
+    structuredData.image = {
+      '@type': 'ImageObject',
+      url: ensureAbsoluteUrl(input.image),
+      width: 1200,
+      height: 630,
+    };
+  }
+
+  if (input.wordCount) {
+    structuredData.wordCount = input.wordCount;
+  }
+  if (input.timeRequired) {
+    structuredData.timeRequired = input.timeRequired;
+  }
+  if (input.tags && input.tags.length > 0) {
+    structuredData.about = input.tags.map(tag => ({
+      '@type': 'Thing',
+      name: tag,
+    }));
+  }
+
+  return structuredData;
+}
+
+/**
+ * Generate HowTo structured data
+ * Creates schema.org HowTo JSON-LD
+ * 
+ * @param input - HowTo configuration
+ * @returns HowTo structured data object
+ */
+export function generateHowToStructuredData(input: {
+  name: string;
+  description: string;
+  image?: string;
+  datePublished?: string;
+  dateModified?: string;
+  author?: string;
+  totalTime?: string;
+  estimatedCost?: {
+    currency: string;
+    value: string;
+  };
+  tools?: string[];
+  supplies?: string[];
+  steps: Array<{
+    name: string;
+    text: string;
+    url?: string;
+    image?: string;
+    duration?: string;
+  }>;
+}): object {
+  const baseUrl = getBaseUrl();
+
+  const structuredData: any = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: input.name,
+    description: input.description,
+    ...(input.image && { image: ensureAbsoluteUrl(input.image) }),
+    ...(input.datePublished && { datePublished: input.datePublished }),
+    ...(input.dateModified && { dateModified: input.dateModified }),
+    ...(input.author && {
+      author: {
+        '@type': 'Person',
+        name: input.author,
+        url: `${baseUrl}/about`,
+      },
+    }),
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`,
+        width: 200,
+        height: 48,
+      },
+    },
+    ...(input.totalTime && { totalTime: input.totalTime }),
+  };
+
+  if (input.estimatedCost) {
+    structuredData.estimatedCost = {
+      '@type': 'MonetaryAmount',
+      currency: input.estimatedCost.currency,
+      value: input.estimatedCost.value,
+    };
+  }
+
+  if (input.tools && input.tools.length > 0) {
+    structuredData.tool = input.tools.map(tool => ({
+      '@type': 'HowToTool',
+      name: tool,
+    }));
+  }
+
+  if (input.supplies && input.supplies.length > 0) {
+    structuredData.supply = input.supplies.map(supply => ({
+      '@type': 'HowToSupply',
+      name: supply,
+    }));
+  }
+
+  if (input.steps && input.steps.length > 0) {
+    structuredData.step = input.steps.map((step, index) => {
+      const stepData: any = {
+        '@type': 'HowToStep',
+        position: index + 1,
+        name: step.name,
+        text: step.text,
+        ...(step.url && { url: step.url }),
+      };
+      if (step.image) {
+        stepData.image = ensureAbsoluteUrl(step.image);
+      }
+      return stepData;
+    });
+  }
+
+  return structuredData;
+}
+
+/**
+ * Generate AboutPage structured data
+ * Creates schema.org AboutPage JSON-LD
+ * 
+ * @param input - AboutPage configuration
+ * @returns AboutPage structured data object
+ */
+export function generateAboutPageStructuredData(input: {
+  name: string;
+  headline: string;
+  description: string;
+  url: string;
+  datePublished?: string;
+  dateModified?: string;
+  organization?: {
+    name: string;
+    legalName?: string;
+    description?: string;
+    logo?: string;
+    contactEmail?: string;
+    sameAs?: string[];
+    foundingDate?: string;
+    knowsAbout?: string[];
+  };
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}): object {
+  const baseUrl = getBaseUrl();
+  const absoluteUrl = ensureAbsoluteUrl(input.url);
+
+  const structuredData: any = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': absoluteUrl,
+    name: input.name,
+    headline: input.headline,
+    description: input.description,
+    url: absoluteUrl,
+    inLanguage: 'en-US',
+    ...(input.datePublished && { datePublished: input.datePublished }),
+    ...(input.dateModified && { dateModified: input.dateModified }),
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${baseUrl}#website`,
+      name: SITE.name,
+      url: baseUrl,
+    },
+  };
+
+  if (input.organization) {
+    structuredData.mainEntity = {
+      '@type': 'Organization',
+      '@id': `${baseUrl}#organization`,
+      name: input.organization.name,
+      ...(input.organization.legalName && { legalName: input.organization.legalName }),
+      ...(input.organization.description && { description: input.organization.description }),
+      url: baseUrl,
+      ...(input.organization.logo && {
+        logo: {
+          '@type': 'ImageObject',
+          url: ensureAbsoluteUrl(input.organization.logo),
+          width: 200,
+          height: 48,
+        },
+      }),
+      ...(input.organization.contactEmail && {
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'Customer Service',
+          email: input.organization.contactEmail,
+          areaServed: ['US', 'CA', 'GB', 'AU'],
+          availableLanguage: ['English'],
+        },
+      }),
+      ...(input.organization.sameAs && { sameAs: input.organization.sameAs }),
+      ...(input.organization.foundingDate && { foundingDate: input.organization.foundingDate }),
+      ...(input.organization.knowsAbout && { knowsAbout: input.organization.knowsAbout }),
+    };
+  }
+
+  if (input.breadcrumbs && input.breadcrumbs.length > 0) {
+    structuredData.breadcrumb = generateBreadcrumbStructuredData(input.breadcrumbs);
+  }
+
+  return structuredData;
+}
+
+/**
  * Generate script props for JSON-LD structured data
  * Helper function to create proper script tag props for Next.js
  * 
@@ -1105,11 +1671,18 @@ const seoUtils = {
   validateSeoForPage,
   collectSeoWarnings,
   makeSitemapEntry,
+  calculateLastmod,
   generateSEOMetadata,
   generateWebPageStructuredData,
   generateBreadcrumbStructuredData,
   generateFAQStructuredData,
+  generateBlogStructuredData,
+  generateCollectionPageStructuredData,
+  generateBlogPostingStructuredData,
+  generateHowToStructuredData,
+  generateAboutPageStructuredData,
   jsonLdScriptProps,
+  isProductionEnvironment,
 };
 
 export default seoUtils;

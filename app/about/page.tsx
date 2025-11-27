@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   generateSEOMetadata,
-  generateWebPageStructuredData,
+  generateAboutPageStructuredData,
   generateBreadcrumbStructuredData,
   generateFAQStructuredData,
   jsonLdScriptProps,
@@ -35,15 +35,7 @@ export const metadata: Metadata = generateSEOMetadata({
       type: 'image/png',
     },
   ],
-  locale: 'en_US',
-  alternates: {
-    languages: {
-      'en-US': '/about',
-      'en-GB': '/about',
-      'en-CA': '/about',
-      'en-AU': '/about',
-    },
-  },
+  locale: 'en-US',
   breadcrumbs: [
     { name: 'Home', url: '/' },
     { name: 'About', url: '/about' },
@@ -60,11 +52,37 @@ export default function AboutPage() {
     { name: 'About', url: '/about' },
   ];
 
-  // Generate structured data using SEO utils
-  const webPageStructuredData = generateWebPageStructuredData({
-    name: 'About Us - Nearby Pet Care',
-    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips, guides, and information.',
+  // Generate structured data using centralized utilities
+  const aboutStructuredData = generateAboutPageStructuredData({
+    name: 'About Nearby Pet Care',
+    headline: 'About Us - Trusted Pet Care Information & Education',
+    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips and guides. Practical, evidence-based advice for pet owners.',
     url: '/about',
+    datePublished: '2024-01-01T00:00:00Z',
+    dateModified: currentDate,
+    organization: {
+      name: 'Nearby Pet Care',
+      legalName: 'Nearby Pet Care',
+      description: 'An independent educational platform dedicated to helping pet owners make informed decisions about everyday pet care through practical, step-by-step guidance.',
+      logo: '/logo.png',
+      contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
+      sameAs: [
+        'https://www.facebook.com/nearbypetcare',
+        'https://www.instagram.com/nearbypetcare',
+        'https://www.youtube.com/@nearbypetcare',
+        'https://www.linkedin.com/company/nearbypetcare',
+      ],
+      foundingDate: '2024',
+      knowsAbout: [
+        'Pet Care',
+        'Pet Nutrition',
+        'Pet Health',
+        'Pet Grooming',
+        'Pet Training',
+        'Pet Safety',
+        'Pet Adoption',
+      ],
+    },
     breadcrumbs,
   });
 
@@ -88,70 +106,6 @@ export default function AboutPage() {
       answer: 'All our content is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior. We focus on providing practical, evidence-based guidance that helps pet owners make informed decisions.',
     },
   ]);
-
-  // Custom AboutPage structured data (not in utils, but using jsonLdScriptProps)
-  const aboutStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    '@id': `${baseUrl}/about`,
-    name: 'About Nearby Pet Care',
-    headline: 'About Us - Trusted Pet Care Information & Education',
-    description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips and guides. Practical, evidence-based advice for pet owners.',
-    url: `${baseUrl}/about`,
-    inLanguage: 'en-US',
-    datePublished: '2024-01-01T00:00:00Z',
-    dateModified: currentDate,
-    mainEntity: {
-      '@type': 'Organization',
-      '@id': `${baseUrl}#organization`,
-      name: 'Nearby Pet Care',
-      legalName: 'Nearby Pet Care',
-      description: 'An independent educational platform dedicated to helping pet owners make informed decisions about everyday pet care through practical, step-by-step guidance.',
-      url: baseUrl,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-      image: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-      },
-      contactPoint: {
-        '@type': 'ContactPoint',
-        contactType: 'Customer Service',
-        email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
-        areaServed: ['US', 'CA', 'GB', 'AU'],
-        availableLanguage: ['English'],
-      },
-      sameAs: [
-        'https://www.facebook.com/nearbypetcare',
-        'https://www.instagram.com/nearbypetcare',
-        'https://www.youtube.com/@nearbypetcare',
-        'https://www.linkedin.com/company/nearbypetcare',
-      ],
-      foundingDate: '2024',
-      knowsAbout: [
-        'Pet Care',
-        'Pet Nutrition',
-        'Pet Health',
-        'Pet Grooming',
-        'Pet Training',
-        'Pet Safety',
-        'Pet Adoption',
-      ],
-    },
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    breadcrumb: breadcrumbStructuredData,
-  };
 
   const values = [
     {
@@ -178,9 +132,8 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors" role="main" aria-label="About Nearby Pet Care">
-      {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
+      {/* Structured Data Scripts - Using centralized utilities */}
       <script {...jsonLdScriptProps(aboutStructuredData)} />
-      <script {...jsonLdScriptProps(webPageStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <script {...jsonLdScriptProps(faqStructuredData)} />
       {/* Hero Section - Optimized for Core Web Vitals */}

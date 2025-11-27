@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Behavior Pillar: Calm Routines, Better Communication',
@@ -27,24 +34,40 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetBehaviorPillarPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Behavior', url: '/pet-behavior' },
+    { name: 'Pillar', url: '/pet-behavior/pillar' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Behavior Pillar Guide',
     description: 'Learn how to decode behavior signals, lower stress, and rebuild better habits with a humane, step-by-step plan.',
-    url: 'https://nearbypetcare.com/pet-behavior/pillar',
+    url: '/pet-behavior/pillar',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-    },
-  };
+    author: 'Nearby Pet Care Team',
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Behavior Pillar Guide',
+    description: 'Learn how to decode behavior signals, lower stress, and rebuild better habits with a humane, step-by-step plan.',
+    url: '/pet-behavior/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>

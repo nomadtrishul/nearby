@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Senior Pet Care Guide: How to Care for an Aging Dog or Cat',
@@ -11,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/senior-pets',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -25,85 +32,47 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function SeniorPetsPage() {
+  const baseUrl = getBaseUrl();
+  
   const guides = [
     { title: 'Mobility Support', href: '/senior-pets/mobility-support', icon: '🚶', description: 'Tips and tools to help your senior pet maintain mobility and comfort as they age.' },
     { title: 'Senior Diet Guides', href: '/senior-pets/senior-diet-guides', icon: '🍽️', description: 'Nutritional guidance and diet adjustments to support your aging pet\'s health and wellbeing.' },
     { title: 'End-of-Life Care', href: '/senior-pets/end-of-life-care', icon: '💝', description: 'Compassionate guidance on providing comfort and quality care during your pet\'s final stages of life.' },
   ];
 
-  const currentDate = new Date().toISOString();
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Senior Pets', url: '/senior-pets' },
+  ];
 
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Senior Pet Care Guide',
     description: 'Comprehensive guide to caring for senior pets. Expert advice on mobility support, nutrition, and comfort care for aging dogs and cats.',
-    url: 'https://nearbypetcare.com/senior-pets',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Senior Pet Care',
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      name: 'Senior Pet Care Guides',
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `https://nearbypetcare.com${guide.href}`,
-      })),
-    },
-    datePublished: '2024-01-01T00:00:00+00:00',
-    dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-  };
+    url: '/senior-pets',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
 
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Senior Pets',
-        item: 'https://nearbypetcare.com/senior-pets',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Senior Pet Care Guide',
+    description: 'Comprehensive guide to caring for senior pets. Expert advice on mobility support, nutrition, and comfort care for aging dogs and cats.',
+    url: '/senior-pets',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/WebPage">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

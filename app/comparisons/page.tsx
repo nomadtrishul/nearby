@@ -2,7 +2,13 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import ComparisonsSidebar from '@/components/ComparisonsSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -12,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/comparisons',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -34,78 +40,45 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function ComparisonsPage() {
   const baseUrl = getBaseUrl();
-  const pageUrl = `${baseUrl}/comparisons`;
+  
   const comparisons = [
     { title: 'Royal Canin vs Pedigree', href: '/comparisons/royal-canin-vs-pedigree' },
     { title: 'Wet vs Dry Food', href: '/comparisons/wet-vs-dry-food' },
   ];
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Pet Product Comparisons',
-    description: 'Compare pet products side-by-side. Detailed comparisons of pet food brands, wet vs dry food, and other products with expert analysis.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Pet Product Comparisons',
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: baseUrl,
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Comparisons',
-          item: pageUrl,
-        },
-      ],
-    },
-  };
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Comparisons', url: '/comparisons' },
+  ];
 
-  // CollectionPage Structured Data
-  const collectionPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Product Comparisons',
     description: 'Compare pet products side-by-side to make the best choice. Detailed comparisons of pet food brands, wet vs dry food, and other pet products.',
-    url: pageUrl,
-    inLanguage: 'en-US',
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: comparisons.map((comparison, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: comparison.title,
-        url: `${baseUrl}${comparison.href}`,
-      })),
-    },
-  };
+    url: '/comparisons',
+    numberOfItems: comparisons.length,
+    items: comparisons.map((comparison) => ({
+      name: comparison.title,
+      url: comparison.href,
+    })),
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Product Comparisons',
+    description: 'Compare pet products side-by-side. Detailed comparisons of pet food brands, wet vs dry food, and other products with expert analysis.',
+    url: '/comparisons',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <>
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}

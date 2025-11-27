@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import BehaviorSidebar from '@/components/BehaviorSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Behavior Guide: Calm, Confident Dogs & Cats',
@@ -59,50 +66,41 @@ const guides = [
 ];
 
 export default function PetBehaviorPage() {
-  const collectionStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  const baseUrl = getBaseUrl();
+  
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Behavior', url: '/pet-behavior' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Behavior & Emotional Wellness',
     description: 'Behavior guides to help pets feel safe, confident, and calm at home.',
-    url: 'https://nearbypetcare.com/pet-behavior',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        {
-          '@type': 'ListItem',
-          position: 1,
-          name: 'Home',
-          item: 'https://nearbypetcare.com',
-        },
-        {
-          '@type': 'ListItem',
-          position: 2,
-          name: 'Pet Behavior',
-          item: 'https://nearbypetcare.com/pet-behavior',
-        },
-      ],
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `https://nearbypetcare.com${guide.href}`,
-      })),
-    },
-  };
+    url: '/pet-behavior',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Behavior & Emotional Wellness',
+    description: 'Behavior guides to help pets feel safe, confident, and calm at home.',
+    url: '/pet-behavior',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionStructuredData) }} />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>

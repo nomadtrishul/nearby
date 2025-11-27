@@ -36,7 +36,7 @@ export const metadata: Metadata = generateSEOMetadata({
       type: 'image/png',
     },
   ],
-  locale: 'en_US',
+  locale: 'en-US',
   alternates: {
     languages: {
       'en-US': '/privacy',

@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Safety Guide: How to Keep Your Pet Safe at Home & While Traveling',
@@ -11,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/pet-safety',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -37,7 +44,7 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetSafetyPage() {
-  const currentDate = new Date().toISOString();
+  const baseUrl = getBaseUrl();
   
   const guides = [
     { title: 'Travel with Pets', href: '/pet-safety/travel-with-pets', icon: '✈️', description: 'Essential tips and guidelines for safely traveling with your pet by car, plane, or other transportation methods.' },
@@ -46,79 +53,39 @@ export default function PetSafetyPage() {
     { title: 'Seasonal Care', href: '/pet-safety/seasonal-care', icon: '🌤️', description: 'Season-specific safety tips to protect your pet from weather-related hazards throughout the year.' },
   ];
 
-  // WebPage Schema
-  const webpageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': 'https://nearbypetcare.com/pet-safety',
-    url: 'https://nearbypetcare.com/pet-safety',
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Safety', url: '/pet-safety' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
+    name: 'Pet Safety Guide',
+    description: 'Comprehensive guides covering all aspects of pet safety',
+    url: '/pet-safety',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
     name: 'Pet Safety Guide: How to Keep Your Pet Safe at Home & While Traveling',
     description: 'Learn how to keep your pet safe with our comprehensive pet safety guide. Expert tips on traveling with pets, pet-proofing your home, emergency preparedness, and seasonal pet safety.',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Pet Safety',
-      description: 'Comprehensive information about keeping pets safe at home, while traveling, during emergencies, and throughout different seasons.',
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-        { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: 'https://nearbypetcare.com/pet-safety' },
-      ],
-    },
-    datePublished: '2024-01-01T00:00:00+00:00',
-    dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
-      },
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      name: 'Pet Safety Guides',
-      description: 'Comprehensive guides covering all aspects of pet safety',
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `https://nearbypetcare.com${guide.href}`,
-      })),
-    },
-  };
+    url: '/pet-safety',
+    breadcrumbs,
+  });
 
-  // Breadcrumb Schema
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Safety', item: 'https://nearbypetcare.com/pet-safety' },
-    ],
-  };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/WebPage">
-      {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}

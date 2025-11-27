@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands',
@@ -20,145 +28,60 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function ObedienceTrainingPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
   
-  // Comprehensive Article Structured Data for SEO
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Training', url: '/pet-training' },
+    { name: 'Obedience Training', url: '/pet-training/obedience-training' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands',
     description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement.',
-    url: 'https://nearbypetcare.com/pet-training/obedience-training',
+    url: '/pet-training/obedience-training',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-training/obedience-training',
-    },
-    image: {
-      '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Obedience Training for Pets - Complete Guide',
-    },
-    articleSection: 'Pet Training',
-    articleBody: 'Comprehensive guide to obedience training for pets, covering essential commands, positive reinforcement techniques, and training tips for dogs and cats.',
-    keywords: 'obedience training, dog training commands, pet training basics, positive reinforcement, how to train a dog, dog training tips, teaching dogs commands',
-    inLanguage: 'en-US',
-    isAccessibleForFree: true,
+    author: 'Nearby Pet Care Team',
+    tags: ['obedience training', 'dog training commands', 'pet training basics', 'positive reinforcement', 'how to train a dog', 'dog training tips', 'teaching dogs commands'],
     wordCount: 2500,
     timeRequired: 'PT30M',
-    educationalLevel: 'Beginner',
-    about: {
-      '@type': 'Thing',
-      name: 'Pet Training',
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands',
+    description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement.',
+    url: '/pet-training/obedience-training',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  // FAQPage Structured Data using centralized utility
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What is obedience training for pets?',
+      answer: 'Obedience training teaches your pet basic commands and good manners. It involves teaching essential commands like sit, stay, come, down, leave it, and heel using positive reinforcement techniques.',
     },
-    mentions: [
-      { '@type': 'Thing', name: 'Dog Training' },
-      { '@type': 'Thing', name: 'Cat Training' },
-      { '@type': 'Thing', name: 'Positive Reinforcement' },
-      { '@type': 'Thing', name: 'Pet Behavior' },
-    ],
-  };
-
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Training',
-        item: 'https://nearbypetcare.com/pet-training',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Obedience Training',
-        item: 'https://nearbypetcare.com/pet-training/obedience-training',
-      },
-    ],
-  };
-
-  // FAQPage Structured Data (if applicable)
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is obedience training for pets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Obedience training teaches your pet basic commands and good manners. It involves teaching essential commands like sit, stay, come, down, leave it, and heel using positive reinforcement techniques.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How long does it take to train a dog basic commands?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Most dogs can learn basic commands within a few weeks with consistent daily training sessions of 5-15 minutes. However, the time varies depending on the dog\'s age, breed, and individual learning pace.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is positive reinforcement in pet training?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Positive reinforcement means rewarding behaviors you want to see more of. When your pet does something right, they get something they like (a treat, praise, or play), which makes them want to repeat that behavior.',
-        },
-      },
-    ],
-  };
+    {
+      question: 'How long does it take to train a dog basic commands?',
+      answer: 'Most dogs can learn basic commands within a few weeks with consistent daily training sessions of 5-15 minutes. However, the time varies depending on the dog\'s age, breed, and individual learning pace.',
+    },
+    {
+      question: 'What is positive reinforcement in pet training?',
+      answer: 'Positive reinforcement means rewarding behaviors you want to see more of. When your pet does something right, they get something they like (a treat, praise, or play), which makes them want to repeat that behavior.',
+    },
+  ]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/Article">
-      {/* Article Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
-      {/* Breadcrumb Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      {/* FAQ Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-      />
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>

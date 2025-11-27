@@ -1,31 +1,48 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ConsentBanner from "@/components/ConsentBanner";
 import AnalyticsLoader from "@/components/AnalyticsLoader";
-import { getBaseUrl, getDefaultOgImage, getSiteName, getVerificationMeta } from "@/lib/site-config";
+import { getBaseUrl, getSiteName, getVerificationMeta } from "@/lib/site-config";
+import { generateSEOMetadata, isProductionEnvironment } from "@/lib/seo-utils";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const baseUrl = getBaseUrl();
 const siteName = getSiteName();
-const defaultOgImage = getDefaultOgImage();
 const verificationMeta = getVerificationMeta();
 
-export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
-  title: {
-    default: "Nearby Pet Care - Professional Pet Care Services Near You",
-    template: "%s | Nearby Pet Care"
-  },
+// Generate base metadata using centralized SEO utilities
+const baseMetadata = generateSEOMetadata({
+  title: "Nearby Pet Care - Professional Pet Care Services Near You",
   description: "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services from experienced professionals.",
   keywords: ['pet care services', 'dog grooming', 'pet boarding', 'pet daycare', 'pet training', 'pet care near me', 'professional pet care', 'mobile pet care', 'pet grooming services', 'dog boarding', 'cat boarding'],
+  pathname: '/',
+  type: 'website',
+});
+
+// Override robots based on environment
+const shouldIndex = isProductionEnvironment();
+
+// Extract title as string (handle Next.js 16 Metadata title types)
+const baseTitle = typeof baseMetadata.title === 'string' 
+  ? baseMetadata.title 
+  : "Nearby Pet Care - Professional Pet Care Services Near You";
+
+// Destructure to exclude title from baseMetadata, then override it
+const { title: _, ...baseMetadataWithoutTitle } = baseMetadata;
+
+export const metadata: Metadata = {
+  ...baseMetadataWithoutTitle,
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: baseTitle,
+    template: "%s | Nearby Pet Care"
+  },
   authors: [{ name: 'Nearby Pet Care Team' }],
   creator: 'Nearby Pet Care',
   publisher: 'Nearby Pet Care',
@@ -34,35 +51,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    url: baseUrl,
-    siteName: siteName,
-    title: 'Nearby Pet Care - Professional Pet Care Services Near You',
-    description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
-    images: [
-      {
-        url: defaultOgImage,
-        width: 1200,
-        height: 630,
-        alt: 'Nearby Pet Care - Professional Pet Care Services',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Nearby Pet Care - Professional Pet Care Services Near You',
-    description: 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services.',
-    images: [defaultOgImage],
-  },
   robots: {
-    index: true,
+    index: shouldIndex,
     follow: true,
     googleBot: {
-      index: true,
+      index: shouldIndex,
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
@@ -70,9 +63,6 @@ export const metadata: Metadata = {
     },
   },
   ...(verificationMeta && { verification: verificationMeta }),
-  alternates: {
-    canonical: baseUrl,
-  },
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -113,7 +103,23 @@ export default function RootLayout({
         <link rel="icon" href="/logo-2.png" type="image/png" sizes="any" />
         <link rel="apple-touch-icon" href="/logo-2.png" />
 
+        {/* Google Tag Manager */}
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-W8HWTDWN');
+            `,
+          }}
+        />
+        {/* End Google Tag Manager */}
+
         {/* Preconnect to External Domains for Performance */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         
@@ -271,14 +277,22 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-white dark:bg-black transition-colors`}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-W8HWTDWN"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         <ThemeProvider>
           <AnalyticsLoader />
           <Header />
           {children}
           <Footer />
           <ConsentBanner />
-          <SpeedInsights />
-          <Analytics />
         </ThemeProvider>
         <Script
           src={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_URL!}

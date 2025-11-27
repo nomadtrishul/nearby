@@ -2,124 +2,73 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Senior Pet Care Overview: Complete Guide for Aging Pets | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Senior Pet Care Overview: Complete Guide for Aging Pets',
   description: 'Complete overview of senior pet care topics. Learn how to support your aging pet\'s health, comfort, and quality of life through their golden years.',
   keywords: ['senior pet care overview', 'elderly pets', 'aging pets', 'senior dog care', 'senior cat care', 'pet aging', 'comprehensive senior pet care'],
-  authors: [{ name: 'Nearby Pet Care Team' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Senior Pet Care Overview | Nearby Pet Care',
-    description: 'Complete overview of senior pet care topics. Learn how to support your aging pet\'s health, comfort, and quality of life.',
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://nearbypetcare.com/senior-pets/pillar',
-    siteName: 'Nearby Pet Care',
-    images: [{
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-      alt: 'Senior Pet Care Overview',
-      type: 'image/png',
-    }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-  title: 'Senior Pet Care Overview | Nearby Pet Care',
-    description: 'Complete overview of senior pet care topics. Learn how to support your aging pet\'s health, comfort, and quality of life.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+  pathname: '/senior-pets/pillar',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Senior Pets',
+  tags: ['senior pet care', 'elderly pets', 'aging pets', 'senior dog care', 'senior cat care'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/senior-pets/pillar',
+      'en-GB': '/senior-pets/pillar',
+      'en-CA': '/senior-pets/pillar',
+      'en-AU': '/senior-pets/pillar',
     },
   },
-  alternates: { 
-    canonical: 'https://nearbypetcare.com/senior-pets/pillar',
-  },
-  category: 'Pet Care',
-};
+});
 
 export default function SeniorPetsPillarPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
   
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'Senior Pet Care Overview',
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Senior Pets', url: '/senior-pets' },
+    { name: 'Overview', url: '/senior-pets/pillar' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
+    headline: 'Senior Pet Care Overview',
     description: 'Complete overview of senior pet care topics. Learn how to support your aging pet\'s health, comfort, and quality of life through their golden years.',
-    url: 'https://nearbypetcare.com/senior-pets/pillar',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Senior Pet Care',
-    },
+    url: '/senior-pets/pillar',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-  };
+    author: 'Nearby Pet Care Team',
+  });
 
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Senior Pets',
-        item: 'https://nearbypetcare.com/senior-pets',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Overview',
-        item: 'https://nearbypetcare.com/senior-pets/pillar',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Senior Pet Care Overview',
+    description: 'Complete overview of senior pet care topics. Learn how to support your aging pet\'s health, comfort, and quality of life through their golden years.',
+    url: '/senior-pets/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/WebPage">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}

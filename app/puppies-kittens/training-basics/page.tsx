@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Puppy & Kitten Training Basics | Nearby Pet Care',
     description: 'Essential training basics for puppies and kittens. Learn how to start training early and build good habits.',
     type: 'article',
-    locale: 'en_US',
+    locale: 'en-US',
     url: 'https://nearbypetcare.com/puppies-kittens/training-basics',
     siteName: 'Nearby Pet Care',
     publishedTime: '2024-01-01T00:00:00+00:00',

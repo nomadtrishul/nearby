@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateHowToStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Nutrition Diet Plan - Complete Guide',
@@ -33,140 +41,66 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetNutritionDietPlanPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
-  const currentDateShort = currentDate.split('T')[0];
   
-  // Breadcrumb Schema
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Nutrition', item: 'https://nearbypetcare.com/pet-nutrition' },
-      { '@type': 'ListItem', position: 3, name: 'Pet Nutrition Diet Plan', item: 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan' },
-    ],
-  };
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Nutrition', url: '/pet-nutrition' },
+    { name: 'Pet Nutrition Diet Plan', url: '/pet-nutrition/pet-nutrition-diet-plan' },
+  ];
 
-  // Enhanced Article Schema with E-E-A-T
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Nutrition Diet Plan - Complete Guide',
     description: 'Learn how to create a comprehensive nutrition plan tailored to your pet\'s specific needs, age, breed, and lifestyle. Expert guidance on pet diet planning.',
-    url: 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
+    url: '/pet-nutrition/pet-nutrition-diet-plan',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-      sameAs: [
-        'https://www.facebook.com/nearbypetcare',
-        'https://www.instagram.com/nearbypetcare',
-        'https://www.youtube.com/@nearbypetcare',
-        'https://www.linkedin.com/company/nearbypetcare',
-      ],
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-nutrition/pet-nutrition-diet-plan',
-    },
-    image: {
-      '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-    },
-    articleSection: 'Pet Nutrition',
-    inLanguage: 'en-US',
-    keywords: 'pet nutrition, diet plan, pet food, dog nutrition, cat nutrition, AAFCO, pet meal planning',
-    about: {
-      '@type': 'Thing',
-      name: 'Pet Nutrition',
-      description: 'Comprehensive guide to creating nutrition plans for pets',
-    },
-  };
+    author: 'Nearby Pet Care Team',
+    tags: ['pet nutrition', 'diet plan', 'pet food', 'dog nutrition', 'cat nutrition', 'AAFCO', 'pet meal planning'],
+  });
 
-  // HowTo Schema for the guide
-  const howToSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const howToStructuredData = generateHowToStructuredData({
     name: 'How to Create a Pet Nutrition Diet Plan',
     description: 'Step-by-step guide to creating a comprehensive nutrition plan for your pet',
-    image: 'https://nearbypetcare.com/og-image.png',
+    datePublished: '2024-01-01T00:00:00+00:00',
+    dateModified: currentDate,
+    author: 'Nearby Pet Care Team',
     totalTime: 'PT2H',
-    estimatedCost: {
-      '@type': 'MonetaryAmount',
-      currency: 'USD',
-      value: '0',
-    },
-    step: [
+    estimatedCost: { currency: 'USD', value: '0' },
+    steps: [
       {
-        '@type': 'HowToStep',
-        position: 1,
         name: 'Assess Your Pet\'s Current State',
         text: 'Start by taking an honest look at where your pet is right now. What\'s their body condition? Can you easily feel their ribs, or is there a thick layer of fat?',
       },
       {
-        '@type': 'HowToStep',
-        position: 2,
         name: 'Calculate Caloric Needs',
         text: 'Your pet\'s daily calorie needs depend on their ideal weight (not current weight if they\'re overweight), activity level, and life stage.',
       },
       {
-        '@type': 'HowToStep',
-        position: 3,
         name: 'Choose the Right Food',
         text: 'Look for foods that are appropriate for your pet\'s life stage, made with quality ingredients, and formulated to meet AAFCO standards.',
       },
       {
-        '@type': 'HowToStep',
-        position: 4,
         name: 'Establish a Feeding Schedule',
         text: 'Consistency matters. Most adult dogs do well with two meals per day, while cats might prefer multiple smaller meals.',
       },
       {
-        '@type': 'HowToStep',
-        position: 5,
         name: 'Monitor and Adjust',
         text: 'Watch how your pet responds. Are they maintaining a healthy weight? Do they have good energy? Is their coat shiny?',
       },
     ],
-  };
+  });
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/Article">
-      {/* Structured Data - Article */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
-      {/* Structured Data - Breadcrumb */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      {/* Structured Data - HowTo */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(howToStructuredData)} />
 
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

@@ -4,7 +4,13 @@ import Image from 'next/image';
 import { getAllPosts } from '@/lib/blog';
 import ResourceCards from '@/components/ResourceCards';
 import { getBaseUrl } from '@/lib/site-config';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata, 
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets',
@@ -21,7 +27,7 @@ export const metadata: Metadata = generateSEOMetadata({
       type: 'image/png',
     },
   ],
-  locale: 'en_US',
+  locale: 'en-US',
   alternates: {
     languages: {
       'en-US': '/',
@@ -34,92 +40,48 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
-
-  // Structured Data for Educational Content
   const baseUrl = getBaseUrl();
-  const educationalContentStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Nearby Pet Care',
+
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Nearby Pet Care - Pet Care Guide',
     description: 'An independent educational platform providing practical guidance on pet care',
-    url: baseUrl
-  };
+    url: '/',
+    breadcrumbs,
+  });
 
-  // Structured Data for FAQ
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What kind of information does Nearby Pet Care provide?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We provide practical, step-by-step guidance on pet nutrition, health, grooming, training, behavior, product selection, and overall pet wellbeing. Our content is designed to help pet owners make informed decisions based on widely accepted pet care practices.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Do you provide pet care services?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No, we are an independent educational platform that provides informational resources only. We do not represent any business, clinic, or service provider. Our role is to help pet owners understand pet care topics so they can make informed decisions.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Is the information on this site reliable?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes, all our content is based on widely accepted pet care practices and designed to be easy to understand. We focus on providing practical, actionable guidance that pet owners can use in their everyday pet care routines.'
-        }
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I use this information to care for my pet?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Our content is designed to help you make informed decisions about everyday pet care. However, for specific health concerns or emergencies, always consult with a qualified veterinarian. Our guides complement professional veterinary care.'
-        }
-      }
-    ]
-  };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl
-      }
-    ]
-  };
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What kind of information does Nearby Pet Care provide?',
+      answer: 'We provide practical, step-by-step guidance on pet nutrition, health, grooming, training, behavior, product selection, and overall pet wellbeing. Our content is designed to help pet owners make informed decisions based on widely accepted pet care practices.'
+    },
+    {
+      question: 'Do you provide pet care services?',
+      answer: 'No, we are an independent educational platform that provides informational resources only. We do not represent any business, clinic, or service provider. Our role is to help pet owners understand pet care topics so they can make informed decisions.'
+    },
+    {
+      question: 'Is the information on this site reliable?',
+      answer: 'Yes, all our content is based on widely accepted pet care practices and designed to be easy to understand. We focus on providing practical, actionable guidance that pet owners can use in their everyday pet care routines.'
+    },
+    {
+      question: 'Can I use this information to care for my pet?',
+      answer: 'Our content is designed to help you make informed decisions about everyday pet care. However, for specific health concerns or emergencies, always consult with a qualified veterinarian. Our guides complement professional veterinary care.'
+    }
+  ]);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors">
-      {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(educationalContentStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       {/* Hero Section */}
       <section className="relative pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-white dark:bg-black transition-colors min-h-screen isolate">
         {/* Hero Image Background - Fixed on scroll, clipped to section */}

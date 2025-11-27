@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Mobility Support for Senior Pets | Nearby Pet Care',
     description: 'Learn how to support mobility and joint health in senior pets. Practical tips for managing arthritis and improving comfort.',
     type: 'article',
-    locale: 'en_US',
+    locale: 'en-US',
     url: 'https://nearbypetcare.com/senior-pets/mobility-support',
     siteName: 'Nearby Pet Care',
     publishedTime: '2024-01-01T00:00:00+00:00',

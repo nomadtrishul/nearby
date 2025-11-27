@@ -2,84 +2,73 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetProductsSidebar from '@/components/PetProductsSidebar';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Pet Products Overview | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Pet Products Overview',
   description: 'Comprehensive overview of pet products reviews and buying guides. Find the best products for your pet across all categories.',
   keywords: ['pet products overview', 'pet product reviews', 'pet buying guides', 'best pet products', 'pet supplies'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  openGraph: {
-    title: 'Pet Products Overview | Nearby Pet Care',
-    description: 'Comprehensive overview of pet products reviews and buying guides. Find the best products for your pet.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-products/pillar',
-    siteName: 'Nearby Pet Care',
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Pet Products Overview',
-      },
-    ],
+  pathname: '/pet-products/pillar',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Products',
+  tags: ['pet products', 'pet product reviews', 'pet buying guides', 'best pet products'],
+  image: '/og-image.png',
+  locale: 'en-US',
+  alternates: {
+    languages: {
+      'en-US': '/pet-products/pillar',
+      'en-GB': '/pet-products/pillar',
+      'en-CA': '/pet-products/pillar',
+      'en-AU': '/pet-products/pillar',
+    },
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pet Products Overview | Nearby Pet Care',
-    description: 'Comprehensive overview of pet products reviews and buying guides.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-  },
-  alternates: { canonical: 'https://nearbypetcare.com/pet-products/pillar' },
-};
+});
 
 export default function PetProductsPillarPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Products', url: '/pet-products' },
+    { name: 'Overview', url: '/pet-products/pillar' },
+  ];
 
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Products Overview',
     description: 'Comprehensive overview of pet products reviews and buying guides. Find the best products for your pet.',
-    url: 'https://nearbypetcare.com/pet-products/pillar',
+    url: '/pet-products/pillar',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-      },
-    },
-  };
+    author: 'Nearby Pet Care Team',
+  });
 
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Products', item: 'https://nearbypetcare.com/pet-products' },
-      { '@type': 'ListItem', position: 3, name: 'Overview', item: 'https://nearbypetcare.com/pet-products/pillar' },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Products Overview',
+    description: 'Comprehensive overview of pet products reviews and buying guides. Find the best products for your pet.',
+    url: '/pet-products/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
 
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

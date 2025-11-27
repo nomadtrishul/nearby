@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'Puppy & Kitten Vaccination Timeline | Nearby Pet Care',
     description: 'Complete vaccination timeline for puppies and kittens. Learn when to vaccinate and which vaccines are essential.',
     type: 'article',
-    locale: 'en_US',
+    locale: 'en-US',
     url: 'https://nearbypetcare.com/puppies-kittens/vaccination-timeline',
     siteName: 'Nearby Pet Care',
     publishedTime: '2024-01-01T00:00:00+00:00',

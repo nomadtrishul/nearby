@@ -2,76 +2,31 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Seasonal Pet Safety Guide - Year-Round Protection for Your Pet | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Seasonal Pet Safety Guide - Year-Round Protection for Your Pet',
   description: 'Seasonal safety tips for pets. Learn how to keep your pet safe during different seasons and weather conditions. Expert advice for all seasons.',
   keywords: ['seasonal pet safety', 'winter pet safety', 'summer pet safety', 'pet weather safety', 'hot weather pets', 'cold weather pets', 'seasonal pet care'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Seasonal Pet Safety Guide - Year-Round Protection | Nearby Pet Care',
-    description: 'Seasonal safety tips for pets. Learn how to keep your pet safe during different seasons and weather conditions.',
-    type: 'article',
-    url: getBaseUrl() + '/pet-safety/seasonal-care',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: getDefaultOgImage(),
-        width: 1200,
-        height: 630,
-        alt: 'Seasonal Pet Safety Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-  title: 'Seasonal Pet Safety Guide | Nearby Pet Care',
-    description: 'Seasonal safety tips for pets.',
-    images: [getDefaultOgImage()],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+  pathname: '/pet-safety/seasonal-care',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Safety',
+  tags: ['seasonal pet safety', 'winter pet safety', 'summer pet safety', 'pet weather safety'],
+  image: '/og-image.png',
+  locale: 'en-US',
   alternates: {
-    canonical: getBaseUrl() + '/pet-safety/seasonal-care',
     languages: {
-      'en-US': getBaseUrl() + '/pet-safety/seasonal-care',
-      'en-GB': getBaseUrl() + '/pet-safety/seasonal-care',
-      'en-CA': getBaseUrl() + '/pet-safety/seasonal-care',
-      'en-AU': getBaseUrl() + '/pet-safety/seasonal-care',
+      'en-US': '/pet-safety/seasonal-care',
+      'en-GB': '/pet-safety/seasonal-care',
+      'en-CA': '/pet-safety/seasonal-care',
+      'en-AU': '/pet-safety/seasonal-care',
     },
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Safety',
-    'article:tag': 'seasonal pet safety, winter pet safety, summer pet safety, pet weather safety',
-  },
-};
+});
 
 export default function SeasonalCarePage() {
   const baseUrl = getBaseUrl();

@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Health Guide: How to Keep Your Dog or Cat Healthy',
@@ -10,7 +17,7 @@ export const metadata: Metadata = generateSEOMetadata({
   keywords: ['pet health', 'how to keep pet healthy', 'pet health care', 'dog health', 'cat health', 'pet wellness', 'pet vaccinations', 'pet diseases', 'pet first aid', 'pet health tips', 'signs pet needs vet', 'pet parasite control'],
   pathname: '/pet-health',
   type: 'website',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -26,41 +33,41 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetHealthPage() {
-  const webpageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  const baseUrl = getBaseUrl();
+  
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Health', url: '/pet-health' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Health & Wellness Guide',
     description: 'Comprehensive guide to pet health and wellness, including disease prevention, vaccinations, first aid, and maintaining your pet\'s health.',
-    url: 'https://nearbypetcare.com/pet-health',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-      },
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Common Pet Diseases', url: 'https://nearbypetcare.com/pet-health/common-diseases' },
-        { '@type': 'ListItem', position: 2, name: 'Vaccination Schedules', url: 'https://nearbypetcare.com/pet-health/vaccination-schedules' },
-        { '@type': 'ListItem', position: 3, name: 'Parasite Control', url: 'https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms' },
-        { '@type': 'ListItem', position: 4, name: 'First Aid for Pets', url: 'https://nearbypetcare.com/pet-health/first-aid-for-pets' },
-        { '@type': 'ListItem', position: 5, name: 'Skin and Coat Health', url: 'https://nearbypetcare.com/pet-health/skin-and-coat-health' },
-        { '@type': 'ListItem', position: 6, name: 'Signs Your Pet Needs a Vet', url: 'https://nearbypetcare.com/pet-health/signs-your-pet-needs-a-vet' },
-        { '@type': 'ListItem', position: 7, name: 'Mental Health & Anxiety', url: 'https://nearbypetcare.com/pet-health/mental-health-anxiety' },
-        { '@type': 'ListItem', position: 8, name: 'Diagnostics & Tests', url: 'https://nearbypetcare.com/pet-health/diagnostics-and-tests' },
-        { '@type': 'ListItem', position: 9, name: 'Seasonal Health Tips', url: 'https://nearbypetcare.com/pet-health/seasonal-health-tips' },
-      ],
-    },
-  };
+    url: '/pet-health',
+    numberOfItems: 9,
+    items: [
+      { name: 'Common Pet Diseases', url: '/pet-health/common-diseases' },
+      { name: 'Vaccination Schedules', url: '/pet-health/vaccination-schedules' },
+      { name: 'Parasite Control', url: '/pet-health/parasite-control-ticks-fleas-worms' },
+      { name: 'First Aid for Pets', url: '/pet-health/first-aid-for-pets' },
+      { name: 'Skin and Coat Health', url: '/pet-health/skin-and-coat-health' },
+      { name: 'Signs Your Pet Needs a Vet', url: '/pet-health/signs-your-pet-needs-a-vet' },
+      { name: 'Mental Health & Anxiety', url: '/pet-health/mental-health-anxiety' },
+      { name: 'Diagnostics & Tests', url: '/pet-health/diagnostics-and-tests' },
+      { name: 'Seasonal Health Tips', url: '/pet-health/seasonal-health-tips' },
+    ],
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Health & Wellness Guide',
+    description: 'Comprehensive guide to pet health and wellness, including disease prevention, vaccinations, first aid, and maintaining your pet\'s health.',
+    url: '/pet-health',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   const guides = [
     { title: 'Common Pet Diseases', href: '/pet-health/common-diseases', icon: '🦠', description: 'Learn about common diseases affecting dogs and cats, their symptoms, prevention, and treatment options.' },
@@ -76,7 +83,10 @@ export default function PetHealthPage() {
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webpageStructuredData) }} />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Background Image */}
         <div 

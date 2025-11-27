@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import NutritionSidebar from '@/components/NutritionSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat',
@@ -11,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/pet-nutrition',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -109,73 +116,41 @@ export default function PetNutritionPage() {
     },
   ];
   
-  // CollectionPage Schema
-  const collectionStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
+  const baseUrl = getBaseUrl();
+  
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Nutrition', url: '/pet-nutrition' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Nutrition & Diet',
     description: 'Comprehensive guides and resources for pet nutrition and diet planning. Expert advice on choosing pet food, understanding ingredients, feeding schedules, and creating healthy diet plans for dogs and cats.',
-    url: 'https://nearbypetcare.com/pet-nutrition',
-    datePublished: '2024-01-01',
-    dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
-      },
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: guides.length,
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `https://nearbypetcare.com${guide.href}`,
-      })),
-    },
-    inLanguage: 'en-US',
-    isAccessibleForFree: true,
-    license: 'https://nearbypetcare.com/terms',
-  };
+    url: '/pet-nutrition',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
 
-  // Breadcrumb Schema
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Nutrition',
-        item: 'https://nearbypetcare.com/pet-nutrition',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Nutrition & Diet',
+    description: 'Comprehensive guides and resources for pet nutrition and diet planning. Expert advice on choosing pet food, understanding ingredients, feeding schedules, and creating healthy diet plans for dogs and cats.',
+    url: '/pet-nutrition',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/CollectionPage">
-      {/* Structured Data - CollectionPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionStructuredData) }}
-      />
-      {/* Structured Data - Breadcrumb */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
 
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

@@ -2,179 +2,82 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetProductsSidebar from '@/components/PetProductsSidebar';
+import {
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Best Cat Litter - Reviews & Buying Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Best Cat Litter - Reviews & Buying Guide',
   description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option.',
   keywords: ['best cat litter', 'cat litter reviews', 'cat litter comparison', 'best cat litter brands', 'clumping cat litter', 'natural cat litter', 'odor control cat litter', 'cat litter types', 'dust free cat litter'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-  title: 'Best Cat Litter - Reviews & Buying Guide | Nearby Pet Care',
-  description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-products/best-cat-litter',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Best Cat Litter Reviews & Buying Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Cat Litter - Reviews & Buying Guide | Nearby Pet Care',
-    description: 'Comprehensive reviews and buying guide for the best cat litter. Compare different types to find the perfect option.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  pathname: '/pet-products/best-cat-litter',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Products',
+  tags: ['cat litter', 'cat litter reviews', 'best cat litter', 'clumping litter'],
+  image: '/og-image.png',
+  locale: 'en-US',
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-products/best-cat-litter',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-products/best-cat-litter',
-      'en-GB': 'https://nearbypetcare.com/pet-products/best-cat-litter',
-      'en-CA': 'https://nearbypetcare.com/pet-products/best-cat-litter',
-      'en-AU': 'https://nearbypetcare.com/pet-products/best-cat-litter',
+      'en-US': '/pet-products/best-cat-litter',
+      'en-GB': '/pet-products/best-cat-litter',
+      'en-CA': '/pet-products/best-cat-litter',
+      'en-AU': '/pet-products/best-cat-litter',
     },
   },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Products',
-    'article:tag': 'cat litter, cat litter reviews, best cat litter, clumping litter',
-  },
-};
+});
 
 export default function BestCatLitterPage() {
   const currentDate = new Date().toISOString();
+  const publishedDate = '2024-01-01T00:00:00+00:00';
 
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Products', url: '/pet-products' },
+    { name: 'Best Cat Litter', url: '/pet-products/best-cat-litter' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const articleStructuredData = generateBlogPostingStructuredData({
     headline: 'Best Cat Litter - Reviews & Buying Guide',
     description: 'Comprehensive reviews and buying guide for the best cat litter. Compare clumping, non-clumping, and specialty litters to find the perfect option.',
-    url: 'https://nearbypetcare.com/pet-products/best-cat-litter',
-    datePublished: '2024-01-01T00:00:00+00:00',
+    url: '/pet-products/best-cat-litter',
+    datePublished: publishedDate,
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care Team',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-products/best-cat-litter',
-    },
-    image: {
-      '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-    },
-    articleSection: 'Pet Products',
-    inLanguage: 'en-US',
-    keywords: 'best cat litter, cat litter reviews, cat litter comparison, clumping cat litter, natural cat litter',
-  };
+    author: 'Nearby Pet Care Team',
+    image: '/og-image.png',
+    tags: ['best cat litter', 'cat litter reviews', 'cat litter comparison', 'clumping cat litter', 'natural cat litter'],
+  });
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What is the best type of cat litter?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The best type depends on your cat\'s preferences and your needs. Clumping clay litter is most popular for convenience, while natural litters are better for the environment. Silica gel offers excellent odor control, and paper litter is ideal for cats with respiratory issues.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How often should I change cat litter?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Scoop clumping litter daily and change completely every 1-2 weeks. For non-clumping litter, change every 2-3 days. Silica gel can last 2-4 weeks. Always maintain 2-3 inches of litter depth.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Is scented cat litter safe?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Scented litter is generally safe, but many cats prefer unscented. Some cats may avoid scented litter, leading to accidents. Start with unscented and only try scented if your cat accepts it.',
-        },
-      },
-    ],
-  };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Products', item: 'https://nearbypetcare.com/pet-products' },
-      { '@type': 'ListItem', position: 3, name: 'Best Cat Litter', item: 'https://nearbypetcare.com/pet-products/best-cat-litter' },
-    ],
-  };
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What is the best type of cat litter?',
+      answer: 'The best type depends on your cat\'s preferences and your needs. Clumping clay litter is most popular for convenience, while natural litters are better for the environment. Silica gel offers excellent odor control, and paper litter is ideal for cats with respiratory issues.',
+    },
+    {
+      question: 'How often should I change cat litter?',
+      answer: 'Scoop clumping litter daily and change completely every 1-2 weeks. For non-clumping litter, change every 2-3 days. Silica gel can last 2-4 weeks. Always maintain 2-3 inches of litter depth.',
+    },
+    {
+      question: 'Is scented cat litter safe?',
+      answer: 'Scented litter is generally safe, but many cats prefer unscented. Some cats may avoid scented litter, leading to accidents. Start with unscented and only try scented if your cat accepts it.',
+    },
+  ]);
 
   return (
-    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/Article">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(articleStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
 
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

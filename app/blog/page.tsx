@@ -4,7 +4,14 @@ import { getAllPosts, getAllCategories, getAllTags } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
 import { getBaseUrl } from '@/lib/site-config';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogStructuredData,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners',
@@ -22,7 +29,7 @@ export const metadata: Metadata = generateSEOMetadata({
       type: 'image/png',
     },
   ],
-  locale: 'en_US',
+  locale: 'en-US',
   alternates: {
     languages: {
       'en-US': '/blog',
@@ -43,150 +50,61 @@ export default function BlogPage() {
   const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
 
-  // Enhanced Blog Structured Data (Schema.org)
-  const blogStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Blog',
-    '@id': `${baseUrl}/blog#blog`,
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Blog', url: '/blog' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const blogStructuredData = generateBlogStructuredData({
     name: 'Pet Care Blog',
     headline: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
-    url: `${baseUrl}/blog`,
-    inLanguage: 'en-US',
+    url: '/blog',
     datePublished: '2024-01-01T00:00:00Z',
     dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      '@id': `${baseUrl}#organization`,
-      name: 'Nearby Pet Care',
-      legalName: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48,
-      },
-      url: baseUrl,
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${baseUrl}/blog#webpage`,
-    },
-    blogPost: posts.slice(0, 10).map((post) => ({
-      '@type': 'BlogPosting',
+    blogPosts: posts.slice(0, 10).map((post) => ({
       '@id': `${baseUrl}/blog/${post.slug}`,
       headline: post.title,
       description: post.excerpt,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: `/blog/${post.slug}`,
       datePublished: new Date(post.date).toISOString(),
       dateModified: new Date(post.date).toISOString(),
-      author: {
-        '@type': 'Person',
-        name: post.author || 'Nearby Pet Care Team',
-      },
-      image: post.image || `${baseUrl}/og-image.png`,
+      author: post.author || 'Nearby Pet Care Team',
+      image: post.image || '/og-image.png',
     })),
-  };
+  });
 
-  // CollectionPage Structured Data for blog listing
-  const collectionPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${baseUrl}/blog#collectionpage`,
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Pet Care Blog',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
-    url: `${baseUrl}/blog`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: posts.length,
-      itemListElement: posts.slice(0, 20).map((post, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        item: {
-          '@type': 'BlogPosting',
-          '@id': `${baseUrl}/blog/${post.slug}`,
-          headline: post.title,
-          url: `${baseUrl}/blog/${post.slug}`,
-          datePublished: new Date(post.date).toISOString(),
-        },
-      })),
-    },
-  };
+    url: '/blog',
+    numberOfItems: posts.length,
+    items: posts.slice(0, 20).map((post) => ({
+      '@id': `${baseUrl}/blog/${post.slug}`,
+      headline: post.title,
+      url: `/blog/${post.slug}`,
+      datePublished: new Date(post.date).toISOString(),
+    })),
+  });
 
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl,
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: `${baseUrl}/blog`,
-      },
-    ],
-  };
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
-  // WebPage Structured Data
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `${baseUrl}/blog#webpage`,
+  const webPageStructuredData = generateWebPageStructuredData({
     name: 'Pet Care Blog',
     description: 'Expert pet care advice, training tips, health guides, and the latest news from Nearby Pet Care.',
-    url: `${baseUrl}/blog`,
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      '@id': `${baseUrl}#website`,
-      name: 'Nearby Pet Care',
-      url: baseUrl,
-    },
-    breadcrumb: breadcrumbStructuredData,
-    datePublished: '2024-01-01T00:00:00Z',
-    dateModified: currentDate,
-  };
+    url: '/blog',
+    breadcrumbs,
+  });
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label="Pet Care Blog">
-      {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(blogStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(collectionPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(webPageStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogStructuredData)} />
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {/* Hero Section - Optimized for Core Web Vitals */}
       <section 
         className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden"

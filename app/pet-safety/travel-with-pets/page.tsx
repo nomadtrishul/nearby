@@ -2,76 +2,31 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetSafetySidebar from '@/components/PetSafetySidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
-export const metadata: Metadata = {
-  title: 'Traveling with Pets - Complete Guide to Safe Pet Travel | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Traveling with Pets - Complete Guide to Safe Pet Travel',
   description: 'Complete guide to traveling safely with your pet. Expert tips for car travel, air travel, and preparing your pet for stress-free trips.',
   keywords: ['traveling with pets', 'pet travel', 'pet car travel', 'pet air travel', 'traveling with dogs', 'traveling with cats', 'pet travel tips', 'pet travel safety'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-    title: 'Traveling with Pets - Complete Guide to Safe Pet Travel | Nearby Pet Care',
-    description: 'Complete guide to traveling safely with your pet. Expert tips for car travel, air travel, and preparing your pet for stress-free trips.',
-    type: 'article',
-    url: getBaseUrl() + '/pet-safety/travel-with-pets',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: getDefaultOgImage(),
-        width: 1200,
-        height: 630,
-        alt: 'Traveling with Pets Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-  title: 'Traveling with Pets - Complete Guide | Nearby Pet Care',
-    description: 'Complete guide to traveling safely with your pet.',
-    images: [getDefaultOgImage()],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
+  pathname: '/pet-safety/travel-with-pets',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Safety',
+  tags: ['traveling with pets', 'pet travel', 'pet car travel', 'pet air travel'],
+  image: '/og-image.png',
+  locale: 'en-US',
   alternates: {
-    canonical: getBaseUrl() + '/pet-safety/travel-with-pets',
     languages: {
-      'en-US': getBaseUrl() + '/pet-safety/travel-with-pets',
-      'en-GB': getBaseUrl() + '/pet-safety/travel-with-pets',
-      'en-CA': getBaseUrl() + '/pet-safety/travel-with-pets',
-      'en-AU': getBaseUrl() + '/pet-safety/travel-with-pets',
+      'en-US': '/pet-safety/travel-with-pets',
+      'en-GB': '/pet-safety/travel-with-pets',
+      'en-CA': '/pet-safety/travel-with-pets',
+      'en-AU': '/pet-safety/travel-with-pets',
     },
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Safety',
-    'article:tag': 'traveling with pets, pet travel, car travel, air travel, pet travel safety',
-  },
-};
+});
 
 export default function TravelWithPetsPage() {
   const baseUrl = getBaseUrl();

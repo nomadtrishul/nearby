@@ -49,7 +49,8 @@ async function safeImport(...candidates) {
 module.exports = {
   siteUrl: getBaseUrl(),
   generateRobotsTxt: true,
-  generateIndexSitemap: false,
+  generateIndexSitemap: true, // Enable index sitemap for splitting >50k URLs
+  sitemapSize: 50000, // Split sitemap when exceeding 50k URLs (sitemap.org limit)
   exclude: [
     '/server-sitemap-index.xml',
     '/admin/*',
@@ -95,15 +96,42 @@ module.exports = {
       return d.toISOString().split('T')[0];
     };
 
-    // Try to import seo-utils for makeSitemapEntry
+    // Import seo-utils for centralized SEO and sitemap generation
     let seoUtils = null;
     try {
       seoUtils = await safeImport('./lib/seo-utils.js', './lib/seo-utils.ts', './lib/seo-utils');
     } catch (e) {
-      // Fallback to manual entry creation
+      console.warn('⚠️ Could not import seo-utils, falling back to manual entry creation');
     }
 
-    const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image) => {
+    // Helper to create sitemap entry using centralized utilities
+    const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image, title, description) => {
+      // Use centralized utilities if available
+      if (seoUtils && seoUtils.mergeSeo && seoUtils.makeSitemapEntry) {
+        // Normalize image
+        let normalizedImage = image;
+        if (!normalizedImage || normalizedImage === 'undefined' || normalizedImage === 'null') {
+          normalizedImage = '/og-image.png';
+        }
+
+        // Merge SEO data using centralized utility
+        const merged = seoUtils.mergeSeo({
+          title: title || path,
+          description: description || '',
+          pathname: path,
+          type: 'website',
+          image: normalizedImage,
+        });
+
+        // Create sitemap entry using centralized utility
+        return seoUtils.makeSitemapEntry(merged, {
+          priority,
+          changefreq: changeFrequency,
+          lastmod: lastModified ? formatDate(lastModified) : undefined,
+        });
+      }
+
+      // Fallback to manual entry creation if seo-utils not available
       const entry = {
         loc: `${baseUrl}${path}`,
         lastmod: formatDate(lastModified || now),
@@ -112,41 +140,41 @@ module.exports = {
       };
 
       // Add image sitemap support (2025 best practice)
-      // Only add image if it's a valid URL (not 'undefined')
       if (image && image !== 'undefined' && image !== 'null' && image !== '/og-image.png') {
         entry.images = [{
           loc: image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? image : '/' + image}`,
-          title: path,
-          caption: path,
+          title: title || path,
+          caption: description || path,
         }];
       }
 
       return entry;
     };
 
+    // Static routes with titles and descriptions for better SEO
     const staticRoutes = [
-      createEntry('/', 1.0, 'daily', now, '/og-image.png'),
-      createEntry('/blog', 0.9, 'daily', now, '/og-image.png'),
-      createEntry('/pet-care-tips', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-nutrition', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-health', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-grooming', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-training', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-breeds', 0.9, 'monthly', now, '/og-image.png'),
-      createEntry('/pet-products', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-adoption', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/pet-safety', 0.9, 'monthly', now, '/og-image.png'),
-      createEntry('/puppies-kittens', 0.9, 'weekly', now, '/og-image.png'),
-      createEntry('/senior-pets', 0.9, 'monthly', now, '/og-image.png'),
-      createEntry('/tools', 0.9, 'monthly', now, '/og-image.png'),
-      createEntry('/buying-guides', 0.8, 'weekly', now, '/og-image.png'),
-      createEntry('/comparisons', 0.8, 'weekly', now, '/og-image.png'),
-      createEntry('/community', 0.7, 'daily', now, '/og-image.png'),
-      createEntry('/about', 0.6, 'yearly', now, '/og-image.png'),
-      createEntry('/contact', 0.5, 'yearly', now, '/og-image.png'),
-      createEntry('/privacy', 0.2, 'yearly', now, '/og-image.png'),
-      createEntry('/terms', 0.2, 'yearly', now, '/og-image.png'),
-      createEntry('/disclaimer', 0.2, 'yearly', now, '/og-image.png'),
+      createEntry('/', 1.0, 'daily', now, '/og-image.png', 'Nearby Pet Care - Professional Pet Care Services Near You', 'Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services from experienced professionals.'),
+      createEntry('/blog', 0.9, 'daily', now, '/og-image.png', 'Pet Care Blog | Nearby Pet Care', 'Expert pet care advice, tips, and guides for pet owners. Learn about pet health, nutrition, grooming, training, and more.'),
+      createEntry('/pet-care-tips', 0.9, 'weekly', now, '/og-image.png', 'Pet Care Tips | Nearby Pet Care', 'Practical pet care tips and step-by-step guides to help you care for your pets better.'),
+      createEntry('/pet-nutrition', 0.9, 'weekly', now, '/og-image.png', 'Pet Nutrition Guide | Nearby Pet Care', 'Comprehensive guides on pet nutrition, feeding schedules, and dietary requirements for dogs, cats, and other pets.'),
+      createEntry('/pet-health', 0.9, 'weekly', now, '/og-image.png', 'Pet Health Information | Nearby Pet Care', 'Essential pet health information, common diseases, vaccination schedules, and when to see a veterinarian.'),
+      createEntry('/pet-grooming', 0.9, 'weekly', now, '/og-image.png', 'Pet Grooming Guides | Nearby Pet Care', 'Complete pet grooming guides including bathing, brushing, nail trimming, and dental care for your pets.'),
+      createEntry('/pet-training', 0.9, 'weekly', now, '/og-image.png', 'Pet Training Tips | Nearby Pet Care', 'Effective pet training techniques and tips for dogs, cats, and other pets.'),
+      createEntry('/pet-breeds', 0.9, 'monthly', now, '/og-image.png', 'Pet Breeds Information | Nearby Pet Care', 'Comprehensive information about different pet breeds including dogs, cats, birds, and exotic pets.'),
+      createEntry('/pet-products', 0.9, 'weekly', now, '/og-image.png', 'Pet Products Reviews | Nearby Pet Care', 'Honest reviews and recommendations for pet products including food, beds, toys, and accessories.'),
+      createEntry('/pet-adoption', 0.9, 'weekly', now, '/og-image.png', 'Pet Adoption Guide | Nearby Pet Care', 'Complete guide to pet adoption including checklists, preparation tips, and transitioning rescue pets.'),
+      createEntry('/pet-safety', 0.9, 'monthly', now, '/og-image.png', 'Pet Safety Tips | Nearby Pet Care', 'Essential pet safety tips and guidelines to keep your pets safe at home and outdoors.'),
+      createEntry('/puppies-kittens', 0.9, 'weekly', now, '/og-image.png', 'Puppy and Kitten Care | Nearby Pet Care', 'Complete guides for caring for puppies and kittens including feeding, training, and health care.'),
+      createEntry('/senior-pets', 0.9, 'monthly', now, '/og-image.png', 'Senior Pet Care | Nearby Pet Care', 'Specialized care guides for senior pets including health management and quality of life improvements.'),
+      createEntry('/tools', 0.9, 'monthly', now, '/og-image.png', 'Pet Care Tools | Nearby Pet Care', 'Useful tools and calculators for pet owners including feeding calculators, weight trackers, and more.'),
+      createEntry('/buying-guides', 0.8, 'weekly', now, '/og-image.png', 'Pet Product Buying Guides | Nearby Pet Care', 'Expert buying guides to help you choose the best products for your pets.'),
+      createEntry('/comparisons', 0.8, 'weekly', now, '/og-image.png', 'Pet Product Comparisons | Nearby Pet Care', 'Side-by-side comparisons of popular pet products to help you make informed decisions.'),
+      createEntry('/community', 0.7, 'daily', now, '/og-image.png', 'Pet Owner Community | Nearby Pet Care', 'Join our community of pet owners sharing stories, tips, and experiences.'),
+      createEntry('/about', 0.6, 'yearly', now, '/og-image.png', 'About Us | Nearby Pet Care', 'Learn about Nearby Pet Care, an independent platform providing trusted pet care information and education.'),
+      createEntry('/contact', 0.5, 'yearly', now, '/og-image.png', 'Contact Us | Nearby Pet Care', 'Get in touch with Nearby Pet Care for questions, feedback, or support.'),
+      createEntry('/privacy', 0.2, 'yearly', now, '/og-image.png', 'Privacy Policy | Nearby Pet Care', 'Privacy policy and data protection information for Nearby Pet Care.'),
+      createEntry('/terms', 0.2, 'yearly', now, '/og-image.png', 'Terms of Service | Nearby Pet Care', 'Terms of service and usage guidelines for Nearby Pet Care.'),
+      createEntry('/disclaimer', 0.2, 'yearly', now, '/og-image.png', 'Disclaimer | Nearby Pet Care', 'Disclaimer and legal information for Nearby Pet Care content.'),
     ];
 
     let posts = [];
@@ -184,7 +212,7 @@ module.exports = {
       }
     }
 
-    // Use seo-utils.makeSitemapEntry if available, otherwise fallback
+    // Use centralized SEO utilities for blog pages
     const blogPages = Array.isArray(posts)
       ? posts.map((post) => {
         let image = post.image;
@@ -192,16 +220,23 @@ module.exports = {
         if (!image || image === 'undefined' || image === 'null') {
           image = '/og-image.png';
         }
+        // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
+        const lastmod = seoUtils && seoUtils.calculateLastmod
+          ? seoUtils.calculateLastmod(undefined, post.date)
+          : formatDate(post.date);
         return createEntry(
           `/blog/${post.slug}`,
           0.7,
           'weekly',
-          post.date,
-          image
+          lastmod,
+          image,
+          post.title,
+          post.excerpt
         );
       })
       : [];
 
+    // Use centralized SEO utilities for tip pages
     const tipPages = Array.isArray(tips)
       ? tips.map((tip) => {
         let image = tip.image;
@@ -209,12 +244,18 @@ module.exports = {
         if (!image || image === 'undefined' || image === 'null') {
           image = '/og-image.png';
         }
+        // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
+        const lastmod = seoUtils && seoUtils.calculateLastmod
+          ? seoUtils.calculateLastmod(tip.dateModified, tip.date)
+          : formatDate(tip.dateModified || tip.date);
         return createEntry(
           `/pet-care-tips/${tip.slug}`,
           0.8,
           'weekly',
-          tip.date || tip.dateModified,
-          image
+          lastmod,
+          image,
+          tip.title,
+          tip.excerpt
         );
       })
       : [];

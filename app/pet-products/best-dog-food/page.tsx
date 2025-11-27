@@ -2,76 +2,30 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PetProductsSidebar from '@/components/PetProductsSidebar';
+import { generateSEOMetadata } from '@/lib/seo-utils';
 
-export const metadata: Metadata = {
-  title: 'Best Dog Food - Reviews & Buying Guide | Nearby Pet Care',
+export const metadata: Metadata = generateSEOMetadata({
+  title: 'Best Dog Food - Reviews & Buying Guide',
   description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands, ingredients, and find the perfect food for your dog.',
   keywords: ['best dog food', 'dog food reviews', 'dog food comparison', 'best dog food brands', 'premium dog food', 'dog nutrition', 'dog food guide', 'AAFCO dog food', 'dog food ingredients', 'healthy dog food'],
-  authors: [{ name: 'Nearby Pet Care Team', url: 'https://nearbypetcare.com' }],
-  creator: 'Nearby Pet Care',
-  publisher: 'Nearby Pet Care',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  openGraph: {
-  title: 'Best Dog Food - Reviews & Buying Guide | Nearby Pet Care',
-  description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands, ingredients, and find the perfect food for your dog.',
-    type: 'article',
-    url: 'https://nearbypetcare.com/pet-products/best-dog-food',
-    siteName: 'Nearby Pet Care',
-    locale: 'en_US',
-    alternateLocale: ['en_GB', 'en_CA', 'en_AU'],
-    publishedTime: '2024-01-01T00:00:00+00:00',
-    modifiedTime: new Date().toISOString(),
-    authors: ['Nearby Pet Care Team'],
-    images: [
-      {
-        url: 'https://nearbypetcare.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Best Dog Food Reviews & Buying Guide',
-        type: 'image/png',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Best Dog Food - Reviews & Buying Guide | Nearby Pet Care',
-    description: 'Comprehensive reviews and buying guide for the best dog food. Compare top brands and find the perfect food for your dog.',
-    images: ['https://nearbypetcare.com/og-image.png'],
-    creator: '@nearbypetcare',
-    site: '@nearbypetcare',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  pathname: '/pet-products/best-dog-food',
+  type: 'article',
+  publishedTime: '2024-01-01T00:00:00+00:00',
+  modifiedTime: new Date().toISOString(),
+  author: 'Nearby Pet Care Team',
+  section: 'Pet Products',
+  tags: ['best dog food', 'dog food reviews', 'dog food comparison', 'best dog food brands'],
+  image: '/og-image.png',
+  locale: 'en-US',
   alternates: {
-    canonical: 'https://nearbypetcare.com/pet-products/best-dog-food',
     languages: {
-      'en-US': 'https://nearbypetcare.com/pet-products/best-dog-food',
-      'en-GB': 'https://nearbypetcare.com/pet-products/best-dog-food',
-      'en-CA': 'https://nearbypetcare.com/pet-products/best-dog-food',
-      'en-AU': 'https://nearbypetcare.com/pet-products/best-dog-food',
+      'en-US': '/pet-products/best-dog-food',
+      'en-GB': '/pet-products/best-dog-food',
+      'en-CA': '/pet-products/best-dog-food',
+      'en-AU': '/pet-products/best-dog-food',
     },
   },
-  other: {
-    'article:published_time': '2024-01-01T00:00:00+00:00',
-    'article:modified_time': new Date().toISOString(),
-    'article:author': 'Nearby Pet Care Team',
-    'article:section': 'Pet Products',
-    'article:tag': 'dog food, pet nutrition, dog food reviews, best dog food brands',
-  },
-};
+});
 
 export default function BestDogFoodPage() {
   const currentDate = new Date().toISOString();
@@ -363,4 +317,5 @@ export default function BestDogFoodPage() {
     </main>
   );
 }
+
 

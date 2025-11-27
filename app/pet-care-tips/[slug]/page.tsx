@@ -7,7 +7,13 @@ import CopyButton from '@/components/CopyButton';
 import TipsSidebar from '@/components/TipsSidebar';
 import RelatedTips from '@/components/RelatedTips';
 import { getBaseUrl, getDefaultOgImage, ensureAbsoluteUrl } from '@/lib/site-config';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata, 
+  generateHowToStructuredData,
+  generateBreadcrumbStructuredData, 
+  generateFAQStructuredData, 
+  jsonLdScriptProps 
+} from '@/lib/seo-utils';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,26 +38,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const publishedTime = new Date(tip.date).toISOString();
   const modifiedTime = new Date(tip.dateModified || tip.date).toISOString();
-  const tipImage = tip.image ? tip.image : '/og-image.png';
+  const tipImage = tip.image || '/og-image.png';
 
   return generateSEOMetadata({
-    title: `${tip.title} | Pet Care Tips | Nearby Pet Care`,
+    title: tip.title,
     description: tip.excerpt,
     keywords: tip.tags || [],
     pathname: `/pet-care-tips/${slug}`,
     type: 'article',
-    images: [{
-      url: tipImage,
-      width: 1200,
-      height: 630,
-      alt: tip.title,
-      type: 'image/png',
-    }],
+    image: tipImage,
     publishedTime,
     modifiedTime,
     author: tip.author || 'Nearby Pet Care Team',
     section: tip.category || 'General',
     tags: tip.tags || [],
+    breadcrumbs: [
+      { name: 'Home', url: '/' },
+      { name: 'Pet Care Tips', url: '/pet-care-tips' },
+      { name: tip.title, url: `/pet-care-tips/${slug}` },
+    ],
   });
 }
 
@@ -71,9 +76,7 @@ export default async function PetTipPage({ params }: PageProps) {
 
   const publishedTime = new Date(tip.date).toISOString();
   const modifiedTime = new Date(tip.dateModified || tip.date).toISOString();
-
   const baseUrl = getBaseUrl();
-  const mainImage = tip.image ? ensureAbsoluteUrl(tip.image) : getDefaultOgImage();
 
   // Convert HTML to plain text for JSON-LD (Google requires plain text in structured data)
   const htmlToPlainText = (html: string): string => {
@@ -88,156 +91,64 @@ export default async function PetTipPage({ params }: PageProps) {
       .trim();
   };
 
-  // HowTo Structured Data - Google compliant
-  const howToStructuredData: any = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: tip.title,
-    description: tip.excerpt,
-    image: mainImage,
-    datePublished: publishedTime,
-    dateModified: modifiedTime,
-    author: {
-      '@type': 'Person',
-      name: tip.author || 'Nearby Pet Care Team',
-      url: `${baseUrl}/about`
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`,
-        width: 200,
-        height: 48
-      }
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${baseUrl}/pet-care-tips/${slug}`
-    },
-    totalTime: tip.totalTime || `PT${tip.readingTime || 5}M`,
-  };
-
-  // Add estimatedCost if provided
+  // Extract estimated cost if provided
+  let estimatedCost: { currency: string; value: string } | undefined;
   if (tip.estimatedCost) {
-    // Extract numeric value from string like "$20-50" or "$20"
     const costMatch = tip.estimatedCost.match(/\$?(\d+)/);
     if (costMatch) {
-      howToStructuredData.estimatedCost = {
-        '@type': 'MonetaryAmount',
+      estimatedCost = {
         currency: 'USD',
-        value: costMatch[1]
+        value: costMatch[1],
       };
     }
   }
 
-  // Add tools
-  if (tip.tools && tip.tools.length > 0) {
-    howToStructuredData.tool = tip.tools.map(tool => ({
-      '@type': 'HowToTool',
-      name: tool
-    }));
-  }
+  // Generate HowTo structured data using centralized utility
+  const howToStructuredData = generateHowToStructuredData({
+    name: tip.title,
+    description: tip.excerpt,
+    image: tip.image || '/og-image.png',
+    datePublished: publishedTime,
+    dateModified: modifiedTime,
+    author: tip.author || 'Nearby Pet Care Team',
+    totalTime: tip.totalTime || `PT${tip.readingTime || 5}M`,
+    ...(estimatedCost && { estimatedCost }),
+    ...(tip.tools && tip.tools.length > 0 && { tools: tip.tools }),
+    ...(tip.supplies && tip.supplies.length > 0 && { supplies: tip.supplies }),
+    steps: tip.steps && tip.steps.length > 0
+      ? tip.steps.map((step, index) => ({
+          name: step.name,
+          text: htmlToPlainText(step.text),
+          url: step.url || `${baseUrl}/pet-care-tips/${slug}#step-${index + 1}`,
+          ...(step.image && { image: step.image }),
+          ...(step.duration && { duration: step.duration }),
+        }))
+      : [],
+  });
 
-  // Add supplies
-  if (tip.supplies && tip.supplies.length > 0) {
-    howToStructuredData.supply = tip.supplies.map(supply => ({
-      '@type': 'HowToSupply',
-      name: supply
-    }));
-  }
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Care Tips', url: '/pet-care-tips' },
+    { name: tip.title, url: `/pet-care-tips/${slug}` },
+  ];
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
-  // Add steps (required for HowTo)
-  if (tip.steps && tip.steps.length > 0) {
-    howToStructuredData.step = tip.steps.map((step, index) => {
-      const stepData: any = {
-        '@type': 'HowToStep',
-        position: index + 1,
-        name: step.name,
-        text: htmlToPlainText(step.text), // Plain text for JSON-LD
-        url: step.url || `https://nearbypetcare.com/pet-care-tips/${slug}#step-${index + 1}`
-      };
-      
-      // Add step image if provided (must be absolute URL)
-      if (step.image) {
-        stepData.image = ensureAbsoluteUrl(step.image);
-      }
-      
-      // Add step duration if provided
-      if (step.duration) {
-        stepData.itemListElement = {
-          '@type': 'HowToDirection',
-          text: htmlToPlainText(step.text)
-        };
-      }
-      
-      return stepData;
-    });
-  }
-
-  // Breadcrumb Structured Data
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: baseUrl
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Pet Care Tips',
-        item: `${baseUrl}/pet-care-tips`
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: tip.title,
-        item: `${baseUrl}/pet-care-tips/${slug}`
-      }
-    ]
-  };
-
-  // FAQ Structured Data (if FAQs are provided)
-  const faqStructuredData = tip.faq && tip.faq.length > 0 ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: tip.faq.map(faq => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: htmlToPlainText(faq.answer)
-      }
-    }))
-  } : null;
+  // FAQ Structured Data using centralized utility (if FAQs are provided)
+  const faqStructuredData = tip.faq && tip.faq.length > 0 
+    ? generateFAQStructuredData(tip.faq.map(faq => ({
+        question: faq.question,
+        answer: htmlToPlainText(faq.answer),
+      })))
+    : null;
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       {/* Structured Data Scripts */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(howToStructuredData),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-      />
+      <script {...jsonLdScriptProps(howToStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(faqStructuredData),
-          }}
-        />
+        <script {...jsonLdScriptProps(faqStructuredData)} />
       )}
 
       {/* Hero Section */}

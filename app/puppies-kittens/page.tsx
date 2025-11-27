@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateCollectionPageStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Puppy & Kitten Care Guide: How to Care for a New Puppy or Kitten',
@@ -11,7 +18,7 @@ export const metadata: Metadata = generateSEOMetadata({
   pathname: '/puppies-kittens',
   type: 'website',
   author: 'Nearby Pet Care Team',
-  locale: 'en_US',
+  locale: 'en-US',
   images: [
     {
       url: '/og-image.png',
@@ -25,85 +32,47 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PuppiesKittensPage() {
+  const baseUrl = getBaseUrl();
+  
   const guides = [
     { title: 'First 30 Days', href: '/puppies-kittens/first-30-days', icon: '📅', description: 'Essential guide to caring for your new puppy or kitten during their crucial first month at home.' },
     { title: 'Vaccination Timeline', href: '/puppies-kittens/vaccination-timeline', icon: '💉', description: 'Complete vaccination schedules and timelines for puppies and kittens to keep them protected.' },
     { title: 'Training Basics', href: '/puppies-kittens/training-basics', icon: '🎓', description: 'Fundamental training techniques and tips to start your puppy or kitten on the right path.' },
   ];
 
-  const currentDate = new Date().toISOString();
+  // Breadcrumbs for structured data
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Puppies & Kittens', url: '/puppies-kittens' },
+  ];
 
-  const webPageStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
+  // Generate structured data using centralized utilities
+  const collectionPageStructuredData = generateCollectionPageStructuredData({
     name: 'Puppies & Kittens Care Guide',
     description: 'Complete guide to caring for puppies and kittens. Expert advice on the first 30 days, vaccination schedules, and training basics.',
-    url: 'https://nearbypetcare.com/puppies-kittens',
-    inLanguage: 'en-US',
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'Puppy and Kitten Care',
-    },
-    mainEntity: {
-      '@type': 'ItemList',
-      name: 'Puppy and Kitten Care Guides',
-      itemListElement: guides.map((guide, index) => ({
-        '@type': 'ListItem',
-        position: index + 1,
-        name: guide.title,
-        description: guide.description,
-        url: `https://nearbypetcare.com${guide.href}`,
-      })),
-    },
-    datePublished: '2024-01-01T00:00:00+00:00',
-    dateModified: currentDate,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      url: 'https://nearbypetcare.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 200,
-        height: 48,
-      },
-    },
-  };
+    url: '/puppies-kittens',
+    numberOfItems: guides.length,
+    items: guides.map((guide) => ({
+      name: guide.title,
+      url: guide.href,
+    })),
+  });
 
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://nearbypetcare.com',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Puppies & Kittens',
-        item: 'https://nearbypetcare.com/puppies-kittens',
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Puppies & Kittens Care Guide',
+    description: 'Complete guide to caring for puppies and kittens. Expert advice on the first 30 days, vaccination schedules, and training basics.',
+    url: '/puppies-kittens',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" itemScope itemType="https://schema.org/WebPage">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageStructuredData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(collectionPageStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         {/* Decorative background elements */}
         <div className="absolute inset-0 overflow-hidden" aria-hidden="true">

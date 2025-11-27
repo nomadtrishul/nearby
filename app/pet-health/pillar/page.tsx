@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Health & Wellness Overview: Complete Guide',
@@ -20,98 +28,68 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetHealthPillarPage() {
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Health', item: 'https://nearbypetcare.com/pet-health' },
-      { '@type': 'ListItem', position: 3, name: 'Overview', item: 'https://nearbypetcare.com/pet-health/pillar' },
-    ],
-  };
+  const baseUrl = getBaseUrl();
+  const currentDate = new Date().toISOString();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Health', url: '/pet-health' },
+    { name: 'Overview', url: '/pet-health/pillar' },
+  ];
 
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Health & Wellness Overview: Complete Guide',
     description: 'Comprehensive overview of pet health and wellness topics, including preventive care, early detection, and maintaining your pet\'s health.',
-    url: 'https://nearbypetcare.com/pet-health/pillar',
-    datePublished: '2024-01-01',
-    dateModified: new Date().toISOString().split('T')[0],
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-      },
-    },
-  };
+    url: '/pet-health/pillar',
+    datePublished: '2024-01-01T00:00:00Z',
+    dateModified: currentDate,
+    author: 'Nearby Pet Care Team',
+  });
 
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What are the key areas of pet health I should focus on?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Key areas of pet health include preventive care and vaccinations, parasite prevention and control, recognizing signs of illness, first aid and emergency care, mental health and behavioral wellness, nutrition, exercise, and regular veterinary care. A comprehensive approach to pet health addresses all these areas.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How often should I take my pet to the veterinarian?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Healthy adult pets typically need annual veterinary check-ups, while senior pets (usually 7+ years) may need semi-annual visits. Puppies and kittens need more frequent visits for vaccinations and initial care. Your veterinarian will recommend a schedule based on your pet\'s age, health status, and individual needs.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What is preventive care for pets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Preventive care includes vaccinations, parasite prevention, regular health screenings, dental care, proper nutrition, exercise, and early detection of health problems. Preventive care helps keep pets healthy and can prevent or catch problems early when they\'re easier and less expensive to treat.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How can I help maintain my pet\'s health?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Maintain your pet\'s health by providing proper nutrition, ensuring regular exercise, keeping vaccinations and parasite prevention up to date, scheduling regular veterinary check-ups, monitoring your pet\'s health and behavior, providing mental stimulation, maintaining good hygiene, and addressing health concerns promptly.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What are early warning signs of health problems in pets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Early warning signs include changes in appetite, energy levels, or behavior; vomiting or diarrhea; changes in drinking or urination; coughing or sneezing; limping or difficulty moving; skin changes; weight changes; and any other unusual symptoms. Regular monitoring helps you notice changes early.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Why is preventive care important for pets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Preventive care is important because it helps keep pets healthy, prevents diseases, catches problems early when they\'re easier to treat, can be more cost-effective than treating advanced conditions, and helps ensure your pet lives a long, healthy, happy life. Regular preventive care is an investment in your pet\'s wellbeing.',
-        },
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Health & Wellness Overview: Complete Guide',
+    description: 'Comprehensive overview of pet health and wellness topics, including preventive care, early detection, and maintaining your pet\'s health.',
+    url: '/pet-health/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What are the key areas of pet health I should focus on?',
+      answer: 'Key areas of pet health include preventive care and vaccinations, parasite prevention and control, recognizing signs of illness, first aid and emergency care, mental health and behavioral wellness, nutrition, exercise, and regular veterinary care. A comprehensive approach to pet health addresses all these areas.',
+    },
+    {
+      question: 'How often should I take my pet to the veterinarian?',
+      answer: 'Healthy adult pets typically need annual veterinary check-ups, while senior pets (usually 7+ years) may need semi-annual visits. Puppies and kittens need more frequent visits for vaccinations and initial care. Your veterinarian will recommend a schedule based on your pet\'s age, health status, and individual needs.',
+    },
+    {
+      question: 'What is preventive care for pets?',
+      answer: 'Preventive care includes vaccinations, parasite prevention, regular health screenings, dental care, proper nutrition, exercise, and early detection of health problems. Preventive care helps keep pets healthy and can prevent or catch problems early when they\'re easier and less expensive to treat.',
+    },
+    {
+      question: 'How can I help maintain my pet\'s health?',
+      answer: 'Maintain your pet\'s health by providing proper nutrition, ensuring regular exercise, keeping vaccinations and parasite prevention up to date, scheduling regular veterinary check-ups, monitoring your pet\'s health and behavior, providing mental stimulation, maintaining good hygiene, and addressing health concerns promptly.',
+    },
+    {
+      question: 'What are early warning signs of health problems in pets?',
+      answer: 'Early warning signs include changes in appetite, energy levels, or behavior; vomiting or diarrhea; changes in drinking or urination; coughing or sneezing; limping or difficulty moving; skin changes; weight changes; and any other unusual symptoms. Regular monitoring helps you notice changes early.',
+    },
+    {
+      question: 'Why is preventive care important for pets?',
+      answer: 'Preventive care is important because it helps keep pets healthy, prevents diseases, catches problems early when they\'re easier to treat, can be more cost-effective than treating advanced conditions, and helps ensure your pet lives a long, healthy, happy life. Regular preventive care is an investment in your pet\'s wellbeing.',
+    },
+  ]);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

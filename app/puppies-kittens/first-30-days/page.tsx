@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'First 30 Days with Your New Puppy or Kitten | Nearby Pet Care',
     description: 'Complete guide to the first 30 days with your new puppy or kitten. Essential tips for care, health, and bonding.',
     type: 'article',
-    locale: 'en_US',
+    locale: 'en-US',
     url: 'https://nearbypetcare.com/puppies-kittens/first-30-days',
     siteName: 'Nearby Pet Care',
     publishedTime: '2024-01-01T00:00:00+00:00',

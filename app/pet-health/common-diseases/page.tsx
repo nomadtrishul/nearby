@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import HealthSidebar from '@/components/HealthSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  generateFAQStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide',
@@ -20,127 +28,69 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function CommonDiseasesPage() {
-  const breadcrumbStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://nearbypetcare.com' },
-      { '@type': 'ListItem', position: 2, name: 'Pet Health', item: 'https://nearbypetcare.com/pet-health' },
-      { '@type': 'ListItem', position: 3, name: 'Common Diseases', item: 'https://nearbypetcare.com/pet-health/common-diseases' },
-    ],
-  };
+  const baseUrl = getBaseUrl();
+  const currentDate = new Date().toISOString();
+  
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Health', url: '/pet-health' },
+    { name: 'Common Diseases', url: '/pet-health/common-diseases' },
+  ];
 
-  const authorStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Veterinary Content Team',
-    jobTitle: 'Veterinary Health Content Specialists',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-    },
-    knowsAbout: ['Veterinary Medicine', 'Pet Health', 'Animal Diseases', 'Preventive Care'],
-  };
-
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide',
     description: 'Comprehensive guide to common pet diseases affecting dogs and cats, including symptoms, prevention, and treatment information.',
-    url: 'https://nearbypetcare.com/pet-health/common-diseases',
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': 'https://nearbypetcare.com/pet-health/common-diseases',
-    },
+    url: '/pet-health/common-diseases',
     datePublished: '2024-01-01T00:00:00+00:00',
-    dateModified: new Date().toISOString(),
-    author: {
-      '@type': 'Person',
-      name: 'Veterinary Content Team',
-      jobTitle: 'Veterinary Health Content Specialists',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://nearbypetcare.com/logo.png',
-        width: 600,
-        height: 60,
-      },
-    },
-    image: {
-      '@type': 'ImageObject',
-      url: 'https://nearbypetcare.com/og-image.png',
-      width: 1200,
-      height: 630,
-    },
-    articleSection: 'Pet Health',
-    inLanguage: 'en-US',
-    keywords: 'pet diseases, dog diseases, cat diseases, pet illness symptoms, pet disease prevention',
-  };
+    dateModified: currentDate,
+    author: 'Veterinary Content Team',
+    tags: ['pet diseases', 'dog diseases', 'cat diseases', 'pet illness symptoms', 'pet disease prevention'],
+  });
 
-  const faqStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'What are the most common diseases in dogs?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'The most common diseases in dogs include parvovirus, distemper, kennel cough, heartworm disease, and Lyme disease. These can be prevented through proper vaccination, parasite control, and regular veterinary care.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What are the most common diseases in cats?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Common feline diseases include feline leukemia virus (FeLV), feline immunodeficiency virus (FIV), upper respiratory infections, feline lower urinary tract disease (FLUTD), and kidney disease. Regular veterinary check-ups and vaccinations can help prevent many of these conditions.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How can I prevent my pet from getting diseases?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Prevention includes keeping vaccinations up to date, using parasite preventives, maintaining good hygiene, providing proper nutrition, ensuring regular exercise, and scheduling annual veterinary check-ups. Early detection through regular monitoring is also crucial.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'What are the early signs of illness in pets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Early signs include loss of appetite, lethargy, changes in behavior, vomiting or diarrhea, excessive drinking or urination, coughing or sneezing, changes in breathing, and visible discomfort. If you notice any of these signs, consult your veterinarian promptly.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'When should I take my pet to the vet for a suspected disease?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Seek immediate veterinary care if your pet shows severe symptoms like difficulty breathing, collapse, severe vomiting or diarrhea, seizures, or signs of extreme pain. For milder symptoms that persist more than 24-48 hours, schedule a veterinary appointment as soon as possible.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Are pet diseases contagious to humans?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Some pet diseases can be transmitted to humans (zoonotic diseases), including certain parasites, ringworm, and some bacterial infections. However, most common pet diseases are not contagious to humans. Always practice good hygiene when handling sick pets and consult your veterinarian about any concerns.',
-        },
-      },
-    ],
-  };
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide',
+    description: 'Comprehensive guide to common pet diseases affecting dogs and cats, including symptoms, prevention, and treatment information.',
+    url: '/pet-health/common-diseases',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
+
+  const faqStructuredData = generateFAQStructuredData([
+    {
+      question: 'What are the most common diseases in dogs?',
+      answer: 'The most common diseases in dogs include parvovirus, distemper, kennel cough, heartworm disease, and Lyme disease. These can be prevented through proper vaccination, parasite control, and regular veterinary care.',
+    },
+    {
+      question: 'What are the most common diseases in cats?',
+      answer: 'Common feline diseases include feline leukemia virus (FeLV), feline immunodeficiency virus (FIV), upper respiratory infections, feline lower urinary tract disease (FLUTD), and kidney disease. Regular veterinary check-ups and vaccinations can help prevent many of these conditions.',
+    },
+    {
+      question: 'How can I prevent my pet from getting diseases?',
+      answer: 'Prevention includes keeping vaccinations up to date, using parasite preventives, maintaining good hygiene, providing proper nutrition, ensuring regular exercise, and scheduling annual veterinary check-ups. Early detection through regular monitoring is also crucial.',
+    },
+    {
+      question: 'What are the early signs of illness in pets?',
+      answer: 'Early signs include loss of appetite, lethargy, changes in behavior, vomiting or diarrhea, excessive drinking or urination, coughing or sneezing, changes in breathing, and visible discomfort. If you notice any of these signs, consult your veterinarian promptly.',
+    },
+    {
+      question: 'When should I take my pet to the vet for a suspected disease?',
+      answer: 'Seek immediate veterinary care if your pet shows severe symptoms like difficulty breathing, collapse, severe vomiting or diarrhea, seizures, or signs of extreme pain. For milder symptoms that persist more than 24-48 hours, schedule a veterinary appointment as soon as possible.',
+    },
+    {
+      question: 'Are pet diseases contagious to humans?',
+      answer: 'Some pet diseases can be transmitted to humans (zoonotic diseases), including certain parasites, ringworm, and some bacterial infections. However, most common pet diseases are not contagious to humans. Always practice good hygiene when handling sick pets and consult your veterinarian about any concerns.',
+    },
+  ]);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(authorStructuredData) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }} />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
+      <script {...jsonLdScriptProps(faqStructuredData)} />
       
       {/* Hero Section */}
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">

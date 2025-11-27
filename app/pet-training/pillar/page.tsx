@@ -2,7 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Breadcrumb from '@/components/Breadcrumb';
 import TrainingSidebar from '@/components/TrainingSidebar';
-import { generateSEOMetadata } from '@/lib/seo-utils';
+import { 
+  generateSEOMetadata,
+  generateBlogPostingStructuredData,
+  generateWebPageStructuredData,
+  generateBreadcrumbStructuredData,
+  jsonLdScriptProps
+} from '@/lib/seo-utils';
+import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Pet Training & Behavior: Complete Overview Guide',
@@ -20,28 +27,40 @@ export const metadata: Metadata = generateSEOMetadata({
 });
 
 export default function PetTrainingPillarPage() {
+  const baseUrl = getBaseUrl();
   const currentDate = new Date().toISOString();
   
-  const articleStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+  const breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Pet Training', url: '/pet-training' },
+    { name: 'Overview', url: '/pet-training/pillar' },
+  ];
+
+  // Generate structured data using centralized utilities
+  const blogPostingStructuredData = generateBlogPostingStructuredData({
     headline: 'Pet Training & Behavior: Complete Overview Guide',
     description: 'Comprehensive overview of pet training and behavior. Learn about effective training methods and building a strong bond with your pet.',
-    url: 'https://nearbypetcare.com/pet-training/pillar',
+    url: '/pet-training/pillar',
     datePublished: '2024-01-01T00:00:00+00:00',
     dateModified: currentDate,
-    author: {
-      '@type': 'Organization',
-      name: 'Nearby Pet Care',
-    },
-  };
+    author: 'Nearby Pet Care Team',
+  });
+
+  const webPageStructuredData = generateWebPageStructuredData({
+    name: 'Pet Training & Behavior: Complete Overview Guide',
+    description: 'Comprehensive overview of pet training and behavior. Learn about effective training methods and building a strong bond with your pet.',
+    url: '/pet-training/pillar',
+    breadcrumbs,
+  });
+
+  const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
-      />
+      {/* Structured Data Scripts - Using centralized utilities */}
+      <script {...jsonLdScriptProps(blogPostingStructuredData)} />
+      <script {...jsonLdScriptProps(webPageStructuredData)} />
+      <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>

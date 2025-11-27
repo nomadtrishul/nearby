@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     title: 'End-of-Life Care for Senior Pets | Nearby Pet Care',
     description: 'Compassionate guide to end-of-life care for senior pets. Learn about quality of life assessment, palliative care, and making difficult decisions.',
     type: 'article',
-    locale: 'en_US',
+    locale: 'en-US',
     url: 'https://nearbypetcare.com/senior-pets/end-of-life-care',
     siteName: 'Nearby Pet Care',
     publishedTime: '2024-01-01T00:00:00+00:00',
