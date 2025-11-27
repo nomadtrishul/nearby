@@ -303,14 +303,30 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   }>;
 
   if (images && images.length > 0) {
-    finalImages = images.map(img => ({
-      url: absoluteImage(img.url),
-      width: img.width || 1200,
-      height: img.height || 630,
-      alt: img.alt || finalTitle,
-      type: img.type || 'image/png',
-    }));
-  } else if (image) {
+    // Filter out invalid images and map to final format
+    const validImages = images
+      .filter(img => img && isValidImageUrl(img.url))
+      .map(img => ({
+        url: absoluteImage(img.url),
+        width: img.width || 1200,
+        height: img.height || 630,
+        alt: img.alt || finalTitle,
+        type: img.type || 'image/png',
+      }));
+    
+    if (validImages.length > 0) {
+      finalImages = validImages;
+    } else {
+      // Fallback to default if no valid images
+      finalImages = [{
+        url: SITE.defaultImage,
+        width: 1200,
+        height: 630,
+        alt: SITE.name,
+        type: 'image/png',
+      }];
+    }
+  } else if (isValidImageUrl(image)) {
     finalImages = [{
       url: absoluteImage(image),
       width: 1200,
@@ -398,6 +414,22 @@ export function buildCanonical(pathname?: string): string {
 }
 
 /**
+ * Validate if an image URL is valid
+ * Checks for undefined, null, empty strings, and the string "undefined"
+ * 
+ * @param image - Image URL to validate
+ * @returns true if image is valid, false otherwise
+ */
+function isValidImageUrl(image: any): boolean {
+  if (!image) return false;
+  if (typeof image !== 'string') return false;
+  if (image.trim().length === 0) return false;
+  if (image === 'undefined' || image === 'null') return false;
+  if (image.includes('undefined') || image.includes('null')) return false;
+  return true;
+}
+
+/**
  * Convert image URL to absolute URL
  * Ensures OG images are always absolute URLs
  * 
@@ -405,10 +437,11 @@ export function buildCanonical(pathname?: string): string {
  * @returns Absolute image URL
  */
 export function absoluteImage(image?: string): string {
-  if (!image) {
+  if (!isValidImageUrl(image)) {
     return SITE.defaultImage;
   }
-  return ensureAbsoluteUrl(image);
+  // TypeScript assertion: image is guaranteed to be string after isValidImageUrl check
+  return ensureAbsoluteUrl(image as string);
 }
 
 /**
@@ -510,7 +543,10 @@ export function generateJsonLd(merged: MergedSeo): string {
   try {
     return JSON.stringify(baseStructuredData, null, 0);
   } catch (error) {
-    console.error('Error generating JSON-LD:', error);
+    // Log error in development only
+    if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
+      console.error('Error generating JSON-LD:', error);
+    }
     return '{}';
   }
 }
@@ -1065,7 +1101,25 @@ export function makeSitemapEntry(
   // Add images for image sitemap - filter out invalid URLs
   if (merged.images && merged.images.length > 0) {
     entry.images = merged.images
-      .filter(img => img && img.url && img.url !== 'undefined' && img.url !== 'null' && !img.url.includes('undefined'))
+      .filter(img => {
+        if (!img || !img.url) return false;
+        if (typeof img.url !== 'string') return false;
+        if (img.url.trim().length === 0) return false;
+        if (img.url === 'undefined' || img.url === 'null') return false;
+        if (img.url.includes('undefined') || img.url.includes('null')) return false;
+        // Ensure it's a valid URL format (absolute URLs only for sitemaps)
+        // Sitemap image URLs must be absolute, so check if it starts with http/https
+        if (!img.url.startsWith('http://') && !img.url.startsWith('https://')) {
+          return false;
+        }
+        // Validate URL format
+        try {
+          new URL(img.url);
+          return true;
+        } catch {
+          return false;
+        }
+      })
       .map(img => ({
         loc: img.url,
         title: img.alt || merged.title,

@@ -47,9 +47,12 @@ export async function submitToIndexNow(
   // IndexNow supports up to 10,000 URLs per request
   // If we have more, we'd need to batch, but for now we'll submit all
   if (absoluteUrls.length > MAX_URLS_PER_REQUEST) {
-    console.warn(
-      `Warning: ${absoluteUrls.length} URLs exceed IndexNow limit of ${MAX_URLS_PER_REQUEST}. Submitting first ${MAX_URLS_PER_REQUEST} URLs.`
-    );
+    // Log warning in development or during build
+    if (typeof process !== 'undefined' && (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production')) {
+      console.warn(
+        `Warning: ${absoluteUrls.length} URLs exceed IndexNow limit of ${MAX_URLS_PER_REQUEST}. Submitting first ${MAX_URLS_PER_REQUEST} URLs.`
+      );
+    }
     absoluteUrls.splice(MAX_URLS_PER_REQUEST);
   }
 

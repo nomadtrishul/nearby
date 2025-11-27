@@ -132,21 +132,28 @@ module.exports = {
       console.warn('⚠️ Could not import seo-utils, falling back to manual entry creation');
     }
 
+    // Helper function to validate and normalize image URLs
+    const normalizeImage = (image) => {
+      // Check if image is valid
+      if (!image) return '/og-image.png';
+      if (typeof image !== 'string') return '/og-image.png';
+      if (image.trim().length === 0) return '/og-image.png';
+      if (image === 'undefined' || image === 'null') return '/og-image.png';
+      if (image.includes('undefined') || image.includes('null')) return '/og-image.png';
+      // Ensure it starts with / or http
+      if (!image.startsWith('/') && !image.startsWith('http')) {
+        return '/og-image.png';
+      }
+      return image;
+    };
+
     // Helper to create sitemap entry using centralized utilities
     const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image, title, description) => {
+      // Normalize image first
+      const normalizedImage = normalizeImage(image);
+      
       // Use centralized utilities if available
       if (seoUtils && seoUtils.mergeSeo && seoUtils.makeSitemapEntry) {
-        // Normalize image - ensure it's a valid string URL
-        let normalizedImage = image;
-        if (!normalizedImage || 
-            normalizedImage === 'undefined' || 
-            normalizedImage === 'null' || 
-            typeof normalizedImage !== 'string' ||
-            normalizedImage.trim().length === 0 ||
-            normalizedImage.includes('undefined')) {
-          normalizedImage = '/og-image.png';
-        }
-
         // Merge SEO data using centralized utility
         const merged = seoUtils.mergeSeo({
           title: title || path,
@@ -174,21 +181,21 @@ module.exports = {
 
       // Add image sitemap support (2025 best practice)
       // Only add image if it's valid and not the default placeholder
-      if (image && 
-          image !== 'undefined' && 
-          image !== 'null' && 
-          image !== '/og-image.png' &&
-          typeof image === 'string' &&
-          image.trim().length > 0 &&
-          !image.includes('undefined')) {
-        const imageUrl = image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? image : '/' + image}`;
-        // Validate the image URL is not undefined
-        if (imageUrl && imageUrl !== 'undefined' && !imageUrl.includes('undefined')) {
+      if (normalizedImage && normalizedImage !== '/og-image.png') {
+        const imageUrl = normalizedImage.startsWith('http') 
+          ? normalizedImage 
+          : `${baseUrl}${normalizedImage.startsWith('/') ? normalizedImage : '/' + normalizedImage}`;
+        
+        // Final validation - ensure URL is valid
+        try {
+          new URL(imageUrl);
           entry.images = [{
             loc: imageUrl,
             title: title || path,
             caption: description || path,
           }];
+        } catch (e) {
+          // Invalid URL, skip adding image
         }
       }
 
@@ -259,17 +266,8 @@ module.exports = {
     // Use centralized SEO utilities for blog pages
     const blogPages = Array.isArray(posts)
       ? posts.map((post) => {
-        let image = post.image;
-        // Fix for "undefined" string or null/undefined value
-        // Only use image if it's a valid string URL
-        if (!image || 
-            image === 'undefined' || 
-            image === 'null' || 
-            typeof image !== 'string' ||
-            image.trim().length === 0 ||
-            image.includes('undefined')) {
-          image = '/og-image.png';
-        }
+        // Normalize image - createEntry will handle validation, but normalize here too
+        const image = normalizeImage(post.image);
         // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
         const lastmod = seoUtils && seoUtils.calculateLastmod
           ? seoUtils.calculateLastmod(undefined, post.date)
@@ -289,17 +287,8 @@ module.exports = {
     // Use centralized SEO utilities for tip pages
     const tipPages = Array.isArray(tips)
       ? tips.map((tip) => {
-        let image = tip.image;
-        // Fix for "undefined" string or null/undefined value
-        // Only use image if it's a valid string URL
-        if (!image || 
-            image === 'undefined' || 
-            image === 'null' || 
-            typeof image !== 'string' ||
-            image.trim().length === 0 ||
-            image.includes('undefined')) {
-          image = '/og-image.png';
-        }
+        // Normalize image - createEntry will handle validation, but normalize here too
+        const image = normalizeImage(tip.image);
         // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
         const lastmod = seoUtils && seoUtils.calculateLastmod
           ? seoUtils.calculateLastmod(tip.dateModified, tip.date)

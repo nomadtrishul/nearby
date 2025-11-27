@@ -42,7 +42,10 @@ export default function AnalyticsLoader() {
         }
       } catch (e) {
         // If consent check fails, don't load scripts
-        console.error('Error checking consent:', e);
+        // Log error in development only
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Error checking consent:', e);
+        }
       }
     };
 
