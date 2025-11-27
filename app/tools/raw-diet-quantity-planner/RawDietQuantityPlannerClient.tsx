@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function RawDietQuantityPlannerClient() {
@@ -122,13 +123,28 @@ export default function RawDietQuantityPlannerClient() {
             { name: 'Raw Diet Quantity Planner', href: '/tools/raw-diet-quantity-planner' }
           ]} />
           
-          <div className="text-center mb-8 sm:mb-10 mt-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          <div className="mb-8 sm:mb-10 mt-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Raw Diet Quantity Planner
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Calculate the proper quantities for a raw diet based on your pet's needs
-            </p>
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                Calculate the proper quantities for a raw diet based on your pet's needs
+              </p>
+            </div>
+
+            {/* Tool Screenshot/Image */}
+            <div className="mb-8">
+              <Image 
+                src="/og-image.png" 
+                alt="Raw Diet Quantity Planner - Calculate the proper quantities for a raw diet"
+                width={1200}
+                height={630}
+                className="w-full rounded-lg shadow-lg"
+                loading="lazy"
+                priority={false}
+              />
+            </div>
           </div>
 
           <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-800 rounded-xl p-6 mb-8">

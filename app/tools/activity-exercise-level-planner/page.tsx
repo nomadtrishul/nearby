@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import type { Metadata } from 'next';
-import Breadcrumb from '@/components/Breadcrumb';
 import ActivityExerciseLevelPlannerClient from './ActivityExerciseLevelPlannerClient';
 import {
   generateSEOMetadata,
@@ -106,100 +104,14 @@ export default function ActivityExerciseLevelPlannerPage() {
       <script {...jsonLdScriptProps(webApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
-
-      <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
-        <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
-          <div className="container mx-auto max-w-4xl">
-            <Breadcrumb items={breadcrumbItems} />
-
-            <div className="mb-8 sm:mb-10 mt-8">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                {toolTitle}
-              </h1>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                {config.description}
-              </p>
-              <p className="text-base text-gray-600 dark:text-gray-400">
-                Build personalized daily and weekly exercise plans so your pet stays engaged, maintains a healthy weight, and enjoys safe activity minutes tailored to their breed and life stage.
-              </p>
-
-              <div className="mt-8 mb-8">
-                <Image
-                  src="/og-image.png"
-                  alt="Pet activity and exercise level planner interface"
-                  width={1200}
-                  height={630}
-                  className="w-full rounded-lg shadow-lg"
-                  loading="lazy"
-                  priority={false}
-                />
-              </div>
-            </div>
-
-            <ActivityExerciseLevelPlannerClient />
-
-            <div className="mt-12 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Activity & Exercise Planner Works</h2>
-              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  We combine breed information, age group, body weight, and current activity level to determine a safe baseline of daily minutes. The planner then recommends weekly totals, divides minutes into manageable sessions, and lists suggested activities that match your selections.
-                </p>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Why Personalization Matters</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  High-energy herding breeds need very different routines than senior toy breeds or indoor cats. Tailoring minutes and activities prevents overexertion, reduces boredom, and supports healthy weight.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
-              <div className="space-y-4">
-                {config.faqs.map((faqItem) => (
-                  <div key={faqItem.question} className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{faqItem.question}</h3>
-                    <p className="text-gray-700 dark:text-gray-300">{faqItem.answer}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="/tools/exercise-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Exercise Calculator</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Calculate precise exercise minutes</p>
-                </a>
-                <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Align nutrition with activity output</p>
-                </a>
-                <a href="/tools/weight-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Weight Calculator</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Monitor ideal body condition</p>
-                </a>
-                <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Log skills and behavior improvements</p>
-                </a>
-              </div>
-            </div>
-
-            <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-              <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                <strong>Note:</strong> This plan provides general guidelines. Adjust based on your pet's individual needs, health conditions, and energy level. Always consult your veterinarian before starting new exercise routines, especially for puppies, senior pets, or pets with health conditions.
-              </p>
-            </div>
-          </div>
-        </section>
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `<section aria-label="Activity & Exercise Planner fallback"><h2>${escapeHtml(
-              toolTitle
-            )}</h2><p>${escapeHtml(config.description)}</p>${faqMarkup}</section>`,
-          }}
-        />
-      </main>
+      <ActivityExerciseLevelPlannerClient />
+      <noscript
+        dangerouslySetInnerHTML={{
+          __html: `<section aria-label="Activity & Exercise Planner fallback"><h2>${escapeHtml(
+            toolTitle
+          )}</h2><p>${escapeHtml(config.description)}</p>${faqMarkup}</section>`,
+        }}
+      />
     </>
   );
 }

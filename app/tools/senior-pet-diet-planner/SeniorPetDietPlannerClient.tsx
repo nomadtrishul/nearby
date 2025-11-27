@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function SeniorPetDietPlannerClient() {
@@ -139,13 +140,28 @@ export default function SeniorPetDietPlannerClient() {
             { name: 'Senior Pet Diet Planner', href: '/tools/senior-pet-diet-planner' }
           ]} />
           
-          <div className="text-center mb-8 sm:mb-10 mt-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+          <div className="mb-8 sm:mb-10 mt-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Senior Pet Diet Planner
             </h1>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Create a personalized diet plan for your senior pet based on age, weight, and health conditions
-            </p>
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                Create a personalized diet plan for your senior pet based on age, weight, and health conditions
+              </p>
+            </div>
+
+            {/* Tool Screenshot/Image */}
+            <div className="mb-8">
+              <Image 
+                src="/og-image.png" 
+                alt="Senior Pet Diet Planner - Create a personalized diet plan for your senior pet"
+                width={1200}
+                height={630}
+                className="w-full rounded-lg shadow-lg"
+                loading="lazy"
+                priority={false}
+              />
+            </div>
           </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-8">

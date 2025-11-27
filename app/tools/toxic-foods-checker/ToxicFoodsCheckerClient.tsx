@@ -204,14 +204,12 @@ export default function ToxicFoodsCheckerClient() {
                 <button
                   key={index}
                   onClick={() => setSelectedFood(food.name)}
-                  className="text-left p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-red-400 dark:hover:border-red-600 transition-colors"
+                  className="text-center p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-red-400 dark:hover:border-red-600 transition-colors flex flex-col items-center"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-gray-900 dark:text-white">{food.name}</h3>
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${getSeverityColor(food.severity)}`}>
-                      {food.severity}
-                    </span>
-                  </div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-3">{food.name}</h3>
+                  <span className={`px-2 py-1 rounded text-xs font-semibold mb-3 ${getSeverityColor(food.severity)}`}>
+                    {food.severity}
+                  </span>
                   <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">{food.symptoms}</p>
                 </button>
               ))}

@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import Breadcrumb from '@/components/Breadcrumb';
 
 export default function ActivityExerciseLevelPlannerClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -150,8 +152,40 @@ export default function ActivityExerciseLevelPlannerClient() {
   };
 
   return (
-    <div className="space-y-8">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8">
+    <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
+        <div className="container mx-auto max-w-4xl">
+          <Breadcrumb items={[
+            { name: 'Home', href: '/' },
+            { name: 'Tools', href: '/tools' },
+            { name: 'Activity & Exercise Level Planner', href: '/tools/activity-exercise-level-planner' }
+          ]} />
+          
+          <div className="mb-8 sm:mb-10 mt-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Activity & Exercise Level Planner
+            </h1>
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                Create personalized daily and weekly exercise plans for your pet based on breed, age, and activity level
+              </p>
+            </div>
+
+            {/* Tool Screenshot/Image */}
+            <div className="mb-8">
+              <Image 
+                src="/og-image.png" 
+                alt="Activity & Exercise Level Planner - Create personalized exercise plans for your pet"
+                width={1200}
+                height={630}
+                className="w-full rounded-lg shadow-lg"
+                loading="lazy"
+                priority={false}
+              />
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-8">
         <div className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -285,7 +319,77 @@ export default function ActivityExerciseLevelPlannerClient() {
           </div>
         </div>
       )}
-    </div>
+
+          {/* How Activity & Exercise Planner Works */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">How Activity & Exercise Planner Works</h2>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                We combine breed information, age group, body weight, and current activity level to determine a safe baseline of daily minutes. The planner then recommends weekly totals, divides minutes into manageable sessions, and lists suggested activities that match your selections.
+              </p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 mt-6">Why Personalization Matters</h3>
+              <p className="text-gray-700 dark:text-gray-300">
+                High-energy herding breeds need very different routines than senior toy breeds or indoor cats. Tailoring minutes and activities prevents overexertion, reduces boredom, and supports healthy weight.
+              </p>
+            </div>
+          </div>
+
+          {/* Visible FAQ Section */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How much exercise does my pet need?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Exercise needs vary by breed, age, and individual pet. Most adult dogs need 30-60 minutes of exercise per day, while cats typically need 15-30 minutes of interactive play. High-energy breeds need more exercise (60+ minutes), while low-energy breeds need less (20-30 minutes). Puppies and kittens need shorter, more frequent sessions, while senior pets need gentler exercise.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">What types of exercise are best for my pet?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  For dogs: walking, running, fetch, agility training, and off-leash play. For cats: interactive play with wand toys, puzzle feeders, climbing structures, and training sessions. The best exercise type depends on your pet's breed, age, and energy level. Always consider your pet's physical limitations and health conditions.
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">How do I know if my pet is getting enough exercise?</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  Signs of adequate exercise include: your pet is calm and relaxed at home, maintains a healthy weight, sleeps well, doesn't display destructive behaviors, and seems content. If your pet is restless, gaining weight, showing behavioral issues, or seems hyperactive, they may need more exercise. Consult your veterinarian if you're unsure.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Links */}
+          <div className="mt-8 mb-8">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Related Tools & Resources</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/tools/exercise-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Exercise Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Calculate precise exercise minutes</p>
+              </a>
+              <a href="/tools/calorie-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Calorie Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Align nutrition with activity output</p>
+              </a>
+              <a href="/tools/weight-calculator" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Pet Weight Calculator</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Monitor ideal body condition</p>
+              </a>
+              <a href="/tools/training-progress-tracker" className="block p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Training Progress Tracker</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Log skills and behavior improvements</p>
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
+            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+              <strong>Note:</strong> This plan provides general guidelines. Adjust based on your pet's individual needs, health conditions, and energy level. Always consult your veterinarian before starting new exercise routines, especially for puppies, senior pets, or pets with health conditions.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
 
