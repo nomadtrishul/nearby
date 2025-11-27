@@ -114,7 +114,6 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/logo-2.png" />
 
         {/* Preconnect to External Domains for Performance */}
-        <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         
@@ -165,23 +164,6 @@ export default function RootLayout({
           }}
         />
 
-        {/* Google tag (gtag.js) */}
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-2THNJVPVNS"
-          suppressHydrationWarning
-        />
-        <script
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-2THNJVPVNS');
-            `,
-          }}
-        />
 
         {/* Analytics scripts will be loaded dynamically by AnalyticsLoader component after consent */}
         <script
