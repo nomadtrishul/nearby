@@ -17,6 +17,7 @@ export interface BlogPost {
   category?: string;
   tags?: string[];
   image?: string;
+  imageAlt?: string;
   readingTime?: number;
   views?: number;
 }
@@ -47,6 +48,7 @@ export function getAllPosts(): BlogPost[] {
         category: data.category || 'General',
         tags: data.tags || [],
         image: data.image,
+        imageAlt: data.imageAlt,
         readingTime: data.readingTime || Math.ceil(content.split(' ').length / 200),
         views: data.views || 0,
       };
@@ -87,6 +89,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       category: data.category || 'General',
       tags: data.tags || [],
       image: data.image,
+      imageAlt: data.imageAlt,
       readingTime: data.readingTime || Math.ceil(content.split(' ').length / 200),
       views: data.views || 0,
     };

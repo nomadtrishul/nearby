@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface RelatedArticle {
   slug: string;
@@ -6,6 +7,8 @@ interface RelatedArticle {
   excerpt: string;
   category?: string;
   date: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 interface RelatedArticlesProps {
@@ -33,24 +36,40 @@ export default function RelatedArticles({ articles, currentSlug }: RelatedArticl
           <Link
             key={article.slug}
             href={`/blog/${article.slug}`}
-            className="group p-6 bg-gradient-to-br from-white/50 to-gray-50/50 dark:from-gray-800/30 dark:to-gray-900/30 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300"
+            className="group flex flex-col p-0 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 hover:shadow-lg transition-all duration-300 overflow-hidden"
+            aria-label={`Read article: ${article.title}`}
           >
-            {article.category && (
-              <span className="inline-block px-2.5 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors">
-                {article.category}
-              </span>
+            {/* Related Article Image - Top */}
+            {article.image ? (
+              <div className="w-full h-40 sm:h-44 rounded-t-xl overflow-hidden bg-gray-100 dark:bg-gray-700 relative">
+                <Image
+                  src={article.image}
+                  alt={article.imageAlt || article.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div className="w-full h-40 sm:h-44 rounded-t-xl bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center">
+                <svg className="w-12 h-12 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
             )}
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
-              {article.title}
-            </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2 transition-colors">
-              {article.excerpt}
-            </p>
-            <div className="flex items-center text-xs sm:text-sm font-semibold text-blue-600 dark:text-blue-400 group-hover:underline transition-colors">
-              Read More
-              <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+            
+            {/* Content Section */}
+            <div className="flex flex-col flex-1 p-4 sm:p-5">
+              {/* Article Heading - Below Image */}
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                {article.title}
+              </h3>
+              
+              {/* Excerpt - Below Heading */}
+              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3 transition-colors flex-1">
+                {article.excerpt}
+              </p>
             </div>
           </Link>
         ))}

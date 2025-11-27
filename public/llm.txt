@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Block training, but allow indexing and referencing
+Disallow-Training: /

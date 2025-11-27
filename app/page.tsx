@@ -379,6 +379,20 @@ export default function Home() {
                   href={`/blog/${post.slug}`}
                   className="group p-6 bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-white/10 rounded-xl hover:border-blue-500/50 transition-all duration-300 flex flex-col h-full"
                 >
+                  {/* Blog Post Image */}
+                  {post.image && (
+                    <div className="w-full h-40 mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 relative">
+                      <Image
+                        src={post.image}
+                        alt={post.imageAlt || post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  
                   {/* Category - Top */}
                   {post.category && (
                     <span className="inline-block px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium mb-3 transition-colors w-fit">

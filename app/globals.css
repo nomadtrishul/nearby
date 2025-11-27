@@ -71,6 +71,136 @@ img {
   display: block;
 }
 
+/* Mobile-optimized table styles */
+.prose {
+  overflow-wrap: break-word;
+}
+
+/* Table wrapper for horizontal scroll on mobile */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  display: table;
+}
+
+/* Mobile table styling - wrap tables in scrollable container */
+@media (max-width: 768px) {
+  /* Create a scrollable wrapper for tables using CSS */
+  .prose table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .prose table thead {
+    display: table-header-group;
+  }
+  
+  .prose table tbody {
+    display: table-row-group;
+  }
+  
+  .prose table tr {
+    display: table-row;
+  }
+  
+  .prose table th,
+  .prose table td {
+    display: table-cell;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    min-width: 100px; /* Prevent cells from being too narrow */
+  }
+  
+  /* Ensure table has minimum width for readability */
+  .prose table {
+    min-width: 600px;
+  }
+  
+  /* Ensure table headers are readable */
+  .prose table th {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    position: sticky;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.05);
+    z-index: 1;
+  }
+  
+  .dark .prose table th {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Better table readability on desktop */
+.prose table th {
+  font-weight: 600;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .prose table th {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Ensure table cells wrap text properly */
+.prose table td {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Responsive prose content */
+.prose {
+  max-width: 100%;
+}
+
+/* Ensure code blocks are scrollable on mobile */
+.prose pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better mobile typography */
+@media (max-width: 640px) {
+  .prose {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+  
+  .prose h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  .prose h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+  }
+  
+  .prose ul,
+  .prose ol {
+    padding-left: 1.25rem;
+  }
+  
+  .prose blockquote {
+    padding-left: 1rem;
+    margin-left: 0;
+    border-left-width: 4px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -88,6 +88,15 @@ export default async function BlogPostPage({ params }: PageProps) {
     { name: post.title, url: `/blog/${slug}` },
   ];
 
+  // Author information - only show bio for Trishul D N.
+  const authorName = post.author || 'Nearby Pet Care Team';
+  const isTrishul = authorName === 'Trishul D N.';
+  const authorImage = isTrishul ? '/trishul-dn.jpeg' : null;
+  const authorLinkedIn = isTrishul ? 'https://www.linkedin.com/in/trishuldn/' : null;
+  const authorBio = isTrishul 
+    ? 'Trishul D N. is a passionate pet care writer and researcher dedicated to helping pet owners provide the best care for their furry, feathered, and scaled companions. With extensive research into pet health, behavior, and care practices, Trishul shares evidence-based insights to help pet owners make informed decisions about their pets\' wellbeing.'
+    : null;
+
   // Generate structured data using centralized utilities
   const articleStructuredData = generateBlogPostingStructuredData({
     headline: post.title,
@@ -95,7 +104,9 @@ export default async function BlogPostPage({ params }: PageProps) {
     url: `/blog/${slug}`,
     datePublished: publishedTime,
     dateModified: modifiedTime,
-    author: post.author || 'Nearby Pet Care Team',
+    author: authorName,
+    authorImage: authorImage || undefined,
+    authorLinkedIn: authorLinkedIn || undefined,
     image: postImage,
     wordCount: wordCount,
     timeRequired: `PT${readingTime}M`,
@@ -247,7 +258,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <div className="mb-4 sm:mb-6" itemProp="image" itemScope itemType="https://schema.org/ImageObject">
                   <Image
                     src={post.image}
-                    alt={post.title}
+                    alt={post.imageAlt || post.title}
                     width={1200}
                     height={630}
                     className="w-full h-auto rounded-lg sm:rounded-xl"
@@ -263,7 +274,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
               {/* Article Content - Semantic HTML with proper structure */}
               <div
-                className="prose prose-xs sm:prose-sm lg:prose-base max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-code:text-gray-900 dark:prose-code:text-white prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800 prose-img:rounded-lg prose-img:shadow-lg"
+                className="prose prose-xs sm:prose-sm lg:prose-base max-w-none dark:prose-invert prose-headings:text-gray-900 dark:prose-headings:text-white prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-strong:text-gray-900 dark:prose-strong:text-white prose-code:text-gray-900 dark:prose-code:text-white prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800 prose-img:rounded-lg prose-img:shadow-lg prose-table:w-full prose-table:overflow-x-auto prose-th:font-semibold prose-th:text-left prose-td:align-top"
                 dangerouslySetInnerHTML={{ __html: post.content }}
                 itemProp="articleBody"
               />
@@ -276,9 +287,58 @@ export default async function BlogPostPage({ params }: PageProps) {
                   excerpt: p.excerpt,
                   category: p.category,
                   date: p.date,
+                  image: p.image,
+                  imageAlt: p.imageAlt,
                 }))}
                 currentSlug={slug}
               />
+
+              {/* Author Bio Section */}
+              {authorBio && authorImage && (
+                <section className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-200 dark:border-white/10" itemScope itemType="https://schema.org/Person">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                    {/* Author Image */}
+                    <div className="flex-shrink-0">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 relative">
+                        <Image
+                          src={authorImage}
+                          alt={`${authorName} - Author`}
+                          fill
+                          className="object-cover"
+                          sizes="96px"
+                          itemProp="image"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Author Info */}
+                    <div className="flex-1">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors" itemProp="name">
+                        {authorName}
+                      </h3>
+                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 leading-relaxed transition-colors" itemProp="description">
+                        {authorBio}
+                      </p>
+                      {/* LinkedIn Link */}
+                      {authorLinkedIn && (
+                        <a
+                          href={authorLinkedIn}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                          aria-label={`Connect with ${authorName} on LinkedIn`}
+                          itemProp="sameAs"
+                        >
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                          </svg>
+                          Connect on LinkedIn
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </section>
+              )}
 
               {/* Article Footer */}
               <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-gray-200 dark:border-white/10">

@@ -1062,13 +1062,20 @@ export function makeSitemapEntry(
     priority,
   };
 
-  // Add images for image sitemap
+  // Add images for image sitemap - filter out invalid URLs
   if (merged.images && merged.images.length > 0) {
-    entry.images = merged.images.map(img => ({
-      loc: img.url,
-      title: img.alt || merged.title,
-      caption: img.alt || merged.description,
-    }));
+    entry.images = merged.images
+      .filter(img => img && img.url && img.url !== 'undefined' && img.url !== 'null' && !img.url.includes('undefined'))
+      .map(img => ({
+        loc: img.url,
+        title: img.alt || merged.title,
+        caption: img.alt || merged.description,
+      }));
+    
+    // Only add images array if it has valid entries
+    if (entry.images.length === 0) {
+      delete entry.images;
+    }
   }
 
   return entry;
@@ -1384,6 +1391,8 @@ export function generateBlogPostingStructuredData(input: {
   datePublished: string;
   dateModified?: string;
   author?: string;
+  authorImage?: string;
+  authorLinkedIn?: string;
   image?: string;
   wordCount?: number;
   timeRequired?: string;
@@ -1394,6 +1403,23 @@ export function generateBlogPostingStructuredData(input: {
   const absoluteUrl = ensureAbsoluteUrl(input.url);
   const blogUrl = input.blogUrl ? ensureAbsoluteUrl(input.blogUrl) : `${baseUrl}/blog`;
 
+  // Build author object with full schema
+  let authorObject: any = null;
+  if (input.author) {
+    authorObject = {
+      '@type': 'Person',
+      name: input.author,
+    };
+    
+    if (input.authorImage) {
+      authorObject.image = ensureAbsoluteUrl(input.authorImage);
+    }
+    
+    if (input.authorLinkedIn) {
+      authorObject.sameAs = [input.authorLinkedIn];
+    }
+  }
+
   const structuredData: any = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -1403,12 +1429,7 @@ export function generateBlogPostingStructuredData(input: {
     url: absoluteUrl,
     datePublished: input.datePublished,
     ...(input.dateModified && { dateModified: input.dateModified }),
-    ...(input.author && {
-      author: {
-        '@type': 'Person',
-        name: input.author,
-      },
-    }),
+    ...(authorObject && { author: authorObject }),
     publisher: {
       '@type': 'Organization',
       name: SITE.name,

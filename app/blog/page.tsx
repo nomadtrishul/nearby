@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getAllPosts, getAllCategories, getAllTags } from '@/lib/blog';
 import BlogSidebar from '@/components/BlogSidebar';
 import Breadcrumb from '@/components/Breadcrumb';
@@ -178,6 +179,20 @@ export default function BlogPage() {
                       itemType="https://schema.org/BlogPosting"
                     >
                       <Link href={`/blog/${post.slug}`} className="block group" aria-label={`Read article: ${post.title}`}>
+                        {/* Blog Post Image */}
+                        {post.image && (
+                          <div className="w-full h-48 sm:h-56 mb-4 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-700 relative">
+                            <Image
+                              src={post.image}
+                              alt={post.imageAlt || post.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                              itemProp="image"
+                            />
+                          </div>
+                        )}
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 sm:mb-3">
                           <div className="flex items-center space-x-2 sm:space-x-3 mb-2 sm:mb-0">
                             <span className="px-2.5 py-0.5 text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full font-medium transition-colors">

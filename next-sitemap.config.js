@@ -56,7 +56,33 @@ module.exports = {
     '/admin/*',
     '/api/*',
     '/private/*',
+    '/manifest.webmanifest', // Exclude web manifest file
     // Exclude routes we're manually adding via additionalPaths to prevent duplicates
+    '/',
+    '/blog',
+    '/pet-care-tips',
+    '/pet-nutrition',
+    '/pet-health',
+    '/pet-grooming',
+    '/pet-training',
+    '/pet-breeds',
+    '/pet-products',
+    '/pet-adoption',
+    '/pet-safety',
+    '/pet-behavior',
+    '/puppies-kittens',
+    '/senior-pets',
+    '/tools',
+    '/buying-guides',
+    '/comparisons',
+    '/community',
+    '/about',
+    '/contact',
+    '/privacy',
+    '/terms',
+    '/disclaimer',
+    '/editorial-guidelines',
+    '/sources',
     '/tools/*',
     '/pet-breeds/*',
     '/pet-health/*',
@@ -69,6 +95,8 @@ module.exports = {
     '/pet-behavior/*',
     '/puppies-kittens/*',
     '/senior-pets/*',
+    '/blog/*', // Exclude blog posts (added manually)
+    '/pet-care-tips/*', // Exclude pet tips (added manually)
   ],
   robotsTxtOptions: {
     policies: [
@@ -108,9 +136,14 @@ module.exports = {
     const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image, title, description) => {
       // Use centralized utilities if available
       if (seoUtils && seoUtils.mergeSeo && seoUtils.makeSitemapEntry) {
-        // Normalize image
+        // Normalize image - ensure it's a valid string URL
         let normalizedImage = image;
-        if (!normalizedImage || normalizedImage === 'undefined' || normalizedImage === 'null') {
+        if (!normalizedImage || 
+            normalizedImage === 'undefined' || 
+            normalizedImage === 'null' || 
+            typeof normalizedImage !== 'string' ||
+            normalizedImage.trim().length === 0 ||
+            normalizedImage.includes('undefined')) {
           normalizedImage = '/og-image.png';
         }
 
@@ -140,12 +173,23 @@ module.exports = {
       };
 
       // Add image sitemap support (2025 best practice)
-      if (image && image !== 'undefined' && image !== 'null' && image !== '/og-image.png') {
-        entry.images = [{
-          loc: image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? image : '/' + image}`,
-          title: title || path,
-          caption: description || path,
-        }];
+      // Only add image if it's valid and not the default placeholder
+      if (image && 
+          image !== 'undefined' && 
+          image !== 'null' && 
+          image !== '/og-image.png' &&
+          typeof image === 'string' &&
+          image.trim().length > 0 &&
+          !image.includes('undefined')) {
+        const imageUrl = image.startsWith('http') ? image : `${baseUrl}${image.startsWith('/') ? image : '/' + image}`;
+        // Validate the image URL is not undefined
+        if (imageUrl && imageUrl !== 'undefined' && !imageUrl.includes('undefined')) {
+          entry.images = [{
+            loc: imageUrl,
+            title: title || path,
+            caption: description || path,
+          }];
+        }
       }
 
       return entry;
@@ -217,7 +261,13 @@ module.exports = {
       ? posts.map((post) => {
         let image = post.image;
         // Fix for "undefined" string or null/undefined value
-        if (!image || image === 'undefined' || image === 'null') {
+        // Only use image if it's a valid string URL
+        if (!image || 
+            image === 'undefined' || 
+            image === 'null' || 
+            typeof image !== 'string' ||
+            image.trim().length === 0 ||
+            image.includes('undefined')) {
           image = '/og-image.png';
         }
         // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
@@ -241,7 +291,13 @@ module.exports = {
       ? tips.map((tip) => {
         let image = tip.image;
         // Fix for "undefined" string or null/undefined value
-        if (!image || image === 'undefined' || image === 'null') {
+        // Only use image if it's a valid string URL
+        if (!image || 
+            image === 'undefined' || 
+            image === 'null' || 
+            typeof image !== 'string' ||
+            image.trim().length === 0 ||
+            image.includes('undefined')) {
           image = '/og-image.png';
         }
         // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
