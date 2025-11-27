@@ -66,11 +66,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
-      { url: '/logo-2.png', sizes: 'any' },
-      { url: '/logo-2.png', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/logo-2.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     shortcut: '/favicon.ico',
   },
@@ -98,10 +98,11 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
 
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="/logo-2.png" type="image/png" sizes="any" />
-        <link rel="apple-touch-icon" href="/logo-2.png" />
+        {/* Favicon - Multiple formats for better browser support */}
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
         {/* Preconnect to External Domains for Performance */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -154,6 +155,25 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* Google Analytics 4 (gtag.js) - Loads AFTER consent mode is initialized */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-2THNJVPVNS"
+          suppressHydrationWarning
+        />
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-2THNJVPVNS');
+            `,
+          }}
+        />
+        {/* End Google Analytics 4 */}
 
         {/* Google Tag Manager - Loads AFTER consent mode is initialized */}
         <script
