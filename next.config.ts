@@ -10,8 +10,7 @@ const nextConfig: NextConfig = {
   // PoweredBy header removal for security
   poweredByHeader: false,
   
-  // Production optimizations
-  swcMinify: true,
+  // Note: SWC minification is enabled by default in Next.js 16+
   
   // Redirects for SEO (if needed)
   async redirects() {
