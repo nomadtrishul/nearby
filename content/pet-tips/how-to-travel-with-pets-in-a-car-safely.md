@@ -5,7 +5,7 @@ excerpt: "A complete step-by-step guide to help you prepare, transport, and prot
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["car travel", "travel safety", "pet travel", "road trips", "pet safety", "motion sickness", "transportation"]
-image: "/images/pet-car-travel-safely.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764280748/pexels-ozgur-surmeli-124841273-11782297_ltkxmf.jpg"
 readingTime: 14
 estimatedCost: "$10-80 (car restraints, carriers, travel supplies)"
 totalTime: "PT2H"

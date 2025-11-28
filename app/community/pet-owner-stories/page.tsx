@@ -5,7 +5,7 @@ import BlogSidebar from '@/components/BlogSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Owner Stories: Inspiring Experiences & Community | Nearby Pet Care',
+  title: 'Pet Owner Stories | Nearby Pet Care',
   description:
     'Read inspiring stories from pet owners. Share experiences, tips, and connect with the pet care community. Discover adoption stories and training successes.',
   keywords: [

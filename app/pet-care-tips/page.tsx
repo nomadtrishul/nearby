@@ -14,7 +14,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Tips: Step-by-Step How-To Guides for Dogs & Cats',
+  title: 'Pet Care Tips: How-To Guides',
   description: 'Step-by-step pet care guides with expert tips on grooming, training, health, and nutrition. Practical advice you can use right away.',
   keywords: ['pet care tips', 'how to care for a pet', 'pet care guides', 'how to care for a dog', 'how to care for a cat', 'dog care tips', 'cat care tips', 'pet grooming guide', 'pet training guide', 'pet care how to'],
   pathname: '/pet-care-tips',

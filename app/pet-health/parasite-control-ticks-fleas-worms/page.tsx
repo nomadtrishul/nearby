@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Parasite Control for Pets: Complete Guide to Ticks, Fleas & Worms',
+  title: 'Parasite Control Guide: Ticks, Fleas & Worms',
   description: 'Complete guide to parasite control for pets. Learn about preventing and treating ticks, fleas, heartworms, and intestinal parasites.',
   keywords: ['pet parasites', 'flea control', 'tick prevention', 'heartworm prevention', 'pet deworming', 'flea treatment', 'tick removal', 'intestinal parasites', 'pet parasite prevention', 'flea and tick control'],
   pathname: '/pet-health/parasite-control-ticks-fleas-worms',

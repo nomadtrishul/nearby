@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Food Allergies & Elimination Diet Guide | Nearby Pet Care',
+  title: 'Pet Food Allergies Guide | Nearby Pet Care',
   description: 'Learn how to identify food allergies in pets and safely implement an elimination diet to determine problematic ingredients. Step-by-step guide included.',
   keywords: ['pet food allergies', 'dog food allergies', 'cat food allergies', 'elimination diet', 'pet allergy symptoms', 'food allergy testing', 'novel protein diet'],
   pathname: '/pet-nutrition/pet-food-allergies-elimination-diet',

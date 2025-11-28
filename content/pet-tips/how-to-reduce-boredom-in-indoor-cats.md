@@ -5,7 +5,7 @@ excerpt: "Learn how to reduce boredom in indoor cats through enrichment, play, e
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["indoor cats", "boredom", "enrichment", "cat enrichment", "mental stimulation", "indoor cat care"]
-image: "/images/indoor-cat-enrichment.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356557/pexels-aleksandar-cvetanovic-605352-1560424_vqah5s.jpg"
 readingTime: 12
 estimatedCost: "$20-100 (supplies and toys)"
 totalTime: "Ongoing"

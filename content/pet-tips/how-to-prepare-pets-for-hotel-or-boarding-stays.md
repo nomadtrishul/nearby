@@ -5,7 +5,7 @@ excerpt: "Learn how to prepare your pet for hotel or boarding stays. Comprehensi
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["travel", "boarding", "hotel stays", "pet travel", "pet safety", "preparation"]
-image: "/images/pet-hotel-boarding.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764280748/pexels-ozgur-surmeli-124841273-11782297_ltkxmf.jpg"
 readingTime: 12
 estimatedCost: "$50-200 (supplies and stay costs)"
 totalTime: "PT1-2W"

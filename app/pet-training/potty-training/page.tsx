@@ -5,7 +5,7 @@ import TrainingSidebar from '@/components/TrainingSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Potty Training for Pets: Complete House Training Guide',
+  title: 'Potty Training for Pets Guide',
   description: 'Master potty training with our comprehensive guide. Learn effective house training techniques for dogs and litter box training for cats.',
   keywords: ['potty training', 'house training', 'litter box training', 'pet toilet training', 'puppy potty training', 'kitten litter training', 'housebreaking', 'dog house training', 'cat litter training'],
   pathname: '/pet-training/potty-training',

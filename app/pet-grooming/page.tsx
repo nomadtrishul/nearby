@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Grooming Guide: How to Groom Your Dog or Cat at Home',
+  title: 'Pet Grooming Guide: At-Home Care',
   description: 'Learn how to groom your pet at home with step-by-step guides. Expert tips on dog and cat grooming, bathing, nail trimming, and dental care.',
   keywords: ['pet grooming', 'how to groom a dog', 'how to groom a cat', 'dog grooming tips', 'cat grooming tips', 'pet bathing', 'pet nail trimming', 'pet dental care', 'pet hygiene', 'grooming at home'],
   pathname: '/pet-grooming',

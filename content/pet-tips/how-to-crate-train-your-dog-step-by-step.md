@@ -5,7 +5,7 @@ excerpt: "Learn how to crate-train your dog step-by-step. Comprehensive guide co
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["crate training", "dog training", "puppy training", "house training", "positive reinforcement"]
-image: "/images/dog-crate-training.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354286/pexels-davidmcelwee-17188060_rir9no.jpg"
 readingTime: 12
 estimatedCost: "$30-100 (crate and supplies)"
 totalTime: "PT2-4W"

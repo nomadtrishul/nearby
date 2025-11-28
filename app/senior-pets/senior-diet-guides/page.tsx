@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
 
 export const metadata: Metadata = {
-  title: 'Senior Pet Diet Guides: Nutrition for Aging Dogs & Cats | Nearby Pet Care',
+  title: 'Senior Pet Diet Guides | Nearby Pet Care',
   description: 'Complete guide to nutrition for senior pets. Learn about dietary needs, weight management, special considerations, and choosing the right food.',
   keywords: ['senior pet diet', 'elderly pet nutrition', 'senior pet food', 'aging pet diet', 'senior dog food', 'senior cat food', 'pet nutrition aging', 'senior pet nutrition needs'],
   authors: [{ name: 'Nearby Pet Care Team' }],

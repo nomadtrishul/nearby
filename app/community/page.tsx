@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Community: Latest News, Research & Pet Owner Stories',
+  title: 'Pet Care Community: News & Stories',
   description: 'Stay connected with the latest pet care news, research, trends, and stories. Read pet owner stories and discover the latest trends in pet care.',
   keywords: ['pet care news', 'pet care community', 'pet care articles', 'pet care trends', 'pet care research', 'pet owner stories', 'pet care 2025', 'latest pet care news', 'pet community', 'pet care information'],
   pathname: '/community',

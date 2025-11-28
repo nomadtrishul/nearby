@@ -5,7 +5,7 @@ excerpt: "Learn how to pet-proof your home to keep your pets safe. Comprehensive
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["pet safety", "pet-proofing", "home safety", "toxic plants", "electrical safety", "pet hazards"]
-image: "/images/pet-home-safety.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764355336/pexels-vlada-karpovich-6801929_jlirgl.jpg"
 readingTime: 14
 estimatedCost: "$20-100 (safety supplies)"
 totalTime: "PT1-2D"

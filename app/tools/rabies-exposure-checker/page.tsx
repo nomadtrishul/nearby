@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Rabies Exposure Checker | Pet Rabies Risk Assessment & Action Guide',
+  title: 'Rabies Exposure Checker | Nearby Pet Care',
   description: 'Free rabies exposure checker provides guidance if your pet may have been exposed to rabies. Assess risk level and get immediate action steps.',
   keywords: ['rabies exposure', 'rabies risk', 'pet rabies', 'rabies exposure assessment', 'rabies prevention', 'rabies symptoms', 'rabies vaccination', 'rabies exposure guidance'],
   slug: 'rabies-exposure-checker',

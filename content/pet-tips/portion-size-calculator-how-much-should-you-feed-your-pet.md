@@ -5,7 +5,7 @@ excerpt: "Calculate the perfect portion size for your dog or cat. Learn feeding 
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["portion control", "feeding guide", "pet feeding", "pet weight", "calorie calculator"]
-image: "/images/pet-portion-control.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356919/pexels-mart-production-8434637_ohs3xj.jpg"
 readingTime: 8
 estimatedCost: "$0 (educational)"
 totalTime: "PT10M"

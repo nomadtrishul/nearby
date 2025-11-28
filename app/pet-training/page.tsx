@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Training Guide: How to Train Your Dog or Cat',
+  title: 'Pet Training Guide: Dogs & Cats',
   description: 'Learn how to train your pet with effective dog and cat training tips. Expert guides on potty training, obedience, crate training, and behavior problems.',
   keywords: ['pet training', 'how to train a dog', 'how to train a cat', 'dog training tips', 'cat training', 'potty training', 'obedience training', 'crate training', 'pet behavior', 'dog behavior problems', 'cat behavior', 'puppy training', 'kitten training'],
   pathname: '/pet-training',

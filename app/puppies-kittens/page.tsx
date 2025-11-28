@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Puppy & Kitten Care Guide: How to Care for a New Puppy or Kitten',
+  title: 'Puppy & Kitten Care Guide',
   description: 'Complete guide to caring for new puppies and kittens. Expert advice on the first 30 days, vaccination schedules, training basics, and young pet care.',
   keywords: ['puppy care', 'kitten care', 'how to care for a puppy', 'how to care for a kitten', 'new puppy guide', 'new kitten guide', 'puppy first 30 days', 'kitten first 30 days', 'puppy vaccinations', 'kitten vaccinations', 'puppy training', 'kitten training'],
   pathname: '/puppies-kittens',

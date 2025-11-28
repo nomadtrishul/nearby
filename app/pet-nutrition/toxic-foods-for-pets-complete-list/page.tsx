@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Toxic Foods for Pets - Complete List with Vet Warnings | Nearby Pet Care',
+  title: 'Toxic Foods for Pets Guide | Nearby Pet Care',
   description: 'Complete list of foods that are toxic or dangerous for dogs, cats, and other pets. Learn what foods to avoid and what to do if your pet ingests something toxic.',
   keywords: ['toxic foods for pets', 'foods dogs cant eat', 'foods cats cant eat', 'poisonous foods pets', 'pet food safety', 'pet poisoning', 'emergency pet care', 'ASPCA poison control'],
   pathname: '/pet-nutrition/toxic-foods-for-pets-complete-list',

@@ -207,9 +207,9 @@ function truncateDescription(description: string, maxLength: number = 160): stri
 
 /**
  * Truncate title to optimal length
- * Ideal: <70 characters for SEO
+ * Ideal: 50-60 characters for SEO
  */
-function truncateTitle(title: string, maxLength: number = 70): string {
+function truncateTitle(title: string, maxLength: number = 60): string {
   if (title.length <= maxLength) {
     return title;
   }
@@ -901,8 +901,8 @@ export function validateSeoForPage(merged: MergedSeo): string[] {
   // Title validation
   if (!merged.title || merged.title.trim().length === 0) {
     warnings.push('Missing title');
-  } else if (merged.title.length > 70) {
-    warnings.push(`Title too long (${merged.title.length} chars, ideal <70)`);
+  } else if (merged.title.length > 60) {
+    warnings.push(`Title too long (${merged.title.length} chars, ideal 50-60)`);
   }
 
   // Description validation

@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Skin Allergy Checker | Dog & Cat Skin Allergy Symptom Guide',
+  title: 'Skin Allergy Checker | Nearby Pet Care',
   description: 'Free skin allergy checker helps identify potential food, environmental, flea, or contact allergies in dogs and cats. Review symptoms and get recommendations.',
   keywords: ['pet skin allergies', 'dog allergies', 'cat allergies', 'skin allergy symptoms', 'pet allergy checker', 'food allergies pets', 'environmental allergies pets', 'flea allergy dermatitis'],
   slug: 'skin-allergy-checker',

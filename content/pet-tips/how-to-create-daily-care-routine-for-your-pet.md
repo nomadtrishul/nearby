@@ -5,7 +5,7 @@ excerpt: "Learn how to create a comprehensive daily care routine for your pet. S
 author: "Nearby Pet Care Team"
 category: "General Care"
 tags: ["daily routine", "pet care routine", "pet schedule", "daily care", "pet management", "routine", "pet care", "daily schedule"]
-image: "/images/daily-pet-care-routine.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354400/pexels-tima-miroshnichenko-6130977_jcpgls.jpg"
 readingTime: 10
 estimatedCost: "$0 (educational)"
 totalTime: "PT2W"

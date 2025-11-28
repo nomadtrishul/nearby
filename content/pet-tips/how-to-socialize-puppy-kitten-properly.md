@@ -5,7 +5,7 @@ excerpt: "Learn how to properly socialize your puppy or kitten. Comprehensive gu
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["socialization", "puppy training", "kitten training", "behavior", "training", "early development"]
-image: "/images/pet-socialization.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764280373/pexels-barnabas-davoti-31615494-14084426_tkxhcp.jpg"
 readingTime: 12
 estimatedCost: "$0-50 (supplies and treats)"
 totalTime: "PT8-16W"

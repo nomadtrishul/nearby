@@ -5,7 +5,7 @@ import BlogSidebar from '@/components/BlogSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Trends 2025: Latest Innovations & Practices | Nearby Pet Care',
+  title: 'Pet Care Trends 2025 | Nearby Pet Care',
   description:
     'Explore the latest pet care trends for 2025. Discover emerging products, services, and practices including personalized nutrition and smart technology.',
   keywords: [

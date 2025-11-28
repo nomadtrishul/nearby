@@ -5,7 +5,7 @@ excerpt: "Learn how to brush your pet's coat effectively based on their breed an
 author: "Nearby Pet Care Team"
 category: "Grooming"
 tags: ["brushing", "grooming", "coat care", "pet grooming", "breed-specific care"]
-image: "/images/pet-coat-brushing.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353428/pexels-rdne-8624555_uz4y85.jpg"
 readingTime: 12
 estimatedCost: "$10-50 (brushes and tools)"
 totalTime: "Ongoing"

@@ -5,7 +5,7 @@ excerpt: "Learn how to safely transition your pet from puppy or kitten food to a
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["diet transition", "puppy food", "kitten food", "adult food", "pet nutrition", "life stage nutrition"]
-image: "/images/pet-diet-transition.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764352865/pexels-mart-production-8434744_w5iyzs.jpg"
 readingTime: 11
 estimatedCost: "$0-50 (food)"
 totalTime: "PT1-2W"

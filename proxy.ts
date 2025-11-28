@@ -2,10 +2,10 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 /**
- * Middleware for SEO headers
+ * Proxy for SEO headers
  * Sets X-Robots-Tag headers for API routes and staging/preview deployments
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const response = NextResponse.next();
   const pathname = request.nextUrl.pathname;
 
@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-// Configure which routes should run this middleware
+// Configure which routes should run this proxy
 export const config = {
   matcher: [
     /*

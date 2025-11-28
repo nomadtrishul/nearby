@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Aggression Type Checker | Identify Dog & Cat Behavior Triggers',
+  title: 'Pet Aggression Type Checker | Nearby Pet Care',
   description: 'Free pet aggression type checker helps identify fear, territorial, resource guarding, and other aggression triggers in dogs and cats with tailored guidance.',
   keywords: ['pet aggression', 'dog aggression', 'cat aggression', 'aggression types', 'aggression diagnosis', 'aggressive behavior', 'resource guarding', 'fear aggression'],
   slug: 'aggression-type-checker',

@@ -1,6 +1,6 @@
 # Nearby Pet Care
 
-A modern Next.js application for nearbypetcare.com - Professional pet care services platform connecting pet owners with trusted pet care providers.
+A modern Next.js application for nearbypetcare.com - An independent educational platform providing practical, step-by-step guidance on pet care. We help pet owners make informed decisions about pet nutrition, health, grooming, training, behavior, and overall pet wellbeing.
 
 ## Getting Started
 
@@ -57,29 +57,121 @@ npm run build
 npm start
 ```
 
-The production build will be optimized and ready for deployment.
+The production build includes:
+- **Pre-build**: Generates `llms.json` file for LLM-friendly content
+- **Build**: Optimized Next.js production build with SWC minification
+- **Post-build**: Generates sitemap and submits to IndexNow
+
+**Build Scripts:**
+- `npm run build` - Full production build
+- `npm run generate:llms` - Generate llms.json file manually
+- `npm run seo:check` - Validate SEO for all pages
+- `npm run indexnow:submit` - Submit updated URLs to IndexNow
+
+The production build is optimized with:
+- SWC minification enabled
+- CSS optimization
+- Image optimization (AVIF/WebP)
+- Compression enabled
+- Security headers configured
 
 ## Project Structure
 
 ```
 petcare/
-├── app/                # App Router directory
-│   ├── layout.tsx      # Root layout
-│   ├── page.tsx        # Home page
-│   └── globals.css     # Global styles
-├── components/         # Reusable components
-├── lib/               # Utility functions
-├── public/            # Static assets
-└── styles/            # Additional styles
+├── app/                    # App Router directory
+│   ├── layout.tsx          # Root layout with SEO and analytics
+│   ├── page.tsx            # Homepage with hero section and CTAs
+│   ├── globals.css         # Global styles and Tailwind imports
+│   ├── blog/               # Blog posts and articles
+│   ├── pet-care-tips/      # Pet care tips and guides
+│   ├── tools/              # Interactive pet care tools and calculators
+│   ├── pet-breeds/         # Breed information (dogs, cats, birds, etc.)
+│   ├── pet-health/         # Health guides and information
+│   ├── pet-nutrition/      # Nutrition guides and advice
+│   ├── pet-grooming/       # Grooming guides and tips
+│   ├── pet-training/       # Training guides and resources
+│   ├── buying-guides/      # Product buying guides
+│   ├── comparisons/        # Product comparison pages
+│   ├── community/          # Community content and stories
+│   └── llms.json/          # LLM-friendly content endpoint
+├── components/             # Reusable React components
+│   ├── SEO.server.tsx      # SEO metadata component
+│   ├── Header.tsx          # Site header/navigation
+│   ├── Footer.tsx          # Site footer
+│   └── [Sidebar components] # Context-specific sidebars
+├── lib/                    # Utility functions and helpers
+│   ├── seo-utils.ts        # SEO utilities and metadata generation
+│   ├── blog.ts             # Blog post processing
+│   ├── petTips.ts          # Pet tips processing
+│   ├── generate-llms.ts    # LLM content generation
+│   └── site-config.ts      # Site configuration and URLs
+├── content/                # Content files (Markdown)
+│   ├── blog/               # Blog post markdown files
+│   └── pet-tips/           # Pet care tip markdown files
+├── scripts/                 # Build and utility scripts
+│   ├── generate-llms.ts    # Generate llms.json file
+│   ├── seo-check.js        # SEO validation script
+│   └── submit-indexnow.js # IndexNow submission script
+└── public/                  # Static assets
+    ├── og-image.png         # Default Open Graph image
+    └── [other assets]       # Images, icons, etc.
 ```
 
 ## Tech Stack
 
-- **Next.js 16.0.0** - React framework with App Router, Turbopack as default bundler
-- **React 19.2.0** - Latest React with Server Components support
+- **Next.js 16.0.0** - React framework with App Router, Server Components, and optimized production builds
+- **React 19.2.0** - Latest React with Server Components support and improved performance
 - **TypeScript 5.9.2** - Enhanced type safety and developer experience
-- **Tailwind CSS 3.4.17** - Utility-first CSS framework with improved dark mode
+- **Tailwind CSS 3.4.17** - Utility-first CSS framework with dark mode support
 - **ESLint 9.39.0** - Code linting and quality assurance
+- **Supabase** - Database and backend services
+- **Vercel Analytics & Speed Insights** - Performance monitoring and analytics
+- **next-sitemap** - Automatic sitemap generation with image support
+
+## Key Features
+
+### 🏠 Homepage
+- Hero section with dual CTAs (Pet Care Guides & Pet Tools)
+- Latest published tools showcase
+- Resource cards for easy navigation
+- Blog preview section
+- FAQ section with structured data
+
+### 🛠️ Tools & Calculators
+- 100+ interactive pet care tools and calculators
+- Categories: Health & Wellness, Nutrition, Adoption, Planning, Grooming, Training
+- Tools sidebar with travel resources integration
+- Popular tools quick access
+
+### 📚 Content Sections
+- **Blog**: Expert articles and in-depth guides
+- **Pet Care Tips**: Practical tips and advice
+- **Pet Breeds**: Comprehensive breed information
+- **Buying Guides**: Product selection guides
+- **Comparisons**: Side-by-side product comparisons
+- **Community**: Pet owner stories and experiences
+
+### 🎨 Design & UX
+- Responsive design (mobile-first)
+- Dark mode support
+- Accessible components
+- Optimized performance
+- SEO-optimized structure
+
+## Production Optimizations
+
+This project includes several production-ready optimizations:
+
+- ✅ **SWC Minification** - Faster builds and smaller bundles
+- ✅ **CSS Optimization** - Experimental CSS optimization enabled
+- ✅ **Image Optimization** - AVIF/WebP formats with responsive sizing
+- ✅ **Compression** - Gzip/Brotli compression enabled
+- ✅ **Security Headers** - PoweredBy header removed, CSP configured
+- ✅ **Environment-aware Logging** - Console logs only in development
+- ✅ **Build-time Content Generation** - LLM-friendly content generated at build
+- ✅ **Automatic Sitemap** - Generated with image support
+- ✅ **IndexNow Integration** - Automatic search engine notification
 
 ## Learn More
 
@@ -93,10 +185,14 @@ To learn more about Next.js, take a look at the following resources:
 ### Pre-Deployment Checklist
 
 - [ ] Create `.env.local` with all required environment variables
-- [ ] Create `/public/og-image.jpg` (1200x630px) for social sharing
-- [ ] Verify all verification codes are set
+- [ ] Verify `/public/og-image.png` exists (1200x630px) for social sharing
+- [ ] Verify all verification codes are set (Google, Bing, etc.)
 - [ ] Test production build: `npm run build`
+- [ ] Run SEO validation: `npm run seo:check`
+- [ ] Verify `llms.json` is generated correctly
 - [ ] Submit sitemap to Google Search Console and Bing Webmaster Tools
+- [ ] Test all major pages and tools functionality
+- [ ] Verify analytics and tracking are working
 
 ### Deploy to Vercel
 
@@ -110,11 +206,23 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 ### Environment Variables for Production
 
 Make sure to set these in your hosting platform:
-- `NEXT_PUBLIC_GOOGLE_VERIFICATION`
-- `NEXT_PUBLIC_BING_VERIFICATION`
-- `NEXT_PUBLIC_CONTACT_EMAIL`
-- `NEXT_PUBLIC_SITE_URL`
-- Social media URLs (optional)
+
+**Required:**
+- `NEXT_PUBLIC_SITE_URL` - Your production domain (e.g., `https://nearbypetcare.com`)
+
+**Optional but Recommended:**
+- `NEXT_PUBLIC_GOOGLE_VERIFICATION` - Google Search Console verification code
+- `NEXT_PUBLIC_BING_VERIFICATION` - Bing Webmaster Tools verification code
+- `NEXT_PUBLIC_YANDEX_VERIFICATION` - Yandex verification code
+- `NEXT_PUBLIC_YAHOO_VERIFICATION` - Yahoo verification code
+- `NEXT_PUBLIC_CONTACT_EMAIL` - Contact email address
+- `NEXT_PUBLIC_PREFERRED_DOMAIN` - Domain preference (`www` or `non-www`)
+
+**Supabase (if using):**
+- `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Supabase anonymous key
+
+**Note:** The build process automatically handles environment detection. Preview/staging deployments are automatically set to `noindex` to prevent search engine indexing.
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
@@ -383,4 +491,34 @@ This implementation follows:
 - [Schema.org Documentation](https://schema.org/)
 - [Google Search Central](https://developers.google.com/search)
 - [Open Graph Protocol](https://ogp.me/)
+
+## Recent Updates
+
+### Latest Changes
+- ✅ Added "Explore Pet Tools" CTA button on homepage hero section
+- ✅ Enhanced tools sidebar with travel resources card (Barry's Sky Lounge integration)
+- ✅ Production optimizations: SWC minification, conditional logging, enhanced .gitignore
+- ✅ Improved build process with pre/post-build scripts
+- ✅ Enhanced SEO architecture with comprehensive validation
+
+### Code Quality
+- All console statements are production-appropriate (conditional or error logging only)
+- Comprehensive .gitignore for build artifacts and IDE files
+- TypeScript strict mode enabled
+- ESLint configured for code quality
+- No debugger statements or development-only code in production builds
+
+## Contributing
+
+When contributing to this project:
+
+1. Follow the existing code style and patterns
+2. Ensure all new pages include proper SEO metadata
+3. Run `npm run seo:check` before committing
+4. Test production build: `npm run build`
+5. Update documentation as needed
+
+## License
+
+See [LICENSE](LICENSE) file for details.
 

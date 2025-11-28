@@ -5,7 +5,7 @@ excerpt: "Learn how to trim your dog's nails safely at home. Comprehensive guide
 author: "Nearby Pet Care Team"
 category: "Grooming"
 tags: ["nail trimming", "grooming", "dog care", "nail care", "pet grooming", "safety"]
-image: "/images/dog-nail-trimming.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356813/pexels-mirkofabian-12612095_ywvjap.jpg"
 readingTime: 11
 estimatedCost: "$10-30 (nail clippers)"
 totalTime: "PT2-4W"

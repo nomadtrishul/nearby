@@ -5,7 +5,7 @@ excerpt: "Learn how to create mental-stimulation games for your dog. Comprehensi
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["mental stimulation", "dog games", "puzzle games", "scent work", "enrichment", "brain games"]
-image: "/images/dog-mental-games.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353736/pexels-karola-g-4498185_abxecu.jpg"
 readingTime: 12
 estimatedCost: "$10-50 (materials)"
 totalTime: "PT1-2H"

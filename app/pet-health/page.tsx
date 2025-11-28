@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Health Guide: How to Keep Your Dog or Cat Healthy',
+  title: 'Pet Health Guide: Dogs & Cats',
   description: 'Comprehensive pet health guide with expert advice on vaccinations, common diseases, first aid, parasite control, and recognizing when your pet needs a vet.',
   keywords: ['pet health', 'how to keep pet healthy', 'pet health care', 'dog health', 'cat health', 'pet wellness', 'pet vaccinations', 'pet diseases', 'pet first aid', 'pet health tips', 'signs pet needs vet', 'pet parasite control'],
   pathname: '/pet-health',

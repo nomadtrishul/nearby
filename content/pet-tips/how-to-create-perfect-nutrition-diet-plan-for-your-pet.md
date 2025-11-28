@@ -5,7 +5,7 @@ excerpt: "Learn how to create a structured nutrition plan for your pet to preven
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["nutrition", "diet", "pet health", "feeding", "wellness"]
-image: "/images/pet-nutrition-diet.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354572/pexels-ifreestock-583675_santrw.jpg"
 readingTime: 12
 estimatedCost: "$30-100/month"
 totalTime: "PT30M"

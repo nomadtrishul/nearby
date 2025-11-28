@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Dental Health Score Tool | Dog & Cat Dental Assessment',
+  title: 'Pet Dental Health Score Tool | Nearby Pet Care',
   description: 'Free pet dental health score tool rates breath, gums, teeth, and tartar to assess dog and cat dental health. Get personalized dental care recommendations.',
   keywords: ['pet dental health', 'dog dental care', 'cat dental care', 'dental health assessment', 'pet dental score', 'dental hygiene pets', 'pet dental checkup', 'dental disease pets'],
   slug: 'dental-health-score-tool',

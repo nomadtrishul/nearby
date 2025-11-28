@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet BMI / Body Condition Score Calculator | 9-Point BCS Assessment Tool',
+  title: 'Pet BMI / Body Condition Score | Nearby Pet Care',
   description: 'Free pet BMI and body condition score calculator assesses your pet using the 9-point scale. Get BCS assessment and weight management recommendations.',
   keywords: ['pet body condition score', 'pet BCS', 'pet BMI', 'body condition score calculator', 'pet weight assessment', 'pet body condition', 'pet weight score', 'pet health assessment'],
   slug: 'pet-bmi-body-condition-score',

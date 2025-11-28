@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Skin and Coat Health: Complete Care Guide',
+  title: 'Pet Skin & Coat Health Guide',
   description: 'Learn how to maintain healthy skin and coat for your pet. Tips on grooming, nutrition, identifying skin problems, and proper care.',
   keywords: ['pet skin health', 'pet coat health', 'pet grooming', 'pet skin problems', 'healthy pet coat', 'pet skin care', 'dog skin health', 'cat skin health', 'pet coat care'],
   pathname: '/pet-health/skin-and-coat-health',

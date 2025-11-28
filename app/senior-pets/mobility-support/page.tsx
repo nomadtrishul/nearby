@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import SeniorPetsSidebar from '@/components/SeniorPetsSidebar';
 
 export const metadata: Metadata = {
-  title: 'Mobility Support for Senior Pets: Joint Health & Arthritis Care | Nearby Pet Care',
+  title: 'Senior Pet Mobility Support Guide | Nearby Pet Care',
   description: 'Learn how to support mobility and joint health in senior pets. Practical tips for managing arthritis, improving comfort, and maintaining quality of life.',
   keywords: ['senior pet mobility', 'pet arthritis', 'elderly pet mobility', 'joint health pets', 'senior dog mobility', 'senior cat mobility', 'pet joint supplements', 'arthritis in pets', 'senior pet joint care'],
   authors: [{ name: 'Nearby Pet Care Team' }],
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'Mobility Support for Senior Pets | Nearby Pet Care',
+    title: 'Senior Pet Mobility Support | Nearby Pet Care',
     description: 'Learn how to support mobility and joint health in senior pets. Practical tips for managing arthritis and improving comfort.',
     type: 'article',
     locale: 'en-US',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mobility Support for Senior Pets | Nearby Pet Care',
+    title: 'Senior Pet Mobility Support | Nearby Pet Care',
     description: 'Learn how to support mobility and joint health in senior pets. Practical tips for managing arthritis and improving comfort.',
     images: ['https://nearbypetcare.com/og-image.png'],
     creator: '@nearbypetcare',

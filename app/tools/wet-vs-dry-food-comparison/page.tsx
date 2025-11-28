@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Wet vs Dry Food Comparison Tool | Dog & Cat Food Comparison Calculator',
+  title: 'Wet vs Dry Food Comparison | Nearby Pet Care',
   description: 'Free wet vs dry food comparison tool compares food options for dogs and cats based on cost, nutrition, and convenience. Get detailed comparisons.',
   keywords: ['wet vs dry food', 'pet food comparison', 'dog food comparison', 'cat food comparison', 'wet food vs dry food', 'pet food cost comparison', 'best pet food type', 'pet nutrition comparison'],
   slug: 'wet-vs-dry-food-comparison',

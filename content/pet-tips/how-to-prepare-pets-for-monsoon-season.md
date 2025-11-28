@@ -5,7 +5,7 @@ excerpt: "Learn essential strategies for keeping your pets safe and comfortable 
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["monsoon", "rainy season", "pet safety", "seasonal care", "weather protection", "monsoon care"]
-image: "/images/pet-monsoon-care.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356154/pexels-yaroslav-shuraev-8499861_bbeml2.jpg"
 readingTime: 11
 estimatedCost: "$20-60 (monsoon supplies)"
 totalTime: "Ongoing"

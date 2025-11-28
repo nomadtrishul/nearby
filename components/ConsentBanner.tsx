@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 
 type ConsentPreferences = {
@@ -24,6 +24,7 @@ export default function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
     functional: false,
   });
   const { theme } = useTheme();
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Wait for client-side hydration
@@ -83,32 +84,7 @@ export default function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
     }
   };
 
-  const handleAcceptAll = () => {
-    const allAccepted: ConsentPreferences = {
-      necessary: true,
-      analytics: true,
-      marketing: true,
-      functional: true,
-    };
-    saveConsent(allAccepted);
-  };
-
-  const handleRejectAll = () => {
-    const onlyNecessary: ConsentPreferences = {
-      necessary: true,
-      analytics: false,
-      marketing: false,
-      functional: false,
-    };
-    saveConsent(onlyNecessary);
-  };
-
-  const handleSavePreferences = () => {
-    saveConsent(preferences);
-    setShowSettings(false);
-  };
-
-  const saveConsent = (consentPrefs: ConsentPreferences) => {
+  const saveConsent = useCallback((consentPrefs: ConsentPreferences) => {
     if (typeof window === 'undefined') return;
     
     localStorage.setItem('cookie-consent', JSON.stringify(consentPrefs));
@@ -129,6 +105,52 @@ export default function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
     if (onConsentChange) {
       onConsentChange(consentPrefs);
     }
+  }, [onConsentChange]);
+
+  const handleAcceptAll = useCallback(() => {
+    const allAccepted: ConsentPreferences = {
+      necessary: true,
+      analytics: true,
+      marketing: true,
+      functional: true,
+    };
+    saveConsent(allAccepted);
+  }, [saveConsent]);
+
+  // Handle clicks outside the banner to accept all
+  useEffect(() => {
+    if (!showBanner || showSettings) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (bannerRef.current && !bannerRef.current.contains(event.target as Node)) {
+        handleAcceptAll();
+      }
+    };
+
+    // Add event listener with a small delay to prevent immediate trigger
+    const timer = setTimeout(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showBanner, showSettings, handleAcceptAll]);
+
+  const handleRejectAll = () => {
+    const onlyNecessary: ConsentPreferences = {
+      necessary: true,
+      analytics: false,
+      marketing: false,
+      functional: false,
+    };
+    saveConsent(onlyNecessary);
+  };
+
+  const handleSavePreferences = () => {
+    saveConsent(preferences);
+    setShowSettings(false);
   };
 
   const handleTogglePreference = (key: keyof ConsentPreferences) => {
@@ -143,15 +165,9 @@ export default function ConsentBanner({ onConsentChange }: ConsentBannerProps) {
 
   return (
     <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 bg-black/50 z-40 transition-opacity"
-        onClick={() => setShowSettings(false)}
-        aria-hidden="true"
-      />
-
       {/* Consent Banner */}
       <div
+        ref={bannerRef}
         className={`fixed bottom-0 left-0 right-0 z-50 p-3 sm:p-4 ${
           theme === 'dark'
             ? 'bg-gray-900 border-t border-gray-800'

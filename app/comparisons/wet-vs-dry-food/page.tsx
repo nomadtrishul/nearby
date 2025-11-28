@@ -5,7 +5,7 @@ import ComparisonsSidebar from '@/components/ComparisonsSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Wet vs Dry Pet Food - Complete Comparison Guide | Nearby Pet Care',
+  title: 'Wet vs Dry Pet Food Comparison | Nearby Pet Care',
   description: 'Comprehensive comparison of wet vs dry pet food. Expert analysis of benefits, drawbacks, nutrition, and cost to help you choose the best option.',
   keywords: ['wet vs dry food', 'wet food vs dry food', 'pet food comparison', 'dog food wet dry', 'cat food wet dry', 'canned vs kibble', 'best pet food type', 'wet food benefits', 'dry food benefits'],
   pathname: '/comparisons/wet-vs-dry-food',

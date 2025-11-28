@@ -5,7 +5,7 @@ excerpt: "Learn how to check your pet for ticks, fleas, and other parasites. Com
 author: "Nearby Pet Care Team"
 category: "Health & First Aid"
 tags: ["parasites", "ticks", "fleas", "pet health", "prevention", "parasite control"]
-image: "/images/pet-parasites.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354010/pexels-tima-miroshnichenko-6131082_ojrzhh.jpg"
 readingTime: 11
 estimatedCost: "$0-50 (prevention products)"
 totalTime: "PT15-30M"

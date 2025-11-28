@@ -5,7 +5,7 @@ excerpt: "Learn to identify pet food allergy symptoms, understand common causes,
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["pet allergies", "food allergies", "hypoallergenic diet", "elimination diet", "pet health"]
-image: "/images/pet-food-allergies.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764357161/pexels-thatguycraig000-1546911_ymilld.jpg"
 readingTime: 12
 estimatedCost: "$50-150 (testing and special diet)"
 totalTime: "PT8W"

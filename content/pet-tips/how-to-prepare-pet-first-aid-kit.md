@@ -5,7 +5,7 @@ excerpt: "Learn how to prepare a comprehensive pet first-aid kit. Guide covering
 author: "Nearby Pet Care Team"
 category: "Health & First Aid"
 tags: ["first aid kit", "emergency preparedness", "pet safety", "first aid supplies", "emergency kit"]
-image: "/images/pet-first-aid-kit.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764280189/pexels-pixabay-263402_b34g2v.jpg"
 readingTime: 10
 estimatedCost: "$30-100 (supplies)"
 totalTime: "PT1H"

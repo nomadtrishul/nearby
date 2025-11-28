@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Activity & Exercise Level Planner | Pet Activity Plan Generator',
+  title: 'Activity & Exercise Planner | Nearby Pet Care',
   description: 'Free activity and exercise level planner creates personalized daily and weekly routines for dogs and cats based on breed, age, and activity level.',
   keywords: ['pet exercise plan', 'dog exercise planner', 'cat exercise plan', 'pet activity planner', 'exercise schedule', 'pet fitness plan', 'daily exercise pets', 'pet exercise routine'],
   slug: 'activity-exercise-level-planner',

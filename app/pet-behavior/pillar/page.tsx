@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Behavior Pillar: Calm Routines, Better Communication',
+  title: 'Pet Behavior Guide',
   description: 'Comprehensive pet behavior pillar guide covering stress triggers, enrichment, safe management, and step-by-step plans to build calmer habits.',
   keywords: [
     'pet behavior pillar',

@@ -7,7 +7,7 @@ import { getBaseUrl } from '@/lib/site-config';
 
 // Enhanced SEO metadata following latest Google, Bing, and AdSense guidelines (Nov 2025)
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Services in New York - Find Trusted Pet Care Providers | Nearby Pet Care',
+  title: 'Pet Care Services in New York | Nearby Pet Care',
   description: 'Discover comprehensive pet care services in New York. Find pet sitting, boarding, grooming, training, and veterinary care. Connect with trusted professionals.',
   keywords: [
     'pet care services New York',

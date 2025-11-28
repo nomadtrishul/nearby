@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Best Pet Supplements Guide - Omega-3, Probiotics & More | Nearby Pet Care',
+  title: 'Best Pet Supplements Guide | Nearby Pet Care',
   description: 'Learn about essential supplements for pets including omega-3 fatty acids, probiotics, vitamins, and minerals. When and why to supplement your pet\'s diet. Veterinary recommendations.',
   keywords: ['pet supplements', 'dog supplements', 'cat supplements', 'omega 3 for pets', 'pet probiotics', 'pet vitamins', 'pet joint supplements', 'pet health supplements'],
   pathname: '/pet-nutrition/best-pet-supplements-guide',

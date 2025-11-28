@@ -3,7 +3,7 @@ import ToolsClient from './ToolsClient';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Tools - Advanced Calculators & Helpers',
+  title: 'Pet Care Tools & Calculators',
   description: 'Free pet care tools and calculators. Calculate weight, feeding portions, find breeds, set vaccine reminders, track age, and estimate costs.',
   keywords: ['pet tools', 'pet calculator', 'weight calculator', 'feeding calculator', 'breed selector', 'vaccine reminder', 'pet age calculator', 'pet exercise calculator', 'pet cost calculator', 'pet health tracker'],
   pathname: '/tools',

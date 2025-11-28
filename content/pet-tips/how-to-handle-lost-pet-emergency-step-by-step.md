@@ -5,7 +5,7 @@ excerpt: "Learn how to handle a lost pet emergency effectively. Step-by-step gui
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["lost pet", "pet emergency", "pet recovery", "missing pet", "pet safety", "emergency"]
-image: "/images/lost-pet-emergency.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354850/pexels-candy-bon-194759951-34949607_gyy1lv.jpg"
 readingTime: 13
 estimatedCost: "$0-50 (flyers and supplies)"
 totalTime: "Ongoing"

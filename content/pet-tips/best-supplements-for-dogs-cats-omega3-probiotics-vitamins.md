@@ -5,7 +5,7 @@ excerpt: "Discover the best supplements for your pet's health including Omega-3 
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["pet supplements", "omega-3", "probiotics", "vitamins", "pet health", "nutritional supplements"]
-image: "/images/pet-supplements.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764352865/pexels-mart-production-8434744_w5iyzs.jpg"
 readingTime: 11
 estimatedCost: "$20-60/month"
 totalTime: "PT5M"

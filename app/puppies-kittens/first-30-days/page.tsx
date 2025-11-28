@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
 
 export const metadata: Metadata = {
-  title: 'First 30 Days with Your New Puppy or Kitten: Complete Care Guide | Nearby Pet Care',
+  title: 'First 30 Days: Puppy & Kitten Care | Nearby Pet Care',
   description: 'Complete guide to the first 30 days with your new puppy or kitten. Essential tips for care, health, bonding, house training, and setting up routines.',
   keywords: ['first 30 days puppy', 'first 30 days kitten', 'new puppy guide', 'new kitten guide', 'puppy care first month', 'kitten care first month', 'bringing home puppy', 'bringing home kitten'],
   authors: [{ name: 'Nearby Pet Care Team' }],
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'First 30 Days with Your New Puppy or Kitten | Nearby Pet Care',
+    title: 'First 30 Days: Puppy & Kitten Care | Nearby Pet Care',
     description: 'Complete guide to the first 30 days with your new puppy or kitten. Essential tips for care, health, and bonding.',
     type: 'article',
     locale: 'en-US',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'First 30 Days with Your New Puppy or Kitten | Nearby Pet Care',
+    title: 'First 30 Days: Puppy & Kitten Care | Nearby Pet Care',
     description: 'Complete guide to the first 30 days with your new puppy or kitten. Essential tips for care, health, and bonding.',
     images: ['https://nearbypetcare.com/og-image.png'],
     creator: '@nearbypetcare',

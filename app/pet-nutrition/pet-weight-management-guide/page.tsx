@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Weight Management Guide - Prevent Obesity | Nearby Pet Care',
+  title: 'Pet Weight Management Guide | Nearby Pet Care',
   description: 'Comprehensive guide to managing your pet\'s weight and preventing obesity. Learn about healthy weight ranges, diet strategies, and exercise recommendations. Veterinary-approved weight loss plans.',
   keywords: ['pet weight management', 'pet obesity', 'dog weight loss', 'cat weight loss', 'pet diet plan', 'pet exercise', 'pet body condition score', 'pet weight loss'],
   pathname: '/pet-nutrition/pet-weight-management-guide',

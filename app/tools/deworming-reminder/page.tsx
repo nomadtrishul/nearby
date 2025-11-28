@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Deworming Reminder Tool | Dog & Cat Deworming Schedule Calculator',
+  title: 'Deworming Reminder Tool | Nearby Pet Care',
   description: 'Free deworming reminder tool calculates when your pet\'s next deworming is due. Get reminders for puppies, kittens, and adult pets based on age and risk factors.',
   keywords: ['deworming reminder', 'pet deworming schedule', 'puppy deworming', 'kitten deworming', 'deworming calculator', 'parasite prevention', 'pet deworming schedule', 'worm prevention'],
   slug: 'deworming-reminder',

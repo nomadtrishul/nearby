@@ -5,7 +5,7 @@ excerpt: "A practical, step-by-step guide to help your dog or cat feel safe, con
 author: "Nearby Pet Care Team"
 category: "Pet Behavior"
 tags: ["carrier training", "pet travel", "pet anxiety", "crate training", "fear-free travel", "positive reinforcement", "behavior training"]
-image: "/images/how-to-introduce-pet-to-carrier.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764355106/pexels-denitsa-kireva-2915302-15274892_cabgyn.jpg"
 readingTime: 10
 estimatedCost: "$0-30 (treats, comfort items)"
 totalTime: "PT7D"

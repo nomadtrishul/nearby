@@ -5,7 +5,7 @@ excerpt: "Compare wet, dry, and fresh pet food options. Learn the pros, cons, co
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["wet food", "dry food", "fresh food", "pet food comparison", "kibble vs fresh"]
-image: "/images/wet-dry-fresh-food-comparison.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764357275/pexels-jakubzerdzicki-27960068_wwiavi.jpg"
 readingTime: 10
 estimatedCost: "$30-200/month (varies by type)"
 totalTime: "PT10M"

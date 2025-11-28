@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Vaccine Reminder | Dog & Cat Vaccination Schedule Tracker',
+  title: 'Pet Vaccine Reminder | Nearby Pet Care',
   description: 'Set up personalized vaccine reminders for your pets. Track vaccination schedules, get reminders for upcoming vaccines, and export to calendar.',
   keywords: ['pet vaccine reminder', 'vaccination schedule', 'pet vaccine tracker', 'vaccine calendar', 'pet health reminder', 'dog vaccine schedule', 'cat vaccine schedule', 'vaccination reminder tool'],
   slug: 'vaccine-reminder',

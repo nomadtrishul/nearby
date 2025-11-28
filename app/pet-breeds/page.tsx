@@ -5,7 +5,7 @@ import BreedsSidebar from '@/components/BreedsSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Breeds Guide: Dog Breeds, Cat Breeds & Breed-Specific Care',
+  title: 'Pet Breeds Guide: Dogs, Cats & More',
   description: 'Explore different pet breeds and learn about breed-specific care. Comprehensive guides on dog breeds, cat breeds, and their unique characteristics.',
   keywords: ['pet breeds', 'dog breeds', 'cat breeds', 'breed guide', 'breed care', 'dog breed information', 'cat breed information', 'breed characteristics', 'breed health', 'breed-specific care'],
   pathname: '/pet-breeds',

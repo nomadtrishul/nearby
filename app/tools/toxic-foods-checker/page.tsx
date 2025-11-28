@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Toxic Foods Checker | Dog & Cat Poisonous Foods Guide',
+  title: 'Toxic Foods Checker | Nearby Pet Care',
   description: 'Free toxic foods checker identifies dangerous foods for dogs and cats. Learn about symptoms, severity, and emergency actions to keep your pet safe.',
   keywords: ['toxic foods for pets', 'toxic foods for dogs', 'toxic foods for cats', 'pet poison foods', 'dangerous foods for pets', 'foods toxic to dogs', 'foods toxic to cats', 'pet food safety'],
   slug: 'toxic-foods-checker',

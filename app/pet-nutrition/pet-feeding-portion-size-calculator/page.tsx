@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Feeding Portion Size Calculator | Nearby Pet Care',
+  title: 'Pet Feeding Portion Calculator | Nearby Pet Care',
   description: 'Calculate the right portion sizes for your pet based on weight, age, activity level, and health status. Ensure optimal nutrition and weight management.',
   keywords: ['pet portion calculator', 'dog food calculator', 'cat food calculator', 'pet feeding calculator', 'pet portion size', 'how much to feed dog', 'how much to feed cat', 'pet calorie calculator'],
   pathname: '/pet-nutrition/pet-feeding-portion-size-calculator',

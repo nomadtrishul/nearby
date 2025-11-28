@@ -13,7 +13,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Nutrition Diet Plan - Complete Guide',
+  title: 'Pet Nutrition Diet Plan Guide',
   description:
     "Learn how to create a comprehensive nutrition plan tailored to your pet's specific needs, age, breed, and lifestyle. Expert guidance on pet diet planning with AAFCO standards and veterinary recommendations.",
   keywords: [

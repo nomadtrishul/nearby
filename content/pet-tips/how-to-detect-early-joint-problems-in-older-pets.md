@@ -5,7 +5,7 @@ excerpt: "Learn how to recognize early signs of joint problems in older pets. Co
 author: "Nearby Pet Care Team"
 category: "Senior Pets"
 tags: ["joint problems", "arthritis", "senior pets", "mobility", "pain management", "elderly pets"]
-image: "/images/pet-joint-problems.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354653/pexels-tima-miroshnichenko-6235122_p3hbhf.jpg"
 readingTime: 12
 estimatedCost: "$0 (monitoring)"
 totalTime: "Ongoing"

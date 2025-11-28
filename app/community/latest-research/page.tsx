@@ -5,7 +5,7 @@ import BlogSidebar from '@/components/BlogSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Latest Pet Care Research: Evidence-Based Information | Nearby Pet Care',
+  title: 'Latest Pet Care Research | Nearby Pet Care',
   description:
     'Stay updated with the latest pet care research and scientific findings. Evidence-based information about pet health, nutrition, and wellness.',
   keywords: [

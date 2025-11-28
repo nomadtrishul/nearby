@@ -5,7 +5,7 @@ excerpt: "Learn essential strategies for keeping your pets safe and warm during 
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["cold weather", "winter care", "pet safety", "seasonal care", "hypothermia prevention", "winter protection"]
-image: "/images/pet-cold-weather-care.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356291/pexels-helenalopes-1844899_culp8k.jpg"
 readingTime: 12
 estimatedCost: "$30-100 (winter supplies)"
 totalTime: "Ongoing"

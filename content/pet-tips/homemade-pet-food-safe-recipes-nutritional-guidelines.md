@@ -5,7 +5,7 @@ excerpt: "Learn how to prepare safe, nutritionally balanced homemade dog and cat
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["homemade pet food", "DIY pet food", "pet recipes", "cooked pet food", "raw diet"]
-image: "/images/homemade-pet-food.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353318/pexels-andrey-gurenko-1296589-2595616_imxtqm.jpg"
 readingTime: 15
 estimatedCost: "$50-150/month"
 totalTime: "PT60M"

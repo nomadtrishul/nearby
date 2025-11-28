@@ -5,7 +5,7 @@ excerpt: "Learn the ideal feeding schedules and meal timings for dogs and cats. 
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["feeding schedule", "meal timing", "pet feeding", "pet routine", "pet care"]
-image: "/images/pet-feeding-schedule.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353103/pexels-frans-van-heerden-201846-1022699_t55opr.jpg"
 readingTime: 8
 estimatedCost: "$0 (educational)"
 totalTime: "PT1W"

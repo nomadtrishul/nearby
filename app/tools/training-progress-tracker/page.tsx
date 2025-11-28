@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Training Progress Tracker | Dog & Cat Behavior Progress Log',
+  title: 'Training Progress Tracker | Nearby Pet Care',
   description: 'Free training progress tracker logs command mastery, behaviors, and milestones for dogs and cats. Get personalized recommendations and next training steps.',
   keywords: ['pet training tracker', 'dog training progress', 'training tracker', 'obedience training tracker', 'training assessment', 'pet training level', 'training progress', 'training goals'],
   slug: 'training-progress-tracker',

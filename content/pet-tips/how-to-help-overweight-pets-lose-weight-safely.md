@@ -5,7 +5,7 @@ excerpt: "Learn how to help your overweight pet lose weight safely and effective
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["weight loss", "obesity", "pet health", "diet", "exercise", "weight management"]
-image: "/images/pet-weight-loss.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354928/pexels-tahir-x-lf-2153788153-33394308_n21m6k.jpg"
 readingTime: 13
 estimatedCost: "$0-100 (food and supplies)"
 totalTime: "PT2-6M"

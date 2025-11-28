@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Symptom Checker | Dog & Cat Health Symptom Guide',
+  title: 'Pet Symptom Checker | Nearby Pet Care',
   description: 'Free pet symptom checker helps identify potential health issues for dogs and cats. Get symptom information and guidance. Always consult a veterinarian.',
   keywords: ['pet symptom checker', 'dog symptom checker', 'cat symptom checker', 'pet health symptoms', 'pet illness symptoms', 'veterinary symptom guide', 'pet health assessment', 'pet symptom guide'],
   slug: 'symptom-checker',

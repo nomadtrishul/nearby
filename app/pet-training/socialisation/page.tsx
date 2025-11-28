@@ -5,7 +5,7 @@ import TrainingSidebar from '@/components/TrainingSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Socialisation Guide: How to Socialize Puppies and Kittens',
+  title: 'Pet Socialisation Guide',
   description: 'Master pet socialization with our comprehensive guide. Learn about the critical socialization period and how to build confidence in puppies and kittens.',
   keywords: ['pet socialization', 'puppy socialization', 'kitten socialization', 'socializing pets', 'puppy socialization checklist', 'socialization period'],
   pathname: '/pet-training/socialisation',

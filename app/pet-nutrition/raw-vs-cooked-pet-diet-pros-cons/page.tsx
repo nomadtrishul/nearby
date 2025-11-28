@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Raw vs Cooked Pet Diet - Pros & Cons | Nearby Pet Care',
+  title: 'Raw vs Cooked Pet Diet | Nearby Pet Care',
   description: 'Compare raw and cooked diets for pets with science-backed information. Learn the pros, cons, and safety considerations for each approach.',
   keywords: ['raw pet food', 'cooked pet food', 'raw diet for pets', 'BARF diet', 'pet diet comparison', 'raw food safety', 'cooked pet food recipes'],
   pathname: '/pet-nutrition/raw-vs-cooked-pet-diet-pros-cons',

@@ -5,7 +5,7 @@ excerpt: "Learn how to create engaging DIY enrichment activities for your pets u
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["enrichment", "DIY", "mental stimulation", "puzzle toys", "boredom prevention", "homemade toys"]
-image: "/images/diy-pet-enrichment.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354491/pexels-pavel-danilyuk-7055937_f5wawp.jpg"
 readingTime: 12
 estimatedCost: "$5-30 (materials)"
 totalTime: "PT30M-2H"

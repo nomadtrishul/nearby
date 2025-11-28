@@ -5,7 +5,7 @@ excerpt: "Learn how to address excessive barking or meowing in pets. Comprehensi
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["barking", "meowing", "behavior", "training", "excessive vocalization", "pet behavior"]
-image: "/images/pet-vocalization.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764279990/pexels-norbert-kundrak-764171-1677533_bcefek.jpg"
 readingTime: 12
 estimatedCost: "$0-50 (training supplies)"
 totalTime: "PT2-4W"

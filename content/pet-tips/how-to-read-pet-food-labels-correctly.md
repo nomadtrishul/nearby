@@ -5,7 +5,7 @@ excerpt: "Learn how to read and understand pet food labels to make informed deci
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["pet food", "nutrition", "food labels", "ingredients", "pet nutrition", "AAFCO", "guaranteed analysis", "pet food quality"]
-image: "/images/pet-food-labels.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356423/pexels-rdne-7310128_k13g6w.jpg"
 readingTime: 15
 estimatedCost: "$0 (educational)"
 totalTime: "PT30M"

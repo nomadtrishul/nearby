@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Parasite Risk Assessment Tool | Dog & Cat Parasite Prevention Guide',
+  title: 'Parasite Risk Assessment Tool | Nearby Pet Care',
   description: 'Free parasite risk assessment tool evaluates your pet\'s risk for fleas, ticks, heartworm, and intestinal worms. Get personalized prevention recommendations based on lifestyle and location.',
   keywords: ['parasite risk assessment', 'pet parasite prevention', 'flea tick risk', 'heartworm risk', 'parasite prevention', 'pet parasite assessment', 'flea prevention', 'tick prevention'],
   slug: 'parasite-risk-assessment',

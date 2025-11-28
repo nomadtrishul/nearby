@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Dog Food Serving Size Calculator | Daily Portion Size Calculator',
+  title: 'Dog Food Serving Size Calculator | Nearby Pet Care',
   description: 'Free dog food serving size calculator determines perfect portions based on weight, age, and activity level. Get RER and DER calculations.',
   keywords: ['dog food serving size', 'dog food calculator', 'dog portion calculator', 'dog feeding calculator', 'dog food portions', 'dog serving size', 'dog feeding guide', 'dog nutrition calculator'],
   slug: 'dog-food-serving-size-calculator',

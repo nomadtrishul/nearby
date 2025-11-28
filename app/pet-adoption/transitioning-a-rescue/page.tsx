@@ -5,7 +5,7 @@ import AdoptionSidebar from '@/components/AdoptionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Transitioning a Rescue Pet: Complete Guide to Building Trust',
+  title: 'Transitioning a Rescue Pet Guide',
   description: 'Complete guide to transitioning a rescue pet into your home. Learn how to build trust, establish routines, handle challenges, and the 3-3-3 rule.',
   keywords: ['rescue pet transition', 'adopting rescue pet', 'rescue pet adjustment', 'new rescue pet', 'rescue pet trust', 'rescue pet behavior', '3-3-3 rule', 'rescue pet challenges', 'building trust with rescue pet'],
   pathname: '/pet-adoption/transitioning-a-rescue',

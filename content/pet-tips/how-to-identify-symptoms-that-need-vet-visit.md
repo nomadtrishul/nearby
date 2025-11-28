@@ -5,7 +5,7 @@ excerpt: "Learn how to recognize symptoms that require veterinary attention. Com
 author: "Nearby Pet Care Team"
 category: "Health & First Aid"
 tags: ["vet visit", "symptoms", "pet health", "emergency", "health monitoring", "pet illness"]
-image: "/images/pet-vet-visit.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764355017/pexels-tima-miroshnichenko-6235233_gpf6gz.jpg"
 readingTime: 13
 estimatedCost: "$0 (monitoring)"
 totalTime: "Ongoing"

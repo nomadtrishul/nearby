@@ -5,7 +5,7 @@ excerpt: "Learn essential strategies for keeping your pets safe and comfortable 
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["hot weather", "summer care", "heat safety", "pet safety", "seasonal care", "heatstroke prevention", "hydration"]
-image: "/images/pet-hot-weather-care.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353735/pexels-pavel-danilyuk-7055739_yipic5.jpg"
 readingTime: 12
 estimatedCost: "$20-50 (cooling supplies)"
 totalTime: "Ongoing"

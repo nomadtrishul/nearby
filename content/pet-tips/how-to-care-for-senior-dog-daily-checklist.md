@@ -5,7 +5,7 @@ excerpt: "Learn essential daily care practices for senior dogs. Comprehensive gu
 author: "Nearby Pet Care Team"
 category: "Senior Pets"
 tags: ["senior dogs", "elderly pets", "aging pets", "daily care", "health monitoring", "senior pet care"]
-image: "/images/senior-dog-care.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353735/pexels-pavel-danilyuk-7055739_yipic5.jpg"
 readingTime: 14
 estimatedCost: "$0-100 (supplies and medications)"
 totalTime: "Ongoing"

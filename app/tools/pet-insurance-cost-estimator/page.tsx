@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Insurance Cost Estimator | Dog & Cat Insurance Cost Calculator',
+  title: 'Pet Insurance Cost Estimator | Nearby Pet Care',
   description: 'Free pet insurance cost estimator calculates monthly premiums based on pet age, size, location, and coverage type. Compare costs and get recommendations.',
   keywords: ['pet insurance cost', 'pet insurance calculator', 'dog insurance cost', 'cat insurance cost', 'pet insurance estimate', 'pet insurance pricing', 'pet insurance comparison', 'pet insurance quotes'],
   slug: 'pet-insurance-cost-estimator',

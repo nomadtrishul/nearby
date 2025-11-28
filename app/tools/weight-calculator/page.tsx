@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Weight Calculator | Dog & Cat Ideal Weight & BMI Calculator',
+  title: 'Pet Weight Calculator | Nearby Pet Care',
   description: 'Free pet weight calculator determines ideal weight range, body condition score, and BMI for dogs and cats. Get breed-specific recommendations.',
   keywords: ['pet weight calculator', 'dog weight calculator', 'cat weight calculator', 'ideal pet weight', 'body condition score', 'pet BMI calculator', 'pet weight management', 'healthy pet weight'],
   slug: 'weight-calculator',

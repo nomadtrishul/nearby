@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Seasonal Pet Health Tips: Year-Round Care Guide',
+  title: 'Seasonal Pet Health Tips Guide',
   description: 'Seasonal health tips for pets throughout the year. Learn how to keep your pet healthy and safe during different seasons, including summer and winter care.',
   keywords: ['seasonal pet care', 'winter pet care', 'summer pet care', 'pet seasonal health', 'pet weather safety', 'summer pet safety', 'winter pet safety', 'seasonal pet tips'],
   pathname: '/pet-health/seasonal-health-tips',

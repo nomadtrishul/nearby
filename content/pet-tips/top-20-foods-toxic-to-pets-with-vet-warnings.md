@@ -5,7 +5,7 @@ excerpt: "Learn about 20 common foods that are toxic or dangerous to dogs and ca
 author: "Nearby Pet Care Team"
 category: "Health & Safety"
 tags: ["toxic foods", "pet safety", "poison prevention", "emergency care", "pet health"]
-image: "/images/toxic-foods-pets.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764357161/pexels-thatguycraig000-1546911_ymilld.jpg"
 readingTime: 10
 estimatedCost: "$0 (prevention guide)"
 totalTime: "PT5M"

@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Best Cat Litter for Odour Control - Buying Guide | Nearby Pet Care',
+  title: 'Best Cat Litter for Odour Control | Nearby Pet Care',
   description: 'Complete buying guide for the best cat litter for odour control. Compare top brands and find the most effective odour-controlling litter.',
   keywords: ['best cat litter odour control', 'odor control cat litter', 'best smelling cat litter', 'cat litter odor', 'odour control litter', 'cat litter buying guide'],
   pathname: '/buying-guides/best-litter-for-odour-control',

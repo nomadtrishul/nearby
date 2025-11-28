@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Best Pet Food Ingredients Guide - What to Look For | Nearby Pet Care',
+  title: 'Best Pet Food Ingredients Guide | Nearby Pet Care',
   description: 'Complete guide to understanding pet food ingredients. Learn what to look for and avoid when choosing pet food for optimal health and nutrition.',
   keywords: ['pet food ingredients', 'dog food ingredients', 'cat food ingredients', 'pet food quality', 'pet nutrition ingredients', 'AAFCO pet food', 'pet food labels', 'reading pet food labels'],
   pathname: '/pet-nutrition/best-pet-food-ingredients-guide',

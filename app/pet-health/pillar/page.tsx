@@ -13,7 +13,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Health & Wellness Overview: Complete Guide',
+  title: 'Pet Health & Wellness Guide',
   description: 'Comprehensive overview of pet health and wellness topics. Learn about maintaining your pet\'s health through preventive care, early detection, and understanding common health topics.',
   keywords: ['pet health overview', 'pet wellness', 'pet preventive care', 'pet health guide', 'pet health topics', 'pet wellness guide'],
   pathname: '/pet-health/pillar',

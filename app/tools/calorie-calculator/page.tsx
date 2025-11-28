@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Calorie Calculator | Dog & Cat Daily Calorie Needs Calculator',
+  title: 'Pet Calorie Calculator | Nearby Pet Care',
   description: 'Free pet calorie calculator determines daily calorie needs for dogs and cats. Calculate RER, DER, and get personalized recommendations for weight management.',
   keywords: ['pet calorie calculator', 'dog calorie calculator', 'cat calorie calculator', 'pet calorie needs', 'daily calories for pets', 'pet RER calculator', 'pet DER calculator', 'pet nutrition calculator'],
   slug: 'calorie-calculator',

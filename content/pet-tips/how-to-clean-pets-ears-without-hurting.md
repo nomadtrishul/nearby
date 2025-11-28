@@ -5,7 +5,7 @@ excerpt: "Learn how to clean your pet's ears safely and effectively. Comprehensi
 author: "Nearby Pet Care Team"
 category: "Grooming"
 tags: ["ear cleaning", "grooming", "pet care", "ear health", "pet hygiene"]
-image: "/images/pet-ear-cleaning.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354198/pexels-ermelinda-maglione-1106070-6604130_f7l1c1.jpg"
 readingTime: 10
 estimatedCost: "$10-20 (ear cleaner)"
 totalTime: "PT10-15M"

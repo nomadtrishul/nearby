@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Exercise Calculator | Dog & Cat Daily Exercise Needs Calculator',
+  title: 'Pet Exercise Calculator | Nearby Pet Care',
   description: 'Free pet exercise calculator determines daily exercise needs for dogs and cats. Get breed-specific recommendations and personalized activity plans.',
   keywords: ['pet exercise calculator', 'dog exercise calculator', 'cat exercise calculator', 'pet exercise needs', 'daily exercise for pets', 'pet activity calculator', 'exercise recommendations', 'pet fitness'],
   slug: 'exercise-calculator',

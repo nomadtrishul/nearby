@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Vaccination Schedules: Complete Guide for Dogs & Cats',
+  title: 'Pet Vaccination Schedules Guide',
   description: 'Complete guide to pet vaccination schedules for dogs and cats. Learn about core vaccines, timing, booster requirements, and when to vaccinate.',
   keywords: ['pet vaccinations', 'dog vaccines', 'cat vaccines', 'vaccination schedule', 'pet immunization', 'puppy vaccines', 'kitten vaccines', 'core vaccines', 'booster shots', 'pet vaccination guide'],
   pathname: '/pet-health/vaccination-schedules',

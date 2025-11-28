@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Feeding Portion Calculator | Dog & Cat Food Portion Size Calculator',
+  title: 'Pet Feeding Portion Calculator | Nearby Pet Care',
   description: 'Free pet feeding portion calculator determines the right amount of food for dogs and cats. Calculate daily portions based on weight, age, and activity level.',
   keywords: ['pet feeding calculator', 'dog food portion calculator', 'cat food portion calculator', 'pet portion size', 'feeding calculator', 'pet meal planner', 'pet calorie calculator', 'pet feeding schedule'],
   slug: 'feeding-portion-calculator',

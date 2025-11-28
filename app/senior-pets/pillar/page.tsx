@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Senior Pet Care Overview: Complete Guide for Aging Pets',
+  title: 'Senior Pet Care Overview Guide',
   description: 'Complete overview of senior pet care topics. Learn how to support your aging pet\'s health, comfort, and quality of life through their golden years.',
   keywords: ['senior pet care overview', 'elderly pets', 'aging pets', 'senior dog care', 'senior cat care', 'pet aging', 'comprehensive senior pet care'],
   pathname: '/senior-pets/pillar',

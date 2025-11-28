@@ -5,7 +5,7 @@ import GroomingSidebar from '@/components/GroomingSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Bathing Guides - Complete Guide to Bathing Dogs & Cats',
+  title: 'Pet Bathing Guides',
   description: 'Comprehensive guide to bathing your pet safely and effectively. Learn how often to bathe, choose the right products, and master bathing techniques.',
   keywords: ['pet bathing', 'how to bathe dog', 'how to bathe cat', 'pet shampoo', 'pet bathing tips', 'dog bathing guide', 'cat bathing guide', 'pet hygiene', 'bathing frequency'],
   pathname: '/pet-grooming/bathing-guides',

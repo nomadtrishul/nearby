@@ -13,7 +13,7 @@ import {
 } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Guide: How to Care for Dogs, Cats & Pets',
+  title: 'Pet Care Guide: Dogs, Cats & Pets',
   description: 'Learn how to care for your dog, cat, or pet with practical tips and guides. Expert advice on nutrition, health, grooming, training, and behavior.',
   keywords: ['how to care for a dog', 'how to care for a cat', 'pet care tips', 'pet care guide', 'dog care tips', 'cat care tips', 'pet nutrition', 'pet health', 'dog grooming', 'cat grooming', 'pet training', 'dog training tips', 'pet care advice', 'pet care information', 'how to care for pets'],
   pathname: '/',
@@ -125,6 +125,12 @@ export default function Home() {
                 className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
               >
                 Explore Pet Care Guides
+              </Link>
+              <Link 
+                href="/tools"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold text-sm sm:text-base hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 transform hover:scale-105"
+              >
+                Explore Pet Tools
               </Link>
             </div>
           </div>

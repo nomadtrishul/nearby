@@ -42,6 +42,21 @@ next-env.d.ts
 /public/sitemap*.xml
 /public/robots.txt
 
+# build artifacts
+llms.json
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+Thumbs.db
+.DS_Store
+
 # documentation (optional - uncomment if you don't want SEO reports in git)
 # SEO_AUDIT_REPORT.md
 # SEO_FIXES_SUMMARY.md

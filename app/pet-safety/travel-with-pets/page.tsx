@@ -6,7 +6,7 @@ import { generateSEOMetadata } from '@/lib/seo-utils';
 import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Traveling with Pets - Complete Guide to Safe Pet Travel',
+  title: 'Traveling with Pets - Safe Travel Guide',
   description: 'Complete guide to traveling safely with your pet. Expert tips for car travel, air travel, and preparing your pet for stress-free trips.',
   keywords: ['traveling with pets', 'pet travel', 'pet car travel', 'pet air travel', 'traveling with dogs', 'traveling with cats', 'pet travel tips', 'pet travel safety'],
   pathname: '/pet-safety/travel-with-pets',

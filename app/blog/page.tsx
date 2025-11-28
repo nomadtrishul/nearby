@@ -15,7 +15,7 @@ import {
 } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Care Blog: Expert Advice, Tips & Guides for Pet Owners',
+  title: 'Pet Care Blog: Expert Tips & Guides',
   description: 'Read expert pet care articles, training tips, and health guides. Learn how to keep your dog or cat healthy with practical advice from our blog.',
   keywords: ['pet care blog', 'pet care articles', 'dog care tips', 'cat care guide', 'pet health articles', 'pet training tips', 'pet grooming tips', 'pet care advice', 'pet care news', 'pet care resources', 'pet owner education'],
   pathname: '/blog',

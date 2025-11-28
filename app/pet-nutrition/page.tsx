@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Nutrition Guide: What to Feed Your Dog or Cat',
+  title: 'Pet Nutrition Guide: Dogs & Cats',
   description: 'Comprehensive pet nutrition guide with expert advice on choosing food, understanding ingredients, feeding schedules, and diet planning.',
   keywords: ['pet nutrition', 'what to feed a dog', 'what to feed a cat', 'pet food guide', 'dog nutrition', 'cat nutrition', 'pet feeding schedule', 'pet food ingredients', 'pet diet plan', 'how much to feed a dog', 'how much to feed a cat', 'best pet food', 'AAFCO pet food', 'pet nutrition facts', 'pet diet planning'],
   pathname: '/pet-nutrition',

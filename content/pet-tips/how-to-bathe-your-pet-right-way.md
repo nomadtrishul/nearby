@@ -5,7 +5,7 @@ excerpt: "Learn how to bathe your pet properly and safely. Comprehensive guide c
 author: "Nearby Pet Care Team"
 category: "Grooming"
 tags: ["bathing", "grooming", "pet care", "pet hygiene", "bath time"]
-image: "/images/pet-bathing.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764281050/pexels-tima-miroshnichenko-6131539_kwaaky.jpg"
 readingTime: 11
 estimatedCost: "$10-30 (shampoo and supplies)"
 totalTime: "PT30M-1H"

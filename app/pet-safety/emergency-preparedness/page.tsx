@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Emergency Preparedness Guide - Disaster Planning for Pets',
+  title: 'Pet Emergency Preparedness Guide',
   description: 'Learn how to prepare for emergencies with your pet. Create an emergency kit, develop an evacuation plan, and ensure your pet\'s safety during natural disasters and other crisis situations.',
   keywords: ['pet emergency', 'pet disaster preparedness', 'pet emergency kit', 'pet evacuation', 'pet emergency plan', 'natural disaster pets', 'pet safety emergency'],
   pathname: '/pet-safety/emergency-preparedness',

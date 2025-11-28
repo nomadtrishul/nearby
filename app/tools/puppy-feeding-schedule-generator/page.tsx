@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Puppy Feeding Schedule Generator | Meal Schedule & Portion Calculator',
+  title: 'Puppy Feeding Schedule Generator | Nearby Pet Care',
   description: 'Free puppy feeding schedule generator creates personalized meal schedules based on age, breed size, and weight. Get meal times and portion sizes.',
   keywords: ['puppy feeding schedule', 'puppy feeding times', 'puppy meal schedule', 'puppy feeding guide', 'puppy nutrition schedule', 'puppy feeding plan', 'puppy meal planning', 'puppy feeding routine'],
   slug: 'puppy-feeding-schedule-generator',

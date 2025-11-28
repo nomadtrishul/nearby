@@ -4,7 +4,7 @@ import Breadcrumb from '@/components/Breadcrumb';
 import PuppiesKittensSidebar from '@/components/PuppiesKittensSidebar';
 
 export const metadata: Metadata = {
-  title: 'Puppy & Kitten Training Basics: Essential Guide for Young Pets | Nearby Pet Care',
+  title: 'Puppy & Kitten Training Basics | Nearby Pet Care',
   description: 'Essential training basics for puppies and kittens. Learn how to start training early, use positive reinforcement, and build good habits. Expert tips included.',
   keywords: ['puppy training', 'kitten training', 'young pet training', 'early training', 'puppy house training', 'kitten litter training', 'positive reinforcement', 'pet training basics'],
   authors: [{ name: 'Nearby Pet Care Team' }],

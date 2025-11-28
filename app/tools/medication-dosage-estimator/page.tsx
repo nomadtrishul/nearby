@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Medication Dosage Estimator | Dog & Cat Dose Calculator',
+  title: 'Pet Medication Dosage Estimator | Nearby Pet Care',
   description: 'Free pet medication dosage estimator calculates weight-based doses for common medications. Includes dosage ranges, frequency guidance, and safety warnings.',
   keywords: ['pet medication dosage', 'dog medication dosage', 'cat medication dosage', 'medication calculator pets', 'pet drug dosage', 'medication dosing pets', 'pet medication calculator', 'drug dosage calculator'],
   slug: 'medication-dosage-estimator',

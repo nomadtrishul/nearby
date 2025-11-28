@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Age Calculator | Dog & Cat Age to Human Years Converter',
+  title: 'Pet Age Calculator | Nearby Pet Care',
   description: 'Free pet age calculator converts dog and cat years to human years. Get breed-specific calculations and age-appropriate care recommendations.',
   keywords: ['pet age calculator', 'dog age calculator', 'cat age calculator', 'pet age in human years', 'pet life stage', 'dog years calculator', 'cat years calculator', 'pet age converter', 'dog years to human years', 'cat years to human years'],
   slug: 'age-calculator',

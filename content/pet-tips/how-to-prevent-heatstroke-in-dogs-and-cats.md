@@ -5,7 +5,7 @@ excerpt: "Learn how to prevent heatstroke in dogs and cats. Comprehensive guide 
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["heatstroke", "heat exhaustion", "hot weather", "pet safety", "emergency care", "heat prevention"]
-image: "/images/pet-heatstroke-prevention.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764356291/pexels-helenalopes-1844899_culp8k.jpg"
 readingTime: 13
 estimatedCost: "$0-50 (cooling supplies)"
 totalTime: "Ongoing"

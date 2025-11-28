@@ -5,7 +5,7 @@ excerpt: "Learn how to choose safe, appropriate, and engaging toys for your pet.
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["toys", "enrichment", "pet toys", "play", "safety", "mental stimulation"]
-image: "/images/pet-toys.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764280373/pexels-barnabas-davoti-31615494-14084426_tkxhcp.jpg"
 readingTime: 11
 estimatedCost: "$20-100 (toys)"
 totalTime: "PT1H"

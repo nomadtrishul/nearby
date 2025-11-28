@@ -6,7 +6,7 @@ import { generateSEOMetadata } from '@/lib/seo-utils';
 import { getBaseUrl, getDefaultOgImage } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Seasonal Pet Safety Guide - Year-Round Protection for Your Pet',
+  title: 'Seasonal Pet Safety Guide',
   description: 'Seasonal safety tips for pets. Learn how to keep your pet safe during different seasons and weather conditions. Expert advice for all seasons.',
   keywords: ['seasonal pet safety', 'winter pet safety', 'summer pet safety', 'pet weather safety', 'hot weather pets', 'cold weather pets', 'seasonal pet care'],
   pathname: '/pet-safety/seasonal-care',

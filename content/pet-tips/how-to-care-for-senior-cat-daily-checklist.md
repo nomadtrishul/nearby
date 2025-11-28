@@ -5,7 +5,7 @@ excerpt: "Learn essential daily care practices for senior cats. Comprehensive gu
 author: "Nearby Pet Care Team"
 category: "Senior Pets"
 tags: ["senior cats", "elderly pets", "aging pets", "daily care", "health monitoring", "senior pet care"]
-image: "/images/senior-cat-care.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353872/pexels-pixabay-236606_u11g9b.jpg"
 readingTime: 14
 estimatedCost: "$0-100 (supplies and medications)"
 totalTime: "Ongoing"

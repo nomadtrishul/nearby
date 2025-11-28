@@ -5,7 +5,7 @@ excerpt: "Learn essential strategies for keeping your pets safe and calm during 
 author: "Nearby Pet Care Team"
 category: "Pet Safety"
 tags: ["fireworks", "festivals", "pet safety", "anxiety", "noise phobia", "holiday safety", "pet stress"]
-image: "/images/pet-fireworks-safety.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764355214/pexels-bertellifotografia-573241_ibkglt.jpg"
 readingTime: 11
 estimatedCost: "$20-100 (safety supplies and treatments)"
 totalTime: "Ongoing"

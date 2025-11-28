@@ -5,7 +5,7 @@ import TrainingSidebar from '@/components/TrainingSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Aggression and Anxiety: Understanding and Managing Behavioral Issues',
+  title: 'Pet Aggression & Anxiety Guide',
   description: 'Learn how to identify, understand, and manage aggression and anxiety in pets. Get expert guidance on recognizing warning signs and finding effective solutions.',
   keywords: ['pet aggression', 'pet anxiety', 'behavioral issues', 'aggressive pet', 'anxious pet', 'dog aggression', 'cat anxiety', 'separation anxiety', 'fearful pet'],
   pathname: '/pet-training/aggression-and-anxiety',

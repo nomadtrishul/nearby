@@ -5,7 +5,7 @@ excerpt: "Compare raw and cooked pet diets with science-backed evidence. Learn t
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["raw diet", "cooked diet", "pet nutrition", "BARF diet", "pet food safety"]
-image: "/images/raw-vs-cooked-pet-food.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764357063/pexels-angele-j-35172-128401_wngmwm.jpg"
 readingTime: 14
 estimatedCost: "$80-200/month"
 totalTime: "PT45M"

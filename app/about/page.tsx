@@ -10,7 +10,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'About Us - Trusted Pet Care Information & Education',
+  title: 'About Us - Pet Care Information',
   description: 'Learn about Nearby Pet Care, an independent platform providing trusted pet care tips and guides. Practical, evidence-based advice for pet owners.',
   keywords: [
     'about pet care',
@@ -68,9 +68,10 @@ export default function AboutPage() {
       contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
       sameAs: [
         'https://www.facebook.com/nearbypetcare',
-        'https://www.instagram.com/nearbypetcare',
+        'https://www.instagram.com/nearbypetcare/',
         'https://www.youtube.com/@nearbypetcare',
         'https://www.linkedin.com/company/nearbypetcare',
+        'https://x.com/nearbypetcare',
       ],
       foundingDate: '2024',
       knowsAbout: [

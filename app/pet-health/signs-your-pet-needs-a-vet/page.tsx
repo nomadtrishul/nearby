@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Signs Your Pet Needs a Vet: When to Seek Veterinary Care',
+  title: 'Signs Your Pet Needs a Vet',
   description: 'Learn to recognize signs that indicate your pet needs veterinary attention. Know when symptoms require immediate emergency care or regular appointments.',
   keywords: ['pet emergency signs', 'when to take pet to vet', 'pet illness symptoms', 'pet health warning signs', 'pet emergency', 'signs pet needs vet', 'pet health symptoms'],
   pathname: '/pet-health/signs-your-pet-needs-a-vet',

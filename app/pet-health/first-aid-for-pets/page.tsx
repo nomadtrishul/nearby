@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'First Aid for Pets: Emergency Care Guide & Procedures',
+  title: 'First Aid for Pets Guide',
   description: 'Essential first aid guide for pets. Learn how to handle common emergencies, create a pet first aid kit, and know when to seek immediate veterinary care.',
   keywords: ['pet first aid', 'pet emergency care', 'pet first aid kit', 'pet emergency', 'pet injury', 'pet first aid procedures', 'emergency pet care', 'pet CPR', 'pet choking', 'pet bleeding'],
   pathname: '/pet-health/first-aid-for-pets',

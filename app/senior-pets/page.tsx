@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Senior Pet Care Guide: How to Care for an Aging Dog or Cat',
+  title: 'Senior Pet Care Guide: Aging Dogs & Cats',
   description: 'Comprehensive guide to senior pet care. Expert advice on senior dog and cat care, mobility support, diet changes, and end-of-life care.',
   keywords: ['senior pet care', 'how to care for senior pet', 'elderly pet care', 'aging pet care', 'senior dog care', 'senior cat care', 'old dog care', 'old cat care', 'senior pet health', 'aging pet health'],
   pathname: '/senior-pets',

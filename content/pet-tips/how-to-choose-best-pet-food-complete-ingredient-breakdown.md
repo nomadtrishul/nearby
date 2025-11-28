@@ -5,7 +5,7 @@ excerpt: "Learn how to read pet food labels and identify quality ingredients. Co
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["pet food", "ingredients", "AAFCO", "nutrition", "food labels", "pet nutrition"]
-image: "/images/pet-food-ingredients.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764352865/pexels-mart-production-8434744_w5iyzs.jpg"
 readingTime: 10
 estimatedCost: "$0 (educational)"
 totalTime: "PT15M"

@@ -5,7 +5,7 @@ excerpt: "Learn essential grooming techniques for maintaining your pet's skin an
 author: "Nearby Pet Care Team"
 category: "Grooming & Care"
 tags: ["grooming", "brushing", "bathing", "mats", "shedding", "skin health", "fur care", "coat care", "pet grooming"]
-image: "/images/pet-grooming.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764281050/pexels-tima-miroshnichenko-6131539_kwaaky.jpg"
 readingTime: 12
 estimatedCost: "$20-100 (initial tools)"
 totalTime: "PT30M"

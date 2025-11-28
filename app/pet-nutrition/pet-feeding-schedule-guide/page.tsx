@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Feeding Schedule Guide - Ideal Timings | Nearby Pet Care',
+  title: 'Pet Feeding Schedule Guide | Nearby Pet Care',
   description: 'Learn about ideal feeding schedules for dogs and cats at different life stages. Understand how often to feed puppies, adult pets, and senior pets.',
   keywords: ['pet feeding schedule', 'dog feeding schedule', 'cat feeding schedule', 'how often to feed pets', 'pet meal timing', 'puppy feeding schedule', 'senior pet feeding'],
   pathname: '/pet-nutrition/pet-feeding-schedule-guide',

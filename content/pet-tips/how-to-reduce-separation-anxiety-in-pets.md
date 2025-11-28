@@ -5,7 +5,7 @@ excerpt: "Learn how to reduce separation anxiety in pets. Comprehensive guide co
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["separation anxiety", "anxiety", "behavior", "training", "pet behavior", "anxiety management"]
-image: "/images/pet-separation-anxiety.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353872/pexels-pixabay-236606_u11g9b.jpg"
 readingTime: 13
 estimatedCost: "$0-100 (supplies and potential professional help)"
 totalTime: "PT4-8W"

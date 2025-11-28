@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Best Pet Products: Reviews & Buying Guides for Dogs & Cats',
+  title: 'Best Pet Products: Reviews & Guides',
   description: 'Find the best pet products with comprehensive reviews and buying guides. Expert reviews of food, toys, beds, grooming tools, and accessories.',
   keywords: ['best pet products', 'pet product reviews', 'best dog food', 'best cat food', 'best pet toys', 'best pet beds', 'pet buying guides', 'pet product comparison', 'dog products', 'cat products', 'pet supplies', 'pet accessories'],
   pathname: '/pet-products',

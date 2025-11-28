@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Safety & Travel Overview - Comprehensive Guide',
+  title: 'Pet Safety & Travel Guide',
   description: 'Comprehensive overview of pet safety and travel topics. Learn how to keep your pet safe at home, while traveling, during emergencies, and throughout seasons.',
   keywords: ['pet safety overview', 'pet travel', 'pet home safety', 'pet safety guide', 'pet safety tips', 'pet protection', 'pet care safety'],
   pathname: '/pet-safety/pillar',

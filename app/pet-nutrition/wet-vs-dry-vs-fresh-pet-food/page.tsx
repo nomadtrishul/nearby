@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Wet vs Dry vs Fresh Pet Food - Which is Best? | Nearby Pet Care',
+  title: 'Wet vs Dry vs Fresh Pet Food | Nearby Pet Care',
   description: 'Compare wet, dry, and fresh pet food options to determine what\'s best for your pet. Learn the pros, cons, and nutritional differences of each type. Expert comparison guide.',
   keywords: ['wet pet food', 'dry pet food', 'fresh pet food', 'pet food comparison', 'best pet food type', 'kibble vs wet food', 'canned pet food', 'fresh pet food delivery'],
   pathname: '/pet-nutrition/wet-vs-dry-vs-fresh-pet-food',

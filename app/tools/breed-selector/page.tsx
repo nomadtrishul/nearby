@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Breed Selector | Dog & Cat Breed Finder & Matching Tool',
+  title: 'Pet Breed Selector | Nearby Pet Care',
   description: 'Find the perfect pet breed for your lifestyle. Answer questions about living space and activity level to get personalized breed recommendations.',
   keywords: ['pet breed selector', 'dog breed finder', 'cat breed finder', 'best dog breed', 'best cat breed', 'breed matching tool', 'pet adoption guide', 'choose pet breed'],
   slug: 'breed-selector',

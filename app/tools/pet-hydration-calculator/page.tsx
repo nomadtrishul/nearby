@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Hydration Calculator | Dog & Cat Daily Water Needs Calculator',
+  title: 'Pet Hydration Calculator | Nearby Pet Care',
   description: 'Free pet hydration calculator determines daily water needs for dogs and cats based on weight, activity level, and environment. Get hydration recommendations.',
   keywords: ['pet hydration calculator', 'dog water needs', 'cat water needs', 'pet water calculator', 'pet hydration needs', 'daily water for pets', 'pet dehydration signs', 'pet water intake'],
   slug: 'pet-hydration-calculator',

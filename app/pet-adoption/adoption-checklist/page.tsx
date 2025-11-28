@@ -13,7 +13,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Adoption Checklist: Complete Pre-Adoption Guide',
+  title: 'Pet Adoption Checklist Guide',
   description: 'Complete pet adoption checklist covering lifestyle assessment, financial planning, home preparation, and adoption day essentials. Ensure you\'re fully prepared to adopt a dog or cat with this comprehensive guide.',
   keywords: ['pet adoption checklist', 'adoption requirements', 'pet adoption preparation', 'adoption day checklist', 'pre-adoption checklist', 'pet adoption guide', 'adoption preparation', 'adopting a pet checklist'],
   pathname: '/pet-adoption/adoption-checklist',

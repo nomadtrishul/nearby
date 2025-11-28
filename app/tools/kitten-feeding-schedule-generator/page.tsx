@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Kitten Feeding Schedule Generator | Meal Schedule & Portion Calculator',
+  title: 'Kitten Feeding Schedule Generator | Nearby Pet Care',
   description: 'Free kitten feeding schedule generator creates personalized meal schedules based on age and weight. Get meal times, portion sizes, and feeding recommendations.',
   keywords: ['kitten feeding schedule', 'kitten feeding times', 'kitten meal schedule', 'kitten feeding guide', 'kitten nutrition schedule', 'kitten feeding plan', 'kitten meal planning', 'kitten feeding routine'],
   slug: 'kitten-feeding-schedule-generator',

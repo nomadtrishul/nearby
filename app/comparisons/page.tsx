@@ -12,7 +12,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Product Comparisons: Compare Pet Food & Products Side-by-Side',
+  title: 'Pet Product Comparisons Guide',
   description: 'Compare pet products side-by-side. Detailed comparisons of pet food brands, wet vs dry food, and other products with expert analysis and reviews.',
   keywords: ['pet product comparisons', 'compare pet food', 'pet food comparison', 'wet vs dry food', 'pet product comparison', 'compare pet products', 'dog food comparison', 'cat food comparison', 'pet food reviews', 'best pet food'],
   pathname: '/comparisons',

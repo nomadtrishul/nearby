@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Treat Calorie Counter | Dog & Cat Treat Allowance Calculator',
+  title: 'Pet Treat Calorie Counter | Nearby Pet Care',
   description: 'Free pet treat calorie counter tracks treat calories and ensures they stay within 10% of daily intake. Calculate treat allowances and get recommendations.',
   keywords: ['pet treat calories', 'treat calorie counter', 'dog treat calories', 'cat treat calories', 'treat allowance calculator', 'pet treat calculator', 'treat calorie tracker', 'pet nutrition treats'],
   slug: 'pet-treat-calorie-counter',

@@ -5,7 +5,7 @@ excerpt: "Learn essential basic first aid techniques for pets. Comprehensive gui
 author: "Nearby Pet Care Team"
 category: "Health & First Aid"
 tags: ["first aid", "pet emergency", "pet health", "emergency care", "wound care", "pet safety"]
-image: "/images/pet-first-aid.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764280189/pexels-pixabay-263402_b34g2v.jpg"
 readingTime: 14
 estimatedCost: "$0-50 (first aid supplies)"
 totalTime: "PT30M-1H"

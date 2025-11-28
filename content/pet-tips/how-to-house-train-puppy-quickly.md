@@ -5,7 +5,7 @@ excerpt: "Learn how to house-train your puppy quickly and effectively. Comprehen
 author: "Nearby Pet Care Team"
 category: "Pet Training & Enrichment"
 tags: ["house training", "puppy training", "potty training", "puppy care", "training"]
-image: "/images/puppy-house-training.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354491/pexels-pavel-danilyuk-7055937_f5wawp.jpg"
 readingTime: 11
 estimatedCost: "$20-50 (supplies)"
 totalTime: "PT2-6W"

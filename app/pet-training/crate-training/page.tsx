@@ -5,7 +5,7 @@ import TrainingSidebar from '@/components/TrainingSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Crate Training for Pets: Complete Step-by-Step Guide',
+  title: 'Crate Training for Pets Guide',
   description: 'Master crate training with our comprehensive guide. Learn how to make the crate a safe, comfortable space your pet loves. Step-by-step instructions included.',
   keywords: ['crate training', 'dog crate training', 'pet crate', 'crate training tips', 'how to crate train a dog', 'crate training puppies'],
   pathname: '/pet-training/crate-training',

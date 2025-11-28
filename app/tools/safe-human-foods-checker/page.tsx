@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Safe Human Foods Checker | Dog & Cat Safe Foods Guide',
+  title: 'Safe Human Foods Checker | Nearby Pet Care',
   description: 'Free safe human foods checker identifies which foods are safe for dogs and cats. Learn proper serving sizes, preparation methods, and safety guidelines.',
   keywords: ['safe foods for pets', 'safe human foods for dogs', 'safe human foods for cats', 'pet safe foods', 'human foods for pets', 'pet treat foods', 'safe foods to feed pets', 'pet food safety'],
   slug: 'safe-human-foods-checker',

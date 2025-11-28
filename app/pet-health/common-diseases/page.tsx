@@ -13,7 +13,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Common Pet Diseases: Symptoms, Prevention & Treatment Guide',
+  title: 'Common Pet Diseases Guide',
   description: 'Comprehensive guide to common pet diseases affecting dogs and cats. Learn about symptoms, prevention methods, and when to seek veterinary care.',
   keywords: ['pet diseases', 'dog diseases', 'cat diseases', 'pet illness symptoms', 'pet disease prevention', 'parvovirus', 'distemper', 'kennel cough', 'heartworm disease', 'feline leukemia', 'pet health conditions', 'common pet illnesses'],
   pathname: '/pet-health/common-diseases',

@@ -5,7 +5,7 @@ import NutritionSidebar from '@/components/NutritionSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Homemade Pet Food Recipes - Safe & Nutritious | Nearby Pet Care',
+  title: 'Homemade Pet Food Recipes | Nearby Pet Care',
   description: 'Safe and nutritious homemade pet food recipes with proper nutritional guidelines. Learn how to prepare balanced meals for your pets at home.',
   keywords: ['homemade pet food', 'dog food recipes', 'cat food recipes', 'homemade pet meals', 'pet food recipes', 'veterinary nutrition', 'balanced pet diet'],
   pathname: '/pet-nutrition/homemade-pet-food-recipes-guide',

@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Ownership Cost Calculator | Dog & Cat Expenses Calculator',
+  title: 'Pet Ownership Cost Calculator | Nearby Pet Care',
   description: 'Free pet ownership cost calculator estimates total expenses for dogs and cats. Calculate food, veterinary care, grooming, insurance, and supplies costs.',
   keywords: ['pet cost calculator', 'pet ownership cost', 'pet expenses calculator', 'dog cost calculator', 'cat cost calculator', 'pet budget calculator', 'pet ownership expenses', 'pet financial planning'],
   slug: 'cost-calculator',

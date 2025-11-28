@@ -5,7 +5,7 @@ excerpt: "Learn how to prevent and manage pet obesity. Complete guide with weigh
 author: "Nearby Pet Care Team"
 category: "Health & Nutrition"
 tags: ["pet obesity", "weight management", "pet weight loss", "pet health", "preventive care"]
-image: "/images/pet-weight-management.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354928/pexels-tahir-x-lf-2153788153-33394308_n21m6k.jpg"
 readingTime: 12
 estimatedCost: "$0-100 (depending on approach)"
 totalTime: "PT12W"

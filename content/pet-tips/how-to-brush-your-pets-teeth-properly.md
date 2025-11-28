@@ -5,7 +5,7 @@ excerpt: "Learn how to brush your pet's teeth properly to maintain their dental 
 author: "Nearby Pet Care Team"
 category: "Health & First Aid"
 tags: ["dental care", "teeth brushing", "oral health", "pet dental", "preventive care", "pet hygiene"]
-image: "/images/pet-teeth-brushing.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764353605/pexels-tima-miroshnichenko-6235113_clzwkh.jpg"
 readingTime: 11
 estimatedCost: "$10-30 (toothbrush and toothpaste)"
 totalTime: "PT2-4W"

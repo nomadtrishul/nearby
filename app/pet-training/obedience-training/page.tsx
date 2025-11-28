@@ -13,7 +13,7 @@ import {
 import { getBaseUrl } from '@/lib/site-config';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Obedience Training for Pets: Complete Guide to Teaching Basic Commands',
+  title: 'Obedience Training Guide',
   description: 'Master obedience training with our comprehensive guide. Learn how to teach your dog or cat essential commands using positive reinforcement.',
   keywords: ['obedience training', 'dog training commands', 'pet training basics', 'positive reinforcement', 'how to train a dog', 'dog training tips', 'teaching dogs commands', 'puppy training', 'cat training', 'dog obedience'],
   pathname: '/pet-training/obedience-training',

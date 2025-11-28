@@ -5,7 +5,7 @@ import HealthSidebar from '@/components/HealthSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Pet Diagnostics & Tests: Complete Guide to Veterinary Testing',
+  title: 'Pet Diagnostics & Tests Guide',
   description: 'Learn about common veterinary diagnostic tests and procedures. Understand what tests your pet might need, why they\'re performed, and how to prepare your pet for testing.',
   keywords: ['pet diagnostics', 'veterinary tests', 'pet blood tests', 'pet x-rays', 'pet health screening', 'veterinary diagnostics', 'pet lab tests', 'pet health tests'],
   pathname: '/pet-health/diagnostics-and-tests',

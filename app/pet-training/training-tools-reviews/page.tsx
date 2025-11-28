@@ -5,7 +5,7 @@ import TrainingSidebar from '@/components/TrainingSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Training Tools Reviews: Best Pet Training Products & Equipment',
+  title: 'Training Tools Reviews Guide',
   description: 'Discover the best pet training tools and equipment. Reviews of clickers, treats, leashes, harnesses, and training aids for effective training.',
   keywords: ['pet training tools', 'dog training tools', 'training clicker', 'training treats', 'dog training equipment', 'training aids', 'clicker training'],
   pathname: '/pet-training/training-tools-reviews',

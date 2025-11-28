@@ -5,7 +5,7 @@ excerpt: "Learn how to detect skin issues in your pet early. Comprehensive guide
 author: "Nearby Pet Care Team"
 category: "Grooming"
 tags: ["skin health", "hotspots", "dandruff", "itching", "pet health", "skin problems"]
-image: "/images/pet-skin-health.jpg"
+image: "https://res.cloudinary.com/dqlkmna4i/image/upload/v1764354738/pexels-soc-nang-d-ng-2150345854-32831233_zhw8yt.jpg"
 readingTime: 11
 estimatedCost: "$0 (monitoring)"
 totalTime: "Ongoing"

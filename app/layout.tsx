@@ -18,7 +18,7 @@ const verificationMeta = getVerificationMeta();
 
 // Generate base metadata using centralized SEO utilities
 const baseMetadata = generateSEOMetadata({
-  title: "Nearby Pet Care - Professional Pet Care Services Near You",
+  title: "Nearby Pet Care - Professional Pet Services",
   description: "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services from experienced professionals.",
   keywords: ['pet care services', 'dog grooming', 'pet boarding', 'pet daycare', 'pet training', 'pet care near me', 'professional pet care', 'mobile pet care', 'pet grooming services', 'dog boarding', 'cat boarding'],
   pathname: '/',
@@ -238,9 +238,10 @@ export default function RootLayout({
               },
               sameAs: [
                 'https://www.facebook.com/nearbypetcare',
-                'https://www.instagram.com/nearbypetcare',
+                'https://www.instagram.com/nearbypetcare/',
                 'https://www.youtube.com/@nearbypetcare',
                 'https://www.linkedin.com/company/nearbypetcare',
+                'https://x.com/nearbypetcare',
               ]
             }),
           }}
