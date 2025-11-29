@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "prebuild": "ts-node --compiler-options '{\"module\":\"commonjs\"}' -r tsconfig-paths/register scripts/generate-llms.ts",
+    "prebuild": "npm run generate:llms || echo 'Warning: llms.json generation failed, but continuing build...'",
     "postbuild": "npx next-sitemap && node scripts/submit-indexnow.js",
     "start": "next start",
     "lint": "next lint",

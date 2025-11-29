@@ -19,8 +19,11 @@ const nextConfig: NextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    optimizeCss: true,
+    optimizeCss: true, // Optimizes CSS to reduce render-blocking
+    optimizePackageImports: ['@/components', '@/lib'], // Tree-shakes unused exports
   },
+  
+  // Note: Next.js automatically optimizes font loading when using next/font/google
   
   // Optimize images - Mobile-first sizes prioritized
   images: {

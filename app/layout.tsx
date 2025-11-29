@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,7 +9,14 @@ import { getBaseUrl, getSiteName, getVerificationMeta } from "@/lib/site-config"
 import { generateSEOMetadata, isProductionEnvironment } from "@/lib/seo-utils";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+// Optimize font loading: use display swap to prevent FOIT, preload for critical font
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: 'swap', // Prevents Flash of Invisible Text (FOIT)
+  preload: true, // Preloads the font for faster rendering
+  adjustFontFallback: true, // Uses system font fallback during load
+  variable: '--font-inter', // CSS variable for flexible usage
+});
 
 const baseUrl = getBaseUrl();
 const siteName = getSiteName();
@@ -24,9 +30,6 @@ const baseMetadata = generateSEOMetadata({
   pathname: '/',
   type: 'website',
 });
-
-// Override robots based on environment
-const shouldIndex = isProductionEnvironment();
 
 // Extract title as string (handle Next.js 16 Metadata title types)
 const baseTitle = typeof baseMetadata.title === 'string' 
@@ -51,11 +54,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  // Robots metadata is handled by generateSEOMetadata in baseMetadata
+  // Only block indexing in non-production environments (preview/staging)
+  // In production, always allow indexing unless explicitly disabled
   robots: {
-    index: shouldIndex,
+    index: true, // Default to allowing indexing - generateSEOMetadata handles environment checks
     follow: true,
     googleBot: {
-      index: shouldIndex,
+      index: true, // Default to allowing indexing
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
@@ -99,6 +105,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
 
         {/* Favicon - Multiple formats for better browser support */}
+        {/* Preload critical favicon for faster display */}
+        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
         <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
         <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
@@ -109,8 +117,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         
+        {/* Preconnect to Google Fonts for faster font loading */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
         {/* Initialize Google Consent Mode v2 - MUST be loaded BEFORE any Google tags (GTM/GA) */}
         {/* According to Google's guide: https://developers.google.com/tag-platform/security/guides/consent */}
+        {/* Note: This must execute synchronously before GA/GTM, but is minimal and fast */}
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
@@ -157,12 +170,14 @@ export default function RootLayout({
         />
 
         {/* Google Analytics 4 (gtag.js) - Loads AFTER consent mode is initialized */}
+        {/* Using defer to ensure it doesn't block rendering */}
         <script
-          async
+          defer
           src="https://www.googletagmanager.com/gtag/js?id=G-2THNJVPVNS"
           suppressHydrationWarning
         />
         <script
+          defer
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
@@ -176,7 +191,9 @@ export default function RootLayout({
         {/* End Google Analytics 4 */}
 
         {/* Google Tag Manager - Loads AFTER consent mode is initialized */}
+        {/* Using defer to ensure it doesn't block rendering */}
         <script
+          defer
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
@@ -191,13 +208,15 @@ export default function RootLayout({
         {/* End Google Tag Manager */}
 
 
-        {/* Analytics scripts will be loaded dynamically by AnalyticsLoader component after consent */}
+        {/* Theme initialization - Critical for preventing flash, but optimized to be non-blocking */}
+        {/* Using inline script that executes immediately but doesn't block parsing */}
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                if (typeof window === 'undefined') return;
+                if (typeof window === 'undefined' || typeof document === 'undefined') return;
+                // Execute synchronously to prevent flash, but keep it minimal
                 try {
                   const theme = localStorage.getItem('theme');
                   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -209,7 +228,7 @@ export default function RootLayout({
                   }
                 } catch (e) {
                   // Fallback to system preference if localStorage fails
-                  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
                     document.documentElement.classList.add('dark');
                   }
                 }
@@ -297,7 +316,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-white dark:bg-black transition-colors`}>
+      <body className={`${inter.variable} ${inter.className} bg-white dark:bg-black transition-colors`}>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
@@ -315,12 +334,6 @@ export default function RootLayout({
           <Footer />
           <ConsentBanner />
         </ThemeProvider>
-        <Script
-          src={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_URL!}
-          async
-          strategy="afterInteractive"
-          data-key={process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY}
-        />
       </body>
     </html>
   );

@@ -349,7 +349,12 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   const normalizedModifiedTime = normalizeDate(modifiedTime) || normalizedPublishedTime;
 
   // Environment-based indexing control
-  const shouldIndex = isProductionEnvironment() && !noindex;
+  // In production: always allow indexing unless explicitly disabled (noindex: true)
+  // In non-production: block indexing unless explicitly enabled (noindex: false)
+  const isProduction = isProductionEnvironment();
+  const shouldIndex = isProduction 
+    ? !noindex  // Production: allow indexing unless explicitly disabled
+    : (noindex === false); // Non-production: only allow if explicitly enabled
   const shouldFollow = !nofollow;
 
   // Build alternates
@@ -1098,39 +1103,59 @@ export function makeSitemapEntry(
     priority,
   };
 
-  // Add images for image sitemap - filter out invalid URLs
-  if (merged.images && merged.images.length > 0) {
-    entry.images = merged.images
-      .filter(img => {
-        if (!img || !img.url) return false;
-        if (typeof img.url !== 'string') return false;
-        if (img.url.trim().length === 0) return false;
-        if (img.url === 'undefined' || img.url === 'null') return false;
-        if (img.url.includes('undefined') || img.url.includes('null')) return false;
-        // Ensure it's a valid URL format (absolute URLs only for sitemaps)
-        // Sitemap image URLs must be absolute, so check if it starts with http/https
-        if (!img.url.startsWith('http://') && !img.url.startsWith('https://')) {
-          return false;
-        }
-        // Validate URL format
-        try {
-          new URL(img.url);
-          return true;
-        } catch {
-          return false;
-        }
-      })
-      .map(img => ({
-        loc: img.url,
-        title: img.alt || merged.title,
-        caption: img.alt || merged.description,
-      }));
-    
-    // Only add images array if it has valid entries
-    if (entry.images.length === 0) {
-      delete entry.images;
-    }
-  }
+  // Image sitemap generation disabled - images are optional and can cause issues
+  // Search engines can discover images from page content, so image sitemaps aren't necessary
+  // Uncomment the code below if you want to enable image sitemaps in the future
+  
+  // // Add images for image sitemap - filter out invalid URLs
+  // if (merged.images && merged.images.length > 0) {
+  //   entry.images = merged.images
+  //     .filter(img => {
+  //       // Strict validation - filter out any invalid image entries
+  //       if (!img || !img.url) return false;
+  //       if (img.url === undefined || img.url === null) return false;
+  //       if (typeof img.url !== 'string') return false;
+  //       const urlStr = String(img.url).trim();
+  //       if (urlStr.length === 0) return false;
+  //       const lowerUrl = urlStr.toLowerCase();
+  //       if (lowerUrl === 'undefined' || lowerUrl === 'null') return false;
+  //       if (lowerUrl.includes('undefined') || lowerUrl.includes('null')) return false;
+  //       if (!urlStr.startsWith('http://') && !urlStr.startsWith('https://')) {
+  //         return false;
+  //       }
+  //       try {
+  //         const urlObj = new URL(urlStr);
+  //         if (urlObj.protocol !== 'http:' && urlObj.protocol !== 'https:') {
+  //           return false;
+  //         }
+  //         return true;
+  //       } catch {
+  //         return false;
+  //       }
+  //     })
+  //     .map(img => {
+  //       if (!img || !img.url || typeof img.url !== 'string') {
+  //         return null;
+  //       }
+  //       const urlStr = String(img.url).trim();
+  //       if (urlStr === 'undefined' || urlStr === 'null' || 
+  //           urlStr.toLowerCase().includes('undefined') || 
+  //           urlStr.toLowerCase().includes('null') ||
+  //           !urlStr.startsWith('https://')) {
+  //         return null;
+  //       }
+  //       return {
+  //         loc: urlStr,
+  //         title: img.alt || merged.title,
+  //         caption: img.alt || merged.description,
+  //       };
+  //     })
+  //     .filter(img => img !== null);
+  //   
+  //   if (entry.images.length === 0) {
+  //     delete entry.images;
+  //   }
+  // }
 
   return entry;
 }

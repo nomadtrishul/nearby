@@ -134,41 +134,69 @@ module.exports = {
 
     // Helper function to validate and normalize image URLs
     const normalizeImage = (image) => {
-      // Check if image is valid
-      if (!image) return '/og-image.png';
+      // Check if image is valid - handle undefined, null, and string "undefined"
+      if (!image || image === undefined || image === null) return '/og-image.png';
       if (typeof image !== 'string') return '/og-image.png';
-      if (image.trim().length === 0) return '/og-image.png';
-      if (image === 'undefined' || image === 'null') return '/og-image.png';
-      if (image.includes('undefined') || image.includes('null')) return '/og-image.png';
-      // Ensure it starts with / or http
-      if (!image.startsWith('/') && !image.startsWith('http')) {
+      const trimmed = image.trim();
+      if (trimmed.length === 0) return '/og-image.png';
+      if (trimmed === 'undefined' || trimmed === 'null') return '/og-image.png';
+      if (trimmed.includes('undefined') || trimmed.includes('null')) return '/og-image.png';
+      // Ensure it starts with / or http/https (Cloudinary URLs start with https://)
+      if (!trimmed.startsWith('/') && !trimmed.startsWith('http://') && !trimmed.startsWith('https://')) {
         return '/og-image.png';
       }
-      return image;
+      return trimmed;
     };
 
     // Helper to create sitemap entry using centralized utilities
     const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image, title, description) => {
-      // Normalize image first
+      // Normalize image first - ensure it's always a valid string (never undefined or "undefined")
       const normalizedImage = normalizeImage(image);
       
       // Use centralized utilities if available
       if (seoUtils && seoUtils.mergeSeo && seoUtils.makeSitemapEntry) {
+        // Only pass image if it's a valid absolute HTTPS URL (Cloudinary URLs start with https://)
+        // Strict validation: must be a valid HTTPS URL string
+        let imageToPass = undefined;
+        if (normalizedImage && 
+            typeof normalizedImage === 'string' && 
+            normalizedImage.trim().length > 0 &&
+            normalizedImage.startsWith('https://') &&
+            normalizedImage !== '/og-image.png') {
+          // Final validation: ensure it's a valid URL
+          try {
+            const testUrl = new URL(normalizedImage);
+            if (testUrl.protocol === 'https:') {
+              imageToPass = normalizedImage;
+            }
+          } catch (e) {
+            // Invalid URL, don't pass it
+            imageToPass = undefined;
+          }
+        }
+        
         // Merge SEO data using centralized utility
         const merged = seoUtils.mergeSeo({
           title: title || path,
           description: description || '',
           pathname: path,
           type: 'website',
-          image: normalizedImage,
+          ...(imageToPass && { image: imageToPass }), // Only pass if valid HTTPS URL
         });
 
         // Create sitemap entry using centralized utility
-        return seoUtils.makeSitemapEntry(merged, {
+        const entry = seoUtils.makeSitemapEntry(merged, {
           priority,
           changefreq: changeFrequency,
           lastmod: lastModified ? formatDate(lastModified) : undefined,
         });
+        
+        // Image sitemap disabled - remove images array if present
+        if (entry.images) {
+          delete entry.images;
+        }
+        
+        return entry;
       }
 
       // Fallback to manual entry creation if seo-utils not available
@@ -179,25 +207,8 @@ module.exports = {
         priority,
       };
 
-      // Add image sitemap support (2025 best practice)
-      // Only add image if it's valid and not the default placeholder
-      if (normalizedImage && normalizedImage !== '/og-image.png') {
-        const imageUrl = normalizedImage.startsWith('http') 
-          ? normalizedImage 
-          : `${baseUrl}${normalizedImage.startsWith('/') ? normalizedImage : '/' + normalizedImage}`;
-        
-        // Final validation - ensure URL is valid
-        try {
-          new URL(imageUrl);
-          entry.images = [{
-            loc: imageUrl,
-            title: title || path,
-            caption: description || path,
-          }];
-        } catch (e) {
-          // Invalid URL, skip adding image
-        }
-      }
+      // Image sitemap disabled - images are optional and search engines can discover them from page content
+      // No image tags will be added to sitemap entries
 
       return entry;
     };
@@ -291,11 +302,11 @@ module.exports = {
         const image = normalizeImage(tip.image);
         // Use centralized lastmod calculation: prefer modifiedTime > publishedTime
         const lastmod = seoUtils && seoUtils.calculateLastmod
-          ? seoUtils.calculateLastmod(tip.dateModified, tip.date)
-          : formatDate(tip.dateModified || tip.date);
+          ? seoUtils.calculateLastmod(undefined, tip.date)
+          : formatDate(tip.date);
         return createEntry(
           `/pet-care-tips/${tip.slug}`,
-          0.8,
+          0.7,
           'weekly',
           lastmod,
           image,

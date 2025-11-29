@@ -887,12 +887,35 @@ export async function generateLLMSJson(): Promise<LLMSContent> {
 }
 
 export async function writeLLMSJson(outputPath?: string): Promise<void> {
-  const content = await generateLLMSJson();
-  const output = outputPath || path.join(process.cwd(), 'llms.json');
-  
-  fs.writeFileSync(output, JSON.stringify(content, null, 2), 'utf8');
-  if (process.env.NODE_ENV !== 'production' || process.env.VERCEL_ENV === 'development') {
-    console.log(`✅ Generated llms.json at ${output}`);
+  try {
+    const content = await generateLLMSJson();
+    const output = outputPath || path.join(process.cwd(), 'llms.json');
+    
+    // Ensure directory exists
+    const outputDir = path.dirname(output);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
+    }
+    
+    // Write file
+    const jsonContent = JSON.stringify(content, null, 2);
+    fs.writeFileSync(output, jsonContent, 'utf8');
+    
+    // Verify write was successful
+    if (!fs.existsSync(output)) {
+      throw new Error(`Failed to verify llms.json was written to ${output}`);
+    }
+    
+    // Log in all environments during build (not runtime)
+    if (process.env.NODE_ENV === 'production' || process.env.VERCEL) {
+      const stats = fs.statSync(output);
+      console.log(`✅ Generated llms.json: ${(stats.size / 1024).toFixed(2)} KB, ${content.pages.length} pages`);
+    } else {
+      console.log(`✅ Generated llms.json at ${output}`);
+    }
+  } catch (error) {
+    console.error('Error in writeLLMSJson:', error);
+    throw error; // Re-throw to be caught by caller
   }
 }
 
