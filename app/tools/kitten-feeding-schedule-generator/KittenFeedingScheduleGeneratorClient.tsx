@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function KittenFeedingScheduleGeneratorClient() {
@@ -14,8 +17,15 @@ export default function KittenFeedingScheduleGeneratorClient() {
     schedule: { time: string; amount: string; notes: string }[];
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const generateSchedule = () => {
+
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const age = parseFloat(ageWeeks);
     const weight = parseFloat(currentWeight);
     
@@ -101,6 +111,8 @@ export default function KittenFeedingScheduleGeneratorClient() {
       schedule,
       recommendations,
     });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Emergency Symptoms Checker | Nearby Pet Care',
+  title: 'Emergency Symptoms Checker',
   description: 'Free emergency symptoms checker highlights critical, urgent, and moderate signs in dogs and cats with immediate action steps and emergency guidance.',
   keywords: ['pet emergency symptoms', 'dog emergency', 'cat emergency', 'veterinary emergency', 'pet emergency signs', 'when to take pet to vet', 'pet emergency symptoms', 'critical pet symptoms'],
   slug: 'emergency-symptoms-checker',
@@ -62,25 +62,27 @@ export default function EmergencySymptomsCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <EmergencySymptomsCheckerClient />

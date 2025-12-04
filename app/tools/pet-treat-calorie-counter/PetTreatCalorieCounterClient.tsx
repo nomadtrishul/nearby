@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function PetTreatCalorieCounterClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -20,6 +23,8 @@ export default function PetTreatCalorieCounterClient() {
     warnings: string[];
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const addTreat = () => {
     setTreats([...treats, { name: '', calories: '', quantity: '1' }]);
@@ -51,6 +56,10 @@ export default function PetTreatCalorieCounterClient() {
       setDailyCalories(dailyCal.toString());
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const treatAllowance = Math.round(dailyCal * 0.1); // 10% rule
     let totalTreatCalories = 0;
 
@@ -103,6 +112,8 @@ export default function PetTreatCalorieCounterClient() {
       warnings,
       recommendations,
     });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

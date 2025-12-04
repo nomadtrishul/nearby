@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Medication Dosage Estimator | Nearby Pet Care',
+  title: 'Pet Medication Dosage Estimator',
   description: 'Free pet medication dosage estimator calculates weight-based doses for common medications. Includes dosage ranges, frequency guidance, and safety warnings.',
   keywords: ['pet medication dosage', 'dog medication dosage', 'cat medication dosage', 'medication calculator pets', 'pet drug dosage', 'medication dosing pets', 'pet medication calculator', 'drug dosage calculator'],
   slug: 'medication-dosage-estimator',
@@ -62,25 +62,27 @@ export default function MedicationDosageEstimatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <MedicationDosageEstimatorClient />

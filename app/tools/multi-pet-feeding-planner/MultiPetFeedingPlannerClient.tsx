@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 interface Pet {
@@ -18,6 +21,7 @@ export default function MultiPetFeedingPlannerClient() {
   const [pets, setPets] = useState<Pet[]>([
     { id: '1', name: '', type: 'dog', weight: '', weightUnit: 'lbs', age: 'adult', activityLevel: 'moderate' }
   ]);
+  const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<Array<{
     pet: string;
     dailyCalories: number;
@@ -40,44 +44,51 @@ export default function MultiPetFeedingPlannerClient() {
   };
 
   const calculateFeeding = () => {
-    const allResults: Array<{
-      pet: string;
-      dailyCalories: number;
-      dailyAmount: string;
-      recommendations: string[];
-    }> = [];
 
-    pets.forEach(pet => {
-      if (!pet.name || !pet.weight) return;
+    setIsLoading(true);
 
-      const weightNum = parseFloat(pet.weight);
-      if (!weightNum || weightNum <= 0) return;
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const allResults: Array<{
+        pet: string;
+        dailyCalories: number;
+        dailyAmount: string;
+        recommendations: string[];
+      }> = [];
 
-      const weightKg = pet.weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
-      const rer = 70 * Math.pow(weightKg, 0.75);
-      
-      let activityFactor = 1.6;
-      if (pet.age === 'puppy' || pet.age === 'kitten') {
-        activityFactor = pet.type === 'dog' ? 3.0 : 2.5;
-      } else if (pet.age === 'senior') {
-        activityFactor = 1.2;
-      } else {
-        if (pet.activityLevel === 'low') activityFactor = 1.4;
-        else if (pet.activityLevel === 'high') activityFactor = 2.0;
-      }
+      pets.forEach(pet => {
+        if (!pet.name || !pet.weight) return;
 
-      const dailyCalories = Math.round(rer * activityFactor);
-      const dailyAmount = `${(dailyCalories / 350).toFixed(1)} cups (${Math.round((dailyCalories / 350) * 120)}g)`;
+        const weightNum = parseFloat(pet.weight);
+        if (!weightNum || weightNum <= 0) return;
 
-      const recommendations: string[] = [];
-      recommendations.push(`Feed ${pet.age === 'puppy' || pet.age === 'kitten' ? '3-4' : '2'} meals per day`);
-      recommendations.push(`Daily calories: ${dailyCalories} kcal`);
-      recommendations.push(`Daily amount: ${dailyAmount}`);
+        const weightKg = pet.weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
+        const rer = 70 * Math.pow(weightKg, 0.75);
 
-      allResults.push({ pet: pet.name, dailyCalories, dailyAmount, recommendations });
-    });
+        let activityFactor = 1.6;
+        if (pet.age === 'puppy' || pet.age === 'kitten') {
+          activityFactor = pet.type === 'dog' ? 3.0 : 2.5;
+        } else if (pet.age === 'senior') {
+          activityFactor = 1.2;
+        } else {
+          if (pet.activityLevel === 'low') activityFactor = 1.4;
+          else if (pet.activityLevel === 'high') activityFactor = 2.0;
+        }
 
-    setResults(allResults);
+        const dailyCalories = Math.round(rer * activityFactor);
+        const dailyAmount = `${(dailyCalories / 350).toFixed(1)} cups (${Math.round((dailyCalories / 350) * 120)}g)`;
+
+        const recommendations: string[] = [];
+        recommendations.push(`Feed ${pet.age === 'puppy' || pet.age === 'kitten' ? '3-4' : '2'} meals per day`);
+        recommendations.push(`Daily calories: ${dailyCalories} kcal`);
+        recommendations.push(`Daily amount: ${dailyAmount}`);
+
+        allResults.push({ pet: pet.name, dailyCalories, dailyAmount, recommendations });
+      });
+
+      setResults(allResults);
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (
@@ -89,7 +100,7 @@ export default function MultiPetFeedingPlannerClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Multi-Pet Feeding Planner', href: '/tools/multi-pet-feeding-planner' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Multi-Pet Feeding Planner
@@ -102,8 +113,8 @@ export default function MultiPetFeedingPlannerClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Multi-Pet Feeding Planner - Plan feeding schedules for multiple pets"
                 width={1200}
                 height={630}
@@ -129,7 +140,7 @@ export default function MultiPetFeedingPlannerClient() {
                       </button>
                     )}
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
@@ -221,7 +232,7 @@ export default function MultiPetFeedingPlannerClient() {
               {results.map((result, index) => (
                 <div key={index} className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
                   <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">{result.pet}'s Feeding Plan</h2>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                     <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
                       <div className="text-sm text-gray-600 dark:text-gray-400">Daily Calories</div>

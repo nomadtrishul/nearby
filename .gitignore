@@ -43,7 +43,6 @@ next-env.d.ts
 /public/robots.txt
 
 # build artifacts
-llms.json
 *.log
 
 # IDE and editor files

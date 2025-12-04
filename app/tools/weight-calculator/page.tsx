@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Weight Calculator | Nearby Pet Care',
+  title: 'Pet Weight Calculator',
   description: 'Free pet weight calculator determines ideal weight range, body condition score, and BMI for dogs and cats. Get breed-specific recommendations.',
   keywords: ['pet weight calculator', 'dog weight calculator', 'cat weight calculator', 'ideal pet weight', 'body condition score', 'pet BMI calculator', 'pet weight management', 'healthy pet weight'],
   slug: 'weight-calculator',
@@ -66,25 +66,27 @@ export default function WeightCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <WeightCalculatorClient />

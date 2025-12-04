@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function ParasiteRiskAssessmentClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -18,8 +21,14 @@ export default function ParasiteRiskAssessmentClient() {
     parasites: Array<{ name: string; risk: string; prevention: string }>;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const assessRisk = () => {
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     let riskScore = 0;
     const parasites: Array<{ name: string; risk: string; prevention: string }> = [];
 
@@ -141,6 +150,8 @@ export default function ParasiteRiskAssessmentClient() {
       parasites,
       recommendations,
     });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   const getRiskColor = (risk: string) => {

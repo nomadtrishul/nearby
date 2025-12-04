@@ -9,6 +9,7 @@ export default function VitaminSupplementSuggestionToolClient() {
   const [age, setAge] = useState<string>('adult');
   const [dietType, setDietType] = useState<string>('commercial');
   const [healthConditions, setHealthConditions] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     supplements: Array<{ name: string; benefit: string; dosage: string; notes: string; priority: string }>;
     warnings: string[];
@@ -41,162 +42,168 @@ export default function VitaminSupplementSuggestionToolClient() {
   };
 
   const generateSuggestions = () => {
-    const supplements: Array<{ name: string; benefit: string; dosage: string; notes: string; priority: string }> = [];
-    const warnings: string[] = [];
+    setIsLoading(true);
 
-    // General supplements
-    if (dietType === 'homemade' || dietType === 'raw') {
-      supplements.push({
-        name: 'Complete Multivitamin',
-        benefit: 'Ensures all essential vitamins and minerals are provided',
-        dosage: 'As directed by veterinarian or product label',
-        notes: 'Essential for homemade/raw diets',
-        priority: 'High'
-      });
-    }
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const supplements: Array<{ name: string; benefit: string; dosage: string; notes: string; priority: string }> = [];
+      const warnings: string[] = [];
 
-    // Age-based
-    if (age === 'senior') {
-      supplements.push({
-        name: 'Omega-3 Fatty Acids (EPA/DHA)',
-        benefit: 'Supports joint health, cognitive function, and reduces inflammation',
-        dosage: '20-30mg per kg body weight daily',
-        notes: 'Fish oil or krill oil',
-        priority: 'High'
-      });
-      supplements.push({
-        name: 'Antioxidants (Vitamins E & C)',
-        benefit: 'Supports immune system and reduces oxidative stress',
-        dosage: 'As directed by veterinarian',
-        notes: 'Important for aging pets',
-        priority: 'Moderate'
-      });
-    }
+      // General supplements
+      if (dietType === 'homemade' || dietType === 'raw') {
+        supplements.push({
+          name: 'Complete Multivitamin',
+          benefit: 'Ensures all essential vitamins and minerals are provided',
+          dosage: 'As directed by veterinarian or product label',
+          notes: 'Essential for homemade/raw diets',
+          priority: 'High'
+        });
+      }
 
-    // Condition-based
-    if (healthConditions.includes('Joint Issues')) {
-      supplements.push({
-        name: 'Glucosamine & Chondroitin',
-        benefit: 'Supports joint health and cartilage repair',
-        dosage: 'As directed by product label or veterinarian',
-        notes: 'Especially important for large breed dogs and senior pets',
-        priority: 'High'
-      });
-      supplements.push({
-        name: 'MSM (Methylsulfonylmethane)',
-        benefit: 'Anti-inflammatory, supports joint health',
-        dosage: 'As directed by veterinarian',
-        notes: 'Often combined with glucosamine',
-        priority: 'Moderate'
-      });
-    }
+      // Age-based
+      if (age === 'senior') {
+        supplements.push({
+          name: 'Omega-3 Fatty Acids (EPA/DHA)',
+          benefit: 'Supports joint health, cognitive function, and reduces inflammation',
+          dosage: '20-30mg per kg body weight daily',
+          notes: 'Fish oil or krill oil',
+          priority: 'High'
+        });
+        supplements.push({
+          name: 'Antioxidants (Vitamins E & C)',
+          benefit: 'Supports immune system and reduces oxidative stress',
+          dosage: 'As directed by veterinarian',
+          notes: 'Important for aging pets',
+          priority: 'Moderate'
+        });
+      }
 
-    if (healthConditions.includes('Skin/Coat Problems')) {
-      supplements.push({
-        name: 'Omega-3 Fatty Acids',
-        benefit: 'Improves skin and coat condition, reduces inflammation',
-        dosage: '20-30mg per kg body weight daily',
-        notes: 'Fish oil is most effective',
-        priority: 'High'
-      });
-      supplements.push({
-        name: 'Biotin',
-        benefit: 'Supports healthy skin and coat',
-        dosage: 'As directed by veterinarian',
-        notes: 'Often included in skin/coat supplements',
-        priority: 'Moderate'
-      });
-    }
+      // Condition-based
+      if (healthConditions.includes('Joint Issues')) {
+        supplements.push({
+          name: 'Glucosamine & Chondroitin',
+          benefit: 'Supports joint health and cartilage repair',
+          dosage: 'As directed by product label or veterinarian',
+          notes: 'Especially important for large breed dogs and senior pets',
+          priority: 'High'
+        });
+        supplements.push({
+          name: 'MSM (Methylsulfonylmethane)',
+          benefit: 'Anti-inflammatory, supports joint health',
+          dosage: 'As directed by veterinarian',
+          notes: 'Often combined with glucosamine',
+          priority: 'Moderate'
+        });
+      }
 
-    if (healthConditions.includes('Digestive Issues')) {
-      supplements.push({
-        name: 'Probiotics',
-        benefit: 'Supports healthy gut bacteria and digestion',
-        dosage: 'As directed by product label',
-        notes: 'Choose pet-specific probiotics',
-        priority: 'High'
-      });
-      supplements.push({
-        name: 'Digestive Enzymes',
-        benefit: 'Aids in food digestion and nutrient absorption',
-        dosage: 'As directed by product label',
-        notes: 'May help with digestive issues',
-        priority: 'Moderate'
-      });
-    }
+      if (healthConditions.includes('Skin/Coat Problems')) {
+        supplements.push({
+          name: 'Omega-3 Fatty Acids',
+          benefit: 'Improves skin and coat condition, reduces inflammation',
+          dosage: '20-30mg per kg body weight daily',
+          notes: 'Fish oil is most effective',
+          priority: 'High'
+        });
+        supplements.push({
+          name: 'Biotin',
+          benefit: 'Supports healthy skin and coat',
+          dosage: 'As directed by veterinarian',
+          notes: 'Often included in skin/coat supplements',
+          priority: 'Moderate'
+        });
+      }
 
-    if (healthConditions.includes('Heart Health')) {
-      supplements.push({
-        name: 'Omega-3 Fatty Acids',
-        benefit: 'Supports heart health and reduces inflammation',
-        dosage: '20-30mg per kg body weight daily',
-        notes: 'Consult vet for pets with heart conditions',
-        priority: 'High'
-      });
-      supplements.push({
-        name: 'Coenzyme Q10',
-        benefit: 'Supports heart muscle function',
-        dosage: 'As directed by veterinarian',
-        notes: 'Important for pets with heart disease',
-        priority: 'High'
-      });
-    }
+      if (healthConditions.includes('Digestive Issues')) {
+        supplements.push({
+          name: 'Probiotics',
+          benefit: 'Supports healthy gut bacteria and digestion',
+          dosage: 'As directed by product label',
+          notes: 'Choose pet-specific probiotics',
+          priority: 'High'
+        });
+        supplements.push({
+          name: 'Digestive Enzymes',
+          benefit: 'Aids in food digestion and nutrient absorption',
+          dosage: 'As directed by product label',
+          notes: 'May help with digestive issues',
+          priority: 'Moderate'
+        });
+      }
 
-    if (healthConditions.includes('Kidney Disease')) {
-      supplements.push({
-        name: 'Omega-3 Fatty Acids',
-        benefit: 'May slow progression of kidney disease',
-        dosage: 'As directed by veterinarian',
-        notes: 'Must be dosed carefully for kidney patients',
-        priority: 'High'
-      });
-      warnings.push('⚠️ Supplements for kidney disease must be approved by your veterinarian');
-    }
+      if (healthConditions.includes('Heart Health')) {
+        supplements.push({
+          name: 'Omega-3 Fatty Acids',
+          benefit: 'Supports heart health and reduces inflammation',
+          dosage: '20-30mg per kg body weight daily',
+          notes: 'Consult vet for pets with heart conditions',
+          priority: 'High'
+        });
+        supplements.push({
+          name: 'Coenzyme Q10',
+          benefit: 'Supports heart muscle function',
+          dosage: 'As directed by veterinarian',
+          notes: 'Important for pets with heart disease',
+          priority: 'High'
+        });
+      }
 
-    if (healthConditions.includes('Dental Health')) {
-      supplements.push({
-        name: 'Dental Chews/Enzymes',
-        benefit: 'Helps reduce plaque and tartar buildup',
-        dosage: 'As directed by product label',
-        notes: 'Not a substitute for dental care',
-        priority: 'Moderate'
-      });
-    }
+      if (healthConditions.includes('Kidney Disease')) {
+        supplements.push({
+          name: 'Omega-3 Fatty Acids',
+          benefit: 'May slow progression of kidney disease',
+          dosage: 'As directed by veterinarian',
+          notes: 'Must be dosed carefully for kidney patients',
+          priority: 'High'
+        });
+        warnings.push('⚠️ Supplements for kidney disease must be approved by your veterinarian');
+      }
 
-    if (healthConditions.includes('Cognitive Health')) {
-      supplements.push({
-        name: 'Omega-3 Fatty Acids (DHA)',
-        benefit: 'Supports brain health and cognitive function',
-        dosage: '20-30mg per kg body weight daily',
-        notes: 'Important for senior pets',
-        priority: 'High'
-      });
-      supplements.push({
+      if (healthConditions.includes('Dental Health')) {
+        supplements.push({
+          name: 'Dental Chews/Enzymes',
+          benefit: 'Helps reduce plaque and tartar buildup',
+          dosage: 'As directed by product label',
+          notes: 'Not a substitute for dental care',
+          priority: 'Moderate'
+        });
+      }
+
+      if (healthConditions.includes('Cognitive Health')) {
+        supplements.push({
+          name: 'Omega-3 Fatty Acids (DHA)',
+          benefit: 'Supports brain health and cognitive function',
+          dosage: '20-30mg per kg body weight daily',
+          notes: 'Important for senior pets',
+          priority: 'High'
+        });
+        supplements.push({
         name: 'Antioxidants',
         benefit: 'Reduces oxidative stress in brain',
         dosage: 'As directed by veterinarian',
         notes: 'May help with cognitive decline',
         priority: 'Moderate'
-      });
-    }
+        });
+      }
 
-    // Cat-specific
-    if (petType === 'cat' && dietType === 'homemade') {
-      supplements.push({
-        name: 'Taurine',
-        benefit: 'Essential amino acid for cats - prevents heart disease and blindness',
-        dosage: 'As directed by veterinarian',
-        notes: 'CRITICAL for cats - must be supplemented in homemade diets',
-        priority: 'Critical'
-      });
-    }
+      // Cat-specific
+      if (petType === 'cat' && dietType === 'homemade') {
+        supplements.push({
+          name: 'Taurine',
+          benefit: 'Essential amino acid for cats - prevents heart disease and blindness',
+          dosage: 'As directed by veterinarian',
+          notes: 'CRITICAL for cats - must be supplemented in homemade diets',
+          priority: 'Critical'
+        });
+      }
 
-    warnings.push('⚠️ Always consult your veterinarian before adding supplements');
-    warnings.push('⚠️ Some supplements can interact with medications');
-    warnings.push('⚠️ Quality matters - choose reputable brands');
-    warnings.push('⚠️ More is not always better - follow dosage instructions');
+      warnings.push('⚠️ Always consult your veterinarian before adding supplements');
+      warnings.push('⚠️ Some supplements can interact with medications');
+      warnings.push('⚠️ Quality matters - choose reputable brands');
+      warnings.push('⚠️ More is not always better - follow dosage instructions');
 
     setResult({ supplements, warnings });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   const getPriorityColor = (priority: string) => {

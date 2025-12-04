@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Treat Calorie Counter | Nearby Pet Care',
+  title: 'Pet Treat Calorie Counter',
   description: 'Free pet treat calorie counter tracks treat calories and ensures they stay within 10% of daily intake. Calculate treat allowances and get recommendations.',
   keywords: ['pet treat calories', 'treat calorie counter', 'dog treat calories', 'cat treat calories', 'treat allowance calculator', 'pet treat calculator', 'treat calorie tracker', 'pet nutrition treats'],
   slug: 'pet-treat-calorie-counter',
@@ -62,25 +62,27 @@ export default function PetTreatCalorieCounterPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <PetTreatCalorieCounterClient />

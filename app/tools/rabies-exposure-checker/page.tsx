@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Rabies Exposure Checker | Nearby Pet Care',
+  title: 'Rabies Exposure Checker',
   description: 'Free rabies exposure checker provides guidance if your pet may have been exposed to rabies. Assess risk level and get immediate action steps.',
   keywords: ['rabies exposure', 'rabies risk', 'pet rabies', 'rabies exposure assessment', 'rabies prevention', 'rabies symptoms', 'rabies vaccination', 'rabies exposure guidance'],
   slug: 'rabies-exposure-checker',
@@ -62,25 +62,27 @@ export default function RabiesExposureCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <RabiesExposureCheckerClient />

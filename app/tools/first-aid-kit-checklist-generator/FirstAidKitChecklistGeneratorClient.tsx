@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function FirstAidKitChecklistGeneratorClient() {
@@ -11,8 +14,15 @@ export default function FirstAidKitChecklistGeneratorClient() {
     items: Array<{ category: string; items: string[] }>;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const generateChecklist = () => {
+
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const items: Array<{ category: string; items: string[] }> = [];
     const recommendations: string[] = [];
 
@@ -94,6 +104,8 @@ export default function FirstAidKitChecklistGeneratorClient() {
     recommendations.push('Consider taking a pet first aid course');
 
     setResult({ items, recommendations });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

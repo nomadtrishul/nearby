@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from '@/components/Loader';
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from 'lucide-react';
 
 type SeverityLevel = 'critical' | 'high' | 'moderate';
 
@@ -14,6 +16,9 @@ type SymptomInfo = {
 
 export default function EmergencySymptomsCheckerClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
   const [symptoms, setSymptoms] = useState<string[]>([]);
   const [result, setResult] = useState<{
     emergencyLevel: string;
@@ -66,41 +71,48 @@ export default function EmergencySymptomsCheckerClient() {
   };
 
   const checkEmergency = () => {
-    const petSymptoms = emergencySymptoms[petType];
-    const selected = petSymptoms.filter(s => symptoms.includes(s.symptom));
-    
-    // Determine emergency level
-    let emergencyLevel = 'None';
-    if (selected.some(s => s.level === 'critical')) {
-      emergencyLevel = 'CRITICAL EMERGENCY';
-    } else if (selected.some(s => s.level === 'high')) {
-      emergencyLevel = 'URGENT';
-    } else if (selected.some(s => s.level === 'moderate')) {
-      emergencyLevel = 'MODERATE';
-    }
 
-    const urgentSymptoms = selected.filter(s => s.level === 'critical' || s.level === 'high');
-    
-    const immediateActions: string[] = [];
-    if (emergencyLevel === 'CRITICAL EMERGENCY') {
-      immediateActions.push('🚨 SEEK IMMEDIATE VETERINARY CARE');
-      immediateActions.push('Call your veterinarian or emergency clinic immediately');
-      immediateActions.push('If after hours, go to nearest emergency veterinary clinic');
-      immediateActions.push('Keep your pet calm and safe during transport');
-    } else if (emergencyLevel === 'URGENT') {
-      immediateActions.push('⚠️ SEEK VETERINARY CARE IMMEDIATELY');
-      immediateActions.push('Contact your veterinarian right away');
-      immediateActions.push('Do not wait for symptoms to worsen');
-    } else if (emergencyLevel === 'MODERATE') {
-      immediateActions.push('Monitor your pet closely');
-      immediateActions.push('Seek veterinary care within 24 hours');
-      immediateActions.push('Contact your veterinarian if symptoms worsen');
-    }
+    setIsLoading(true);
 
-    immediateActions.push('Keep emergency veterinary contact information readily available');
-    immediateActions.push('ASPCA Animal Poison Control: (888) 426-4435');
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const petSymptoms = emergencySymptoms[petType];
+      const selected = petSymptoms.filter(s => symptoms.includes(s.symptom));
 
-    setResult({ emergencyLevel, urgentSymptoms, immediateActions });
+      // Determine emergency level
+      let emergencyLevel = 'None';
+      if (selected.some(s => s.level === 'critical')) {
+        emergencyLevel = 'CRITICAL EMERGENCY';
+      } else if (selected.some(s => s.level === 'high')) {
+        emergencyLevel = 'URGENT';
+      } else if (selected.some(s => s.level === 'moderate')) {
+        emergencyLevel = 'MODERATE';
+      }
+
+      const urgentSymptoms = selected.filter(s => s.level === 'critical' || s.level === 'high');
+
+      const immediateActions: string[] = [];
+      if (emergencyLevel === 'CRITICAL EMERGENCY') {
+        immediateActions.push('🚨 SEEK IMMEDIATE VETERINARY CARE');
+        immediateActions.push('Call your veterinarian or emergency clinic immediately');
+        immediateActions.push('If after hours, go to nearest emergency veterinary clinic');
+        immediateActions.push('Keep your pet calm and safe during transport');
+      } else if (emergencyLevel === 'URGENT') {
+        immediateActions.push('⚠️ SEEK VETERINARY CARE IMMEDIATELY');
+        immediateActions.push('Contact your veterinarian right away');
+        immediateActions.push('Do not wait for symptoms to worsen');
+      } else if (emergencyLevel === 'MODERATE') {
+        immediateActions.push('Monitor your pet closely');
+        immediateActions.push('Seek veterinary care within 24 hours');
+        immediateActions.push('Contact your veterinarian if symptoms worsen');
+      }
+
+      immediateActions.push('Keep emergency veterinary contact information readily available');
+      immediateActions.push('ASPCA Animal Poison Control: (888) 426-4435');
+
+      setResult({ emergencyLevel, urgentSymptoms, immediateActions });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   const getLevelColor = (level: string) => {
@@ -112,6 +124,80 @@ export default function EmergencySymptomsCheckerClient() {
     }
   };
 
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Emergency Symptoms Check - NearbyPetCare.com
+============================================
+
+Emergency Level: ${result.emergencyLevel}
+
+Urgent Symptoms:
+${result.urgentSymptoms.map(s => `- ${s.symptom} (${s.level.toUpperCase()}): ${s.action}`).join('\n')}
+
+Immediate Actions:
+${result.immediateActions.map(a => `- ${a}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'emergency-symptoms-check.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🚨 My pet's emergency check result: ${result.emergencyLevel}.
+    
+Check your pet's symptoms at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Pet Emergency Check&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
+    }
+
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
+  };
+
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24">
       <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
@@ -121,30 +207,30 @@ export default function EmergencySymptomsCheckerClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Emergency Symptoms Checker', href: '/tools/emergency-symptoms-checker' }
           ]} />
-          
-        <div className="mb-8 sm:mb-10 mt-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Emergency Symptoms Checker – Pet Emergency Signs & Action Guide
-          </h1>
-          <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-              Select the symptoms your dog or cat is experiencing to identify whether it’s a critical, urgent, or moderate emergency. Get immediate action steps and contact information so you can respond quickly.
-            </p>
-          </div>
 
-          {/* Tool Screenshot/Image */}
-          <div className="mb-8">
-            <Image
-              src="/og-image.png"
-              alt="Emergency Symptoms Checker - Identify pet emergency signs"
-              width={1200}
-              height={630}
-              className="w-full rounded-lg shadow-lg"
-              loading="lazy"
-              priority={false}
-            />
+          <div className="mb-8 sm:mb-10 mt-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Emergency Symptoms Checker – Pet Emergency Signs & Action Guide
+            </h1>
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                Select the symptoms your dog or cat is experiencing to identify whether it’s a critical, urgent, or moderate emergency. Get immediate action steps and contact information so you can respond quickly.
+              </p>
+            </div>
+
+            {/* Tool Screenshot/Image */}
+            <div className="mb-8">
+              <Image
+                src="/og-image.png"
+                alt="Emergency Symptoms Checker - Identify pet emergency signs"
+                width={1200}
+                height={630}
+                className="w-full rounded-lg shadow-lg"
+                loading="lazy"
+                priority={false}
+              />
+            </div>
           </div>
-        </div>
 
           <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-800 rounded-xl p-6 mb-8">
             <div className="flex items-start gap-3">
@@ -189,11 +275,10 @@ export default function EmergencySymptomsCheckerClient() {
                     <button
                       key={index}
                       onClick={() => toggleSymptom(item.symptom)}
-                      className={`p-3 text-left rounded-lg border-2 transition-colors ${
-                        symptoms.includes(item.symptom)
-                          ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-                      }`}
+                      className={`p-3 text-left rounded-lg border-2 transition-colors ${symptoms.includes(item.symptom)
+                        ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                        }`}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="font-medium text-sm text-gray-900 dark:text-white">{item.symptom}</span>
@@ -216,24 +301,56 @@ export default function EmergencySymptomsCheckerClient() {
             </div>
           </div>
 
-          {result && (
-            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${
-              result.emergencyLevel === 'CRITICAL EMERGENCY'
-                ? 'from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-300 dark:border-red-800'
-                : result.emergencyLevel === 'URGENT'
+          <Loader
+            isLoading={isLoading}
+            message="Assessing emergency level..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
+            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${result.emergencyLevel === 'CRITICAL EMERGENCY'
+              ? 'from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-300 dark:border-red-800'
+              : result.emergencyLevel === 'URGENT'
                 ? 'from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border-orange-300 dark:border-orange-800'
                 : 'from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-800'
-            }`}>
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Emergency Assessment</h2>
-              
+              }`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Emergency Assessment</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Assessment</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share assessment</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <div className="text-center">
                   <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Emergency Level</div>
-                  <div className={`text-3xl font-bold ${
-                    result.emergencyLevel === 'CRITICAL EMERGENCY' ? 'text-red-600 dark:text-red-400' :
+                  <div className={`text-3xl font-bold ${result.emergencyLevel === 'CRITICAL EMERGENCY' ? 'text-red-600 dark:text-red-400' :
                     result.emergencyLevel === 'URGENT' ? 'text-orange-600 dark:text-orange-400' :
-                    'text-yellow-600 dark:text-yellow-400'
-                  }`}>
+                      'text-yellow-600 dark:text-yellow-400'
+                    }`}>
                     {result.emergencyLevel}
                   </div>
                 </div>
@@ -344,4 +461,3 @@ export default function EmergencySymptomsCheckerClient() {
     </main>
   );
 }
-

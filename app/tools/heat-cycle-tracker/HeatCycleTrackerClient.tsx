@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function HeatCycleTrackerClient() {
@@ -15,8 +18,15 @@ export default function HeatCycleTrackerClient() {
     phaseInfo: string;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateNextHeat = () => {
+
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     if (!lastHeatStart) {
       alert('Please select last heat start date');
       return;
@@ -91,6 +101,8 @@ export default function HeatCycleTrackerClient() {
     recommendations.push('Consider spaying to prevent unwanted pregnancies and health benefits');
 
     setResult({ nextHeat: nextHeat.toLocaleDateString(), daysUntil, currentPhase, phaseInfo, recommendations });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

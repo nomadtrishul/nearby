@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function SeniorHealthChecklistGeneratorClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -11,6 +14,8 @@ export default function SeniorHealthChecklistGeneratorClient() {
     checklist: Array<{ category: string; items: string[] }>;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const generateChecklist = () => {
     const ageNum = parseFloat(age);
@@ -19,6 +24,10 @@ export default function SeniorHealthChecklistGeneratorClient() {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const checklist: Array<{ category: string; items: string[] }> = [];
     const recommendations: string[] = [];
 
@@ -125,6 +134,8 @@ export default function SeniorHealthChecklistGeneratorClient() {
     recommendations.push('Keep detailed records of health changes and veterinary visits');
 
     setResult({ checklist, recommendations });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

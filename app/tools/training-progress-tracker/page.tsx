@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Training Progress Tracker | Nearby Pet Care',
+  title: 'Training Progress Tracker',
   description: 'Free training progress tracker logs command mastery, behaviors, and milestones for dogs and cats. Get personalized recommendations and next training steps.',
   keywords: ['pet training tracker', 'dog training progress', 'training tracker', 'obedience training tracker', 'training assessment', 'pet training level', 'training progress', 'training goals'],
   slug: 'training-progress-tracker',
@@ -62,25 +62,27 @@ export default function TrainingProgressTrackerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'EducationApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <TrainingProgressTrackerClient />

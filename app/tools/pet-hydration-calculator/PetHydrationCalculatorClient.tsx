@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function PetHydrationCalculatorClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -17,6 +20,8 @@ export default function PetHydrationCalculatorClient() {
     recommendations: string[];
     signsOfDehydration: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateHydration = () => {
     const weightNum = parseFloat(weight);
@@ -26,6 +31,10 @@ export default function PetHydrationCalculatorClient() {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const weightKg = weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
     
     // Base water requirement: 50-60ml per kg body weight per day
@@ -94,6 +103,8 @@ export default function PetHydrationCalculatorClient() {
       recommendations,
       signsOfDehydration,
     });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

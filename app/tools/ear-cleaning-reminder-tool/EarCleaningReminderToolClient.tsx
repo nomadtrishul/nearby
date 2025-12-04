@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function EarCleaningReminderToolClient() {
@@ -17,6 +20,9 @@ export default function EarCleaningReminderToolClient() {
     instructions: string[];
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateReminder = () => {
     if (!lastCleaned) {
@@ -24,84 +30,166 @@ export default function EarCleaningReminderToolClient() {
       return;
     }
 
-    const lastDate = new Date(lastCleaned);
-    const today = new Date();
-    const daysSince = Math.floor((today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
+    setIsLoading(true);
 
-    let frequencyDays = 14; // default 2 weeks
-    let frequency = 'Every 2 weeks';
-    let status = '';
-    const instructions: string[] = [];
-    const recommendations: string[] = [];
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const lastDate = new Date(lastCleaned);
+      const today = new Date();
+      const daysSince = Math.floor((today.getTime() - lastDate.getTime()) / (1000 * 60 * 60 * 24));
 
-    // Ear type factor
-    if (earType === 'floppy') {
-      frequencyDays = 7;
-      frequency = 'Weekly';
-      recommendations.push('Floppy ears trap moisture and need more frequent cleaning');
-    } else if (earType === 'upright') {
-      frequencyDays = 14;
-      frequency = 'Every 2 weeks';
-      recommendations.push('Upright ears have better air circulation');
-    } else if (earType === 'hairy') {
-      frequencyDays = 10;
-      frequency = 'Every 1-2 weeks';
-      recommendations.push('Hairy ears may need more frequent cleaning and hair removal');
+      let frequencyDays = 14; // default 2 weeks
+      let frequency = 'Every 2 weeks';
+      let status = '';
+      const instructions: string[] = [];
+      const recommendations: string[] = [];
+
+      // Ear type factor
+      if (earType === 'floppy') {
+        frequencyDays = 7;
+        frequency = 'Weekly';
+        recommendations.push('Floppy ears trap moisture and need more frequent cleaning');
+      } else if (earType === 'upright') {
+        frequencyDays = 14;
+        frequency = 'Every 2 weeks';
+        recommendations.push('Upright ears have better air circulation');
+      } else if (earType === 'hairy') {
+        frequencyDays = 10;
+        frequency = 'Every 1-2 weeks';
+        recommendations.push('Hairy ears may need more frequent cleaning and hair removal');
+      }
+
+      // Ear condition factor
+      if (earCondition === 'waxy' || earCondition === 'dirty') {
+        frequencyDays = Math.min(frequencyDays, 7);
+        frequency = 'Weekly or more frequently';
+        recommendations.push('Waxy or dirty ears need more frequent cleaning');
+      } else if (earCondition === 'infection') {
+        frequencyDays = 3;
+        frequency = 'As directed by veterinarian';
+        recommendations.push('Follow your veterinarian\'s specific cleaning instructions');
+        recommendations.push('Do not clean infected ears without veterinary guidance');
+      } else if (earCondition === 'allergies') {
+        frequencyDays = 7;
+        frequency = 'Weekly';
+        recommendations.push('Pets with allergies may need more frequent ear care');
+      }
+
+      // Calculate next cleaning date
+      const nextDate = new Date(lastDate);
+      nextDate.setDate(nextDate.getDate() + frequencyDays);
+      const nextCleaning = nextDate.toLocaleDateString();
+
+      // Determine status
+      if (daysSince < frequencyDays - 2) {
+        status = 'Up to Date';
+      } else if (daysSince < frequencyDays) {
+        status = 'Due Soon';
+      } else if (daysSince < frequencyDays + 7) {
+        status = 'Overdue';
+      } else {
+        status = 'Long Overdue';
+      }
+
+      // Instructions
+      instructions.push('Use a pet-specific ear cleaner recommended by your veterinarian');
+      instructions.push('Never use cotton swabs deep in the ear canal');
+      instructions.push('Gently wipe the outer ear and visible parts of the ear canal');
+      instructions.push('Massage the base of the ear after applying cleaner');
+      instructions.push('Let your pet shake their head to remove excess cleaner');
+      instructions.push('Wipe away any remaining debris with a soft cloth or cotton ball');
+      instructions.push('Stop if your pet shows signs of pain or discomfort');
+
+      // Additional recommendations
+      recommendations.push(`Recommended cleaning frequency: ${frequency}`);
+      recommendations.push('Check ears weekly for signs of redness, odor, or discharge');
+      recommendations.push('Regular cleaning helps prevent ear infections');
+      recommendations.push('If you notice unusual odor, discharge, or redness, consult your veterinarian');
+      recommendations.push('Some pets may need professional ear cleaning');
+
+      if (earType === 'hairy') {
+        recommendations.push('Consider having excess ear hair removed by a groomer or veterinarian');
+      }
+
+      setResult({ nextCleaning, frequency, daysSince, status, instructions, recommendations });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Ear Cleaning Reminder - NearbyPetCare.com
+=========================================
+
+Status: ${result.status}
+Next Cleaning Due: ${result.nextCleaning}
+Frequency: ${result.frequency}
+
+Instructions:
+${result.instructions.map(i => `- ${i}`).join('\n')}
+
+Recommendations:
+${result.recommendations.map(r => `- ${r}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ear-cleaning-reminder.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `👂 My pet's ear cleaning is ${result.status}. Next due: ${result.nextCleaning}.
+    
+Track your pet's ear hygiene at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Pet Ear Cleaning Reminder&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    // Ear condition factor
-    if (earCondition === 'waxy' || earCondition === 'dirty') {
-      frequencyDays = Math.min(frequencyDays, 7);
-      frequency = 'Weekly or more frequently';
-      recommendations.push('Waxy or dirty ears need more frequent cleaning');
-    } else if (earCondition === 'infection') {
-      frequencyDays = 3;
-      frequency = 'As directed by veterinarian';
-      recommendations.push('Follow your veterinarian\'s specific cleaning instructions');
-      recommendations.push('Do not clean infected ears without veterinary guidance');
-    } else if (earCondition === 'allergies') {
-      frequencyDays = 7;
-      frequency = 'Weekly';
-      recommendations.push('Pets with allergies may need more frequent ear care');
-    }
-
-    // Calculate next cleaning date
-    const nextDate = new Date(lastDate);
-    nextDate.setDate(nextDate.getDate() + frequencyDays);
-    const nextCleaning = nextDate.toLocaleDateString();
-
-    // Determine status
-    if (daysSince < frequencyDays - 2) {
-      status = 'Up to Date';
-    } else if (daysSince < frequencyDays) {
-      status = 'Due Soon';
-    } else if (daysSince < frequencyDays + 7) {
-      status = 'Overdue';
-    } else {
-      status = 'Long Overdue';
-    }
-
-    // Instructions
-    instructions.push('Use a pet-specific ear cleaner recommended by your veterinarian');
-    instructions.push('Never use cotton swabs deep in the ear canal');
-    instructions.push('Gently wipe the outer ear and visible parts of the ear canal');
-    instructions.push('Massage the base of the ear after applying cleaner');
-    instructions.push('Let your pet shake their head to remove excess cleaner');
-    instructions.push('Wipe away any remaining debris with a soft cloth or cotton ball');
-    instructions.push('Stop if your pet shows signs of pain or discomfort');
-
-    // Additional recommendations
-    recommendations.push(`Recommended cleaning frequency: ${frequency}`);
-    recommendations.push('Check ears weekly for signs of redness, odor, or discharge');
-    recommendations.push('Regular cleaning helps prevent ear infections');
-    recommendations.push('If you notice unusual odor, discharge, or redness, consult your veterinarian');
-    recommendations.push('Some pets may need professional ear cleaning');
-
-    if (earType === 'hairy') {
-      recommendations.push('Consider having excess ear hair removed by a groomer or veterinarian');
-    }
-
-    setResult({ nextCleaning, frequency, daysSince, status, instructions, recommendations });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -113,7 +201,7 @@ export default function EarCleaningReminderToolClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Ear-Cleaning Reminder Tool', href: '/tools/ear-cleaning-reminder-tool' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Ear-Cleaning Reminder Tool
@@ -126,8 +214,8 @@ export default function EarCleaningReminderToolClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Ear-Cleaning Reminder Tool - Track your pet's ear cleaning schedule"
                 width={1200}
                 height={630}
@@ -208,27 +296,59 @@ export default function EarCleaningReminderToolClient() {
             </div>
           </div>
 
-          {result && (
-            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${
-              result.status === 'Long Overdue'
+          <Loader
+            isLoading={isLoading}
+            message="Analyzing ear health schedule..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
+            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${result.status === 'Long Overdue'
                 ? 'from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-300 dark:border-red-800'
                 : result.status === 'Overdue'
-                ? 'from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border-orange-300 dark:border-orange-800'
-                : result.status === 'Due Soon'
-                ? 'from-yellow-50 to-blue-50 dark:from-yellow-900/20 dark:to-blue-900/20 border-yellow-300 dark:border-yellow-800'
-                : 'from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-800'
-            }`}>
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Ear Cleaning Schedule</h2>
-              
+                  ? 'from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20 border-orange-300 dark:border-orange-800'
+                  : result.status === 'Due Soon'
+                    ? 'from-yellow-50 to-blue-50 dark:from-yellow-900/20 dark:to-blue-900/20 border-yellow-300 dark:border-yellow-800'
+                    : 'from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-800'
+              }`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Ear Cleaning Schedule</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Schedule</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share schedule</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <div className="text-center">
                   <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Status</div>
-                  <div className={`text-3xl font-bold mb-1 ${
-                    result.status === 'Long Overdue' ? 'text-red-600 dark:text-red-400' :
-                    result.status === 'Overdue' ? 'text-orange-600 dark:text-orange-400' :
-                    result.status === 'Due Soon' ? 'text-yellow-600 dark:text-yellow-400' :
-                    'text-green-600 dark:text-green-400'
-                  }`}>
+                  <div className={`text-3xl font-bold mb-1 ${result.status === 'Long Overdue' ? 'text-red-600 dark:text-red-400' :
+                      result.status === 'Overdue' ? 'text-orange-600 dark:text-orange-400' :
+                        result.status === 'Due Soon' ? 'text-yellow-600 dark:text-yellow-400' :
+                          'text-green-600 dark:text-green-400'
+                    }`}>
                     {result.status}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">Days since last cleaning: {result.daysSince}</div>
@@ -332,4 +452,3 @@ export default function EarCleaningReminderToolClient() {
     </main>
   );
 }
-

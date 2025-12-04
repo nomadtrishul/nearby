@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function BehaviorProblemDiagnosisToolClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -16,6 +18,9 @@ export default function BehaviorProblemDiagnosisToolClient() {
     solutions: string[];
     urgent: boolean;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const allBehaviors = [
     'Excessive barking/meowing',
@@ -49,142 +54,228 @@ export default function BehaviorProblemDiagnosisToolClient() {
       return;
     }
 
-    let diagnosis = '';
-    let description = '';
-    const causes: string[] = [];
-    const solutions: string[] = [];
-    let urgent = false;
+    setIsLoading(true);
 
-    // Diagnose based on behaviors
-    if (behaviors.includes('Aggression toward people') || behaviors.includes('Aggression toward other animals')) {
-      diagnosis = 'Aggression Issue';
-      description = 'Aggressive behavior can be dangerous and requires immediate attention. This may be fear-based, territorial, or resource-guarding aggression.';
-      causes.push('Fear or anxiety');
-      causes.push('Lack of socialization');
-      causes.push('Resource guarding');
-      causes.push('Territorial behavior');
-      causes.push('Pain or medical issues');
-      causes.push('Previous negative experiences');
-      solutions.push('⚠️ Seek professional help from a certified animal behaviorist or trainer');
-      solutions.push('Avoid situations that trigger aggression');
-      solutions.push('Never punish aggressive behavior - it can make it worse');
-      solutions.push('Rule out medical causes with a veterinarian');
-      solutions.push('Use positive reinforcement training');
-      urgent = true;
-    } else if (behaviors.includes('Separation anxiety')) {
-      diagnosis = 'Separation Anxiety';
-      description = 'Separation anxiety occurs when pets become distressed when left alone. This can manifest as destructive behavior, excessive vocalization, or house soiling.';
-      causes.push('Lack of independence training');
-      causes.push('Sudden change in routine');
-      causes.push('Previous abandonment or rehoming');
-      causes.push('Over-attachment to owner');
-      causes.push('Lack of mental stimulation');
-      solutions.push('Gradual desensitization to being alone');
-      solutions.push('Create a safe, comfortable space');
-      solutions.push('Provide mental stimulation (puzzle toys, treat dispensers)');
-      solutions.push('Avoid making departures and arrivals a big deal');
-      solutions.push('Consider professional training or behavior modification');
-      solutions.push('In severe cases, consult a veterinarian about medication options');
-    } else if (behaviors.includes('House soiling')) {
-      diagnosis = 'House Soiling / Inappropriate Elimination';
-      description = 'House soiling can be due to incomplete house training, medical issues, or behavioral problems.';
-      causes.push('Incomplete house training');
-      causes.push('Medical issues (UTI, kidney problems, etc.)');
-      causes.push('Marking behavior');
-      causes.push('Stress or anxiety');
-      causes.push('Litter box issues (for cats)');
-      causes.push('Inadequate access to elimination areas');
-      solutions.push('Rule out medical causes with a veterinarian first');
-      solutions.push('Re-establish house training routine');
-      solutions.push('Clean soiled areas thoroughly with enzyme cleaner');
-      solutions.push('Provide regular access to elimination areas');
-      solutions.push('For cats: ensure clean, accessible litter boxes');
-      solutions.push('Use positive reinforcement for appropriate elimination');
-    } else if (behaviors.includes('Excessive barking/meowing') || behaviors.includes('Excessive vocalization')) {
-      diagnosis = 'Excessive Vocalization';
-      description = 'Excessive barking or meowing can be due to boredom, attention-seeking, anxiety, or medical issues.';
-      causes.push('Boredom or lack of exercise');
-      causes.push('Attention-seeking behavior');
-      causes.push('Anxiety or stress');
-      causes.push('Medical issues (pain, cognitive decline)');
-      causes.push('Territorial behavior');
-      causes.push('Lack of training');
-      solutions.push('Ensure adequate exercise and mental stimulation');
-      solutions.push('Ignore attention-seeking vocalization');
-      solutions.push('Reward quiet behavior');
-      solutions.push('Provide interactive toys and puzzles');
-      solutions.push('Rule out medical causes');
-      solutions.push('Consider professional training if severe');
-    } else if (behaviors.includes('Destructive chewing')) {
-      diagnosis = 'Destructive Chewing';
-      description = 'Destructive chewing is common in puppies and can persist in adult dogs due to boredom, anxiety, or teething.';
-      causes.push('Teething (puppies)');
-      causes.push('Boredom or lack of exercise');
-      causes.push('Anxiety or stress');
-      causes.push('Lack of appropriate chew toys');
-      causes.push('Separation anxiety');
-      solutions.push('Provide appropriate chew toys');
-      solutions.push('Puppy-proof your home');
-      solutions.push('Increase exercise and mental stimulation');
-      solutions.push('Use bitter sprays on inappropriate items');
-      solutions.push('Supervise and redirect to appropriate items');
-      solutions.push('Address underlying anxiety if present');
-    } else if (behaviors.includes('Resource guarding')) {
-      diagnosis = 'Resource Guarding';
-      description = 'Resource guarding occurs when pets protect food, toys, or other items. This can escalate to aggression if not addressed.';
-      causes.push('Fear of losing resources');
-      causes.push('Previous competition for resources');
-      causes.push('Lack of trust');
-      causes.push('Inadequate socialization');
-      solutions.push('Never take items away forcefully');
-      solutions.push('Trade items for higher-value treats');
-      solutions.push('Teach "drop it" and "leave it" commands');
-      solutions.push('Feed in separate areas if multiple pets');
-      solutions.push('Consult a professional trainer for severe cases');
-      if (severity === 'severe') urgent = true;
-    } else if (behaviors.includes('Fear or phobias') || behaviors.includes('Hiding or avoidance')) {
-      diagnosis = 'Fear or Phobia';
-      description = 'Fearful behavior can be triggered by specific situations, objects, or sounds. This requires gentle, positive reinforcement training.';
-      causes.push('Lack of socialization');
-      causes.push('Previous negative experiences');
-      causes.push('Genetic predisposition');
-      causes.push('Trauma');
-      causes.push('Medical issues causing pain or discomfort');
-      solutions.push('Avoid forcing exposure to feared stimuli');
-      solutions.push('Use counter-conditioning and desensitization');
-      solutions.push('Create positive associations with feared objects/situations');
-      solutions.push('Provide a safe space for your pet');
-      solutions.push('Consider professional help for severe phobias');
-      solutions.push('Rule out medical causes');
-    } else {
-      diagnosis = 'General Behavior Issue';
-      description = 'Multiple behavior issues may indicate underlying problems with training, socialization, or health.';
-      causes.push('Lack of training or inconsistent training');
-      causes.push('Insufficient exercise or mental stimulation');
-      causes.push('Medical issues');
-      causes.push('Stress or environmental changes');
-      causes.push('Lack of socialization');
-      solutions.push('Establish consistent training routines');
-      solutions.push('Ensure adequate exercise and mental stimulation');
-      solutions.push('Rule out medical causes with a veterinarian');
-      solutions.push('Consider professional training or behavior consultation');
-      solutions.push('Address environmental stressors');
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      let diagnosis = '';
+      let description = '';
+      const causes: string[] = [];
+      const solutions: string[] = [];
+      let urgent = false;
+
+      // Diagnose based on behaviors
+      if (behaviors.includes('Aggression toward people') || behaviors.includes('Aggression toward other animals')) {
+        diagnosis = 'Aggression Issue';
+        description = 'Aggressive behavior can be dangerous and requires immediate attention. This may be fear-based, territorial, or resource-guarding aggression.';
+        causes.push('Fear or anxiety');
+        causes.push('Lack of socialization');
+        causes.push('Resource guarding');
+        causes.push('Territorial behavior');
+        causes.push('Pain or medical issues');
+        causes.push('Previous negative experiences');
+        solutions.push('⚠️ Seek professional help from a certified animal behaviorist or trainer');
+        solutions.push('Avoid situations that trigger aggression');
+        solutions.push('Never punish aggressive behavior - it can make it worse');
+        solutions.push('Rule out medical causes with a veterinarian');
+        solutions.push('Use positive reinforcement training');
+        urgent = true;
+      } else if (behaviors.includes('Separation anxiety')) {
+        diagnosis = 'Separation Anxiety';
+        description = 'Separation anxiety occurs when pets become distressed when left alone. This can manifest as destructive behavior, excessive vocalization, or house soiling.';
+        causes.push('Lack of independence training');
+        causes.push('Sudden change in routine');
+        causes.push('Previous abandonment or rehoming');
+        causes.push('Over-attachment to owner');
+        causes.push('Lack of mental stimulation');
+        solutions.push('Gradual desensitization to being alone');
+        solutions.push('Create a safe, comfortable space');
+        solutions.push('Provide mental stimulation (puzzle toys, treat dispensers)');
+        solutions.push('Avoid making departures and arrivals a big deal');
+        solutions.push('Consider professional training or behavior modification');
+        solutions.push('In severe cases, consult a veterinarian about medication options');
+      } else if (behaviors.includes('House soiling')) {
+        diagnosis = 'House Soiling / Inappropriate Elimination';
+        description = 'House soiling can be due to incomplete house training, medical issues, or behavioral problems.';
+        causes.push('Incomplete house training');
+        causes.push('Medical issues (UTI, kidney problems, etc.)');
+        causes.push('Marking behavior');
+        causes.push('Stress or anxiety');
+        causes.push('Litter box issues (for cats)');
+        causes.push('Inadequate access to elimination areas');
+        solutions.push('Rule out medical causes with a veterinarian first');
+        solutions.push('Re-establish house training routine');
+        solutions.push('Clean soiled areas thoroughly with enzyme cleaner');
+        solutions.push('Provide regular access to elimination areas');
+        solutions.push('For cats: ensure clean, accessible litter boxes');
+        solutions.push('Use positive reinforcement for appropriate elimination');
+      } else if (behaviors.includes('Excessive barking/meowing') || behaviors.includes('Excessive vocalization')) {
+        diagnosis = 'Excessive Vocalization';
+        description = 'Excessive barking or meowing can be due to boredom, attention-seeking, anxiety, or medical issues.';
+        causes.push('Boredom or lack of exercise');
+        causes.push('Attention-seeking behavior');
+        causes.push('Anxiety or stress');
+        causes.push('Medical issues (pain, cognitive decline)');
+        causes.push('Territorial behavior');
+        causes.push('Lack of training');
+        solutions.push('Ensure adequate exercise and mental stimulation');
+        solutions.push('Ignore attention-seeking vocalization');
+        solutions.push('Reward quiet behavior');
+        solutions.push('Provide interactive toys and puzzles');
+        solutions.push('Rule out medical causes');
+        solutions.push('Consider professional training if severe');
+      } else if (behaviors.includes('Destructive chewing')) {
+        diagnosis = 'Destructive Chewing';
+        description = 'Destructive chewing is common in puppies and can persist in adult dogs due to boredom, anxiety, or teething.';
+        causes.push('Teething (puppies)');
+        causes.push('Boredom or lack of exercise');
+        causes.push('Anxiety or stress');
+        causes.push('Lack of appropriate chew toys');
+        causes.push('Separation anxiety');
+        solutions.push('Provide appropriate chew toys');
+        solutions.push('Puppy-proof your home');
+        solutions.push('Increase exercise and mental stimulation');
+        solutions.push('Use bitter sprays on inappropriate items');
+        solutions.push('Supervise and redirect to appropriate items');
+        solutions.push('Address underlying anxiety if present');
+      } else if (behaviors.includes('Resource guarding')) {
+        diagnosis = 'Resource Guarding';
+        description = 'Resource guarding occurs when pets protect food, toys, or other items. This can escalate to aggression if not addressed.';
+        causes.push('Fear of losing resources');
+        causes.push('Previous competition for resources');
+        causes.push('Lack of trust');
+        causes.push('Inadequate socialization');
+        solutions.push('Never take items away forcefully');
+        solutions.push('Trade items for higher-value treats');
+        solutions.push('Teach "drop it" and "leave it" commands');
+        solutions.push('Feed in separate areas if multiple pets');
+        solutions.push('Consult a professional trainer for severe cases');
+        if (severity === 'severe') urgent = true;
+      } else if (behaviors.includes('Fear or phobias') || behaviors.includes('Hiding or avoidance')) {
+        diagnosis = 'Fear or Phobia';
+        description = 'Fearful behavior can be triggered by specific situations, objects, or sounds. This requires gentle, positive reinforcement training.';
+        causes.push('Lack of socialization');
+        causes.push('Previous negative experiences');
+        causes.push('Genetic predisposition');
+        causes.push('Trauma');
+        causes.push('Medical issues causing pain or discomfort');
+        solutions.push('Avoid forcing exposure to feared stimuli');
+        solutions.push('Use counter-conditioning and desensitization');
+        solutions.push('Create positive associations with feared objects/situations');
+        solutions.push('Provide a safe space for your pet');
+        solutions.push('Consider professional help for severe phobias');
+        solutions.push('Rule out medical causes');
+      } else {
+        diagnosis = 'General Behavior Issue';
+        description = 'Multiple behavior issues may indicate underlying problems with training, socialization, or health.';
+        causes.push('Lack of training or inconsistent training');
+        causes.push('Insufficient exercise or mental stimulation');
+        causes.push('Medical issues');
+        causes.push('Stress or environmental changes');
+        causes.push('Lack of socialization');
+        solutions.push('Establish consistent training routines');
+        solutions.push('Ensure adequate exercise and mental stimulation');
+        solutions.push('Rule out medical causes with a veterinarian');
+        solutions.push('Consider professional training or behavior consultation');
+        solutions.push('Address environmental stressors');
+      }
+
+      // Duration and severity adjustments
+      if (duration === 'long-term' && severity === 'severe') {
+        urgent = true;
+        solutions.push('⚠️ Long-term severe behaviors may require professional intervention');
+      }
+
+      // General recommendations
+      if (!urgent) {
+        solutions.push('Be patient and consistent with training');
+        solutions.push('Use positive reinforcement methods');
+        solutions.push('Avoid punishment, which can worsen behavior problems');
+      }
+
+      setResult({ diagnosis, description, causes, solutions, urgent });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Behavior Problem Diagnosis - NearbyPetCare.com
+==============================================
+
+Diagnosis: ${result.diagnosis}
+Urgent: ${result.urgent ? 'Yes' : 'No'}
+
+Description:
+${result.description}
+
+Possible Causes:
+${result.causes.map(c => `- ${c}`).join('\n')}
+
+Recommended Solutions:
+${result.solutions.map(s => `- ${s}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'behavior-diagnosis.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🐾 My ${petType === 'dog' ? 'Dog' : 'Cat'}'s Behavior Diagnosis:
+    
+Diagnosis: ${result.diagnosis}
+    
+Get your pet's behavior diagnosis at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=My Pet's Behavior Diagnosis&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    // Duration and severity adjustments
-    if (duration === 'long-term' && severity === 'severe') {
-      urgent = true;
-      solutions.push('⚠️ Long-term severe behaviors may require professional intervention');
-    }
-
-    // General recommendations
-    if (!urgent) {
-      solutions.push('Be patient and consistent with training');
-      solutions.push('Use positive reinforcement methods');
-      solutions.push('Avoid punishment, which can worsen behavior problems');
-    }
-
-    setResult({ diagnosis, description, causes, solutions, urgent });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -196,7 +287,7 @@ export default function BehaviorProblemDiagnosisToolClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Behavior Problem Diagnosis Tool', href: '/tools/behavior-problem-diagnosis-tool' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Behavior Problem Diagnosis Tool
@@ -209,8 +300,8 @@ export default function BehaviorProblemDiagnosisToolClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Behavior Problem Diagnosis Tool - Identify potential causes of behavior problems"
                 width={1200}
                 height={630}
@@ -276,11 +367,10 @@ export default function BehaviorProblemDiagnosisToolClient() {
                     <button
                       key={index}
                       onClick={() => toggleBehavior(behavior)}
-                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${
-                        behaviors.includes(behavior)
+                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${behaviors.includes(behavior)
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       {behavior}
                     </button>
@@ -298,14 +388,47 @@ export default function BehaviorProblemDiagnosisToolClient() {
             </div>
           </div>
 
-          {result && (
-            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${
-              result.urgent
+          <Loader
+            isLoading={isLoading}
+            message="Analyzing behavior patterns..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
+            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${result.urgent
                 ? 'from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-300 dark:border-red-800'
                 : 'from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-800'
-            }`}>
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Diagnosis</h2>
-              
+              }`}>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Diagnosis</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Results</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share results</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{result.diagnosis}</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">{result.description}</p>
@@ -414,4 +537,3 @@ export default function BehaviorProblemDiagnosisToolClient() {
     </main>
   );
 }
-

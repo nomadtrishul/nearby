@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function PetSmellDiagnosisToolClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -17,6 +20,8 @@ export default function PetSmellDiagnosisToolClient() {
     solutions: string[];
     urgent: boolean;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const allSymptoms = [
     'Excessive scratching',
@@ -40,6 +45,10 @@ export default function PetSmellDiagnosisToolClient() {
   };
 
   const diagnoseSmell = () => {
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     let diagnosis = '';
     let description = '';
     const causes: string[] = [];
@@ -157,6 +166,8 @@ export default function PetSmellDiagnosisToolClient() {
     }
 
     setResult({ diagnosis, description, causes, solutions, urgent });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

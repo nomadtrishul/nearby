@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 interface Vaccine {
   name: string;
@@ -23,6 +26,8 @@ export default function VaccineReminderClient() {
   const [email, setEmail] = useState<string>('');
   const [reminders, setReminders] = useState<{ pet: string; vaccines: Vaccine[] }[]>([]);
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const addPet = () => {
     setPets([...pets, { id: Date.now().toString(), name: '', type: 'dog', birthDate: '', lastVaccineDate: '' }]);
@@ -39,6 +44,10 @@ export default function VaccineReminderClient() {
   };
 
   const calculateVaccineSchedule = () => {
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const allReminders: { pet: string; vaccines: Vaccine[] }[] = [];
     const today = new Date();
 
@@ -151,6 +160,8 @@ export default function VaccineReminderClient() {
 
     setReminders(allReminders);
     setSubmitted(true);
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   const exportToCalendar = (petName: string, vaccine: Vaccine) => {

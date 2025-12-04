@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function WeightBasedFeedingChartMakerClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -10,6 +13,8 @@ export default function WeightBasedFeedingChartMakerClient() {
   const [result, setResult] = useState<{
     chart: Array<{ weightRange: string; dailyCalories: number; dailyCups: number; dailyGrams: number }>;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const generateChart = () => {
     const calories = parseFloat(caloriesPerCup);
@@ -18,6 +23,10 @@ export default function WeightBasedFeedingChartMakerClient() {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const chart: Array<{ weightRange: string; dailyCalories: number; dailyCups: number; dailyGrams: number }> = [];
 
     if (petType === 'dog') {
@@ -76,6 +85,8 @@ export default function WeightBasedFeedingChartMakerClient() {
     }
 
     setResult({ chart });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

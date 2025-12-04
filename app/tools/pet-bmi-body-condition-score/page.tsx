@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet BMI / Body Condition Score | Nearby Pet Care',
+  title: 'Pet BMI / Body Condition Score',
   description: 'Free pet BMI and body condition score calculator assesses your pet using the 9-point scale. Get BCS assessment and weight management recommendations.',
   keywords: ['pet body condition score', 'pet BCS', 'pet BMI', 'body condition score calculator', 'pet weight assessment', 'pet body condition', 'pet weight score', 'pet health assessment'],
   slug: 'pet-bmi-body-condition-score',
@@ -62,25 +62,27 @@ export default function PetBMIBodyConditionScorePage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <PetBMIBodyConditionScoreClient />

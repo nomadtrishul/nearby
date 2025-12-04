@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Feeding Portion Calculator | Nearby Pet Care',
+  title: 'Pet Feeding Portion Calculator',
   description: 'Free pet feeding portion calculator determines the right amount of food for dogs and cats. Calculate daily portions based on weight, age, and activity level.',
   keywords: ['pet feeding calculator', 'dog food portion calculator', 'cat food portion calculator', 'pet portion size', 'feeding calculator', 'pet meal planner', 'pet calorie calculator', 'pet feeding schedule'],
   slug: 'feeding-portion-calculator',
@@ -67,25 +67,27 @@ export default function FeedingPortionCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <FeedingPortionCalculatorClient />

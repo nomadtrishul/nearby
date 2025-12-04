@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function NailLengthCheckerClient() {
@@ -17,8 +20,15 @@ export default function NailLengthCheckerClient() {
     idealLength: string;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const checkNailLength = () => {
+
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     const lengthNum = parseFloat(nailLength);
     const weightNum = parseFloat(weight);
 
@@ -114,6 +124,8 @@ export default function NailLengthCheckerClient() {
     recommendations.push('If you can hear nails clicking on the floor, they need trimming');
 
     setResult({ status, urgency, action, idealLength, recommendations });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

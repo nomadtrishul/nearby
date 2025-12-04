@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Toxic Foods Checker | Nearby Pet Care',
+  title: 'Toxic Foods Checker',
   description: 'Free toxic foods checker identifies dangerous foods for dogs and cats. Learn about symptoms, severity, and emergency actions to keep your pet safe.',
   keywords: ['toxic foods for pets', 'toxic foods for dogs', 'toxic foods for cats', 'pet poison foods', 'dangerous foods for pets', 'foods toxic to dogs', 'foods toxic to cats', 'pet food safety'],
   slug: 'toxic-foods-checker',
@@ -62,25 +62,27 @@ export default function ToxicFoodsCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <ToxicFoodsCheckerClient />

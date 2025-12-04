@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function AggressionTypeCheckerClient() {
@@ -9,6 +12,8 @@ export default function AggressionTypeCheckerClient() {
   const [triggers, setTriggers] = useState<string[]>([]);
   const [targets, setTargets] = useState<string[]>([]);
   const [behaviors, setBehaviors] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
   const [result, setResult] = useState<{
     type: string;
     description: string;
@@ -70,120 +75,127 @@ export default function AggressionTypeCheckerClient() {
   };
 
   const checkAggressionType = () => {
-    if (triggers.length === 0 || targets.length === 0) {
-      alert('Please select at least one trigger and one target');
-      return;
-    }
 
-    let type = '';
-    let description = '';
-    const causes: string[] = [];
-    const solutions: string[] = [];
-    let urgent = false;
+    setIsLoading(true);
 
-    // Determine aggression type
-    if (triggers.some(t => t.includes('eating') || t.includes('food') || t.includes('toys') || t.includes('resting'))) {
-      type = 'Resource Guarding';
-      description = 'Resource guarding occurs when pets protect food, toys, or other items. This can escalate to aggression if not addressed properly.';
-      causes.push('Fear of losing resources');
-      causes.push('Previous competition for resources');
-      causes.push('Lack of trust');
-      causes.push('Inadequate socialization');
-      solutions.push('⚠️ Never take items away forcefully');
-      solutions.push('Trade items for higher-value treats');
-      solutions.push('Teach "drop it" and "leave it" commands');
-      solutions.push('Feed in separate areas if multiple pets');
-      solutions.push('Consult a professional trainer or behaviorist');
-      if (behaviors.includes('Biting')) urgent = true;
-    } else if (triggers.some(t => t.includes('territory') || t.includes('home')) || targets.includes('Strangers')) {
-      type = 'Territorial Aggression';
-      description = 'Territorial aggression occurs when pets protect their home or territory from perceived intruders.';
-      causes.push('Protective instincts');
-      causes.push('Lack of socialization');
-      causes.push('Previous reinforcement of protective behavior');
-      causes.push('Fear of strangers');
-      solutions.push('Gradual desensitization to visitors');
-      solutions.push('Teach calm behavior when people approach');
-      solutions.push('Use positive reinforcement for calm behavior');
-      solutions.push('Consider professional behavior modification');
-      solutions.push('Never encourage or reward protective behavior');
-    } else if (triggers.some(t => t.includes('other animals') || t.includes('other dogs') || t.includes('other cats'))) {
-      type = 'Inter-Dog/Cat Aggression';
-      description = 'Aggression toward other animals can be due to fear, dominance, or lack of socialization.';
-      causes.push('Lack of socialization');
-      causes.push('Fear of other animals');
-      causes.push('Previous negative experiences');
-      causes.push('Dominance or competition');
-      solutions.push('⚠️ Avoid situations that trigger aggression');
-      solutions.push('Work on socialization in controlled environments');
-      solutions.push('Use distance and counter-conditioning');
-      solutions.push('Consult a professional trainer for reactivity');
-      solutions.push('Never use punishment, which can worsen aggression');
-      urgent = true;
-    } else if (triggers.some(t => t.includes('handled') || t.includes('groomed') || t.includes('pain'))) {
-      type = 'Pain-Induced or Handling Aggression';
-      description = 'Aggression due to pain or discomfort when being handled. This requires immediate veterinary attention.';
-      causes.push('Pain or medical issues');
-      causes.push('Previous painful experiences');
-      causes.push('Sensitivity to touch');
-      causes.push('Underlying health conditions');
-      solutions.push('🚨 Consult a veterinarian immediately to rule out medical causes');
-      solutions.push('Handle pet gently and avoid painful areas');
-      solutions.push('Use positive reinforcement for handling');
-      solutions.push('Gradual desensitization to handling');
-      solutions.push('Address underlying medical issues');
-      urgent = true;
-    } else if (triggers.some(t => t.includes('startled') || t.includes('fear')) || targets.includes('Strangers')) {
-      type = 'Fear-Based Aggression';
-      description = 'Fear-based aggression occurs when pets feel threatened or afraid. This is a defensive response.';
-      causes.push('Lack of socialization');
-      causes.push('Previous negative experiences');
-      causes.push('Genetic predisposition to fear');
-      causes.push('Trauma');
-      solutions.push('Avoid forcing exposure to feared stimuli');
-      solutions.push('Use counter-conditioning and desensitization');
-      solutions.push('Create positive associations');
-      solutions.push('Provide a safe space for your pet');
-      solutions.push('Consult a professional behaviorist for severe fear');
-      solutions.push('Never punish fearful behavior');
-    } else if (triggers.some(t => t.includes('protecting owner')) || targets.some(t => t.includes('approaches owner'))) {
-      type = 'Protective Aggression';
-      description = 'Protective aggression occurs when pets protect their owners from perceived threats.';
-      causes.push('Over-attachment to owner');
-      causes.push('Previous reinforcement of protective behavior');
-      causes.push('Lack of socialization');
-      causes.push('Anxiety');
-      solutions.push('Avoid encouraging protective behavior');
-      solutions.push('Teach calm behavior around people');
-      solutions.push('Work on independence and confidence');
-      solutions.push('Use positive reinforcement for calm behavior');
-      solutions.push('Consider professional behavior modification');
-    } else {
-      type = 'Multiple Types / Complex Aggression';
-      description = 'Multiple triggers and targets suggest a combination of aggression types. This requires comprehensive professional assessment.';
-      causes.push('Multiple underlying factors');
-      causes.push('Complex behavioral issues');
-      causes.push('Possible medical component');
-      solutions.push('🚨 Seek immediate professional help from a certified animal behaviorist');
-      solutions.push('Rule out medical causes with a veterinarian');
-      solutions.push('Comprehensive behavior assessment needed');
-      solutions.push('Avoid all situations that trigger aggression');
-      urgent = true;
-    }
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      if (triggers.length === 0 || targets.length === 0) {
+        alert('Please select at least one trigger and one target');
+        return;
+      }
 
-    // Urgency indicators
-    if (behaviors.includes('Biting') || behaviors.includes('Snapping')) {
-      urgent = true;
-      solutions.push('⚠️ Biting or snapping requires immediate professional intervention');
-    }
+      let type = '';
+      let description = '';
+      const causes: string[] = [];
+      const solutions: string[] = [];
+      let urgent = false;
 
-    // General solutions
-    solutions.push('Never use punishment - it can worsen aggression');
-    solutions.push('Avoid situations that trigger aggression until addressed');
-    solutions.push('Use positive reinforcement methods only');
-    solutions.push('Ensure pet safety and the safety of others');
+      // Determine aggression type
+      if (triggers.some(t => t.includes('eating') || t.includes('food') || t.includes('toys') || t.includes('resting'))) {
+        type = 'Resource Guarding';
+        description = 'Resource guarding occurs when pets protect food, toys, or other items. This can escalate to aggression if not addressed properly.';
+        causes.push('Fear of losing resources');
+        causes.push('Previous competition for resources');
+        causes.push('Lack of trust');
+        causes.push('Inadequate socialization');
+        solutions.push('⚠️ Never take items away forcefully');
+        solutions.push('Trade items for higher-value treats');
+        solutions.push('Teach "drop it" and "leave it" commands');
+        solutions.push('Feed in separate areas if multiple pets');
+        solutions.push('Consult a professional trainer or behaviorist');
+        if (behaviors.includes('Biting')) urgent = true;
+      } else if (triggers.some(t => t.includes('territory') || t.includes('home')) || targets.includes('Strangers')) {
+        type = 'Territorial Aggression';
+        description = 'Territorial aggression occurs when pets protect their home or territory from perceived intruders.';
+        causes.push('Protective instincts');
+        causes.push('Lack of socialization');
+        causes.push('Previous reinforcement of protective behavior');
+        causes.push('Fear of strangers');
+        solutions.push('Gradual desensitization to visitors');
+        solutions.push('Teach calm behavior when people approach');
+        solutions.push('Use positive reinforcement for calm behavior');
+        solutions.push('Consider professional behavior modification');
+        solutions.push('Never encourage or reward protective behavior');
+      } else if (triggers.some(t => t.includes('other animals') || t.includes('other dogs') || t.includes('other cats'))) {
+        type = 'Inter-Dog/Cat Aggression';
+        description = 'Aggression toward other animals can be due to fear, dominance, or lack of socialization.';
+        causes.push('Lack of socialization');
+        causes.push('Fear of other animals');
+        causes.push('Previous negative experiences');
+        causes.push('Dominance or competition');
+        solutions.push('⚠️ Avoid situations that trigger aggression');
+        solutions.push('Work on socialization in controlled environments');
+        solutions.push('Use distance and counter-conditioning');
+        solutions.push('Consult a professional trainer for reactivity');
+        solutions.push('Never use punishment, which can worsen aggression');
+        urgent = true;
+      } else if (triggers.some(t => t.includes('handled') || t.includes('groomed') || t.includes('pain'))) {
+        type = 'Pain-Induced or Handling Aggression';
+        description = 'Aggression due to pain or discomfort when being handled. This requires immediate veterinary attention.';
+        causes.push('Pain or medical issues');
+        causes.push('Previous painful experiences');
+        causes.push('Sensitivity to touch');
+        causes.push('Underlying health conditions');
+        solutions.push('🚨 Consult a veterinarian immediately to rule out medical causes');
+        solutions.push('Handle pet gently and avoid painful areas');
+        solutions.push('Use positive reinforcement for handling');
+        solutions.push('Gradual desensitization to handling');
+        solutions.push('Address underlying medical issues');
+        urgent = true;
+      } else if (triggers.some(t => t.includes('startled') || t.includes('fear')) || targets.includes('Strangers')) {
+        type = 'Fear-Based Aggression';
+        description = 'Fear-based aggression occurs when pets feel threatened or afraid. This is a defensive response.';
+        causes.push('Lack of socialization');
+        causes.push('Previous negative experiences');
+        causes.push('Genetic predisposition to fear');
+        causes.push('Trauma');
+        solutions.push('Avoid forcing exposure to feared stimuli');
+        solutions.push('Use counter-conditioning and desensitization');
+        solutions.push('Create positive associations');
+        solutions.push('Provide a safe space for your pet');
+        solutions.push('Consult a professional behaviorist for severe fear');
+        solutions.push('Never punish fearful behavior');
+      } else if (triggers.some(t => t.includes('protecting owner')) || targets.some(t => t.includes('approaches owner'))) {
+        type = 'Protective Aggression';
+        description = 'Protective aggression occurs when pets protect their owners from perceived threats.';
+        causes.push('Over-attachment to owner');
+        causes.push('Previous reinforcement of protective behavior');
+        causes.push('Lack of socialization');
+        causes.push('Anxiety');
+        solutions.push('Avoid encouraging protective behavior');
+        solutions.push('Teach calm behavior around people');
+        solutions.push('Work on independence and confidence');
+        solutions.push('Use positive reinforcement for calm behavior');
+        solutions.push('Consider professional behavior modification');
+      } else {
+        type = 'Multiple Types / Complex Aggression';
+        description = 'Multiple triggers and targets suggest a combination of aggression types. This requires comprehensive professional assessment.';
+        causes.push('Multiple underlying factors');
+        causes.push('Complex behavioral issues');
+        causes.push('Possible medical component');
+        solutions.push('🚨 Seek immediate professional help from a certified animal behaviorist');
+        solutions.push('Rule out medical causes with a veterinarian');
+        solutions.push('Comprehensive behavior assessment needed');
+        solutions.push('Avoid all situations that trigger aggression');
+        urgent = true;
+      }
 
-    setResult({ type, description, causes, solutions, urgent });
+      // Urgency indicators
+      if (behaviors.includes('Biting') || behaviors.includes('Snapping')) {
+        urgent = true;
+        solutions.push('⚠️ Biting or snapping requires immediate professional intervention');
+      }
+
+      // General solutions
+      solutions.push('Never use punishment - it can worsen aggression');
+      solutions.push('Avoid situations that trigger aggression until addressed');
+      solutions.push('Use positive reinforcement methods only');
+      solutions.push('Ensure pet safety and the safety of others');
+
+      setResult({ type, description, causes, solutions, urgent });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (
@@ -195,7 +207,7 @@ export default function AggressionTypeCheckerClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Aggression Type Checker', href: '/tools/aggression-type-checker' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Pet Aggression Type Checker – Identify Triggers & Next Steps
@@ -244,11 +256,10 @@ export default function AggressionTypeCheckerClient() {
                     <button
                       key={index}
                       onClick={() => toggleItem(triggers, setTriggers, trigger)}
-                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${
-                        triggers.includes(trigger)
+                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${triggers.includes(trigger)
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       {trigger}
                     </button>
@@ -265,11 +276,10 @@ export default function AggressionTypeCheckerClient() {
                     <button
                       key={index}
                       onClick={() => toggleItem(targets, setTargets, target)}
-                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${
-                        targets.includes(target)
+                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${targets.includes(target)
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       {target}
                     </button>
@@ -286,11 +296,10 @@ export default function AggressionTypeCheckerClient() {
                     <button
                       key={index}
                       onClick={() => toggleItem(behaviors, setBehaviors, behavior)}
-                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${
-                        behaviors.includes(behavior)
+                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${behaviors.includes(behavior)
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       {behavior}
                     </button>
@@ -309,13 +318,12 @@ export default function AggressionTypeCheckerClient() {
           </div>
 
           {result && (
-            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${
-              result.urgent
+            <div className={`bg-gradient-to-br rounded-xl shadow-lg p-6 sm:p-8 border-2 ${result.urgent
                 ? 'from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 border-red-300 dark:border-red-800'
                 : 'from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 border-green-200 dark:border-green-800'
-            }`}>
+              }`}>
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Aggression Analysis</h2>
-              
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{result.type}</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">{result.description}</p>

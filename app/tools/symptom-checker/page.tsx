@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Symptom Checker | Nearby Pet Care',
+  title: 'Pet Symptom Checker',
   description: 'Free pet symptom checker helps identify potential health issues for dogs and cats. Get symptom information and guidance. Always consult a veterinarian.',
   keywords: ['pet symptom checker', 'dog symptom checker', 'cat symptom checker', 'pet health symptoms', 'pet illness symptoms', 'veterinary symptom guide', 'pet health assessment', 'pet symptom guide'],
   slug: 'symptom-checker',
@@ -62,25 +62,27 @@ export default function SymptomCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <SymptomCheckerClient />

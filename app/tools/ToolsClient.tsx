@@ -20,7 +20,7 @@ export default function ToolsClient() {
       title: 'Feeding Portion Calculator',
       description: 'Calculate precise portion sizes with meal planning, treat allowances, and food comparison. Get personalized feeding schedules based on multiple factors.',
       href: '/tools/feeding-portion-calculator',
-      icon: '🍽️',
+      icon: '🍲',
       category: 'Nutrition',
       featured: false,
     },
@@ -108,7 +108,7 @@ export default function ToolsClient() {
       title: 'Wet vs Dry Food Comparison',
       description: 'Compare wet and dry food options based on cost, nutrition, and suitability for your pet.',
       href: '/tools/wet-vs-dry-food-comparison',
-      icon: '⚖️',
+      icon: '🔄',
       category: 'Nutrition',
       featured: false,
     },
@@ -124,7 +124,7 @@ export default function ToolsClient() {
       title: 'Toxic Foods Checker',
       description: 'Check if a food is toxic to your pet and learn about symptoms and emergency actions.',
       href: '/tools/toxic-foods-checker',
-      icon: '⚠️',
+      icon: '☠️',
       category: 'Nutrition',
       featured: false,
     },
@@ -132,7 +132,7 @@ export default function ToolsClient() {
       title: 'Safe Human Foods Checker',
       description: 'Check which human foods are safe to share with your pet and learn proper serving sizes.',
       href: '/tools/safe-human-foods-checker',
-      icon: '✅',
+      icon: '🥗',
       category: 'Nutrition',
       featured: false,
     },
@@ -156,7 +156,7 @@ export default function ToolsClient() {
       title: 'Feeding Cost Calculator',
       description: 'Calculate the cost of feeding your pet based on food type, price, and your pet\'s needs.',
       href: '/tools/feeding-cost-calculator',
-      icon: '💰',
+      icon: '💵',
       category: 'Nutrition',
       featured: false,
     },
@@ -164,7 +164,7 @@ export default function ToolsClient() {
       title: 'Multi-Pet Feeding Planner',
       description: 'Plan feeding schedules for multiple pets at once.',
       href: '/tools/multi-pet-feeding-planner',
-      icon: '👥',
+      icon: '🍽️',
       category: 'Nutrition',
       featured: false,
     },
@@ -172,7 +172,7 @@ export default function ToolsClient() {
       title: 'Symptom Checker',
       description: 'Select your pet\'s symptoms to get information and guidance. This tool is for informational purposes only.',
       href: '/tools/symptom-checker',
-      icon: '🏥',
+      icon: '🩺',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -188,7 +188,7 @@ export default function ToolsClient() {
       title: 'Vaccination Schedule Generator',
       description: 'Generate a complete vaccination schedule for your pet from birth to adulthood.',
       href: '/tools/vaccination-schedule-generator',
-      icon: '💉',
+      icon: '📋',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -212,7 +212,7 @@ export default function ToolsClient() {
       title: 'Pet BMI / Body Condition Score',
       description: 'Assess your pet\'s body condition using the 9-point scale.',
       href: '/tools/pet-bmi-body-condition-score',
-      icon: '📊',
+      icon: '📍',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -236,7 +236,7 @@ export default function ToolsClient() {
       title: 'Weight-Based Feeding Chart Maker',
       description: 'Generate a feeding chart based on weight ranges for easy reference.',
       href: '/tools/weight-based-feeding-chart-maker',
-      icon: '📋',
+      icon: '📊',
       category: 'Nutrition',
       featured: false,
     },
@@ -244,7 +244,7 @@ export default function ToolsClient() {
       title: 'Diet Transition Timeline Tool',
       description: 'Create a step-by-step timeline for transitioning your pet to a new food.',
       href: '/tools/diet-transition-timeline-tool',
-      icon: '🔄',
+      icon: '➡️',
       category: 'Nutrition',
       featured: false,
     },
@@ -260,7 +260,7 @@ export default function ToolsClient() {
       title: 'Vitamin & Supplement Suggestion Tool',
       description: 'Get personalized supplement recommendations based on your pet\'s needs.',
       href: '/tools/vitamin-supplement-suggestion-tool',
-      icon: '💊',
+      icon: '🍊',
       category: 'Nutrition',
       featured: false,
     },
@@ -268,7 +268,7 @@ export default function ToolsClient() {
       title: 'Ideal Weight Checker',
       description: 'Determine if your pet is at their ideal weight based on breed and body condition.',
       href: '/tools/ideal-weight-checker',
-      icon: '⚖️',
+      icon: '🎯',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -284,7 +284,7 @@ export default function ToolsClient() {
       title: 'Heat Cycle Tracker',
       description: 'Track your pet\'s heat cycle and predict the next cycle.',
       href: '/tools/heat-cycle-tracker',
-      icon: '📅',
+      icon: '🌡️',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -292,7 +292,7 @@ export default function ToolsClient() {
       title: 'Medication Dosage Estimator',
       description: 'Estimate medication dosage based on weight. This tool is for informational purposes only.',
       href: '/tools/medication-dosage-estimator',
-      icon: '💉',
+      icon: '💊',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -316,7 +316,7 @@ export default function ToolsClient() {
       title: 'Rabies Exposure Checker',
       description: 'Get guidance on what to do if your pet may have been exposed to rabies. Informational only.',
       href: '/tools/rabies-exposure-checker',
-      icon: '⚠️',
+      icon: '🦠',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -332,7 +332,7 @@ export default function ToolsClient() {
       title: 'Chronic Disease Management Planner',
       description: 'Create a comprehensive management plan for pets with chronic health conditions.',
       href: '/tools/chronic-disease-management-planner',
-      icon: '📋',
+      icon: '📝',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -340,7 +340,7 @@ export default function ToolsClient() {
       title: 'Pet Insurance Cost Estimator',
       description: 'Estimate the cost of pet insurance based on your pet\'s characteristics.',
       href: '/tools/pet-insurance-cost-estimator',
-      icon: '💰',
+      icon: '🏥',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -356,7 +356,7 @@ export default function ToolsClient() {
       title: 'Senior Health Checklist Generator',
       description: 'Generate a comprehensive health checklist for your senior pet.',
       href: '/tools/senior-health-checklist-generator',
-      icon: '📝',
+      icon: '✅',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -364,7 +364,7 @@ export default function ToolsClient() {
       title: 'Multivitamin Needs Analyzer',
       description: 'Determine if your pet needs multivitamins or specific vitamin supplements.',
       href: '/tools/multivitamin-needs-analyzer',
-      icon: '💊',
+      icon: '🧪',
       category: 'Health & Wellness',
       featured: false,
     },
@@ -428,7 +428,7 @@ export default function ToolsClient() {
       title: 'Grooming Cost Estimator',
       description: 'Estimate grooming costs for your pet based on size, coat type, and location.',
       href: '/tools/grooming-cost-estimator',
-      icon: '💵',
+      icon: '💸',
       category: 'Grooming & Hygiene',
       featured: false,
     },
@@ -452,7 +452,7 @@ export default function ToolsClient() {
       title: 'Behavior Problem Diagnosis Tool',
       description: 'Identify potential causes of behavior problems in your pet and get guidance on solutions.',
       href: '/tools/behavior-problem-diagnosis-tool',
-      icon: '🔍',
+      icon: '🔎',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -468,7 +468,7 @@ export default function ToolsClient() {
       title: 'Barking Reason Analyzer',
       description: 'Identify why your dog is barking and get targeted solutions.',
       href: '/tools/barking-reason-analyzer',
-      icon: '🐕',
+      icon: '🕊',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -484,7 +484,7 @@ export default function ToolsClient() {
       title: 'Activity/Exercise Level Planner',
       description: 'Create a personalized exercise and activity plan for your pet based on breed, age, and current activity level.',
       href: '/tools/activity-exercise-level-planner',
-      icon: '🏃',
+      icon: '🏋️',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -492,7 +492,7 @@ export default function ToolsClient() {
       title: 'Training Progress Tracker',
       description: 'Track your pet\'s training progress and get personalized recommendations.',
       href: '/tools/training-progress-tracker',
-      icon: '📊',
+      icon: '📈',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -500,7 +500,7 @@ export default function ToolsClient() {
       title: 'Obedience Level Assessment Tool',
       description: 'Assess your pet\'s current obedience level and get personalized training recommendations.',
       href: '/tools/obedience-level-assessment-tool',
-      icon: '✅',
+      icon: '⭐',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -508,7 +508,7 @@ export default function ToolsClient() {
       title: 'Aggression Type Checker',
       description: 'Identify the type of aggression your pet is displaying and get targeted solutions.',
       href: '/tools/aggression-type-checker',
-      icon: '⚠️',
+      icon: '😾',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -516,7 +516,7 @@ export default function ToolsClient() {
       title: 'Socialization Readiness Test',
       description: 'Assess if your pet is ready for socialization activities.',
       href: '/tools/socialization-readiness-test',
-      icon: '👥',
+      icon: '🤝',
       category: 'Training & Behavior',
       featured: false,
     },
@@ -533,8 +533,8 @@ export default function ToolsClient() {
   const categories = ['All', 'Health & Wellness', 'Nutrition', 'Adoption', 'Planning', 'Grooming & Hygiene', 'Training & Behavior'];
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const filteredTools = selectedCategory === 'All' 
-    ? tools 
+  const filteredTools = selectedCategory === 'All'
+    ? tools
     : tools.filter(tool => tool.category === selectedCategory);
 
   return (
@@ -544,7 +544,7 @@ export default function ToolsClient() {
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-200/30 dark:bg-blue-900/20 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-200/30 dark:bg-purple-900/20 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="container mx-auto max-w-7xl relative z-10">
           <Breadcrumb items={[{ name: 'Home', href: '/' }, { name: 'Tools', href: '/tools' }]} />
           <div className="text-center max-w-4xl mx-auto mt-8 sm:mt-10">
@@ -552,13 +552,13 @@ export default function ToolsClient() {
               <span className="text-2xl">🛠️</span>
               <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Advanced Pet Care Tools</span>
             </div>
-            
+
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Pet Care Tools & Calculators
               </span>
             </h1>
-            
+
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
               Free advanced tools and calculators to help you provide the best care for your pets. From weight management to cost planning, we've got you covered.
             </p>
@@ -575,18 +575,17 @@ export default function ToolsClient() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8 text-center lg:text-left">
                 All Tools
               </h2>
-              
+
               {/* Category Filter */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
                 {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                      selectedCategory === category
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-                    }`}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors ${selectedCategory === category
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      }`}
                   >
                     {category}
                   </button>
@@ -602,9 +601,9 @@ export default function ToolsClient() {
 
             {/* Sidebar */}
             <div className="lg:flex-shrink-0">
-              <ToolsSidebar 
+              <ToolsSidebar
                 categories={categories.filter(cat => cat !== 'All')}
-                popularTools={tools.filter(tool => 
+                popularTools={tools.filter(tool =>
                   ['Pet Weight Calculator', 'Feeding Portion Calculator', 'Breed Selector', 'Vaccine Reminder', 'Pet Age Calculator', 'Exercise Calculator'].includes(tool.title)
                 ).slice(0, 6)}
               />

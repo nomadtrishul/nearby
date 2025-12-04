@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function SocializationReadinessTestClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -15,6 +18,8 @@ export default function SocializationReadinessTestClient() {
     recommendations: string[];
     activities: Array<{ activity: string; description: string; when: string }>;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const questions = [
     { id: 'vaccinations', question: 'Is your pet fully vaccinated?', options: ['Yes, fully vaccinated', 'Partially vaccinated', 'Not yet'] },
@@ -42,6 +47,10 @@ export default function SocializationReadinessTestClient() {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     let score = 0;
     const recommendations: string[] = [];
     const activities: Array<{ activity: string; description: string; when: string }> = [];
@@ -152,6 +161,8 @@ export default function SocializationReadinessTestClient() {
     }
 
     setResult({ readiness, score: percentage, description, recommendations, activities });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

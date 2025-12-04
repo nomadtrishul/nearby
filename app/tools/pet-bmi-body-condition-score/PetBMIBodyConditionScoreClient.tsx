@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function PetBMIBodyConditionScoreClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -18,8 +21,14 @@ export default function PetBMIBodyConditionScoreClient() {
     visualGuide: string;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateBCS = () => {
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     // Calculate BCS based on visual assessment
     const ribsScore = parseInt(ribs);
     const waistScore = parseInt(waist);
@@ -105,6 +114,8 @@ export default function PetBMIBodyConditionScoreClient() {
       visualGuide,
       recommendations,
     });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

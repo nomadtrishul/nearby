@@ -6,14 +6,15 @@ import Breadcrumb from '@/components/Breadcrumb';
 
 export default function WetVsDryFoodComparisonClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
-  const [weight, setWeight] = useState<string>('');
+  const [petWeight, setPetWeight] = useState<string>('50');
   const [weightUnit, setWeightUnit] = useState<'lbs' | 'kg'>('lbs');
-  const [dryCaloriesPerCup, setDryCaloriesPerCup] = useState<string>('350');
+  const [dryCaloriesPerCup, setDryCaloriesPerCup] = useState<string>('400');
   const [dryPricePerBag, setDryPricePerBag] = useState<string>('50');
   const [dryBagSize, setDryBagSize] = useState<string>('30');
   const [wetCaloriesPerCan, setWetCaloriesPerCan] = useState<string>('200');
   const [wetPricePerCan, setWetPricePerCan] = useState<string>('2');
   const [wetCanSize, setWetCanSize] = useState<string>('13');
+  const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     dailyCalories: number;
     dryDailyCost: number;
@@ -26,7 +27,7 @@ export default function WetVsDryFoodComparisonClient() {
   } | null>(null);
 
   const compareFoods = () => {
-    const weightNum = parseFloat(weight);
+    const weightNum = parseFloat(petWeight);
     const dryCal = parseFloat(dryCaloriesPerCup);
     const dryPrice = parseFloat(dryPricePerBag);
     const drySize = parseFloat(dryBagSize);
@@ -39,85 +40,85 @@ export default function WetVsDryFoodComparisonClient() {
       return;
     }
 
-    const weightKg = weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
-    const rer = 70 * Math.pow(weightKg, 0.75);
-    const dailyCalories = Math.round(rer * 1.6); // Standard adult maintenance
+    setIsLoading(true);
 
-    // Calculate daily portions needed
-    const dryCupsPerDay = dailyCalories / dryCal;
-    const dryCupsPerBag = drySize; // Assuming bag size is in cups
-    const dryBagsPerDay = dryCupsPerDay / dryCupsPerBag;
-    const dryDailyCost = dryBagsPerDay * dryPrice;
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const weightKg = weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
+      const rer = 70 * Math.pow(weightKg, 0.75);
+      const dailyCalories = Math.round(rer * 1.6); // Standard adult maintenance
 
-    const wetCansPerDay = dailyCalories / wetCal;
-    const wetDailyCost = wetCansPerDay * wetPrice;
+      // Calculate daily portions needed
+      const dryCupsPerDay = dailyCalories / dryCal;
+      const dryCupsPerBag = drySize; // Assuming bag size is in cups
+      const dryBagsPerDay = dryCupsPerDay / dryCupsPerBag;
+      const dryDailyCost = dryBagsPerDay * dryPrice;
 
-    const monthlyDryCost = dryDailyCost * 30;
-    const monthlyWetCost = wetDailyCost * 30;
-    const yearlyDryCost = dryDailyCost * 365;
-    const yearlyWetCost = wetDailyCost * 365;
+      const wetCansPerDay = dailyCalories / wetCal;
+      const wetDailyCost = wetCansPerDay * wetPrice;
 
-    const comparison = [
-      {
-        aspect: 'Cost',
-        dry: `$${dryDailyCost.toFixed(2)}/day ($${monthlyDryCost.toFixed(2)}/month)`,
-        wet: `$${wetDailyCost.toFixed(2)}/day ($${monthlyWetCost.toFixed(2)}/month)`,
-        winner: dryDailyCost < wetDailyCost ? 'Dry' : 'Wet'
-      },
-      {
-        aspect: 'Convenience',
-        dry: 'Easy to store, long shelf life, no refrigeration needed',
-        wet: 'Requires refrigeration after opening, shorter shelf life',
-        winner: 'Dry'
-      },
-      {
-        aspect: 'Hydration',
-        dry: 'Low moisture content (~10%)',
-        wet: 'High moisture content (~75-85%)',
-        winner: 'Wet'
-      },
-      {
-        aspect: 'Dental Health',
-        dry: 'May help reduce tartar buildup through chewing',
-        wet: 'Less effective for dental health',
-        winner: 'Dry'
-      },
-      {
-        aspect: 'Palatability',
-        dry: 'Generally less appealing to picky eaters',
-        wet: 'More appealing, stronger aroma and flavor',
-        winner: 'Wet'
-      },
-      {
-        aspect: 'Nutrition Density',
-        dry: 'More calories per volume, concentrated nutrition',
-        wet: 'Less calories per volume, more volume needed',
-        winner: 'Dry'
-      },
-      {
-        aspect: 'Storage',
-        dry: 'Easy bulk storage, stays fresh longer',
-        wet: 'Requires more space, must use opened cans quickly',
-        winner: 'Dry'
-      },
-      {
-        aspect: 'Best For',
-        dry: 'Active pets, dental health, budget-conscious owners',
-        wet: 'Picky eaters, hydration needs, senior pets, weight management',
-        winner: 'Both'
-      }
-    ];
+      const monthlyDryCost = dryDailyCost * 30;
+      const monthlyWetCost = wetDailyCost * 30;
+      const yearlyDryCost = dryDailyCost * 365;
+      const yearlyWetCost = wetDailyCost * 365;
 
-    setResult({
-      dailyCalories,
-      dryDailyCost,
-      wetDailyCost,
-      monthlyDryCost,
-      monthlyWetCost,
-      yearlyDryCost,
-      yearlyWetCost,
-      comparison,
-    });
+      const comparison = [
+        {
+          aspect: 'Cost',
+          dry: `$${dryDailyCost.toFixed(2)}/day ($${monthlyDryCost.toFixed(2)}/month)`,
+          wet: `$${wetDailyCost.toFixed(2)}/day ($${monthlyWetCost.toFixed(2)}/month)`,
+          winner: dryDailyCost < wetDailyCost ? 'Dry' : 'Wet'
+        },
+        {
+          aspect: 'Convenience',
+          dry: 'Easy to store, long shelf life, no refrigeration needed',
+          wet: 'Requires refrigeration after opening, shorter shelf life',
+          winner: 'Dry'
+        },
+        {
+          aspect: 'Hydration',
+          dry: 'Low moisture content (~10%)',
+          wet: 'High moisture content (~75-85%)',
+          winner: 'Wet'
+        },
+        {
+          aspect: 'Dental Health',
+          dry: 'Helps reduce plaque and tartar buildup',
+          wet: 'Less abrasive, may contribute to dental issues',
+          winner: 'Dry'
+        },
+        {
+          aspect: 'Palatability',
+          dry: 'Less appealing due to lower moisture and fat content',
+          wet: 'More appealing due to higher moisture and fat content',
+          winner: 'Wet'
+        },
+        {
+          aspect: 'Storage',
+          dry: 'Bulk storage possible, less space per calorie',
+          wet: 'Requires more storage space, heavier to handle',
+          winner: 'Dry'
+        },
+        {
+          aspect: 'Best For',
+          dry: 'Active pets, dental health, budget-conscious owners',
+          wet: 'Picky eaters, hydration needs, senior pets, weight management',
+          winner: 'Both'
+        }
+      ];
+
+      setResult({
+        dailyCalories,
+        dryDailyCost,
+        wetDailyCost,
+        monthlyDryCost,
+        monthlyWetCost,
+        yearlyDryCost,
+        yearlyWetCost,
+        comparison,
+      });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (
@@ -177,8 +178,8 @@ export default function WetVsDryFoodComparisonClient() {
                 <div className="flex gap-4">
                   <input
                     type="number"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
+                    value={petWeight}
+                    onChange={(e) => setPetWeight(e.target.value)}
                     placeholder="Enter weight"
                     className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                   />

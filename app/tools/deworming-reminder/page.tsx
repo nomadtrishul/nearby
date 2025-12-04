@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Deworming Reminder Tool | Nearby Pet Care',
+  title: 'Deworming Reminder Tool',
   description: 'Free deworming reminder tool calculates when your pet\'s next deworming is due. Get reminders for puppies, kittens, and adult pets based on age and risk factors.',
   keywords: ['deworming reminder', 'pet deworming schedule', 'puppy deworming', 'kitten deworming', 'deworming calculator', 'parasite prevention', 'pet deworming schedule', 'worm prevention'],
   slug: 'deworming-reminder',
@@ -62,25 +62,27 @@ export default function DewormingReminderPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <DewormingReminderClient />

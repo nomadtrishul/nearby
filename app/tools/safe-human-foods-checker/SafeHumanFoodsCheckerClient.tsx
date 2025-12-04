@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 const safeFoods = {
@@ -48,6 +51,8 @@ const safeFoods = {
 
 export default function SafeHumanFoodsCheckerClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedFood, setSelectedFood] = useState<string | null>(null);
 

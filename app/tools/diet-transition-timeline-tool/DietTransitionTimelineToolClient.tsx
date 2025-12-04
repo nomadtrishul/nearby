@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function DietTransitionTimelineToolClient() {
   const [transitionType, setTransitionType] = useState<string>('new-food');
@@ -11,6 +13,9 @@ export default function DietTransitionTimelineToolClient() {
     timeline: Array<{ day: string; oldFood: string; newFood: string; notes: string }>;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const generateTimeline = () => {
     if (!startDate) {
@@ -18,47 +23,128 @@ export default function DietTransitionTimelineToolClient() {
       return;
     }
 
-    const start = new Date(startDate);
-    const timeline: Array<{ day: string; oldFood: string; newFood: string; notes: string }> = [];
+    setIsLoading(true);
 
-    // Standard 7-day transition
-    const days = [
-      { old: 75, new: 25, day: 1, notes: 'Start with 25% new food, 75% old food' },
-      { old: 75, new: 25, day: 2, notes: 'Continue 25% new food' },
-      { old: 50, new: 50, day: 3, notes: 'Increase to 50% new food' },
-      { old: 50, new: 50, day: 4, notes: 'Continue 50/50 mix' },
-      { old: 25, new: 75, day: 5, notes: 'Increase to 75% new food' },
-      { old: 25, new: 75, day: 6, notes: 'Continue 75% new food' },
-      { old: 0, new: 100, day: 7, notes: '100% new food - transition complete!' },
-    ];
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const start = new Date(startDate);
+      const timeline: Array<{ day: string; oldFood: string; newFood: string; notes: string }> = [];
 
-    days.forEach(({ old, new: newPct, day, notes }) => {
-      const currentDate = new Date(start);
-      currentDate.setDate(start.getDate() + day - 1);
-      timeline.push({
-        day: `Day ${day} (${currentDate.toLocaleDateString()})`,
-        oldFood: `${old}%`,
-        newFood: `${newPct}%`,
-        notes,
+      // Standard 7-day transition
+      const days = [
+        { old: 75, new: 25, day: 1, notes: 'Start with 25% new food, 75% old food' },
+        { old: 75, new: 25, day: 2, notes: 'Continue 25% new food' },
+        { old: 50, new: 50, day: 3, notes: 'Increase to 50% new food' },
+        { old: 50, new: 50, day: 4, notes: 'Continue 50/50 mix' },
+        { old: 25, new: 75, day: 5, notes: 'Increase to 75% new food' },
+        { old: 25, new: 75, day: 6, notes: 'Continue 75% new food' },
+        { old: 0, new: 100, day: 7, notes: '100% new food - transition complete!' },
+      ];
+
+      days.forEach(({ old, new: newPct, day, notes }) => {
+        const currentDate = new Date(start);
+        currentDate.setDate(start.getDate() + day - 1);
+        timeline.push({
+          day: `Day ${day} (${currentDate.toLocaleDateString()})`,
+          oldFood: `${old}%`,
+          newFood: `${newPct}%`,
+          notes,
+        });
       });
-    });
 
-    const recommendations: string[] = [];
-    recommendations.push('Transition over 7-10 days to avoid digestive upset');
-    recommendations.push('Monitor your pet for vomiting, diarrhea, or loss of appetite');
-    recommendations.push('If symptoms occur, slow down the transition or return to previous ratio');
-    recommendations.push('Mix foods thoroughly at each meal');
-    recommendations.push('Maintain consistent meal times during transition');
+      const recommendations: string[] = [];
+      recommendations.push('Transition over 7-10 days to avoid digestive upset');
+      recommendations.push('Monitor your pet for vomiting, diarrhea, or loss of appetite');
+      recommendations.push('If symptoms occur, slow down the transition or return to previous ratio');
+      recommendations.push('Mix foods thoroughly at each meal');
+      recommendations.push('Maintain consistent meal times during transition');
 
-    if (transitionType === 'puppy-to-adult') {
-      recommendations.push('Puppies can transition to adult food around 12-18 months (varies by breed size)');
-    } else if (transitionType === 'senior-diet') {
-      recommendations.push('Senior pets may need slower transition - consider 10-14 days');
-    } else if (transitionType === 'prescription-diet') {
-      recommendations.push('Prescription diets may require veterinary guidance for transition');
+      if (transitionType === 'puppy-to-adult') {
+        recommendations.push('Puppies can transition to adult food around 12-18 months (varies by breed size)');
+      } else if (transitionType === 'senior-diet') {
+        recommendations.push('Senior pets may need slower transition - consider 10-14 days');
+      } else if (transitionType === 'prescription-diet') {
+        recommendations.push('Prescription diets may require veterinary guidance for transition');
+      }
+
+      setResult({ timeline, recommendations });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Diet Transition Timeline - NearbyPetCare.com
+============================================
+
+Transition Type: ${transitionType}
+Start Date: ${startDate}
+
+Timeline:
+${result.timeline.map(t => `${t.day}: Old ${t.oldFood} / New ${t.newFood} - ${t.notes}`).join('\n')}
+
+Recommendations:
+${result.recommendations.map(r => `- ${r}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'diet-transition-timeline.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🍽️ I created a diet transition plan for my pet starting ${startDate}.
+    
+Create your pet's diet transition timeline at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Pet Diet Transition Plan&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    setResult({ timeline, recommendations });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -70,7 +156,7 @@ export default function DietTransitionTimelineToolClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Diet Transition Timeline Tool', href: '/tools/diet-transition-timeline-tool' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Diet Transition Timeline Tool
@@ -83,8 +169,8 @@ export default function DietTransitionTimelineToolClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Diet Transition Timeline Tool - Create a step-by-step timeline for transitioning your pet"
                 width={1200}
                 height={630}
@@ -134,10 +220,43 @@ export default function DietTransitionTimelineToolClient() {
             </div>
           </div>
 
-          {result && (
+          <Loader
+            isLoading={isLoading}
+            message="Generating transition timeline..."
+            size="large"
+          />
+
+          {result && !isLoading && (
             <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Transition Timeline</h2>
-              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Transition Timeline</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Timeline</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share timeline</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden mb-6">
                 <table className="w-full">
                   <thead className="bg-gray-100 dark:bg-gray-700">
@@ -247,4 +366,3 @@ export default function DietTransitionTimelineToolClient() {
     </main>
   );
 }
-

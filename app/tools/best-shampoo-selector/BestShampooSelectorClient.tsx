@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function BestShampooSelectorClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -15,110 +17,203 @@ export default function BestShampooSelectorClient() {
     ingredients: string[];
     warnings: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const selectShampoo = () => {
-    const recommendations: Array<{ type: string; description: string; benefits: string[] }> = [];
-    const ingredients: string[] = [];
-    const warnings: string[] = [];
-    let shampooType = '';
+    setIsLoading(true);
 
-    // Base recommendation
-    if (skinCondition === 'normal' && coatType === 'normal') {
-      shampooType = 'General Purpose Shampoo';
-      recommendations.push({
-        type: 'General Purpose Shampoo',
-        description: 'Mild, pH-balanced shampoo suitable for regular use',
-        benefits: ['Cleans effectively', 'Maintains natural oils', 'Safe for frequent use', 'Suitable for most pets']
-      });
-      ingredients.push('Mild surfactants', 'pH-balanced formula', 'Natural moisturizers');
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const recommendations: Array<{ type: string; description: string; benefits: string[] }> = [];
+      const ingredients: string[] = [];
+      const warnings: string[] = [];
+      let shampooType = '';
+
+      // Base recommendation
+      if (skinCondition === 'normal' && coatType === 'normal') {
+        shampooType = 'General Purpose Shampoo';
+        recommendations.push({
+          type: 'General Purpose Shampoo',
+          description: 'Mild, pH-balanced shampoo suitable for regular use',
+          benefits: ['Cleans effectively', 'Maintains natural oils', 'Safe for frequent use', 'Suitable for most pets']
+        });
+        ingredients.push('Mild surfactants', 'pH-balanced formula', 'Natural moisturizers');
+      }
+
+      // Skin condition-based
+      if (skinCondition === 'sensitive' || skinCondition === 'dry') {
+        shampooType = 'Hypoallergenic/Moisturizing Shampoo';
+        recommendations.push({
+          type: 'Hypoallergenic/Moisturizing Shampoo',
+          description: 'Gentle formula for sensitive or dry skin',
+          benefits: ['Reduces irritation', 'Adds moisture', 'Fragrance-free options', 'Soothes dry skin']
+        });
+        ingredients.push('Oatmeal', 'Aloe vera', 'Chamomile', 'No harsh chemicals', 'Fragrance-free');
+        warnings.push('Avoid shampoos with strong fragrances or harsh detergents');
+      }
+
+      if (skinCondition === 'oily') {
+        recommendations.push({
+          type: 'Clarifying Shampoo',
+          description: 'Deep-cleansing formula for oily coats',
+          benefits: ['Removes excess oil', 'Deep cleans', 'Prevents greasy buildup']
+        });
+        ingredients.push('Tea tree oil', 'Salicylic acid', 'Natural degreasing agents');
+      }
+
+      if (skinCondition === 'itchy' || skinCondition === 'allergies') {
+        recommendations.push({
+          type: 'Medicated/Soothing Shampoo',
+          description: 'Formulated to relieve itching and skin irritation',
+          benefits: ['Reduces itching', 'Soothes irritated skin', 'Anti-inflammatory properties']
+        });
+        ingredients.push('Oatmeal', 'Hydrocortisone (if prescribed)', 'Aloe vera', 'Colloidal silver');
+        warnings.push('Consult veterinarian for severe skin conditions');
+      }
+
+      // Coat type-based
+      if (coatType === 'white' || coatType === 'light') {
+        recommendations.push({
+          type: 'Whitening/Brightening Shampoo',
+          description: 'Enhances white and light-colored coats',
+          benefits: ['Removes yellowing', 'Brightens white coats', 'Prevents staining']
+        });
+        ingredients.push('Optical brighteners', 'Blue or purple tinting agents');
+      }
+
+      if (coatType === 'long' || coatType === 'curly') {
+        recommendations.push({
+          type: 'Conditioning Shampoo',
+          description: 'Adds moisture and prevents matting',
+          benefits: ['Prevents tangles', 'Adds shine', 'Makes brushing easier', 'Reduces static']
+        });
+        ingredients.push('Conditioning agents', 'Silicone derivatives', 'Natural oils');
+      }
+
+      if (coatType === 'double') {
+        recommendations.push({
+          type: 'Deshedding Shampoo',
+          description: 'Helps reduce shedding in double-coated breeds',
+          benefits: ['Reduces shedding', 'Loosens dead undercoat', 'Improves coat health']
+        });
+        ingredients.push('Omega-3 fatty acids', 'Conditioning agents', 'Natural oils');
+      }
+
+      // Age-based
+      if (age === 'puppy' || age === 'kitten') {
+        recommendations.push({
+          type: 'Puppy/Kitten Shampoo',
+          description: 'Extra gentle formula for young pets',
+          benefits: ['Tear-free formula', 'Extra mild', 'Safe for frequent use', 'Suitable for sensitive skin']
+        });
+        ingredients.push('Mild surfactants', 'No harsh chemicals', 'Tear-free formula');
+        warnings.push('Always use puppy/kitten-specific shampoos for young pets');
+      }
+
+      if (age === 'senior') {
+        recommendations.push({
+          type: 'Gentle/Senior Shampoo',
+          description: 'Mild formula for aging skin',
+          benefits: ['Extra gentle', 'Moisturizing', 'Reduces skin irritation']
+        });
+        ingredients.push('Oatmeal', 'Aloe vera', 'Natural moisturizers');
+      }
+
+      // General recommendations
+      warnings.push('Always use pet-specific shampoos - human shampoos can be harmful');
+      warnings.push('Avoid getting shampoo in eyes, ears, or mouth');
+      warnings.push('Rinse thoroughly to prevent skin irritation');
+      warnings.push('Consult veterinarian for persistent skin issues');
+
+      setResult({ shampooType, recommendations, ingredients, warnings });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Best Shampoo Selector - NearbyPetCare.com
+=========================================
+
+Primary Recommendation: ${result.shampooType}
+
+Detailed Recommendations:
+${result.recommendations.map(r => `
+Type: ${r.type}
+Description: ${r.description}
+Benefits:
+${r.benefits.map(b => `- ${b}`).join('\n')}
+`).join('\n')}
+
+Key Ingredients:
+${result.ingredients.map(i => `- ${i}`).join('\n')}
+
+Important Notes:
+${result.warnings.map(w => `- ${w}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'shampoo-recommendation.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🛁 I found the perfect shampoo for my ${petType === 'dog' ? 'Dog' : 'Cat'}!
+    
+Recommendation: ${result.shampooType}
+    
+Find the best shampoo for your pet at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Best Pet Shampoo&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    // Skin condition-based
-    if (skinCondition === 'sensitive' || skinCondition === 'dry') {
-      shampooType = 'Hypoallergenic/Moisturizing Shampoo';
-      recommendations.push({
-        type: 'Hypoallergenic/Moisturizing Shampoo',
-        description: 'Gentle formula for sensitive or dry skin',
-        benefits: ['Reduces irritation', 'Adds moisture', 'Fragrance-free options', 'Soothes dry skin']
-      });
-      ingredients.push('Oatmeal', 'Aloe vera', 'Chamomile', 'No harsh chemicals', 'Fragrance-free');
-      warnings.push('Avoid shampoos with strong fragrances or harsh detergents');
-    }
-
-    if (skinCondition === 'oily') {
-      recommendations.push({
-        type: 'Clarifying Shampoo',
-        description: 'Deep-cleansing formula for oily coats',
-        benefits: ['Removes excess oil', 'Deep cleans', 'Prevents greasy buildup']
-      });
-      ingredients.push('Tea tree oil', 'Salicylic acid', 'Natural degreasing agents');
-    }
-
-    if (skinCondition === 'itchy' || skinCondition === 'allergies') {
-      recommendations.push({
-        type: 'Medicated/Soothing Shampoo',
-        description: 'Formulated to relieve itching and skin irritation',
-        benefits: ['Reduces itching', 'Soothes irritated skin', 'Anti-inflammatory properties']
-      });
-      ingredients.push('Oatmeal', 'Hydrocortisone (if prescribed)', 'Aloe vera', 'Colloidal silver');
-      warnings.push('Consult veterinarian for severe skin conditions');
-    }
-
-    // Coat type-based
-    if (coatType === 'white' || coatType === 'light') {
-      recommendations.push({
-        type: 'Whitening/Brightening Shampoo',
-        description: 'Enhances white and light-colored coats',
-        benefits: ['Removes yellowing', 'Brightens white coats', 'Prevents staining']
-      });
-      ingredients.push('Optical brighteners', 'Blue or purple tinting agents');
-    }
-
-    if (coatType === 'long' || coatType === 'curly') {
-      recommendations.push({
-        type: 'Conditioning Shampoo',
-        description: 'Adds moisture and prevents matting',
-        benefits: ['Prevents tangles', 'Adds shine', 'Makes brushing easier', 'Reduces static']
-      });
-      ingredients.push('Conditioning agents', 'Silicone derivatives', 'Natural oils');
-    }
-
-    if (coatType === 'double') {
-      recommendations.push({
-        type: 'Deshedding Shampoo',
-        description: 'Helps reduce shedding in double-coated breeds',
-        benefits: ['Reduces shedding', 'Loosens dead undercoat', 'Improves coat health']
-      });
-      ingredients.push('Omega-3 fatty acids', 'Conditioning agents', 'Natural oils');
-    }
-
-    // Age-based
-    if (age === 'puppy' || age === 'kitten') {
-      recommendations.push({
-        type: 'Puppy/Kitten Shampoo',
-        description: 'Extra gentle formula for young pets',
-        benefits: ['Tear-free formula', 'Extra mild', 'Safe for frequent use', 'Suitable for sensitive skin']
-      });
-      ingredients.push('Mild surfactants', 'No harsh chemicals', 'Tear-free formula');
-      warnings.push('Always use puppy/kitten-specific shampoos for young pets');
-    }
-
-    if (age === 'senior') {
-      recommendations.push({
-        type: 'Gentle/Senior Shampoo',
-        description: 'Mild formula for aging skin',
-        benefits: ['Extra gentle', 'Moisturizing', 'Reduces skin irritation']
-      });
-      ingredients.push('Oatmeal', 'Aloe vera', 'Natural moisturizers');
-    }
-
-    // General recommendations
-    warnings.push('Always use pet-specific shampoos - human shampoos can be harmful');
-    warnings.push('Avoid getting shampoo in eyes, ears, or mouth');
-    warnings.push('Rinse thoroughly to prevent skin irritation');
-    warnings.push('Consult veterinarian for persistent skin issues');
-
-    setResult({ shampooType, recommendations, ingredients, warnings });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -130,7 +225,7 @@ export default function BestShampooSelectorClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Best Shampoo Selector', href: '/tools/best-shampoo-selector' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Best Shampoo Selector
@@ -143,8 +238,8 @@ export default function BestShampooSelectorClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Best Shampoo Selector - Find the best shampoo for your pet"
                 width={1200}
                 height={630}
@@ -230,10 +325,44 @@ export default function BestShampooSelectorClient() {
             </div>
           </div>
 
-          {result && (
+          <Loader
+            isLoading={isLoading}
+            message="Finding the perfect shampoo..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
             <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Shampoo Recommendations</h2>
-              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Shampoo Recommendations</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Results</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share results</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-4 mb-6">
                 {result.recommendations.map((rec, index) => (
                   <div key={index} className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -347,4 +476,3 @@ export default function BestShampooSelectorClient() {
     </main>
   );
 }
-

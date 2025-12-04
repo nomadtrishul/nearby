@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Calorie Calculator | Nearby Pet Care',
+  title: 'Pet Calorie Calculator',
   description: 'Free pet calorie calculator determines daily calorie needs for dogs and cats. Calculate RER, DER, and get personalized recommendations for weight management.',
   keywords: ['pet calorie calculator', 'dog calorie calculator', 'cat calorie calculator', 'pet calorie needs', 'daily calories for pets', 'pet RER calculator', 'pet DER calculator', 'pet nutrition calculator'],
   slug: 'calorie-calculator',
@@ -63,25 +63,27 @@ export default function CalorieCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
-    featureList: config.features,
+    featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <CalorieCalculatorClient />

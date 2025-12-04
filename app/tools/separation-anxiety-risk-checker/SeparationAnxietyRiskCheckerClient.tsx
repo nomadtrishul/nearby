@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function SeparationAnxietyRiskCheckerClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -17,6 +20,8 @@ export default function SeparationAnxietyRiskCheckerClient() {
     recommendations: string[];
     urgent: boolean;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const allBehaviors = [
     'Destructive behavior when alone',
@@ -61,6 +66,10 @@ export default function SeparationAnxietyRiskCheckerClient() {
   };
 
   const checkRisk = () => {
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     let score = 0;
     const symptoms: string[] = [];
     const recommendations: string[] = [];
@@ -146,6 +155,8 @@ export default function SeparationAnxietyRiskCheckerClient() {
     recommendations.push('Consider leaving background noise (TV, radio) on');
 
     setResult({ riskLevel, score, description, symptoms, recommendations, urgent });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

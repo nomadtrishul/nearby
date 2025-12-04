@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Vaccine Reminder | Nearby Pet Care',
+  title: 'Pet Vaccine Reminder',
   description: 'Set up personalized vaccine reminders for your pets. Track vaccination schedules, get reminders for upcoming vaccines, and export to calendar.',
   keywords: ['pet vaccine reminder', 'vaccination schedule', 'pet vaccine tracker', 'vaccine calendar', 'pet health reminder', 'dog vaccine schedule', 'cat vaccine schedule', 'vaccination reminder tool'],
   slug: 'vaccine-reminder',
@@ -67,25 +67,27 @@ export default function VaccineReminderPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <VaccineReminderClient />

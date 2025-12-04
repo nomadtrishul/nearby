@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function DentalHealthScoreToolClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -16,61 +18,143 @@ export default function DentalHealthScoreToolClient() {
     recommendations: string[];
     urgency: string;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateScore = () => {
-    const breathScore = parseInt(breath);
-    const gumsScore = parseInt(gums);
-    const teethScore = parseInt(teeth);
-    const tartarScore = parseInt(tartar);
-    
-    const totalScore = breathScore + gumsScore + teethScore + tartarScore;
-    const averageScore = totalScore / 4;
-    
-    let status = '';
-    let urgency = '';
-    const recommendations: string[] = [];
+    setIsLoading(true);
 
-    if (averageScore <= 2) {
-      status = 'Excellent';
-      urgency = 'Low';
-      recommendations.push('Excellent dental health! Maintain current routine.');
-      recommendations.push('Continue regular brushing (daily recommended)');
-      recommendations.push('Annual dental checkups');
-      recommendations.push('Consider dental chews and toys');
-    } else if (averageScore <= 3) {
-      status = 'Good';
-      urgency = 'Low';
-      recommendations.push('Good dental health with minor issues');
-      recommendations.push('Increase brushing frequency');
-      recommendations.push('Schedule dental checkup within 6 months');
-      recommendations.push('Consider professional cleaning');
-    } else if (averageScore <= 4) {
-      status = 'Fair';
-      urgency = 'Moderate';
-      recommendations.push('Dental health needs attention');
-      recommendations.push('Schedule veterinary dental exam soon');
-      recommendations.push('Start or increase daily brushing');
-      recommendations.push('Professional cleaning may be needed');
-      recommendations.push('Consider dental diet or treats');
-    } else if (averageScore <= 5) {
-      status = 'Poor';
-      urgency = 'High';
-      recommendations.push('⚠️ Dental health is poor - veterinary attention needed');
-      recommendations.push('Schedule dental exam and cleaning promptly');
-      recommendations.push('May require professional cleaning under anesthesia');
-      recommendations.push('Start daily dental care routine');
-      recommendations.push('May need dental diet or prescription dental care');
-    } else {
-      status = 'Critical';
-      urgency = 'Urgent';
-      recommendations.push('🚨 CRITICAL: Immediate veterinary dental care required');
-      recommendations.push('Schedule dental exam immediately');
-      recommendations.push('Likely needs professional cleaning and possible extractions');
-      recommendations.push('May have dental disease, infection, or pain');
-      recommendations.push('Do not delay - dental issues can affect overall health');
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const breathScore = parseInt(breath);
+      const gumsScore = parseInt(gums);
+      const teethScore = parseInt(teeth);
+      const tartarScore = parseInt(tartar);
+
+      const totalScore = breathScore + gumsScore + teethScore + tartarScore;
+      const averageScore = totalScore / 4;
+
+      let status = '';
+      let urgency = '';
+      const recommendations: string[] = [];
+
+      if (averageScore <= 2) {
+        status = 'Excellent';
+        urgency = 'Low';
+        recommendations.push('Excellent dental health! Maintain current routine.');
+        recommendations.push('Continue regular brushing (daily recommended)');
+        recommendations.push('Annual dental checkups');
+        recommendations.push('Consider dental chews and toys');
+      } else if (averageScore <= 3) {
+        status = 'Good';
+        urgency = 'Low';
+        recommendations.push('Good dental health with minor issues');
+        recommendations.push('Increase brushing frequency');
+        recommendations.push('Schedule dental checkup within 6 months');
+        recommendations.push('Consider professional cleaning');
+      } else if (averageScore <= 4) {
+        status = 'Fair';
+        urgency = 'Moderate';
+        recommendations.push('Dental health needs attention');
+        recommendations.push('Schedule veterinary dental exam soon');
+        recommendations.push('Start or increase daily brushing');
+        recommendations.push('Professional cleaning may be needed');
+        recommendations.push('Consider dental diet or treats');
+      } else if (averageScore <= 5) {
+        status = 'Poor';
+        urgency = 'High';
+        recommendations.push('⚠️ Dental health is poor - veterinary attention needed');
+        recommendations.push('Schedule dental exam and cleaning promptly');
+        recommendations.push('May require professional cleaning under anesthesia');
+        recommendations.push('Start daily dental care routine');
+        recommendations.push('May need dental diet or prescription dental care');
+      } else {
+        status = 'Critical';
+        urgency = 'Urgent';
+        recommendations.push('🚨 CRITICAL: Immediate veterinary dental care required');
+        recommendations.push('Schedule dental exam immediately');
+        recommendations.push('Likely needs professional cleaning and possible extractions');
+        recommendations.push('May have dental disease, infection, or pain');
+        recommendations.push('Do not delay - dental issues can affect overall health');
+      }
+
+      setResult({ score: Math.round(averageScore * 10) / 10, status, recommendations, urgency });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Dental Health Score - NearbyPetCare.com
+=======================================
+
+Score: ${result.score}/5
+Status: ${result.status}
+Urgency: ${result.urgency}
+
+Recommendations:
+${result.recommendations.map(r => `- ${r}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'dental-health-score.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🦷 My Pet's Dental Health Score: ${result.score}/5 (${result.status})
+    
+Check your pet's dental health at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Pet Dental Health Score&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    setResult({ score: Math.round(averageScore * 10) / 10, status, recommendations, urgency });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -82,30 +166,30 @@ export default function DentalHealthScoreToolClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Dental Health Score Tool', href: '/tools/dental-health-score-tool' }
           ]} />
-          
-        <div className="mb-8 sm:mb-10 mt-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-            Pet Dental Health Score Tool – Dog & Cat Dental Assessment
-          </h1>
-          <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-              Use our dental health score tool to rate your dog or cat's breath, gums, teeth, and tartar buildup. The tool calculates a dental health score and provides personalized recommendations to discuss with your veterinarian.
-            </p>
-          </div>
 
-          {/* Tool Screenshot/Image */}
-          <div className="mb-8">
-            <Image
-              src="/og-image.png"
-              alt="Pet Dental Health Score Tool - Assess dog and cat dental health"
-              width={1200}
-              height={630}
-              className="w-full rounded-lg shadow-lg"
-              loading="lazy"
-              priority={false}
-            />
+          <div className="mb-8 sm:mb-10 mt-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Pet Dental Health Score Tool – Dog & Cat Dental Assessment
+            </h1>
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-8">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
+                Use our dental health score tool to rate your dog or cat's breath, gums, teeth, and tartar buildup. The tool calculates a dental health score and provides personalized recommendations to discuss with your veterinarian.
+              </p>
+            </div>
+
+            {/* Tool Screenshot/Image */}
+            <div className="mb-8">
+              <Image
+                src="/og-image.png"
+                alt="Pet Dental Health Score Tool - Assess dog and cat dental health"
+                width={1200}
+                height={630}
+                className="w-full rounded-lg shadow-lg"
+                loading="lazy"
+                priority={false}
+              />
+            </div>
           </div>
-        </div>
 
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 sm:p-8 mb-8">
             <div className="space-y-6">
@@ -125,7 +209,7 @@ export default function DentalHealthScoreToolClient() {
 
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
                 <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">Rate Each Aspect (1 = Excellent, 5 = Poor)</h3>
-                
+
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -214,29 +298,61 @@ export default function DentalHealthScoreToolClient() {
             </div>
           </div>
 
-          {result && (
+          <Loader
+            isLoading={isLoading}
+            message="Analyzing dental health..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
             <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Dental Health Assessment</h2>
-              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Dental Health Assessment</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Results</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share results</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <div className="text-center">
                   <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Dental Health Score</div>
-                  <div className={`text-5xl font-bold mb-2 ${
-                    result.score <= 2 ? 'text-green-600 dark:text-green-400' :
-                    result.score <= 3 ? 'text-blue-600 dark:text-blue-400' :
-                    result.score <= 4 ? 'text-yellow-600 dark:text-yellow-400' :
-                    result.score <= 5 ? 'text-orange-600 dark:text-orange-400' :
-                    'text-red-600 dark:text-red-400'
-                  }`}>
+                  <div className={`text-5xl font-bold mb-2 ${result.score <= 2 ? 'text-green-600 dark:text-green-400' :
+                      result.score <= 3 ? 'text-blue-600 dark:text-blue-400' :
+                        result.score <= 4 ? 'text-yellow-600 dark:text-yellow-400' :
+                          result.score <= 5 ? 'text-orange-600 dark:text-orange-400' :
+                            'text-red-600 dark:text-red-400'
+                    }`}>
                     {result.score}/5
                   </div>
-                  <div className={`text-xl font-semibold ${
-                    result.score <= 2 ? 'text-green-600 dark:text-green-400' :
-                    result.score <= 3 ? 'text-blue-600 dark:text-blue-400' :
-                    result.score <= 4 ? 'text-yellow-600 dark:text-yellow-400' :
-                    result.score <= 5 ? 'text-orange-600 dark:text-orange-400' :
-                    'text-red-600 dark:text-red-400'
-                  }`}>
+                  <div className={`text-xl font-semibold ${result.score <= 2 ? 'text-green-600 dark:text-green-400' :
+                      result.score <= 3 ? 'text-blue-600 dark:text-blue-400' :
+                        result.score <= 4 ? 'text-yellow-600 dark:text-yellow-400' :
+                          result.score <= 5 ? 'text-orange-600 dark:text-orange-400' :
+                            'text-red-600 dark:text-red-400'
+                    }`}>
                     {result.status}
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Urgency: {result.urgency}</div>
@@ -329,4 +445,3 @@ export default function DentalHealthScoreToolClient() {
     </main>
   );
 }
-

@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Exercise Calculator | Nearby Pet Care',
+  title: 'Pet Exercise Calculator',
   description: 'Free pet exercise calculator determines daily exercise needs for dogs and cats. Get breed-specific recommendations and personalized activity plans.',
   keywords: ['pet exercise calculator', 'dog exercise calculator', 'cat exercise calculator', 'pet exercise needs', 'daily exercise for pets', 'pet activity calculator', 'exercise recommendations', 'pet fitness'],
   slug: 'exercise-calculator',
@@ -62,25 +62,27 @@ export default function ExerciseCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <ExerciseCalculatorClient />

@@ -4,6 +4,14 @@ import DogBreedHero from '@/components/DogBreedHero';
 import BreedsSidebar from '@/components/BreedsSidebar';
 import { generateSEOMetadata } from '@/lib/seo-utils';
 
+// Breed metadata for use in listing pages
+export const breedMetadata = {
+  name: 'German Shepherd',
+  slug: 'german-shepherd',
+  imageUrl: 'https://res.cloudinary.com/dqlkmna4i/image/upload/v1764434547/german-shepherd_odmuhf.jpg',
+  description: 'Intelligent • Loyal • Working dogs • Courageous • Protective',
+};
+
 export const metadata: Metadata = generateSEOMetadata({
   title: 'German Shepherd Breed Guide - Complete Care & Training Information',
   description: 'Comprehensive guide to German Shepherd dogs based on AKC standards. Learn about characteristics, temperament, exercise needs, nutrition, grooming, health screening, and training requirements.',
@@ -27,6 +35,7 @@ export default function GermanShepherdPage() {
         description="German Shepherds are renowned for their intelligence, loyalty, and versatility. Originally bred as herding dogs, they excel as working dogs in police, military, search-and-rescue, and service roles. With proper training and socialization, they make excellent family companions and steadfast guardians."
         emoji="🐕"
         slug="german-shepherd"
+        imageUrl="https://res.cloudinary.com/dqlkmna4i/image/upload/v1764434547/german-shepherd_odmuhf.jpg"
       />
       <article className="py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-7xl">

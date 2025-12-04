@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from '@/components/Loader';
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from 'lucide-react';
 
 export default function FurSheddingLevelCheckerClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -17,121 +19,208 @@ export default function FurSheddingLevelCheckerClient() {
     management: string[];
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const checkSheddingLevel = () => {
-    let level = '';
-    let description = '';
-    const factors: Array<{ factor: string; impact: string }> = [];
-    const management: string[] = [];
-    const recommendations: string[] = [];
+    setIsLoading(true);
 
-    // Determine base shedding level
-    let sheddingScore = 0;
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      let level = '';
+      let description = '';
+      const factors: Array<{ factor: string; impact: string }> = [];
+      const management: string[] = [];
+      const recommendations: string[] = [];
 
-    // Coat type factor
-    if (coatType === 'short' || coatType === 'smooth') {
-      sheddingScore += 1;
-      factors.push({ factor: 'Coat Type', impact: 'Short coats typically shed moderately' });
-    } else if (coatType === 'medium') {
-      sheddingScore += 2;
-      factors.push({ factor: 'Coat Type', impact: 'Medium coats shed moderately to heavily' });
-    } else if (coatType === 'double') {
-      sheddingScore += 4;
-      factors.push({ factor: 'Coat Type', impact: 'Double coats shed heavily, especially during seasonal changes' });
-    } else if (coatType === 'long') {
-      sheddingScore += 3;
-      factors.push({ factor: 'Coat Type', impact: 'Long coats can shed significantly' });
-    } else if (coatType === 'curly') {
-      sheddingScore += 1;
-      factors.push({ factor: 'Coat Type', impact: 'Curly coats typically shed less but require regular grooming' });
-    }
+      // Determine base shedding level
+      let sheddingScore = 0;
 
-    // Shedding frequency
-    if (sheddingFrequency === 'year-round') {
-      sheddingScore += 2;
-      factors.push({ factor: 'Shedding Frequency', impact: 'Year-round shedding indicates continuous hair loss' });
-    } else if (sheddingFrequency === 'seasonal') {
-      sheddingScore += 1;
-      factors.push({ factor: 'Shedding Frequency', impact: 'Seasonal shedding is normal, especially in spring and fall' });
-    } else if (sheddingFrequency === 'minimal') {
-      sheddingScore += 0;
-      factors.push({ factor: 'Shedding Frequency', impact: 'Minimal shedding is typical for low-shedding breeds' });
-    }
+      // Coat type factor
+      if (coatType === 'short' || coatType === 'smooth') {
+        sheddingScore += 1;
+        factors.push({ factor: 'Coat Type', impact: 'Short coats typically shed moderately' });
+      } else if (coatType === 'medium') {
+        sheddingScore += 2;
+        factors.push({ factor: 'Coat Type', impact: 'Medium coats shed moderately to heavily' });
+      } else if (coatType === 'double') {
+        sheddingScore += 4;
+        factors.push({ factor: 'Coat Type', impact: 'Double coats shed heavily, especially during seasonal changes' });
+      } else if (coatType === 'long') {
+        sheddingScore += 3;
+        factors.push({ factor: 'Coat Type', impact: 'Long coats can shed significantly' });
+      } else if (coatType === 'curly') {
+        sheddingScore += 1;
+        factors.push({ factor: 'Coat Type', impact: 'Curly coats typically shed less but require regular grooming' });
+      }
 
-    // Shedding amount
-    if (sheddingAmount === 'heavy') {
-      sheddingScore += 3;
-      factors.push({ factor: 'Shedding Amount', impact: 'Heavy shedding requires frequent grooming and cleaning' });
-    } else if (sheddingAmount === 'moderate') {
-      sheddingScore += 2;
-      factors.push({ factor: 'Shedding Amount', impact: 'Moderate shedding is manageable with regular grooming' });
-    } else if (sheddingAmount === 'light') {
-      sheddingScore += 1;
-      factors.push({ factor: 'Shedding Amount', impact: 'Light shedding is typical for low-shedding breeds' });
-    }
+      // Shedding frequency
+      if (sheddingFrequency === 'year-round') {
+        sheddingScore += 2;
+        factors.push({ factor: 'Shedding Frequency', impact: 'Year-round shedding indicates continuous hair loss' });
+      } else if (sheddingFrequency === 'seasonal') {
+        sheddingScore += 1;
+        factors.push({ factor: 'Shedding Frequency', impact: 'Seasonal shedding is normal, especially in spring and fall' });
+      } else if (sheddingFrequency === 'minimal') {
+        sheddingScore += 0;
+        factors.push({ factor: 'Shedding Frequency', impact: 'Minimal shedding is typical for low-shedding breeds' });
+      }
 
-    // Season factor
-    if (season === 'spring' || season === 'fall') {
-      sheddingScore += 1;
-      factors.push({ factor: 'Season', impact: 'Spring and fall are peak shedding seasons for many pets' });
-    }
+      // Shedding amount
+      if (sheddingAmount === 'heavy') {
+        sheddingScore += 3;
+        factors.push({ factor: 'Shedding Amount', impact: 'Heavy shedding requires frequent grooming and cleaning' });
+      } else if (sheddingAmount === 'moderate') {
+        sheddingScore += 2;
+        factors.push({ factor: 'Shedding Amount', impact: 'Moderate shedding is manageable with regular grooming' });
+      } else if (sheddingAmount === 'light') {
+        sheddingScore += 1;
+        factors.push({ factor: 'Shedding Amount', impact: 'Light shedding is typical for low-shedding breeds' });
+      }
 
-    // Determine level
-    if (sheddingScore <= 2) {
-      level = 'Low Shedding';
-      description = 'Your pet has minimal to low shedding. This is typical for breeds with single coats, curly coats, or hairless breeds.';
-      management.push('Weekly brushing is usually sufficient');
-      management.push('Vacuuming 1-2 times per week');
-      management.push('Minimal hair on furniture and clothing');
-    } else if (sheddingScore <= 4) {
-      level = 'Moderate Shedding';
-      description = 'Your pet has moderate shedding. Regular grooming and cleaning will help manage the hair.';
-      management.push('Brush 2-3 times per week');
-      management.push('Vacuuming 2-3 times per week');
-      management.push('Use lint rollers for clothing and furniture');
-      management.push('Consider deshedding tools during peak seasons');
-    } else if (sheddingScore <= 6) {
-      level = 'Heavy Shedding';
-      description = 'Your pet has heavy shedding. This requires frequent grooming and cleaning to manage.';
-      management.push('Brush daily, especially during shedding seasons');
-      management.push('Use deshedding tools (undercoat rake, Furminator)');
-      management.push('Vacuuming daily or every other day');
-      management.push('Consider professional deshedding treatments');
-      management.push('Use furniture covers and lint rollers frequently');
-    } else {
-      level = 'Very Heavy Shedding';
-      description = 'Your pet has very heavy shedding. This requires intensive grooming and cleaning management.';
-      management.push('Brush daily with deshedding tools');
-      management.push('Professional grooming every 4-6 weeks');
-      management.push('Daily vacuuming recommended');
-      management.push('Use air purifiers to reduce airborne hair');
-      management.push('Furniture covers and frequent lint rolling');
-      management.push('Consider deshedding shampoos and treatments');
-    }
+      // Season factor
+      if (season === 'spring' || season === 'fall') {
+        sheddingScore += 1;
+        factors.push({ factor: 'Season', impact: 'Spring and fall are peak shedding seasons for many pets' });
+      }
 
-    // General recommendations
-    recommendations.push('Regular brushing is the most effective way to manage shedding');
-    recommendations.push('Use appropriate tools: slicker brushes for most coats, undercoat rakes for double coats');
-    recommendations.push('Bathing can help remove loose hair, but don\'t over-bathe');
-    recommendations.push('A healthy diet with omega-3 fatty acids can improve coat health and reduce excessive shedding');
-    recommendations.push('Ensure your pet is well-hydrated');
+      // Determine level
+      if (sheddingScore <= 2) {
+        level = 'Low Shedding';
+        description = 'Your pet has minimal to low shedding. This is typical for breeds with single coats, curly coats, or hairless breeds.';
+        management.push('Weekly brushing is usually sufficient');
+        management.push('Vacuuming 1-2 times per week');
+        management.push('Minimal hair on furniture and clothing');
+      } else if (sheddingScore <= 4) {
+        level = 'Moderate Shedding';
+        description = 'Your pet has moderate shedding. Regular grooming and cleaning will help manage the hair.';
+        management.push('Brush 2-3 times per week');
+        management.push('Vacuuming 2-3 times per week');
+        management.push('Use lint rollers for clothing and furniture');
+        management.push('Consider deshedding tools during peak seasons');
+      } else if (sheddingScore <= 6) {
+        level = 'Heavy Shedding';
+        description = 'Your pet has heavy shedding. This requires frequent grooming and cleaning to manage.';
+        management.push('Brush daily, especially during shedding seasons');
+        management.push('Use deshedding tools (undercoat rake, Furminator)');
+        management.push('Vacuuming daily or every other day');
+        management.push('Consider professional deshedding treatments');
+        management.push('Use furniture covers and lint rollers frequently');
+      } else {
+        level = 'Very Heavy Shedding';
+        description = 'Your pet has very heavy shedding. This requires intensive grooming and cleaning management.';
+        management.push('Brush daily with deshedding tools');
+        management.push('Professional grooming every 4-6 weeks');
+        management.push('Daily vacuuming recommended');
+        management.push('Use air purifiers to reduce airborne hair');
+        management.push('Furniture covers and frequent lint rolling');
+        management.push('Consider deshedding shampoos and treatments');
+      }
+
+      // General recommendations
+      recommendations.push('Regular brushing is the most effective way to manage shedding');
+      recommendations.push('Use appropriate tools: slicker brushes for most coats, undercoat rakes for double coats');
+      recommendations.push('Bathing can help remove loose hair, but don\'t over-bathe');
+      recommendations.push('A healthy diet with omega-3 fatty acids can improve coat health and reduce excessive shedding');
+      recommendations.push('Ensure your pet is well-hydrated');
+
+      if (coatType === 'double') {
+        recommendations.push('Double-coated breeds benefit from professional deshedding treatments');
+        recommendations.push('Never shave double-coated breeds - it can damage the coat');
+      }
+
+      if (sheddingFrequency === 'year-round' && sheddingAmount === 'heavy') {
+        recommendations.push('Year-round heavy shedding may indicate health issues - consult your veterinarian');
+        recommendations.push('Check for skin conditions, allergies, or nutritional deficiencies');
+      }
+
+      if (season === 'spring' || season === 'fall') {
+        recommendations.push('Expect increased shedding during seasonal transitions');
+        recommendations.push('Increase grooming frequency during peak shedding seasons');
+      }
+
+      setResult({ level, description, factors, management, recommendations });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Fur Shedding Level Assessment - NearbyPetCare.com
+=================================================
+
+Shedding Level: ${result.level}
+Description: ${result.description}
+
+Factors Considered:
+${result.factors.map(f => `- ${f.factor}: ${f.impact}`).join('\n')}
+
+Management Strategies:
+${result.management.map(m => `- ${m}`).join('\n')}
+
+Recommendations:
+${result.recommendations.map(r => `- ${r}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'shedding-level-assessment.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🐾 My pet's shedding level: ${result.level}.
     
-    if (coatType === 'double') {
-      recommendations.push('Double-coated breeds benefit from professional deshedding treatments');
-      recommendations.push('Never shave double-coated breeds - it can damage the coat');
+Get your pet's shedding assessment at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Pet Shedding Level&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    if (sheddingFrequency === 'year-round' && sheddingAmount === 'heavy') {
-      recommendations.push('Year-round heavy shedding may indicate health issues - consult your veterinarian');
-      recommendations.push('Check for skin conditions, allergies, or nutritional deficiencies');
-    }
-
-    if (season === 'spring' || season === 'fall') {
-      recommendations.push('Expect increased shedding during seasonal transitions');
-      recommendations.push('Increase grooming frequency during peak shedding seasons');
-    }
-
-    setResult({ level, description, factors, management, recommendations });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -143,7 +232,7 @@ export default function FurSheddingLevelCheckerClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Fur Shedding Level Checker', href: '/tools/fur-shedding-level-checker' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Fur Shedding Level Checker
@@ -156,8 +245,8 @@ export default function FurSheddingLevelCheckerClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Fur Shedding Level Checker - Assess your pet's shedding level"
                 width={1200}
                 height={630}
@@ -256,10 +345,44 @@ export default function FurSheddingLevelCheckerClient() {
             </div>
           </div>
 
-          {result && (
+          <Loader
+            isLoading={isLoading}
+            message="Analyzing shedding level..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
             <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Shedding Level Assessment</h2>
-              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Shedding Level Assessment</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Assessment</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share assessment</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <div className="text-center">
                   <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Shedding Level</div>
@@ -378,4 +501,3 @@ export default function FurSheddingLevelCheckerClient() {
     </main>
   );
 }
-

@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function CoatTypeIdentificationToolClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -14,6 +16,9 @@ export default function CoatTypeIdentificationToolClient() {
     tools: string[];
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const allCharacteristics = [
     'Very short, smooth hair',
@@ -47,100 +52,186 @@ export default function CoatTypeIdentificationToolClient() {
       return;
     }
 
-    let coatType = '';
-    let description = '';
-    const groomingNeeds: string[] = [];
-    const tools: string[] = [];
-    const recommendations: string[] = [];
+    setIsLoading(true);
 
-    // Determine coat type based on characteristics
-    if (characteristics.includes('Very short, smooth hair')) {
-      coatType = 'Short/Smooth Coat';
-      description = 'Short, smooth, close-lying hair that requires minimal grooming. Common in breeds like Beagles, Boxers, and Dobermans.';
-      groomingNeeds.push('Weekly brushing with soft brush or grooming mitt');
-      groomingNeeds.push('Bathing every 4-8 weeks');
-      groomingNeeds.push('Minimal trimming needed');
-      tools.push('Soft bristle brush', 'Grooming mitt', 'Rubber curry brush');
-      recommendations.push('Short coats are low-maintenance but still benefit from regular brushing');
-      recommendations.push('Use a soft brush to avoid skin irritation');
-    } else if (characteristics.includes('Long, flowing hair') || characteristics.includes('Thick, dense coat')) {
-      coatType = 'Long Coat';
-      description = 'Long, flowing hair that requires regular maintenance to prevent matting. Common in breeds like Afghan Hounds, Shih Tzus, and Persians.';
-      groomingNeeds.push('Daily brushing with slicker brush and comb');
-      groomingNeeds.push('Bathing every 3-4 weeks');
-      groomingNeeds.push('Regular trimming and professional grooming');
-      groomingNeeds.push('Check for mats daily');
-      tools.push('Slicker brush', 'Wide-tooth comb', 'Pin brush', 'Detangling spray');
-      recommendations.push('Long coats require daily attention to prevent painful matting');
-      recommendations.push('Start grooming routines early to get pets comfortable');
-      recommendations.push('Consider professional grooming every 4-6 weeks');
-    } else if (characteristics.includes('Double coat (soft undercoat + guard hairs)')) {
-      coatType = 'Double Coat';
-      description = 'Two-layer coat with a soft, dense undercoat and longer guard hairs. Common in breeds like Golden Retrievers, Huskies, and German Shepherds.';
-      groomingNeeds.push('Daily brushing, especially during shedding season');
-      groomingNeeds.push('Bathing every 4-6 weeks');
-      groomingNeeds.push('Undercoat raking during heavy shedding');
-      groomingNeeds.push('Professional de-shedding treatments');
-      tools.push('Undercoat rake', 'Slicker brush', 'Deshedding tool', 'Furminator');
-      recommendations.push('Double coats shed heavily, especially seasonally');
-      recommendations.push('Regular brushing prevents mats and reduces shedding');
-      recommendations.push('Avoid shaving double coats - it can damage the coat');
-    } else if (characteristics.includes('Curly or wavy hair')) {
-      coatType = 'Curly Coat';
-      description = 'Tightly curled or wavy hair that requires special care. Common in breeds like Poodles, Bichon Frises, and Curly-Coated Retrievers.';
-      groomingNeeds.push('Brushing every 1-2 days with pin brush');
-      groomingNeeds.push('Bathing every 4-6 weeks with appropriate shampoo');
-      groomingNeeds.push('Regular trimming and professional grooming');
-      groomingNeeds.push('Prevent matting with regular maintenance');
-      tools.push('Pin brush', 'Wide-tooth comb', 'Slicker brush', 'Detangling spray');
-      recommendations.push('Curly coats mat easily and need frequent attention');
-      recommendations.push('Professional grooming every 4-6 weeks recommended');
-      recommendations.push('Use conditioner to maintain curl pattern');
-    } else if (characteristics.includes('Wiry, coarse hair')) {
-      coatType = 'Wiry Coat';
-      description = 'Coarse, wiry hair that may require hand-stripping. Common in breeds like Terriers, Schnauzers, and Wirehaired Pointers.';
-      groomingNeeds.push('Brushing 2-3 times per week');
-      groomingNeeds.push('Bathing every 4-6 weeks');
-      groomingNeeds.push('Hand-stripping or clipping (breed-dependent)');
-      groomingNeeds.push('Regular trimming');
-      tools.push('Slicker brush', 'Stripping knife (for hand-stripping)', 'Clippers');
-      recommendations.push('Wiry coats may need hand-stripping for show dogs');
-      recommendations.push('Clipping is easier but may soften the coat texture');
-      recommendations.push('Consult a professional groomer familiar with wiry coats');
-    } else if (characteristics.includes('Medium length hair')) {
-      coatType = 'Medium Coat';
-      description = 'Medium-length hair that requires moderate grooming. Common in many mixed breeds and breeds like Cocker Spaniels and Border Collies.';
-      groomingNeeds.push('Brushing 2-3 times per week');
-      groomingNeeds.push('Bathing every 4-6 weeks');
-      groomingNeeds.push('Regular trimming as needed');
-      tools.push('Slicker brush', 'Comb', 'Pin brush');
-      recommendations.push('Medium coats are moderately maintenance');
-      recommendations.push('Regular brushing prevents matting and reduces shedding');
-    } else {
-      coatType = 'Mixed or Unidentified Coat';
-      description = 'Based on the selected characteristics, your pet may have a mixed coat type or unique characteristics.';
-      groomingNeeds.push('Regular brushing appropriate for hair length');
-      groomingNeeds.push('Bathing as needed (when dirty or smelly)');
-      groomingNeeds.push('Monitor for mats and skin issues');
-      tools.push('Appropriate brush for hair length', 'Comb');
-      recommendations.push('Consult a professional groomer or veterinarian for specific recommendations');
-      recommendations.push('Observe your pet\'s coat and adjust grooming routine accordingly');
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      let coatType = '';
+      let description = '';
+      const groomingNeeds: string[] = [];
+      const tools: string[] = [];
+      const recommendations: string[] = [];
+
+      // Determine coat type based on characteristics
+      if (characteristics.includes('Very short, smooth hair')) {
+        coatType = 'Short/Smooth Coat';
+        description = 'Short, smooth, close-lying hair that requires minimal grooming. Common in breeds like Beagles, Boxers, and Dobermans.';
+        groomingNeeds.push('Weekly brushing with soft brush or grooming mitt');
+        groomingNeeds.push('Bathing every 4-8 weeks');
+        groomingNeeds.push('Minimal trimming needed');
+        tools.push('Soft bristle brush', 'Grooming mitt', 'Rubber curry brush');
+        recommendations.push('Short coats are low-maintenance but still benefit from regular brushing');
+        recommendations.push('Use a soft brush to avoid skin irritation');
+      } else if (characteristics.includes('Long, flowing hair') || characteristics.includes('Thick, dense coat')) {
+        coatType = 'Long Coat';
+        description = 'Long, flowing hair that requires regular maintenance to prevent matting. Common in breeds like Afghan Hounds, Shih Tzus, and Persians.';
+        groomingNeeds.push('Daily brushing with slicker brush and comb');
+        groomingNeeds.push('Bathing every 3-4 weeks');
+        groomingNeeds.push('Regular trimming and professional grooming');
+        groomingNeeds.push('Check for mats daily');
+        tools.push('Slicker brush', 'Wide-tooth comb', 'Pin brush', 'Detangling spray');
+        recommendations.push('Long coats require daily attention to prevent painful matting');
+        recommendations.push('Start grooming routines early to get pets comfortable');
+        recommendations.push('Consider professional grooming every 4-6 weeks');
+      } else if (characteristics.includes('Double coat (soft undercoat + guard hairs)')) {
+        coatType = 'Double Coat';
+        description = 'Two-layer coat with a soft, dense undercoat and longer guard hairs. Common in breeds like Golden Retrievers, Huskies, and German Shepherds.';
+        groomingNeeds.push('Daily brushing, especially during shedding season');
+        groomingNeeds.push('Bathing every 4-6 weeks');
+        groomingNeeds.push('Undercoat raking during heavy shedding');
+        groomingNeeds.push('Professional de-shedding treatments');
+        tools.push('Undercoat rake', 'Slicker brush', 'Deshedding tool', 'Furminator');
+        recommendations.push('Double coats shed heavily, especially seasonally');
+        recommendations.push('Regular brushing prevents mats and reduces shedding');
+        recommendations.push('Avoid shaving double coats - it can damage the coat');
+      } else if (characteristics.includes('Curly or wavy hair')) {
+        coatType = 'Curly Coat';
+        description = 'Tightly curled or wavy hair that requires special care. Common in breeds like Poodles, Bichon Frises, and Curly-Coated Retrievers.';
+        groomingNeeds.push('Brushing every 1-2 days with pin brush');
+        groomingNeeds.push('Bathing every 4-6 weeks with appropriate shampoo');
+        groomingNeeds.push('Regular trimming and professional grooming');
+        groomingNeeds.push('Prevent matting with regular maintenance');
+        tools.push('Pin brush', 'Wide-tooth comb', 'Slicker brush', 'Detangling spray');
+        recommendations.push('Curly coats mat easily and need frequent attention');
+        recommendations.push('Professional grooming every 4-6 weeks recommended');
+        recommendations.push('Use conditioner to maintain curl pattern');
+      } else if (characteristics.includes('Wiry, coarse hair')) {
+        coatType = 'Wiry Coat';
+        description = 'Coarse, wiry hair that may require hand-stripping. Common in breeds like Terriers, Schnauzers, and Wirehaired Pointers.';
+        groomingNeeds.push('Brushing 2-3 times per week');
+        groomingNeeds.push('Bathing every 4-6 weeks');
+        groomingNeeds.push('Hand-stripping or clipping (breed-dependent)');
+        groomingNeeds.push('Regular trimming');
+        tools.push('Slicker brush', 'Stripping knife (for hand-stripping)', 'Clippers');
+        recommendations.push('Wiry coats may need hand-stripping for show dogs');
+        recommendations.push('Clipping is easier but may soften the coat texture');
+        recommendations.push('Consult a professional groomer familiar with wiry coats');
+      } else if (characteristics.includes('Medium length hair')) {
+        coatType = 'Medium Coat';
+        description = 'Medium-length hair that requires moderate grooming. Common in many mixed breeds and breeds like Cocker Spaniels and Border Collies.';
+        groomingNeeds.push('Brushing 2-3 times per week');
+        groomingNeeds.push('Bathing every 4-6 weeks');
+        groomingNeeds.push('Regular trimming as needed');
+        tools.push('Slicker brush', 'Comb', 'Pin brush');
+        recommendations.push('Medium coats are moderately maintenance');
+        recommendations.push('Regular brushing prevents matting and reduces shedding');
+      } else {
+        coatType = 'Mixed or Unidentified Coat';
+        description = 'Based on the selected characteristics, your pet may have a mixed coat type or unique characteristics.';
+        groomingNeeds.push('Regular brushing appropriate for hair length');
+        groomingNeeds.push('Bathing as needed (when dirty or smelly)');
+        groomingNeeds.push('Monitor for mats and skin issues');
+        tools.push('Appropriate brush for hair length', 'Comb');
+        recommendations.push('Consult a professional groomer or veterinarian for specific recommendations');
+        recommendations.push('Observe your pet\'s coat and adjust grooming routine accordingly');
+      }
+
+      // Additional recommendations based on other characteristics
+      if (characteristics.includes('Sheds heavily')) {
+        recommendations.push('Heavy shedding may indicate seasonal coat changes or health issues');
+        recommendations.push('Increase brushing frequency during heavy shedding periods');
+        recommendations.push('Consider deshedding tools and professional treatments');
+      }
+
+      if (characteristics.includes('Oily or greasy feel')) {
+        recommendations.push('Oily coat may need more frequent bathing');
+        recommendations.push('Use appropriate shampoo for oily coats');
+        recommendations.push('Consult veterinarian if excessive oiliness persists');
+      }
+
+      setResult({ coatType, description, groomingNeeds, tools, recommendations });
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const downloadPDF = () => {
+    if (!result) return;
+    const content = `
+Coat Type Identification - NearbyPetCare.com
+============================================
+
+Identified Coat Type: ${result.coatType}
+
+Description:
+${result.description}
+
+Grooming Needs:
+${result.groomingNeeds.map(n => `- ${n}`).join('\n')}
+
+Recommended Tools:
+${result.tools.map(t => `- ${t}`).join('\n')}
+
+Recommendations:
+${result.recommendations.map(r => `- ${r}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'coat-type-results.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+
+    const url = window.location.href;
+    const shareText = `🐕 My Pet's Coat Type: ${result.coatType}
+    
+Identify your pet's coat type and get grooming tips at nearbypetcare.com!`;
+
+    let shareUrl = '';
+    switch (platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=Pet Coat Type Identification&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
     }
 
-    // Additional recommendations based on other characteristics
-    if (characteristics.includes('Sheds heavily')) {
-      recommendations.push('Heavy shedding may indicate seasonal coat changes or health issues');
-      recommendations.push('Increase brushing frequency during heavy shedding periods');
-      recommendations.push('Consider deshedding tools and professional treatments');
-    }
-
-    if (characteristics.includes('Oily or greasy feel')) {
-      recommendations.push('Oily coat may need more frequent bathing');
-      recommendations.push('Use appropriate shampoo for oily coats');
-      recommendations.push('Consult veterinarian if excessive oiliness persists');
-    }
-
-    setResult({ coatType, description, groomingNeeds, tools, recommendations });
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
   };
 
   return (
@@ -152,7 +243,7 @@ export default function CoatTypeIdentificationToolClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Coat Type Identification Tool', href: '/tools/coat-type-identification-tool' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Coat Type Identification Tool
@@ -165,8 +256,8 @@ export default function CoatTypeIdentificationToolClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Coat Type Identification Tool - Identify your pet's coat type"
                 width={1200}
                 height={630}
@@ -205,11 +296,10 @@ export default function CoatTypeIdentificationToolClient() {
                     <button
                       key={index}
                       onClick={() => toggleCharacteristic(char)}
-                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${
-                        characteristics.includes(char)
+                      className={`p-2 text-left rounded-lg border-2 text-sm transition-colors ${characteristics.includes(char)
                           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       {char}
                     </button>
@@ -227,10 +317,44 @@ export default function CoatTypeIdentificationToolClient() {
             </div>
           </div>
 
-          {result && (
+          <Loader
+            isLoading={isLoading}
+            message="Analyzing coat characteristics..."
+            petType={petType}
+            size="large"
+          />
+
+          {result && !isLoading && (
             <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Coat Type Identification</h2>
-              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Coat Type Identification</h2>
+
+                <div className="flex flex-col gap-2 w-full sm:w-auto">
+                  <button
+                    onClick={downloadPDF}
+                    className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download Results</span>
+                  </button>
+
+                  <div className="flex flex-col items-center gap-2">
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share results</p>
+                    <div className="flex justify-center gap-2">
+                      <button onClick={() => shareOnSocial('twitter')} className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors" title="Share on X"><X className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('facebook')} className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Facebook"><Facebook className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('instagram')} className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors" title="Share on Instagram"><Instagram className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('whatsapp')} className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors" title="Share on WhatsApp"><MessageCircle className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('telegram')} className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors" title="Share on Telegram"><Send className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('linkedin')} className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors" title="Share on LinkedIn"><Linkedin className="w-5 h-5" /></button>
+                      <button onClick={() => shareOnSocial('copy')} className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors" title="Copy Link">
+                        {copiedToClipboard ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
                 <h3 className="font-semibold text-lg text-gray-900 dark:text-white mb-2">{result.coatType}</h3>
                 <p className="text-sm text-gray-700 dark:text-gray-300">{result.description}</p>
@@ -304,7 +428,7 @@ export default function CoatTypeIdentificationToolClient() {
                 </p>
               </div>
               <div className="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Why is knowing my pet's coat type important?</h3>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Why is knowing my pet's coat type is important?</h3>
                 <p className="text-gray-700 dark:text-gray-300">
                   Knowing your pet's coat type is important because different coats require different grooming routines, tools, and frequencies. For example, long coats need daily brushing to prevent matting, while short coats may only need weekly brushing. Using the wrong grooming approach can cause skin irritation, matting, or damage to the coat. Proper identification helps you provide appropriate care.
                 </p>
@@ -345,4 +469,3 @@ export default function CoatTypeIdentificationToolClient() {
     </main>
   );
 }
-

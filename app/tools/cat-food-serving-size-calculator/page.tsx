@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Cat Food Serving Size Calculator | Nearby Pet Care',
+  title: 'Cat Food Serving Size Calculator',
   description: 'Free cat food serving size calculator determines perfect portions based on weight, age, and activity level. Get RER and DER calculations and recommendations.',
   keywords: ['cat food serving size', 'cat food calculator', 'cat portion calculator', 'cat feeding calculator', 'cat food portions', 'cat serving size', 'cat feeding guide', 'cat nutrition calculator'],
   slug: 'cat-food-serving-size-calculator',
@@ -62,25 +62,27 @@ export default function CatFoodServingSizeCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <CatFoodServingSizeCalculatorClient />

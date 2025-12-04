@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Safe Human Foods Checker | Nearby Pet Care',
+  title: 'Safe Human Foods Checker',
   description: 'Free safe human foods checker identifies which foods are safe for dogs and cats. Learn proper serving sizes, preparation methods, and safety guidelines.',
   keywords: ['safe foods for pets', 'safe human foods for dogs', 'safe human foods for cats', 'pet safe foods', 'human foods for pets', 'pet treat foods', 'safe foods to feed pets', 'pet food safety'],
   slug: 'safe-human-foods-checker',
@@ -62,25 +62,27 @@ export default function SafeHumanFoodsCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <SafeHumanFoodsCheckerClient />

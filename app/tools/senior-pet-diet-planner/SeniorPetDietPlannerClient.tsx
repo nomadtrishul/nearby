@@ -9,6 +9,7 @@ export default function SeniorPetDietPlannerClient() {
   const [weight, setWeight] = useState<string>('');
   const [weightUnit, setWeightUnit] = useState<'lbs' | 'kg'>('lbs');
   const [healthConditions, setHealthConditions] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     dailyCalories: number;
     recommendations: string[];
@@ -49,85 +50,78 @@ export default function SeniorPetDietPlannerClient() {
       return;
     }
 
-    const weightKg = weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
-    const rer = 70 * Math.pow(weightKg, 0.75);
-    const dailyCalories = Math.round(rer * 1.2); // Lower for seniors
+    setIsLoading(true);
 
-    const recommendations: string[] = [];
-    const dietaryNeeds: string[] = [];
-    const foodsToAvoid: string[] = [];
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const weightKg = weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
+      const rer = 70 * Math.pow(weightKg, 0.75);
+      const dailyCalories = Math.round(rer * 1.2); // Lower for seniors
 
-    recommendations.push(`Daily calorie needs: ${dailyCalories} kcal (reduced for senior metabolism)`);
-    recommendations.push('Feed 2-3 smaller meals per day for better digestion');
-    recommendations.push('Ensure easy access to fresh water at all times');
-    recommendations.push('Monitor weight monthly and adjust portions as needed');
+      const recommendations: string[] = [];
+      const dietaryNeeds: string[] = [];
+      const foodsToAvoid: string[] = [];
 
-    if (healthConditions.includes('Kidney Disease')) {
-      dietaryNeeds.push('Lower protein (but high quality)');
-      dietaryNeeds.push('Reduced phosphorus');
-      dietaryNeeds.push('Lower sodium');
-      foodsToAvoid.push('High-phosphorus foods (organ meats, bones)');
-      recommendations.push('Consult vet for prescription kidney diet');
-    }
+      recommendations.push(`Daily calorie needs: ${dailyCalories} kcal (reduced for senior metabolism)`);
+      recommendations.push('Feed 2-3 smaller meals per day for better digestion');
+      recommendations.push('Ensure easy access to fresh water at all times');
+      recommendations.push('Monitor weight monthly and adjust portions as needed');
 
-    if (healthConditions.includes('Heart Disease')) {
-      dietaryNeeds.push('Low sodium diet');
-      dietaryNeeds.push('Moderate protein');
-      dietaryNeeds.push('Omega-3 fatty acids');
-      foodsToAvoid.push('High-sodium foods and treats');
-      recommendations.push('Prescription heart diet may be recommended');
-    }
+      if (healthConditions.includes('Kidney Disease')) {
+        dietaryNeeds.push('Lower protein (but high quality)');
+        dietaryNeeds.push('Reduced phosphorus');
+        dietaryNeeds.push('Lower sodium');
+        foodsToAvoid.push('High-phosphorus foods (organ meats, bones)');
+        recommendations.push('Consult vet for prescription kidney diet');
+      }
 
-    if (healthConditions.includes('Arthritis/Joint Issues')) {
-      dietaryNeeds.push('Omega-3 fatty acids (anti-inflammatory)');
-      dietaryNeeds.push('Glucosamine and chondroitin');
-      dietaryNeeds.push('Maintain healthy weight');
-      recommendations.push('Consider joint supplements');
-      recommendations.push('Weight management is crucial for joint health');
-    }
+      if (healthConditions.includes('Heart Disease')) {
+        dietaryNeeds.push('Low sodium diet');
+        dietaryNeeds.push('Moderate protein');
+        dietaryNeeds.push('Omega-3 fatty acids');
+        foodsToAvoid.push('High-sodium foods and treats');
+        recommendations.push('Prescription heart diet may be recommended');
+      }
 
-    if (healthConditions.includes('Diabetes')) {
-      dietaryNeeds.push('High fiber, complex carbohydrates');
-      dietaryNeeds.push('Consistent meal timing');
-      dietaryNeeds.push('Low glycemic index foods');
-      foodsToAvoid.push('Simple sugars and high-carb treats');
-      recommendations.push('Prescription diabetic diet recommended');
-      recommendations.push('Feed at same times daily');
-    }
+      if (healthConditions.includes('Arthritis/Joint Issues')) {
+        dietaryNeeds.push('Omega-3 fatty acids (EPA/DHA)');
+        dietaryNeeds.push('Glucosamine and chondroitin');
+        dietaryNeeds.push('Anti-inflammatory foods');
+        foodsToAvoid.push('Excessive red meat');
+        recommendations.push('Weight management is crucial for joint health');
+        recommendations.push('Consider joint supplements after vet consultation');
+      }
 
-    if (healthConditions.includes('Dental Problems')) {
-      dietaryNeeds.push('Soft or wet food');
-      dietaryNeeds.push('Smaller kibble size');
-      foodsToAvoid.push('Hard treats and large kibble');
-      recommendations.push('Consider dental chews approved by vet');
-    }
+      if (healthConditions.includes('Diabetes')) {
+        dietaryNeeds.push('High fiber, complex carbohydrates');
+        dietaryNeeds.push('Consistent meal times');
+        dietaryNeeds.push('Low simple sugars');
+        foodsToAvoid.push('Sugary treats and foods');
+        recommendations.push('Feed consistent meals at same times daily');
+        recommendations.push('Monitor blood glucose closely');
+      }
 
-    if (healthConditions.includes('Weight Management')) {
-      dietaryNeeds.push('Lower calorie density');
-      dietaryNeeds.push('High fiber for satiety');
-      dietaryNeeds.push('Lean protein');
-      recommendations.push('Reduce portions by 10-20%');
-      recommendations.push('Increase low-impact exercise');
-    }
+      if (healthConditions.includes('Cancer')) {
+        dietaryNeeds.push('High-quality protein for muscle maintenance');
+        dietaryNeeds.push('Omega-3 fatty acids');
+        dietaryNeeds.push('Antioxidant-rich foods');
+        foodsToAvoid.push('Excessive simple carbohydrates');
+        recommendations.push('Small, frequent meals may be better tolerated');
+        recommendations.push('Consult veterinary nutritionist for optimal diet');
+      }
 
-    if (healthConditions.includes('Digestive Issues')) {
-      dietaryNeeds.push('Easily digestible proteins');
-      dietaryNeeds.push('Fiber (soluble)');
-      dietaryNeeds.push('Probiotics');
-      foodsToAvoid.push('High-fat foods');
-      recommendations.push('Consider prescription gastrointestinal diet');
-    }
+      if (healthConditions.length === 0 || healthConditions.includes('None')) {
+        dietaryNeeds.push('High-quality, easily digestible protein');
+        dietaryNeeds.push('Moderate fat (10-15% for dogs, 9-15% for cats)');
+        dietaryNeeds.push('Fiber for digestive health');
+        dietaryNeeds.push('Antioxidants (vitamins E, C)');
+        recommendations.push('Senior-specific commercial diets are formulated for aging pets');
+        recommendations.push('Consider supplements for joint and cognitive health');
+      }
 
-    if (healthConditions.length === 0 || healthConditions.includes('None')) {
-      dietaryNeeds.push('High-quality, easily digestible protein');
-      dietaryNeeds.push('Moderate fat (10-15% for dogs, 9-15% for cats)');
-      dietaryNeeds.push('Fiber for digestive health');
-      dietaryNeeds.push('Antioxidants (vitamins E, C)');
-      recommendations.push('Senior-specific commercial diets are formulated for aging pets');
-      recommendations.push('Consider supplements for joint and cognitive health');
-    }
-
-    setResult({ dailyCalories, recommendations, dietaryNeeds, foodsToAvoid });
+      setResult({ dailyCalories, recommendations, dietaryNeeds, foodsToAvoid });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

@@ -2,129 +2,140 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function GroomingScheduleGeneratorClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
   const [coatType, setCoatType] = useState<string>('short');
   const [lifestyle, setLifestyle] = useState<string>('indoor');
+  const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     schedule: Array<{ task: string; frequency: string; notes: string }>;
     recommendations: string[];
   } | null>(null);
 
   const generateSchedule = () => {
-    const schedule: Array<{ task: string; frequency: string; notes: string }> = [];
-    const recommendations: string[] = [];
 
-    // Bathing frequency
-    if (coatType === 'short' || coatType === 'smooth') {
-      schedule.push({
-        task: 'Bathing',
-        frequency: 'Every 4-8 weeks',
-        notes: 'Short coats need less frequent bathing. Bathe when dirty or smelly.'
-      });
-    } else if (coatType === 'medium') {
-      schedule.push({
-        task: 'Bathing',
-        frequency: 'Every 4-6 weeks',
-        notes: 'Regular bathing helps maintain coat health and reduce shedding.'
-      });
-    } else if (coatType === 'long' || coatType === 'double') {
-      schedule.push({
-        task: 'Bathing',
-        frequency: 'Every 3-4 weeks',
-        notes: 'Long/double coats need more frequent bathing to prevent matting and maintain coat health.'
-      });
-    } else if (coatType === 'curly' || coatType === 'wiry') {
-      schedule.push({
-        task: 'Bathing',
-        frequency: 'Every 4-6 weeks',
-        notes: 'Use appropriate shampoo for coat type. Professional grooming may be needed.'
-      });
-    }
+    setIsLoading(true);
 
-    // Brushing frequency
-    if (coatType === 'short' || coatType === 'smooth') {
-      schedule.push({
-        task: 'Brushing',
-        frequency: 'Weekly',
-        notes: 'Use a soft brush or grooming mitt. Helps remove loose hair and distribute natural oils.'
-      });
-    } else if (coatType === 'medium') {
-      schedule.push({
-        task: 'Brushing',
-        frequency: '2-3 times per week',
-        notes: 'Use a slicker brush or comb. Prevents matting and reduces shedding.'
-      });
-    } else if (coatType === 'long' || coatType === 'double') {
-      schedule.push({
-        task: 'Brushing',
-        frequency: 'Daily',
-        notes: 'Essential for long coats. Use a slicker brush and comb. Prevents painful matting.'
-      });
-    } else if (coatType === 'curly') {
-      schedule.push({
-        task: 'Brushing',
-        frequency: 'Every 1-2 days',
-        notes: 'Use a pin brush or comb. Curly coats mat easily and need regular attention.'
-      });
-    } else if (coatType === 'wiry') {
-      schedule.push({
-        task: 'Brushing',
-        frequency: '2-3 times per week',
-        notes: 'Use a slicker brush. May need hand-stripping for show dogs.'
-      });
-    }
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const schedule: Array<{ task: string; frequency: string; notes: string }> = [];
+      const recommendations: string[] = [];
 
-    // Nail trimming
-    schedule.push({
-      task: 'Nail Trimming',
-      frequency: 'Every 2-4 weeks',
-      notes: 'Trim when nails touch the ground. More frequent if pet is less active.'
-    });
+      // Bathing frequency
+      if (coatType === 'short' || coatType === 'smooth') {
+        schedule.push({
+          task: 'Bathing',
+          frequency: 'Every 4-8 weeks',
+          notes: 'Short coats need less frequent bathing. Bathe when dirty or smelly.'
+        });
+      } else if (coatType === 'medium') {
+        schedule.push({
+          task: 'Bathing',
+          frequency: 'Every 4-6 weeks',
+          notes: 'Regular bathing helps maintain coat health and reduce shedding.'
+        });
+      } else if (coatType === 'long' || coatType === 'double') {
+        schedule.push({
+          task: 'Bathing',
+          frequency: 'Every 3-4 weeks',
+          notes: 'Long/double coats need more frequent bathing to prevent matting and maintain coat health.'
+        });
+      } else if (coatType === 'curly' || coatType === 'wiry') {
+        schedule.push({
+          task: 'Bathing',
+          frequency: 'Every 4-6 weeks',
+          notes: 'Use appropriate shampoo for coat type. Professional grooming may be needed.'
+        });
+      }
 
-    // Ear cleaning
-    schedule.push({
-      task: 'Ear Cleaning',
-      frequency: 'Weekly to monthly',
-      notes: 'Check ears weekly. Clean when dirty or waxy. More frequent for floppy-eared dogs or pets with ear issues.'
-    });
+      // Brushing frequency
+      if (coatType === 'short' || coatType === 'smooth') {
+        schedule.push({
+          task: 'Brushing',
+          frequency: 'Weekly',
+          notes: 'Use a soft brush or grooming mitt. Helps remove loose hair and distribute natural oils.'
+        });
+      } else if (coatType === 'medium') {
+        schedule.push({
+          task: 'Brushing',
+          frequency: '2-3 times per week',
+          notes: 'Use a slicker brush or comb. Prevents matting and reduces shedding.'
+        });
+      } else if (coatType === 'long' || coatType === 'double') {
+        schedule.push({
+          task: 'Brushing',
+          frequency: 'Daily',
+          notes: 'Essential for long coats. Use a slicker brush and comb. Prevents painful matting.'
+        });
+      } else if (coatType === 'curly') {
+        schedule.push({
+          task: 'Brushing',
+          frequency: 'Every 1-2 days',
+          notes: 'Use a pin brush or comb. Curly coats mat easily and need regular attention.'
+        });
+      } else if (coatType === 'wiry') {
+        schedule.push({
+          task: 'Brushing',
+          frequency: '2-3 times per week',
+          notes: 'Use a slicker brush. May need hand-stripping for show dogs.'
+        });
+      }
 
-    // Dental care
-    schedule.push({
-      task: 'Teeth Brushing',
-      frequency: 'Daily (ideal) or 3-4 times per week',
-      notes: 'Daily brushing is best for dental health. Use pet-specific toothpaste.'
-    });
-
-    // Professional grooming
-    if (coatType === 'long' || coatType === 'double' || coatType === 'curly') {
+      // Nail trimming
       schedule.push({
-        task: 'Professional Grooming',
-        frequency: 'Every 4-8 weeks',
-        notes: 'Professional groomers can handle difficult coats, trimming, and styling.'
+        task: 'Nail Trimming',
+        frequency: 'Every 2-4 weeks',
+        notes: 'Trim when nails touch the ground. More frequent if pet is less active.'
       });
-    } else {
+
+      // Ear cleaning
       schedule.push({
-        task: 'Professional Grooming',
-        frequency: 'Every 8-12 weeks (optional)',
-        notes: 'Even short-coated pets benefit from occasional professional grooming for nail trimming and thorough cleaning.'
+        task: 'Ear Cleaning',
+        frequency: 'Weekly to monthly',
+        notes: 'Check ears weekly. Clean when dirty or waxy. More frequent for floppy-eared dogs or pets with ear issues.'
       });
-    }
 
-    // Lifestyle adjustments
-    if (lifestyle === 'outdoor') {
-      recommendations.push('Outdoor pets may need more frequent bathing due to dirt and outdoor exposure');
-      recommendations.push('Check for ticks and debris after outdoor activities');
-    }
+      // Dental care
+      schedule.push({
+        task: 'Teeth Brushing',
+        frequency: 'Daily (ideal) or 3-4 times per week',
+        notes: 'Daily brushing is best for dental health. Use pet-specific toothpaste.'
+      });
 
-    recommendations.push('Adjust schedule based on your pet\'s individual needs and activity level');
-    recommendations.push('Start grooming routines early to get pets comfortable with the process');
-    recommendations.push('Use positive reinforcement and treats during grooming');
-    recommendations.push('Watch for signs of skin irritation or discomfort');
+      // Professional grooming
+      if (coatType === 'long' || coatType === 'double' || coatType === 'curly') {
+        schedule.push({
+          task: 'Professional Grooming',
+          frequency: 'Every 4-8 weeks',
+          notes: 'Professional groomers can handle difficult coats, trimming, and styling.'
+        });
+      } else {
+        schedule.push({
+          task: 'Professional Grooming',
+          frequency: 'Every 8-12 weeks (optional)',
+          notes: 'Even short-coated pets benefit from occasional professional grooming for nail trimming and thorough cleaning.'
+        });
+      }
 
-    setResult({ schedule, recommendations });
+      // Lifestyle adjustments
+      if (lifestyle === 'outdoor') {
+        recommendations.push('Outdoor pets may need more frequent bathing due to dirt and outdoor exposure');
+        recommendations.push('Check for ticks and debris after outdoor activities');
+      }
+
+      recommendations.push('Adjust schedule based on your pet\'s individual needs and activity level');
+      recommendations.push('Start grooming routines early to get pets comfortable with the process');
+      recommendations.push('Use positive reinforcement and treats during grooming');
+      recommendations.push('Watch for signs of skin irritation or discomfort');
+
+      setResult({ schedule, recommendations });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (
@@ -136,7 +147,7 @@ export default function GroomingScheduleGeneratorClient() {
             { name: 'Tools', href: '/tools' },
             { name: 'Grooming Schedule Generator', href: '/tools/grooming-schedule-generator' }
           ]} />
-          
+
           <div className="mb-8 sm:mb-10 mt-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
               Grooming Schedule Generator
@@ -149,8 +160,8 @@ export default function GroomingScheduleGeneratorClient() {
 
             {/* Tool Screenshot/Image */}
             <div className="mb-8">
-              <Image 
-                src="/og-image.png" 
+              <Image
+                src="/og-image.png"
                 alt="Grooming Schedule Generator - Create a personalized grooming schedule"
                 width={1200}
                 height={630}
@@ -222,7 +233,7 @@ export default function GroomingScheduleGeneratorClient() {
           {result && (
             <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Grooming Schedule</h2>
-              
+
               <div className="space-y-4 mb-6">
                 {result.schedule.map((item, index) => (
                   <div key={index} className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">

@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function RabiesExposureCheckerClient() {
   const [exposureType, setExposureType] = useState<string>('');
@@ -13,6 +16,8 @@ export default function RabiesExposureCheckerClient() {
     action: string[];
     urgency: string;
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const checkExposure = () => {
     if (!exposureType || !vaccinationStatus) {
@@ -20,6 +25,10 @@ export default function RabiesExposureCheckerClient() {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     let riskLevel = '';
     let urgency = '';
     const action: string[] = [];
@@ -65,6 +74,8 @@ export default function RabiesExposureCheckerClient() {
     action.push('Rabies is fatal once symptoms appear - prevention is critical');
 
     setResult({ riskLevel, action, urgency });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

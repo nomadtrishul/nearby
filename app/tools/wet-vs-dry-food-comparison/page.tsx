@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Wet vs Dry Food Comparison | Nearby Pet Care',
+  title: 'Wet vs Dry Food Comparison',
   description: 'Free wet vs dry food comparison tool compares food options for dogs and cats based on cost, nutrition, and convenience. Get detailed comparisons.',
   keywords: ['wet vs dry food', 'pet food comparison', 'dog food comparison', 'cat food comparison', 'wet food vs dry food', 'pet food cost comparison', 'best pet food type', 'pet nutrition comparison'],
   slug: 'wet-vs-dry-food-comparison',
@@ -62,25 +62,27 @@ export default function WetVsDryFoodComparisonPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <WetVsDryFoodComparisonClient />

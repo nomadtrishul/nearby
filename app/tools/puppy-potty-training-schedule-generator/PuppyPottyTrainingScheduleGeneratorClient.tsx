@@ -8,6 +8,7 @@ export default function PuppyPottyTrainingScheduleGeneratorClient() {
   const [puppyAge, setPuppyAge] = useState<string>('8');
   const [wakeTime, setWakeTime] = useState<string>('07:00');
   const [bedtime, setBedtime] = useState<string>('22:00');
+  const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<{
     schedule: Array<{ time: string; activity: string; notes: string }>;
     tips: string[];
@@ -15,140 +16,128 @@ export default function PuppyPottyTrainingScheduleGeneratorClient() {
   } | null>(null);
 
   const generateSchedule = () => {
-    const age = parseInt(puppyAge);
-    const wake = wakeTime.split(':').map(Number);
-    const bed = bedtime.split(':').map(Number);
-    const wakeMinutes = wake[0] * 60 + wake[1];
-    const bedMinutes = bed[0] * 60 + bed[1];
-    
-    const schedule: Array<{ time: string; activity: string; notes: string }> = [];
-    const tips: string[] = [];
-    const timeline: string[] = [];
+    setIsLoading(true);
 
-    // Calculate potty break intervals based on age
-    let intervalHours = 1;
-    if (age < 10) intervalHours = 1;
-    else if (age < 14) intervalHours = 2;
-    else if (age < 20) intervalHours = 3;
-    else intervalHours = 4;
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const age = parseInt(puppyAge);
+      const wake = wakeTime.split(':').map(Number);
+      const bed = bedtime.split(':').map(Number);
+      const wakeMinutes = wake[0] * 60 + wake[1];
+      const bedMinutes = bed[0] * 60 + bed[1];
 
-    // Morning routine
-    schedule.push({
-      time: wakeTime,
-      activity: 'Wake up & Immediate Potty Break',
-      notes: 'Take puppy outside immediately upon waking. Use a cue word like "go potty" and reward with treats and praise when they eliminate.'
-    });
+      const schedule: Array<{ time: string; activity: string; notes: string }> = [];
+      const tips: string[] = [];
+      const timeline: string[] = [];
 
-    // Breakfast
-    const breakfastTime = wakeMinutes + 15;
-    schedule.push({
-      time: formatTime(breakfastTime),
-      activity: 'Breakfast',
-      notes: 'Feed puppy breakfast. After eating, wait 15-30 minutes before next potty break.'
-    });
+      // Calculate potty break intervals based on age
+      let intervalHours = 1;
+      if (age < 10) intervalHours = 1;
+      else if (age < 14) intervalHours = 2;
+      else if (age < 20) intervalHours = 3;
+      else intervalHours = 4;
 
-    // Post-meal potty break
-    const postBreakfastTime = breakfastTime + 30;
-    schedule.push({
-      time: formatTime(postBreakfastTime),
-      activity: 'Potty Break (Post-Meal)',
-      notes: 'Puppies typically need to eliminate 15-30 minutes after eating. Take outside immediately.'
-    });
-
-    // Regular potty breaks throughout the day
-    let currentTime = postBreakfastTime + (intervalHours * 60);
-    while (currentTime < bedMinutes - 60) {
+      // Morning routine
       schedule.push({
-        time: formatTime(currentTime),
-        activity: 'Potty Break',
-        notes: `Regular potty break. Take puppy outside every ${intervalHours} hours during the day.`
+        time: wakeTime,
+        activity: 'Wake up & Immediate Potty Break',
+        notes: 'Take puppy outside immediately upon waking. Use a cue word like "go potty" and reward with treats and praise when they eliminate.'
       });
-      currentTime += (intervalHours * 60);
-    }
 
-    // Lunch
-    const lunchTime = wakeMinutes + (6 * 60);
-    if (lunchTime < bedMinutes - 60) {
+      // Breakfast
+      const breakfastTime = wakeMinutes + 15;
       schedule.push({
-        time: formatTime(lunchTime),
-        activity: 'Lunch',
-        notes: 'Feed puppy lunch. Wait 15-30 minutes before next potty break.'
+        time: formatTime(breakfastTime),
+        activity: 'Breakfast',
+        notes: 'Feed puppy breakfast. After eating, wait 15-30 minutes before next potty break.'
       });
-      
+
+      // Post-meal potty break
+      const postBreakfastTime = breakfastTime + 30;
       schedule.push({
-        time: formatTime(lunchTime + 30),
+        time: formatTime(postBreakfastTime),
         activity: 'Potty Break (Post-Meal)',
-        notes: 'Post-meal potty break. Most puppies need to eliminate after eating.'
+        notes: 'Puppies typically need to eliminate 15-30 minutes after eating. Take outside immediately.'
       });
-    }
 
-    // Dinner
-    const dinnerTime = bedMinutes - (3 * 60);
-    schedule.push({
-      time: formatTime(dinnerTime),
-      activity: 'Dinner',
-      notes: 'Feed puppy dinner. This should be at least 2-3 hours before bedtime to allow for digestion and final potty break.'
-    });
-
-    schedule.push({
-      time: formatTime(dinnerTime + 30),
-      activity: 'Potty Break (Post-Meal)',
-      notes: 'Post-dinner potty break. Important to empty bladder before bedtime.'
-    });
-
-    // Final potty break before bed
-    const finalPottyTime = bedMinutes - 30;
-    schedule.push({
-      time: formatTime(finalPottyTime),
-      activity: 'Final Potty Break Before Bed',
-      notes: 'Last potty break of the day. Take puppy outside right before bedtime to minimize overnight accidents.'
-    });
-
-    schedule.push({
-      time: bedtime,
-      activity: 'Bedtime',
-      notes: 'Put puppy in crate or designated sleeping area. Puppies can typically hold their bladder for their age in months plus one hour (e.g., 8-week-old puppy = 3 hours).'
-    });
-
-    // Overnight potty breaks for young puppies
-    if (age < 12) {
-      const overnightBreak = wakeMinutes + (4 * 60);
-      if (overnightBreak < bedMinutes) {
+      // Regular potty breaks throughout the day
+      let currentTime = postBreakfastTime + (intervalHours * 60);
+      while (currentTime < bedMinutes - 60) {
         schedule.push({
-          time: formatTime(overnightBreak),
-          activity: 'Overnight Potty Break',
-          notes: 'Young puppies may need a middle-of-the-night potty break. Keep it brief and quiet - no play, just potty and back to bed.'
+          time: formatTime(currentTime),
+          activity: 'Potty Break',
+          notes: `Regular potty break. Take puppy outside every ${intervalHours} hours during the day.`
+        });
+        currentTime += (intervalHours * 60);
+      }
+
+      // Lunch
+      const lunchTime = wakeMinutes + (6 * 60);
+      if (lunchTime < bedMinutes - 60) {
+        schedule.push({
+          time: formatTime(lunchTime),
+          activity: 'Lunch',
+          notes: 'Feed puppy lunch. Wait 15-30 minutes before next potty break.'
+        });
+
+        schedule.push({
+          time: formatTime(lunchTime + 30),
+          activity: 'Potty Break (Post-Lunch)',
+          notes: 'Take puppy outside 15-30 minutes after lunch.'
         });
       }
-    }
 
-    // Sort schedule by time
-    schedule.sort((a, b) => {
-      const timeA = parseTime(a.time);
-      const timeB = parseTime(b.time);
-      return timeA - timeB;
-    });
+      // Dinner
+      const dinnerTime = bedMinutes - 90;
+      if (dinnerTime > wakeMinutes + 8 * 60) {
+        schedule.push({
+          time: formatTime(dinnerTime),
+          activity: 'Dinner',
+          notes: 'Feed puppy dinner. Keep it light to avoid overnight accidents.'
+        });
 
-    // Tips
-    tips.push(`Puppies can typically hold their bladder for their age in months plus one hour (e.g., ${age}-week-old puppy ≈ ${Math.floor(age/4) + 1} hours)`);
-    tips.push('Always take puppy to the same potty spot to establish a routine');
-    tips.push('Use a consistent cue word like "go potty" or "do your business"');
-    tips.push('Reward immediately with treats and praise when puppy eliminates outside');
-    tips.push('Supervise puppy closely when indoors - watch for signs like sniffing, circling, or whining');
-    tips.push('If you catch puppy in the act indoors, interrupt with a clap and immediately take outside');
-    tips.push('Never punish accidents after they happen - clean with enzyme cleaner and move on');
-    tips.push('Use a crate when you cannot supervise - puppies won\'t eliminate where they sleep');
-    tips.push('Limit water intake 2-3 hours before bedtime');
-    tips.push('Be patient - house training takes time and consistency');
+        schedule.push({
+          time: formatTime(dinnerTime + 30),
+          activity: 'Potty Break (Post-Dinner)',
+          notes: 'Take puppy outside 15-30 minutes after dinner.'
+        });
+      }
 
-    // Timeline
-    timeline.push('Week 1-2: Establish routine, frequent potty breaks, constant supervision');
-    timeline.push('Week 3-4: Puppy begins to understand routine, fewer accidents');
-    timeline.push('Week 5-8: Puppy can hold bladder longer, accidents become rare');
-    timeline.push('Week 9-12: Puppy is mostly house trained, occasional accidents may occur');
-    timeline.push('3-6 months: Fully house trained, can hold bladder for longer periods');
+      // Final potty break before bed
+      schedule.push({
+        time: bedtime,
+        activity: 'Final Potty Break',
+        notes: 'Take puppy outside right before bedtime. This is crucial for overnight accident prevention.'
+      });
 
-    setResult({ schedule, tips, timeline });
+      // Overnight considerations
+      if (age <= 12) {
+        tips.push('Very young puppies (8-12 weeks) may need 1-2 overnight potty breaks');
+        tips.push('Set an alarm for middle-of-night potty breaks for young puppies');
+      } else if (age <= 16) {
+        tips.push('Puppies 12-16 weeks may need one overnight potty break');
+      } else {
+        tips.push('Puppies 16+ weeks can usually hold it through the night');
+      }
+
+      tips.push('Take puppy out first thing in the morning, last thing at night, and after every meal');
+      tips.push('Praise and reward immediately when puppy eliminates outside');
+      tips.push('Watch for signs like circling, sniffing, or whining');
+      tips.push('Never punish for accidents - just clean thoroughly and supervise better');
+      tips.push('Use a crate when you cannot supervise - puppies won\'t eliminate where they sleep');
+      tips.push('Limit water intake 2-3 hours before bedtime');
+      tips.push('Be patient - house training takes time and consistency');
+
+      // Timeline
+      timeline.push('Week 1-2: Establish routine, frequent potty breaks, constant supervision');
+      timeline.push('Week 3-4: Puppy begins to understand routine, fewer accidents');
+      timeline.push('Week 5-8: Puppy can hold bladder longer, accidents become rare');
+      timeline.push('Week 9-12: Puppy is mostly house trained, occasional accidents may occur');
+      timeline.push('3-6 months: Fully house trained, can hold bladder for longer periods');
+
+      setResult({ schedule, tips, timeline });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   const formatTime = (minutes: number): string => {

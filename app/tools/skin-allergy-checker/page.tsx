@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Skin Allergy Checker | Nearby Pet Care',
+  title: 'Skin Allergy Checker',
   description: 'Free skin allergy checker helps identify potential food, environmental, flea, or contact allergies in dogs and cats. Review symptoms and get recommendations.',
   keywords: ['pet skin allergies', 'dog allergies', 'cat allergies', 'skin allergy symptoms', 'pet allergy checker', 'food allergies pets', 'environmental allergies pets', 'flea allergy dermatitis'],
   slug: 'skin-allergy-checker',
@@ -62,25 +62,27 @@ export default function SkinAllergyCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <SkinAllergyCheckerClient />

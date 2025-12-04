@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function DewormingReminderClient() {
@@ -14,8 +17,15 @@ export default function DewormingReminderClient() {
     schedule: Array<{ age: string; frequency: string; notes: string }>;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateReminder = () => {
+
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     if (!lastDeworming) {
       alert('Please enter last deworming date');
       return;
@@ -77,6 +87,8 @@ export default function DewormingReminderClient() {
     recommendations.push('Treat all pets in the household if one pet has worms');
 
     setResult({ nextDue, daysUntil, schedule, recommendations });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

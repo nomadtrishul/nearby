@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Ownership Cost Calculator | Nearby Pet Care',
+  title: 'Pet Ownership Cost Calculator',
   description: 'Free pet ownership cost calculator estimates total expenses for dogs and cats. Calculate food, veterinary care, grooming, insurance, and supplies costs.',
   keywords: ['pet cost calculator', 'pet ownership cost', 'pet expenses calculator', 'dog cost calculator', 'cat cost calculator', 'pet budget calculator', 'pet ownership expenses', 'pet financial planning'],
   slug: 'cost-calculator',
@@ -62,25 +62,27 @@ export default function CostCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'FinanceApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <CostCalculatorClient />

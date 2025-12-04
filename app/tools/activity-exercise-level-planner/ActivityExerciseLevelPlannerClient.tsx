@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check, Share2, Twitter, Link2 } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function ActivityExerciseLevelPlannerClient() {
@@ -18,6 +21,9 @@ export default function ActivityExerciseLevelPlannerClient() {
     activities: Array<{ type: string; duration: string; frequency: string; description: string }>;
     tips: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculatePlan = () => {
     const weightNum = parseFloat(weight);
@@ -26,129 +32,299 @@ export default function ActivityExerciseLevelPlannerClient() {
       return;
     }
 
-    let baseMinutes = 30;
-    let recommendedLevel = 'Moderate';
-    const activities: Array<{ type: string; duration: string; frequency: string; description: string }> = [];
-    const tips: string[] = [];
+    setIsLoading(true);
 
-    // Age factor
-    if (age === 'puppy' || age === 'kitten') {
-      baseMinutes = 20;
-      recommendedLevel = 'Moderate (age-appropriate)';
-      tips.push('Puppies and kittens need shorter, more frequent exercise sessions');
-      tips.push('Avoid high-impact activities that can damage growing joints');
-    } else if (age === 'senior') {
-      baseMinutes = 20;
-      recommendedLevel = 'Low to Moderate';
-      tips.push('Senior pets need gentler exercise');
-      tips.push('Monitor for signs of fatigue or discomfort');
-    }
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      let baseMinutes = 30;
+      let recommendedLevel = 'Moderate';
+      const activities: Array<{ type: string; duration: string; frequency: string; description: string }> = [];
+      const tips: string[] = [];
+
+      // Age factor
+      if (age === 'puppy' || age === 'kitten') {
+        baseMinutes = 20;
+        recommendedLevel = 'Moderate (age-appropriate)';
+        tips.push('Puppies and kittens need shorter, more frequent exercise sessions');
+        tips.push('Avoid high-impact activities that can damage growing joints');
+      } else if (age === 'senior') {
+        baseMinutes = 20;
+        recommendedLevel = 'Low to Moderate';
+        tips.push('Senior pets need gentler exercise');
+        tips.push('Monitor for signs of fatigue or discomfort');
+      }
 
     // Breed/energy level factor
-    const highEnergyBreeds = ['border collie', 'australian shepherd', 'jack russell', 'husky', 'vizsla', 'weimaraner', 'pointer', 'setter'];
-    const lowEnergyBreeds = ['bulldog', 'basset hound', 'great dane', 'mastiff', 'bernese', 'newfoundland', 'persian', 'ragdoll'];
-    
-    if (highEnergyBreeds.some(b => breed.toLowerCase().includes(b))) {
-      baseMinutes = 60;
-      recommendedLevel = 'High';
-    } else if (lowEnergyBreeds.some(b => breed.toLowerCase().includes(b))) {
-      baseMinutes = 20;
-      recommendedLevel = 'Low to Moderate';
-    }
+      const highEnergyBreeds = ['border collie', 'australian shepherd', 'jack russell', 'husky', 'vizsla', 'weimaraner', 'pointer', 'setter'];
+      const lowEnergyBreeds = ['bulldog', 'basset hound', 'great dane', 'mastiff', 'bernese', 'newfoundland', 'persian', 'ragdoll'];
+      
+      if (highEnergyBreeds.some(b => breed.toLowerCase().includes(b))) {
+        baseMinutes = 60;
+        recommendedLevel = 'High';
+      } else if (lowEnergyBreeds.some(b => breed.toLowerCase().includes(b))) {
+        baseMinutes = 20;
+        recommendedLevel = 'Low to Moderate';
+      }
 
-    // Current activity adjustment
-    if (currentActivity === 'very-low') {
-      baseMinutes = Math.max(15, baseMinutes - 10);
-      tips.push('Start slowly and gradually increase activity');
-    } else if (currentActivity === 'high') {
-      baseMinutes += 10;
-    }
+      // Current activity adjustment
+      if (currentActivity === 'very-low') {
+        baseMinutes = Math.max(15, baseMinutes - 10);
+        tips.push('Start slowly and gradually increase activity');
+      } else if (currentActivity === 'high') {
+        baseMinutes += 10;
+      }
 
-    // Calculate daily and weekly
-    const dailyMinutes = `${baseMinutes}-${baseMinutes + 15} minutes`;
-    const weeklyMinutes = `${baseMinutes * 7}-${(baseMinutes + 15) * 7} minutes`;
+      // Calculate daily and weekly
+      const dailyMinutes = `${baseMinutes}-${baseMinutes + 15} minutes`;
+      const weeklyMinutes = `${baseMinutes * 7}-${(baseMinutes + 15) * 7} minutes`;
 
-    // Generate activities
-    if (petType === 'dog') {
-      activities.push({
-        type: 'Walking',
-        duration: `${Math.floor(baseMinutes * 0.4)}-${Math.floor((baseMinutes + 15) * 0.4)} minutes`,
-        frequency: 'Daily',
-        description: 'Regular walks provide physical exercise and mental stimulation through new sights and smells.'
-      });
-
-      activities.push({
-        type: 'Play/Fetch',
-        duration: `${Math.floor(baseMinutes * 0.3)}-${Math.floor((baseMinutes + 15) * 0.3)} minutes`,
-        frequency: 'Daily',
-        description: 'Interactive play helps burn energy and strengthens the bond with your dog.'
-      });
-
-      activities.push({
-        type: 'Training/Mental Exercise',
-        duration: '10-15 minutes',
-        frequency: 'Daily',
-        description: 'Training sessions provide mental stimulation and can be as tiring as physical exercise.'
-      });
-
-      if (baseMinutes >= 45) {
+      // Generate activities
+      if (petType === 'dog') {
         activities.push({
-          type: 'Running/Jogging',
-          duration: '15-30 minutes',
-          frequency: '3-4 times per week',
-          description: 'Higher energy dogs benefit from running or jogging. Wait until dogs are fully grown (12-18 months).'
+          type: 'Walking',
+          duration: `${Math.floor(baseMinutes * 0.4)}-${Math.floor((baseMinutes + 15) * 0.4)} minutes`,
+          frequency: 'Daily',
+          description: 'Regular walks provide physical exercise and mental stimulation through new sights and smells.'
+        });
+
+        activities.push({
+          type: 'Play/Fetch',
+          duration: `${Math.floor(baseMinutes * 0.3)}-${Math.floor((baseMinutes + 15) * 0.3)} minutes`,
+          frequency: 'Daily',
+          description: 'Interactive play helps burn energy and strengthens the bond with your dog.'
+        });
+
+        activities.push({
+          type: 'Training/Mental Exercise',
+          duration: '10-15 minutes',
+          frequency: 'Daily',
+          description: 'Training sessions provide mental stimulation and can be as tiring as physical exercise.'
+        });
+
+        if (baseMinutes >= 45) {
+          activities.push({
+            type: 'Running/Jogging',
+            duration: '15-30 minutes',
+            frequency: '3-4 times per week',
+            description: 'Higher energy dogs benefit from running or jogging. Wait until dogs are fully grown (12-18 months).'
+          });
+        }
+
+        if (baseMinutes >= 40) {
+          activities.push({
+            type: 'Off-leash Play',
+            duration: '20-30 minutes',
+            frequency: '2-3 times per week',
+            description: 'Safe off-leash play allows dogs to run freely and socialize with other dogs.'
+          });
+        }
+      } else {
+        // Cat activities
+        activities.push({
+          type: 'Interactive Play',
+          duration: `${Math.floor(baseMinutes * 0.5)}-${Math.floor((baseMinutes + 15) * 0.5)} minutes`,
+          frequency: '2-3 times daily',
+          description: 'Use wand toys, laser pointers, or feather toys to engage your cat in active play.'
+        });
+
+        activities.push({
+          type: 'Puzzle Toys/Feeders',
+          duration: '15-20 minutes',
+          frequency: 'Daily',
+          description: 'Puzzle feeders and treat-dispensing toys provide mental stimulation and encourage natural hunting behaviors.'
+        });
+
+        activities.push({
+          type: 'Climbing/Perching',
+          duration: 'Throughout the day',
+          frequency: 'Daily',
+          description: 'Cat trees, shelves, and perches allow cats to climb and explore vertically.'
+        });
+
+        activities.push({
+          type: 'Training Sessions',
+          duration: '5-10 minutes',
+          frequency: 'Daily',
+          description: 'Cats can learn tricks and commands, providing mental exercise.'
         });
       }
 
-      if (baseMinutes >= 40) {
-        activities.push({
-          type: 'Off-leash Play',
-          duration: '20-30 minutes',
-          frequency: '2-3 times per week',
-          description: 'Safe off-leash play allows dogs to run freely and socialize with other dogs.'
-        });
-      }
-    } else {
-      // Cat activities
-      activities.push({
-        type: 'Interactive Play',
-        duration: `${Math.floor(baseMinutes * 0.5)}-${Math.floor((baseMinutes + 15) * 0.5)} minutes`,
-        frequency: '2-3 times daily',
-        description: 'Use wand toys, laser pointers, or feather toys to engage your cat in active play.'
-      });
-
-      activities.push({
-        type: 'Puzzle Toys/Feeders',
-        duration: '15-20 minutes',
-        frequency: 'Daily',
-        description: 'Puzzle feeders and treat-dispensing toys provide mental stimulation and encourage natural hunting behaviors.'
-      });
-
-      activities.push({
-        type: 'Climbing/Perching',
-        duration: 'Throughout the day',
-        frequency: 'Daily',
-        description: 'Cat trees, shelves, and perches allow cats to climb and explore vertically.'
-      });
-
-      activities.push({
-        type: 'Training Sessions',
-        duration: '5-10 minutes',
-        frequency: 'Daily',
-        description: 'Cats can learn tricks and commands, providing mental exercise.'
-      });
-    }
-
-    // General tips
-    tips.push(`Recommended daily exercise: ${dailyMinutes}`);
-    tips.push(`Weekly total: ${weeklyMinutes}`);
-    tips.push('Divide exercise into multiple sessions throughout the day');
-    tips.push('Adjust based on weather, your pet\'s energy level, and health');
-    tips.push('Monitor for signs of fatigue or overexertion');
-    tips.push('Provide mental stimulation in addition to physical exercise');
-    tips.push('Consult your veterinarian before starting new exercise routines, especially for senior pets or those with health conditions');
+      // General tips
+      tips.push(`Recommended daily exercise: ${dailyMinutes}`);
+      tips.push(`Weekly total: ${weeklyMinutes}`);
+      tips.push('Divide exercise into multiple sessions throughout the day');
+      tips.push('Adjust based on weather, your pet\'s energy level, and health');
+      tips.push('Monitor for signs of fatigue or overexertion');
+      tips.push('Provide mental stimulation in addition to physical exercise');
+      tips.push('Consult your veterinarian before starting new exercise routines, especially for senior pets or those with health conditions');
 
     setResult({ recommendedLevel, dailyMinutes, weeklyMinutes, activities, tips });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
+  };
+
+  // Helper functions for visualizations
+  const getChartData = () => {
+    if (!result) return [];
+    
+    return result.activities.map(activity => ({
+      name: activity.type,
+      duration: parseInt(activity.duration.split('-')[0]) || 15,
+      frequency: activity.frequency
+    }));
+  };
+
+  const getPieData = () => {
+    if (!result) return [];
+    
+    const dailyMin = parseInt(result.dailyMinutes.split('-')[0]) || 30;
+    return [
+      { name: 'Exercise', value: dailyMin, color: '#3B82F6' },
+      { name: 'Rest', value: 1440 - dailyMin, color: '#E5E7EB' }
+    ];
+  };
+
+  const getHealthStatus = () => {
+    const weightNum = parseFloat(weight);
+    const weightInKg = weightUnit === 'lbs' ? weightNum * 0.453592 : weightNum;
+    
+    if (petType === 'dog') {
+      if (weightInKg < 2) return { status: 'Underweight', color: 'text-yellow-600', bgColor: 'bg-yellow-100' };
+      if (weightInKg > 45) return { status: 'High Risk', color: 'text-red-600', bgColor: 'bg-red-100' };
+      return { status: 'Healthy Range', color: 'text-green-600', bgColor: 'bg-green-100' };
+    } else {
+      if (weightInKg < 2) return { status: 'Underweight', color: 'text-yellow-600', bgColor: 'bg-yellow-100' };
+      if (weightInKg > 8) return { status: 'High Risk', color: 'text-red-600', bgColor: 'bg-red-100' };
+      return { status: 'Healthy Range', color: 'text-green-600', bgColor: 'bg-green-100' };
+    }
+  };
+
+  const getBreedAverage = () => {
+    const breedLower = breed.toLowerCase();
+    if (breedLower.includes('border collie') || breedLower.includes('australian shepherd')) return 60;
+    if (breedLower.includes('bulldog') || breedLower.includes('basset')) return 30;
+    if (breedLower.includes('husky') || breedLower.includes('pointer')) return 75;
+    return 45; // average
+  };
+
+  const getComparisonData = () => {
+    if (!result) return [];
+    
+    const petMinutes = parseInt(result.dailyMinutes.split('-')[0]) || 30;
+    const breedAvg = getBreedAverage();
+    
+    return [
+      { name: 'Your Pet', minutes: petMinutes, color: '#8B5CF6' },
+      { name: 'Breed Average', minutes: breedAvg, color: '#6B7280' }
+    ];
+  };
+
+  const downloadPDF = () => {
+    // Create PDF content
+    const content = `
+Pet Exercise Plan - NearbyPetCare.com
+=====================================
+
+Pet Details:
+- Type: ${petType.charAt(0).toUpperCase() + petType.slice(1)}
+- Breed: ${breed}
+- Age: ${age}
+- Weight: ${weight} ${weightUnit}
+- Current Activity: ${currentActivity}
+
+Recommended Plan:
+- Activity Level: ${result?.recommendedLevel}
+- Daily Exercise: ${result?.dailyMinutes}
+- Weekly Exercise: ${result?.weeklyMinutes}
+
+Activities:
+${result?.activities.map(a => `- ${a.type}: ${a.duration} (${a.frequency})`).join('\n')}
+
+Tips:
+${result?.tips.map(t => `- ${t}`).join('\n')}
+
+Generated by NearbyPetCare.com
+    `.trim();
+
+    // Create blob and download
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'pet-exercise-plan.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareOnSocial = (platform: string) => {
+    if (!result) return;
+    
+    const url = window.location.href;
+    const activitiesText = result.activities.slice(0, 3).map(a => `${a.type} (${a.duration})`).join(', ');
+    
+    const shareText = `🐾 My ${petType} ${breed}'s Exercise Plan:
+    
+📊 Activity Level: ${result.recommendedLevel}
+⏰ Daily: ${result.dailyMinutes} 
+🗓️ Weekly: ${result.weeklyMinutes}
+🎯 Activities: ${activitiesText}
+⚖️ Weight: ${weight} ${weightUnit} | Age: ${age}
+
+Get your personalized pet exercise plan at nearbypetcare.com! 🐕🐈`;
+    
+    let shareUrl = '';
+    switch(platform) {
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+        break;
+      case 'facebook':
+        // Updated Facebook sharing URL for 2025
+        shareUrl = `https://www.facebook.com/dialog/share?app_id=966242223397117&href=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`;
+        break;
+      case 'instagram':
+        navigator.clipboard.writeText(shareText);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        alert('Text copied to clipboard! Share it on Instagram with a screenshot of your results.');
+        return;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${encodeURIComponent(shareText + ' ' + url)}`;
+        break;
+      case 'telegram':
+        shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`;
+        break;
+      case 'linkedin':
+        // Updated LinkedIn sharing URL for 2025
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&title=My ${petType} ${breed}'s Exercise Plan&summary=${encodeURIComponent(shareText)}`;
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(shareText + ' ' + url);
+        setCopiedToClipboard(true);
+        setTimeout(() => setCopiedToClipboard(false), 3000);
+        setShowShareMenu(false);
+        return;
+      default:
+        return;
+    }
+    
+    window.open(shareUrl, '_blank', 'width=600,height=400');
+    setShowShareMenu(false);
+  };
+
+  const PetIcon = ({ type, size = 'medium' }: { type: 'dog' | 'cat', size?: 'small' | 'medium' | 'large' }) => {
+    const sizeClass = size === 'small' ? 'w-8 h-8' : size === 'large' ? 'w-16 h-16' : 'w-12 h-12';
+    return (
+      <div className={`${sizeClass} flex items-center justify-center`}>
+        {type === 'dog' ? (
+          <span className="text-4xl">🐕</span>
+        ) : (
+          <span className="text-4xl">🐈</span>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -277,37 +453,223 @@ export default function ActivityExerciseLevelPlannerClient() {
         </div>
       </div>
 
-      {result && (
-        <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-6 sm:p-8 border border-green-200 dark:border-green-800">
-          <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Exercise Plan</h2>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
-            <div className="text-center">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Recommended Activity Level</div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{result.recommendedLevel}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Daily: {result.dailyMinutes}</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Weekly: {result.weeklyMinutes}</div>
+      <Loader 
+        isLoading={isLoading} 
+        message="Our AI Model is Calculating"
+        petType={petType}
+        size="large"
+      />
+
+      {result && !isLoading && (
+        <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-xl shadow-lg p-4 sm:p-6 lg:p-8 border border-green-200 dark:border-green-800">
+          {/* Header with Pet Icon and Export Options */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+            <div className="flex items-center gap-3">
+              <PetIcon type={petType} size="large" />
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Personalized Exercise Plan</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">For your {petType} {breed}</p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 w-full sm:w-auto">
+              <button
+                onClick={downloadPDF}
+                className="flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download the Results</span>
+              </button>
+              
+              {/* Social Media Icons */}
+              <div className="flex flex-col items-center gap-2">
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share the results on socials</p>
+                <div className="flex justify-center gap-2">
+                  <button
+                    onClick={() => shareOnSocial('twitter')}
+                    className="p-2 text-black rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Share on X"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => shareOnSocial('facebook')}
+                    className="p-2 text-[#1877F2] rounded-lg hover:bg-blue-50 transition-colors"
+                    title="Share on Facebook"
+                  >
+                    <Facebook className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => shareOnSocial('instagram')}
+                    className="p-2 text-pink-600 rounded-lg hover:bg-pink-50 transition-colors"
+                    title="Share on Instagram"
+                  >
+                    <Instagram className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => shareOnSocial('whatsapp')}
+                    className="p-2 text-[#25D366] rounded-lg hover:bg-green-50 transition-colors"
+                    title="Share on WhatsApp"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => shareOnSocial('telegram')}
+                    className="p-2 text-[#0088CC] rounded-lg hover:bg-blue-50 transition-colors"
+                    title="Share on Telegram"
+                  >
+                    <Send className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => shareOnSocial('linkedin')}
+                    className="p-2 text-[#0A66C2] rounded-lg hover:bg-blue-50 transition-colors"
+                    title="Share on LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() => shareOnSocial('copy')}
+                    className="p-2 text-[#6B7280] rounded-lg hover:bg-gray-100 transition-colors"
+                    title="Copy Link"
+                  >
+                    {copiedToClipboard ? (
+                      <Check className="w-5 h-5" />
+                    ) : (
+                      <Copy className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
+          {/* Health Status Indicator */}
+          <div className={`p-4 rounded-lg mb-6 ${getHealthStatus().bgColor} border border-gray-200 dark:border-gray-700`}>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Health Status</h3>
+                <p className={`text-lg font-bold ${getHealthStatus().color}`}>{getHealthStatus().status}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm text-gray-600 dark:text-gray-400">Weight: {weight} {weightUnit}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Age: {age}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Stats Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Activity Level</div>
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{result.recommendedLevel}</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Daily Exercise</div>
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{result.dailyMinutes}</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg text-center">
+              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Weekly Total</div>
+              <div className="text-2xl font-bold text-green-600 dark:text-green-400">{result.weeklyMinutes}</div>
+            </div>
+          </div>
+
+          {/* Charts Section */}
+          <div className="space-y-6 mb-6">
+            {/* Activity Duration Chart */}
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
+              <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">Activity Breakdown</h3>
+              <div className="h-64 sm:h-80 w-full">
+                <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={200}>
+                  <BarChart data={getChartData()} margin={{ top: 20, right: 30, left: 20, bottom: 80 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis 
+                      dataKey="name" 
+                      angle={-45} 
+                      textAnchor="end" 
+                      height={80}
+                      tick={{ fontSize: 12 }}
+                    />
+                    <YAxis tick={{ fontSize: 12 }} />
+                    <Tooltip />
+                    <Bar dataKey="duration" fill="#8B5CF6" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Comparison Chart */}
+            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
+              <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">Your Pet vs. Breed Average</h3>
+              <div className="h-64 sm:h-80 w-full">
+                <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={200}>
+                  <BarChart data={getComparisonData()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                    <YAxis tick={{ fontSize: 12 }} />
+                    <Tooltip />
+                    <Bar dataKey="minutes" fill="#3B82F6" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          {/* Daily Time Distribution Pie Chart */}
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
-            <h3 className="font-semibold mb-3 text-gray-900 dark:text-white">Recommended Activities:</h3>
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white">Daily Time Distribution</h3>
+            <div className="h-64 sm:h-80 w-full">
+              <ResponsiveContainer width="100%" height="100%" minWidth={300} minHeight={200}>
+                <PieChart>
+                  <Pie
+                    data={getPieData()}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, value }) => `${name}: ${value} min`}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {getPieData().map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Enhanced Activities Section */}
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg mb-6">
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+              <span>🎯</span> Recommended Activities
+            </h3>
             <div className="space-y-4">
               {result.activities.map((activity, index) => (
-                <div key={index} className="border-l-4 border-blue-500 pl-4">
-                  <div className="flex justify-between items-start mb-1">
-                    <h4 className="font-semibold text-gray-900 dark:text-white">{activity.type}</h4>
-                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400">{activity.frequency}</span>
+                <div key={index} className="border-l-4 border-blue-500 pl-4 bg-gray-50 dark:bg-gray-700 p-3 rounded-r-lg">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-2">
+                    <div className="flex items-center gap-2">
+                      <PetIcon type={petType} size="small" />
+                      <h4 className="font-semibold text-gray-900 dark:text-white">{activity.type}</h4>
+                    </div>
+                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900 px-2 py-1 rounded w-fit">
+                      {activity.frequency}
+                    </span>
                   </div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Duration: {activity.duration}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                    ⏱️ Duration: {activity.duration}
+                  </div>
                   <p className="text-sm text-gray-700 dark:text-gray-300">{activity.description}</p>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Enhanced Tips Section */}
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
-            <h3 className="font-semibold mb-2 text-gray-900 dark:text-white">Tips:</h3>
+            <h3 className="font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+              <span>💡</span> Expert Tips
+            </h3>
             <ul className="space-y-2">
               {result.tips.map((tip, index) => (
                 <li key={index} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">

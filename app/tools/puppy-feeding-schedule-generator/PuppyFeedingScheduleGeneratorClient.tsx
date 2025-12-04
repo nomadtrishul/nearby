@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function PuppyFeedingScheduleGeneratorClient() {
@@ -9,6 +12,8 @@ export default function PuppyFeedingScheduleGeneratorClient() {
   const [breedSize, setBreedSize] = useState<string>('medium');
   const [currentWeight, setCurrentWeight] = useState<string>('');
   const [weightUnit, setWeightUnit] = useState<'lbs' | 'kg'>('lbs');
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
   const [result, setResult] = useState<{
     mealsPerDay: number;
     dailyCalories: number;
@@ -29,83 +34,89 @@ export default function PuppyFeedingScheduleGeneratorClient() {
       return;
     }
 
-    const weightKg = weightUnit === 'lbs' ? weight * 0.453592 : weight;
-    const rer = 70 * Math.pow(weightKg, 0.75);
-    
-    // Puppies need 2-3x RER depending on age
-    let activityFactor = 3.0;
-    let mealsPerDay = 4;
-    
-    if (age <= 8) {
-      activityFactor = 3.0;
-      mealsPerDay = 4;
-    } else if (age <= 16) {
-      activityFactor = 2.8;
-      mealsPerDay = 3;
-    } else if (age <= 24) {
-      activityFactor = 2.5;
-      mealsPerDay = 3;
-    } else {
-      activityFactor = 2.2;
-      mealsPerDay = 2;
-    }
+    setIsLoading(true);
 
-    const dailyCalories = Math.round(rer * activityFactor);
-    const caloriesPerMeal = dailyCalories / mealsPerDay;
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
+      const weightKg = weightUnit === 'lbs' ? weight * 0.453592 : weight;
+      const rer = 70 * Math.pow(weightKg, 0.75);
+      
+      // Puppies need 2-3x RER depending on age
+      let activityFactor = 3.0;
+      let mealsPerDay = 4;
+      
+      if (age <= 8) {
+        activityFactor = 3.0;
+        mealsPerDay = 4;
+      } else if (age <= 16) {
+        activityFactor = 2.8;
+        mealsPerDay = 3;
+      } else if (age <= 24) {
+        activityFactor = 2.5;
+        mealsPerDay = 3;
+      } else {
+        activityFactor = 2.2;
+        mealsPerDay = 2;
+      }
 
-    // Calculate amount per meal (assuming 400 kcal/cup for puppy food)
-    const cupsPerMeal = (caloriesPerMeal / 400).toFixed(2);
-    const gramsPerMeal = Math.round(parseFloat(cupsPerMeal) * 120);
+      const dailyCalories = Math.round(rer * activityFactor);
+      const caloriesPerMeal = dailyCalories / mealsPerDay;
 
-    // Generate schedule
-    const schedule: { time: string; amount: string; notes: string }[] = [];
+      // Calculate amount per meal (assuming 400 kcal/cup for puppy food)
+      const cupsPerMeal = (caloriesPerMeal / 400).toFixed(2);
+      const gramsPerMeal = Math.round(parseFloat(cupsPerMeal) * 120);
+
+      // Generate schedule
+      const schedule: { time: string; amount: string; notes: string }[] = [];
     
     if (mealsPerDay === 4) {
-      schedule.push({ time: '7:00 AM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Morning meal' });
-      schedule.push({ time: '12:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Midday meal' });
-      schedule.push({ time: '5:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Evening meal' });
-      schedule.push({ time: '10:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Night meal' });
-    } else if (mealsPerDay === 3) {
-      schedule.push({ time: '7:00 AM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Morning meal' });
-      schedule.push({ time: '1:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Afternoon meal' });
-      schedule.push({ time: '7:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Evening meal' });
-    } else {
-      schedule.push({ time: '8:00 AM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Morning meal' });
-      schedule.push({ time: '6:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Evening meal' });
-    }
+        schedule.push({ time: '7:00 AM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Morning meal' });
+        schedule.push({ time: '12:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Midday meal' });
+        schedule.push({ time: '5:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Evening meal' });
+        schedule.push({ time: '10:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Night meal' });
+      } else if (mealsPerDay === 3) {
+        schedule.push({ time: '7:00 AM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Morning meal' });
+        schedule.push({ time: '1:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Afternoon meal' });
+        schedule.push({ time: '7:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Evening meal' });
+      } else {
+        schedule.push({ time: '8:00 AM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Morning meal' });
+        schedule.push({ time: '6:00 PM', amount: `${cupsPerMeal} cups (${gramsPerMeal}g)`, notes: 'Evening meal' });
+      }
 
-    const recommendations: string[] = [];
-    
-    if (age <= 8) {
-      recommendations.push('Very young puppies need 4 meals per day for proper growth.');
-      recommendations.push('Feed high-quality puppy food specifically formulated for growth.');
-    } else if (age <= 16) {
-      recommendations.push('Puppies 8-16 weeks need 3 meals per day.');
-      recommendations.push('Continue with puppy-specific food until 12-18 months (depending on breed size).');
-    } else if (age <= 24) {
-      recommendations.push('Puppies 16-24 weeks can transition to 3 meals per day.');
-      recommendations.push('Monitor growth and adjust portions as needed.');
-    } else {
-      recommendations.push('Older puppies (6+ months) can eat 2 meals per day.');
-      recommendations.push('Large breed puppies may need to stay on puppy food longer.');
-    }
+      const recommendations: string[] = [];
+      
+      if (age <= 8) {
+        recommendations.push('Very young puppies need 4 meals per day for proper growth.');
+        recommendations.push('Feed high-quality puppy food specifically formulated for growth.');
+      } else if (age <= 16) {
+        recommendations.push('Puppies 8-16 weeks need 3 meals per day.');
+        recommendations.push('Continue with puppy-specific food until 12-18 months (depending on breed size).');
+      } else if (age <= 24) {
+        recommendations.push('Puppies 16-24 weeks can transition to 3 meals per day.');
+        recommendations.push('Monitor growth and adjust portions as needed.');
+      } else {
+        recommendations.push('Older puppies (6+ months) can eat 2 meals per day.');
+        recommendations.push('Large breed puppies may need to stay on puppy food longer.');
+      }
 
-    recommendations.push(`Total daily calories: ${dailyCalories} kcal`);
-    recommendations.push(`Always provide fresh water with meals.`);
-    recommendations.push(`Monitor your puppy's body condition and adjust portions if needed.`);
+      recommendations.push(`Total daily calories: ${dailyCalories} kcal`);
+      recommendations.push(`Always provide fresh water with meals.`);
+      recommendations.push(`Monitor your puppy's body condition and adjust portions if needed.`);
 
-    if (breedSize === 'large') {
-      recommendations.push('Large breed puppies need controlled growth - avoid overfeeding.');
-    } else if (breedSize === 'small') {
-      recommendations.push('Small breed puppies may need more frequent, smaller meals.');
-    }
+      if (breedSize === 'large') {
+        recommendations.push('Large breed puppies need controlled growth - avoid overfeeding.');
+      } else if (breedSize === 'small') {
+        recommendations.push('Small breed puppies may need more frequent, smaller meals.');
+      }
 
-    setResult({
-      mealsPerDay,
-      dailyCalories,
-      schedule,
-      recommendations,
-    });
+      setResult({
+        mealsPerDay,
+        dailyCalories,
+        schedule,
+        recommendations,
+      });
+      setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (
@@ -194,6 +205,13 @@ export default function PuppyFeedingScheduleGeneratorClient() {
                   >
                     <option value="lbs">lbs</option>
                     <option value="kg">kg</option>
+
+          <Loader 
+            isLoading={isLoading} 
+            message="Our AI Model is Creating Feeding Schedule" 
+            petType="dog" 
+            size="large" 
+          />
                   </select>
                 </div>
               </div>

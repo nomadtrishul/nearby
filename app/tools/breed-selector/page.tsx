@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Breed Selector | Nearby Pet Care',
+  title: 'Pet Breed Selector',
   description: 'Find the perfect pet breed for your lifestyle. Answer questions about living space and activity level to get personalized breed recommendations.',
   keywords: ['pet breed selector', 'dog breed finder', 'cat breed finder', 'best dog breed', 'best cat breed', 'breed matching tool', 'pet adoption guide', 'choose pet breed'],
   slug: 'breed-selector',
@@ -67,25 +67,27 @@ export default function BreedSelectorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'LifestyleApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <BreedSelectorClient />

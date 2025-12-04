@@ -3,6 +3,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Breadcrumb from '@/components/Breadcrumb';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 
 export default function PetInsuranceCostEstimatorClient() {
   const [petType, setPetType] = useState<'dog' | 'cat'>('dog');
@@ -17,6 +20,8 @@ export default function PetInsuranceCostEstimatorClient() {
     factors: Array<{ factor: string; impact: string }>;
     recommendations: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const calculateCost = () => {
     const ageNum = parseFloat(age);
@@ -25,6 +30,10 @@ export default function PetInsuranceCostEstimatorClient() {
       return;
     }
 
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     // Base monthly cost
     let baseCost = petType === 'dog' ? 40 : 25;
 
@@ -71,6 +80,8 @@ export default function PetInsuranceCostEstimatorClient() {
     recommendations.push('Consider your pet\'s health history and breed predispositions');
 
     setResult({ estimatedMonthly, estimatedYearly, factors, recommendations });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

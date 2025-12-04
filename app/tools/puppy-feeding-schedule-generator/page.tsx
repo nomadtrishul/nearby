@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Puppy Feeding Schedule Generator | Nearby Pet Care',
+  title: 'Puppy Feeding Schedule Generator',
   description: 'Free puppy feeding schedule generator creates personalized meal schedules based on age, breed size, and weight. Get meal times and portion sizes.',
   keywords: ['puppy feeding schedule', 'puppy feeding times', 'puppy meal schedule', 'puppy feeding guide', 'puppy nutrition schedule', 'puppy feeding plan', 'puppy meal planning', 'puppy feeding routine'],
   slug: 'puppy-feeding-schedule-generator',
@@ -62,25 +62,27 @@ export default function PuppyFeedingScheduleGeneratorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <PuppyFeedingScheduleGeneratorClient />

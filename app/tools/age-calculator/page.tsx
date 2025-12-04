@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Age Calculator | Nearby Pet Care',
+  title: 'Pet Age Calculator',
   description: 'Free pet age calculator converts dog and cat years to human years. Get breed-specific calculations and age-appropriate care recommendations.',
   keywords: ['pet age calculator', 'dog age calculator', 'cat age calculator', 'pet age in human years', 'pet life stage', 'dog years calculator', 'cat years calculator', 'pet age converter', 'dog years to human years', 'cat years to human years'],
   slug: 'age-calculator',
@@ -61,25 +61,27 @@ export default function AgeCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: config.title.split('|')[0].trim(),
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'HealthApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features,
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <AgeCalculatorClient />

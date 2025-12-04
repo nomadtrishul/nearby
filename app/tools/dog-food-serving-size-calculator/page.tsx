@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Dog Food Serving Size Calculator | Nearby Pet Care',
+  title: 'Dog Food Serving Size Calculator',
   description: 'Free dog food serving size calculator determines perfect portions based on weight, age, and activity level. Get RER and DER calculations.',
   keywords: ['dog food serving size', 'dog food calculator', 'dog portion calculator', 'dog feeding calculator', 'dog food portions', 'dog serving size', 'dog feeding guide', 'dog nutrition calculator'],
   slug: 'dog-food-serving-size-calculator',
@@ -62,25 +62,27 @@ export default function DogFoodServingSizeCalculatorPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'NutritionCalculator',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <DogFoodServingSizeCalculatorClient />

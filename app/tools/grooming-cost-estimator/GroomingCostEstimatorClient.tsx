@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Loader from "@/components/Loader";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Download, X, Facebook, Instagram, MessageCircle, Send, Linkedin, Copy, Check } from "lucide-react";
 import Breadcrumb from '@/components/Breadcrumb';
 
 export default function GroomingCostEstimatorClient() {
@@ -17,8 +20,15 @@ export default function GroomingCostEstimatorClient() {
     breakdown: Array<{ service: string; cost: string }>;
     tips: string[];
   } | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
   const estimateCost = () => {
+
+    setIsLoading(true);
+
+    // Simulate AI processing with 3-second delay
+    setTimeout(() => {
     let baseCost = 0;
     const breakdown: Array<{ service: string; cost: string }> = [];
     const tips: string[] = [];
@@ -102,6 +112,8 @@ export default function GroomingCostEstimatorClient() {
     tips.push('Pets with behavioral issues may incur additional fees');
 
     setResult({ costPerVisit, annualCost, breakdown, tips });
+    setIsLoading(false);
+    }, 3000); // 3-second delay
   };
 
   return (

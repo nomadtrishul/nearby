@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Pet Aggression Type Checker | Nearby Pet Care',
+  title: 'Pet Aggression Type Checker',
   description: 'Free pet aggression type checker helps identify fear, territorial, resource guarding, and other aggression triggers in dogs and cats with tailored guidance.',
   keywords: ['pet aggression', 'dog aggression', 'cat aggression', 'aggression types', 'aggression diagnosis', 'aggressive behavior', 'resource guarding', 'fear aggression'],
   slug: 'aggression-type-checker',
@@ -62,25 +62,27 @@ export default function AggressionTypeCheckerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'EducationApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
     featureList: config.features || [],
   };
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <AggressionTypeCheckerClient />

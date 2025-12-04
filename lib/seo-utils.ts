@@ -60,7 +60,7 @@ export interface SeoInput {
   image?: string;
   /** OG image array for multiple images */
   images?: Array<{
-  url: string;
+    url: string;
     width?: number;
     height?: number;
     alt?: string;
@@ -110,7 +110,7 @@ export interface MergedSeo {
   canonical: string;
   image: string;
   images: Array<{
-  url: string;
+    url: string;
     width: number;
     height: number;
     alt: string;
@@ -177,7 +177,7 @@ export function isProductionEnvironment(): boolean {
  */
 function normalizeDate(dateString: string | undefined | null): string | null {
   if (!dateString) return null;
-  
+
   try {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
@@ -263,7 +263,7 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   } else {
     canonicalUrl = SITE.domain;
   }
-  
+
   // Handle pagination canonical URLs
   if (isPaginated) {
     if (page && page > 1) {
@@ -276,20 +276,21 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   }
 
   // Build title
+  // NOTE: Do NOT apply the template here. The root layout.tsx has a title.template
+  // that handles adding "| Nearby Pet Care". Applying it here would cause the
+  // site name to appear twice in browser tabs (e.g., "Page | Nearby Pet Care | Nearby Pet Care").
+  // Only use the template for OG/Twitter metadata which doesn't go through layout templating.
   let finalTitle: string;
   if (title) {
-    if (title.includes('|')) {
-      finalTitle = title;
-    } else {
-      finalTitle = SITE.defaultTitleTemplate.replace('%s', title);
-    }
+    // Use raw title without template - layout.tsx handles templating for document.title
+    finalTitle = title;
   } else {
     finalTitle = SITE.name;
   }
   finalTitle = truncateTitle(finalTitle);
 
   // Build description
-  const finalDescription = description 
+  const finalDescription = description
     ? truncateDescription(description)
     : SITE.description;
 
@@ -313,7 +314,7 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
         alt: img.alt || finalTitle,
         type: img.type || 'image/png',
       }));
-    
+
     if (validImages.length > 0) {
       finalImages = validImages;
     } else {
@@ -352,7 +353,7 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
   // In production: always allow indexing unless explicitly disabled (noindex: true)
   // In non-production: block indexing unless explicitly enabled (noindex: false)
   const isProduction = isProductionEnvironment();
-  const shouldIndex = isProduction 
+  const shouldIndex = isProduction
     ? !noindex  // Production: allow indexing unless explicitly disabled
     : (noindex === false); // Non-production: only allow if explicitly enabled
   const shouldFollow = !nofollow;
@@ -372,14 +373,14 @@ export function mergeSeo(input: SeoInput = {}): MergedSeo {
     title: finalTitle,
     description: finalDescription,
     keywords: keywords && keywords.length > 0 ? keywords : undefined,
-      canonical: canonicalUrl,
+    canonical: canonicalUrl,
     image: finalImages[0].url,
     images: finalImages,
     type,
-        publishedTime: normalizedPublishedTime || undefined,
-        modifiedTime: normalizedModifiedTime || undefined,
+    publishedTime: normalizedPublishedTime || undefined,
+    modifiedTime: normalizedModifiedTime || undefined,
     author,
-        section,
+    section,
     tags: tags && tags.length > 0 ? tags : undefined,
     breadcrumbs,
     noindex: !shouldIndex,
@@ -405,16 +406,16 @@ export function buildCanonical(pathname?: string): string {
   if (!pathname) {
     return SITE.domain;
   }
-  
+
   // Ensure pathname starts with /
   const normalizedPath = pathname.startsWith('/') ? pathname : `/${pathname}`;
-  
+
   // Remove trailing slash (except for root)
   const cleanPath = normalizedPath === '/' ? '/' : normalizedPath.replace(/\/$/, '');
-  
+
   // Strip query parameters (UTM params, etc.) for canonical URLs
   const urlWithoutQuery = cleanPath.split('?')[0];
-  
+
   return `${SITE.domain}${urlWithoutQuery}`;
 }
 
@@ -475,7 +476,7 @@ export function generateJsonLd(merged: MergedSeo): string {
   if (merged.images && merged.images.length > 0) {
     const primaryImage = merged.images[0];
     baseStructuredData.image = {
-          '@type': 'ImageObject',
+      '@type': 'ImageObject',
       url: primaryImage.url,
       width: primaryImage.width,
       height: primaryImage.height,
@@ -486,17 +487,17 @@ export function generateJsonLd(merged: MergedSeo): string {
   if (merged.type === 'article') {
     // Validate required fields for Article schema
     const missingFields: string[] = [];
-    
+
     if (!merged.publishedTime) {
       missingFields.push('datePublished');
     } else {
       baseStructuredData.datePublished = merged.publishedTime;
     }
-    
+
     if (merged.modifiedTime) {
       baseStructuredData.dateModified = merged.modifiedTime;
     }
-    
+
     if (!merged.author) {
       missingFields.push('author');
     } else {
@@ -505,12 +506,12 @@ export function generateJsonLd(merged: MergedSeo): string {
         name: merged.author,
       };
     }
-    
+
     // Warn in development if required fields are missing
     if (missingFields.length > 0 && typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
       console.warn(`⚠️ Article schema missing required fields: ${missingFields.join(', ')}. Schema may be invalid.`);
     }
-    
+
     if (merged.section) {
       baseStructuredData.articleSection = merged.section;
     }
@@ -534,16 +535,16 @@ export function generateJsonLd(merged: MergedSeo): string {
   // Breadcrumbs
   if (merged.breadcrumbs && merged.breadcrumbs.length > 0) {
     baseStructuredData.breadcrumb = {
-    '@context': 'https://schema.org',
+      '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: merged.breadcrumbs.map((crumb, index) => ({
         '@type': 'ListItem',
         position: index + 1,
         name: crumb.name,
         item: ensureAbsoluteUrl(crumb.url),
-    })),
-  };
-}
+      })),
+    };
+  }
 
   try {
     return JSON.stringify(baseStructuredData, null, 0);
@@ -935,16 +936,16 @@ export function validateSeoForPage(merged: MergedSeo): string[] {
     const recommendedWidth = 1200;
     const recommendedHeight = 630;
     const aspectRatio = recommendedWidth / recommendedHeight; // 1.904...
-    
+
     if (primaryImage.width && primaryImage.height) {
       const imageAspectRatio = primaryImage.width / primaryImage.height;
       const aspectRatioDiff = Math.abs(imageAspectRatio - aspectRatio);
-      
+
       // Warn if aspect ratio is significantly different (more than 10% off)
       if (aspectRatioDiff > 0.1) {
         warnings.push(`OG image aspect ratio (${primaryImage.width}x${primaryImage.height}) differs from recommended (1200x630). Current ratio: ${imageAspectRatio.toFixed(2)}, Recommended: ${aspectRatio.toFixed(2)}`);
       }
-      
+
       // Warn if dimensions are too small
       if (primaryImage.width < 600 || primaryImage.height < 315) {
         warnings.push(`OG image dimensions (${primaryImage.width}x${primaryImage.height}) are below minimum recommended size (600x315). Recommended: 1200x630`);
@@ -967,13 +968,13 @@ export function validateSeoForPage(merged: MergedSeo): string[] {
     if (firstBreadcrumb.name.toLowerCase() !== 'home' && firstBreadcrumb.url !== '/') {
       warnings.push('Breadcrumbs should start with Home');
     }
-    
+
     // Validate URL structure
     breadcrumbs.forEach((crumb, index) => {
       if (!crumb.url || (!crumb.url.startsWith('http') && !crumb.url.startsWith('/'))) {
         warnings.push(`Breadcrumb ${index + 1} has invalid URL: ${crumb.url}`);
       }
-      
+
       // Check if breadcrumb URLs match page hierarchy
       if (index > 0) {
         const prevBreadcrumb = breadcrumbs[index - 1];
@@ -985,7 +986,7 @@ export function validateSeoForPage(merged: MergedSeo): string[] {
         }
       }
     });
-    
+
     // Last breadcrumb should match current page canonical
     const lastBreadcrumb = breadcrumbs[breadcrumbs.length - 1];
     const canonicalPath = merged.canonical.replace(SITE.domain, '');
@@ -1049,7 +1050,7 @@ export function calculateLastmod(
       // Invalid date, fall through
     }
   }
-  
+
   if (publishedTime) {
     try {
       return new Date(publishedTime).toISOString().split('T')[0];
@@ -1057,7 +1058,7 @@ export function calculateLastmod(
       // Invalid date, fall through
     }
   }
-  
+
   const date = fallbackDate || new Date();
   return date.toISOString().split('T')[0];
 }
@@ -1106,7 +1107,7 @@ export function makeSitemapEntry(
   // Image sitemap generation disabled - images are optional and can cause issues
   // Search engines can discover images from page content, so image sitemaps aren't necessary
   // Uncomment the code below if you want to enable image sitemaps in the future
-  
+
   // // Add images for image sitemap - filter out invalid URLs
   // if (merged.images && merged.images.length > 0) {
   //   entry.images = merged.images
@@ -1169,7 +1170,7 @@ export function makeSitemapEntry(
  */
 export function generateSEOMetadata(input: SeoInput): Metadata {
   const merged = mergeSeo(input);
-  
+
   // Validate in development mode
   if (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') {
     const warnings = validateSeoForPage(merged);
@@ -1177,7 +1178,13 @@ export function generateSEOMetadata(input: SeoInput): Metadata {
       console.warn(`⚠️ SEO warnings for ${merged.canonical}:`, warnings);
     }
   }
-  
+
+  // Build full title with template for OG/Twitter (they don't use layout's title.template)
+  // Check if the title already includes a separator to avoid double-templating
+  const fullTitleForSharing = merged.title.includes('|') || merged.title === SITE.name
+    ? merged.title
+    : SITE.defaultTitleTemplate.replace('%s', merged.title);
+
   const metadata: Metadata = {
     title: merged.title,
     description: merged.description,
@@ -1188,7 +1195,7 @@ export function generateSEOMetadata(input: SeoInput): Metadata {
     },
     openGraph: {
       type: merged.type,
-      title: merged.title,
+      title: fullTitleForSharing,
       description: merged.description,
       url: merged.canonical,
       siteName: SITE.name,
@@ -1210,7 +1217,7 @@ export function generateSEOMetadata(input: SeoInput): Metadata {
     },
     twitter: {
       card: 'summary_large_image',
-      title: merged.title,
+      title: fullTitleForSharing,
       description: merged.description,
       images: merged.images.length > 0 ? [merged.images[0].url] : undefined,
       site: SITE.twitterHandle,
@@ -1489,11 +1496,11 @@ export function generateBlogPostingStructuredData(input: {
       '@type': 'Person',
       name: input.author,
     };
-    
+
     if (input.authorImage) {
       authorObject.image = ensureAbsoluteUrl(input.authorImage);
     }
-    
+
     if (input.authorLinkedIn) {
       authorObject.sameAs = [input.authorLinkedIn];
     }

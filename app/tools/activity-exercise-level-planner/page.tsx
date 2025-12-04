@@ -9,7 +9,7 @@ import {
 import { getBaseUrl, ensureAbsoluteUrl } from '@/lib/site-config';
 
 const config = {
-  title: 'Activity & Exercise Planner | Nearby Pet Care',
+  title: 'Activity & Exercise Planner',
   description: 'Free activity and exercise level planner creates personalized daily and weekly routines for dogs and cats based on breed, age, and activity level.',
   keywords: ['pet exercise plan', 'dog exercise planner', 'cat exercise plan', 'pet activity planner', 'exercise schedule', 'pet fitness plan', 'daily exercise pets', 'pet exercise routine'],
   slug: 'activity-exercise-level-planner',
@@ -70,20 +70,22 @@ export default function ActivityExerciseLevelPlannerPage() {
     ? generateFAQStructuredData(config.faqs)
     : null;
 
-  const webApplicationStructuredData = {
+  const softwareApplicationStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'WebApplication',
+    '@type': 'SoftwareApplication',
     name: toolTitle,
     description: config.description,
     url: toolUrl,
     applicationCategory: 'UtilityApplication',
+    applicationSubCategory: 'EducationApplication',
     operatingSystem: 'Any',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
+      availability: 'https://schema.org/InStock',
     },
-    featureList: config.features,
+    featureList: config.features || [],
   };
 
   const breadcrumbItems = [
@@ -101,7 +103,7 @@ export default function ActivityExerciseLevelPlannerPage() {
 
   return (
     <>
-      <script {...jsonLdScriptProps(webApplicationStructuredData)} />
+      <script {...jsonLdScriptProps(softwareApplicationStructuredData)} />
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {faqStructuredData && <script {...jsonLdScriptProps(faqStructuredData)} />}
       <ActivityExerciseLevelPlannerClient />
