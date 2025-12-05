@@ -2,7 +2,7 @@
 title: "Senior Pet Care: What Older Dogs and Cats Need & How to Find Local Help"
 date: "2025-11-13"
 excerpt: "Comprehensive guide to senior dog and cat care. Learn what older pets need, find senior dog care services and pet care for older cats near you, and ensure your aging companion receives the specialized attention they deserve."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Senior Pet Care"
 tags: ["senior dog care", "old dog care", "senior cat care", "elderly pet care", "aging pets", "pet care for older cats"]
 readingTime: 11

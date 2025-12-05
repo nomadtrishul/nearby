@@ -2,7 +2,7 @@
 title: "10 Signs Your Dog Needs Professional Care Nearby"
 date: "2025-11-13"
 excerpt: "Discover the key indicators that your furry friend needs professional dog care services. Learn when to hire pet care services and recognize signs your dog needs daycare or specialized attention."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Dog Care"
 tags: ["dog care", "pet care services", "dog daycare", "professional pet care", "dog health"]
 readingTime: 8

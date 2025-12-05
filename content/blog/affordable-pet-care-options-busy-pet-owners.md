@@ -2,7 +2,7 @@
 title: "Affordable Pet Care Options for Busy Pet Owners"
 date: "2025-11-13"
 excerpt: "Discover budget-friendly pet care solutions that don't compromise on quality. Learn about affordable pet care near me, budget pet care services, and cheap dog daycare options that fit your schedule and wallet."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Pet Care Tips"
 tags: ["affordable pet care", "budget pet care", "cheap dog daycare", "pet care costs", "budget-friendly pet care"]
 readingTime: 9

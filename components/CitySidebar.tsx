@@ -77,7 +77,7 @@ export default function CitySidebar({
 
   useEffect(() => {
     // Fetch recent tips
-    fetch('/api/tips/sidebar')
+    fetch('/internal/sidebar-data')
       .then((res) => res.json())
       .then((data) => {
         setRecentTips(

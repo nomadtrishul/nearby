@@ -2,7 +2,7 @@
 title: "Mobile Pet Care Services: Why and When They Make Sense"
 date: "2025-11-13"
 excerpt: "Explore the benefits of mobile pet care services including mobile pet grooming, mobile vet services, and in-home pet care. Learn when mobile services are the best choice for your pet's needs."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Pet Care Services"
 tags: ["mobile pet care", "mobile pet grooming", "mobile vet", "in-home pet care", "convenient pet care"]
 readingTime: 8

@@ -2,7 +2,7 @@
 title: "Pet Care for First-Time Owners: A Local Guide"
 date: "2025-11-13"
 excerpt: "Complete guide for first-time pet owners. Learn essential first time dog owner care tips, discover how to find pet care services guidance, and get local resources to help you provide the best care for your new companion."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Pet Care Basics"
 tags: ["first time pet owner", "new pet owner", "pet care guide", "dog care tips", "cat care tips", "pet care services"]
 readingTime: 12

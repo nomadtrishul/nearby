@@ -2,7 +2,7 @@
 title: "How to Choose a Pet Care Provider in Your City: Checklist for Cat Owners"
 date: "2025-11-13"
 excerpt: "A comprehensive guide to finding the best cat care services near you. Learn how to choose a pet sitter, understand pet boarding vs pet daycare for cats, and make informed decisions about your feline friend's care."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Cat Care"
 tags: ["cat care", "pet sitter", "pet boarding", "pet daycare", "cat boarding", "cat care services"]
 readingTime: 10

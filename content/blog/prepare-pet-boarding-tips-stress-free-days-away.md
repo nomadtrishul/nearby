@@ -2,7 +2,7 @@
 title: "Prepare Your Pet for Boarding: Tips for Stress-Free Days Away"
 date: "2025-11-13"
 excerpt: "Essential guide to preparing your pet for boarding. Learn dog boarding tips, find pet boarding near me, and discover how to ensure your pet has a stress-free experience while you're away."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Pet Boarding"
 tags: ["pet boarding", "dog boarding", "cat boarding", "boarding tips", "pet daycare boarding", "prepare pet for boarding"]
 readingTime: 9

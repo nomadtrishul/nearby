@@ -88,14 +88,21 @@ export default async function BlogPostPage({ params }: PageProps) {
     { name: post.title, url: `/blog/${slug}` },
   ];
 
-  // Author information - only show bio for Trishul D N.
-  const authorName = post.author || 'Nearby Pet Care Team';
-  const isTrishul = authorName === 'Trishul D N.';
-  const authorImage = isTrishul ? '/trishul-dn.jpeg' : null;
-  const authorLinkedIn = isTrishul ? 'https://www.linkedin.com/in/trishuldn/' : null;
-  const authorBio = isTrishul 
-    ? 'Trishul D N. is a passionate pet care writer and researcher dedicated to helping pet owners provide the best care for their furry, feathered, and scaled companions. With extensive research into pet health, behavior, and care practices, Trishul shares evidence-based insights to help pet owners make informed decisions about their pets\' wellbeing.'
+  // Author information - Dr. Jones is the primary author
+  const authorName = post.author || 'Dr. Jones';
+  const isDrJones = authorName === 'Dr. Jones';
+  const authorImage = isDrJones ? '/dr.jones-2.png' : null;
+  const authorBio = isDrJones
+    ? 'Dr. Jones is a passionate and dedicated VETERINARIAN with years of experience in companion animal medicine. Committed to promoting pet health and wellbeing through education, Dr. Jones shares expert insights on preventive care, common health issues, and the latest advances in veterinary medicine to help pet owners provide the best possible care for their beloved animals.'
     : null;
+  
+  // Social media links for Dr. Jones
+  const socialLinks = isDrJones ? [
+    { name: 'Instagram', url: 'https://www.instagram.com/barysskylounge/', icon: 'M16 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z' },
+    { name: 'Facebook', url: 'https://www.facebook.com/barysskylounge/', icon: 'M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z' },
+    { name: 'X', url: 'https://x.com/nearbypetcare', icon: 'M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/nearbypetcare/', icon: 'M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z M2 9h4v12H2z M4 6a2 2 0 110-4 2 2 0 010 4z' }
+  ] : [];
 
   // Generate structured data using centralized utilities
   const articleStructuredData = generateBlogPostingStructuredData({
@@ -106,7 +113,6 @@ export default async function BlogPostPage({ params }: PageProps) {
     dateModified: modifiedTime,
     author: authorName,
     authorImage: authorImage || undefined,
-    authorLinkedIn: authorLinkedIn || undefined,
     image: postImage,
     wordCount: wordCount,
     timeRequired: `PT${readingTime}M`,
@@ -114,12 +120,37 @@ export default async function BlogPostPage({ params }: PageProps) {
     tags: post.tags || [],
   });
 
+  // Author schema for website authority
+  const authorStructuredData = isDrJones ? {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://nearbypetcare.com/author/dr-jones",
+    "name": "Dr. Jones",
+    "image": "https://nearbypetcare.com/dr.jones-2.png",
+    "url": "https://nearbypetcare.com",
+    "description": "Dr. Jones is a passionate and dedicated VETERINARIAN with years of experience in companion animal medicine. Committed to promoting pet health and wellbeing through education, Dr. Jones shares expert insights on preventive care, common health issues, and the latest advances in veterinary medicine to help pet owners provide the best possible care for their beloved animals.",
+    "sameAs": [
+      "https://www.instagram.com/barysskylounge/",
+      "https://www.facebook.com/barysskylounge/",
+      "https://x.com/nearbypetcare",
+      "https://www.linkedin.com/company/nearbypetcare/"
+    ],
+    "jobTitle": "Veterinarian",
+    "knowsAbout": ["Veterinary Medicine", "Pet Health", "Animal Care", "Preventive Care", "Pet Nutrition", "Animal Behavior"],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Nearby Pet Care",
+      "url": "https://nearbypetcare.com"
+    }
+  } : null;
+
   const breadcrumbStructuredData = generateBreadcrumbStructuredData(breadcrumbs);
 
   return (
     <main className="min-h-screen bg-white dark:bg-black transition-colors pt-16 sm:pt-20 md:pt-24" role="main" aria-label={`Article: ${post.title}`}>
       {/* Structured Data Scripts - All schemas for maximum SEO coverage */}
       <script {...jsonLdScriptProps(articleStructuredData)} />
+      {authorStructuredData && <script {...jsonLdScriptProps(authorStructuredData)} />}
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       {/* Hero Section - Optimized for Core Web Vitals */}
       <section 
@@ -301,7 +332,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <div className="flex-shrink-0">
                       <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-700 relative">
                         <Image
-                          src={authorImage}
+                          src={authorImage!}
                           alt={`${authorName} - Author`}
                           fill
                           className="object-cover"
@@ -316,24 +347,30 @@ export default async function BlogPostPage({ params }: PageProps) {
                       <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 transition-colors" itemProp="name">
                         {authorName}
                       </h3>
-                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 leading-relaxed transition-colors" itemProp="description">
+                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed transition-colors" itemProp="description">
                         {authorBio}
                       </p>
-                      {/* LinkedIn Link */}
-                      {authorLinkedIn && (
-                        <a
-                          href={authorLinkedIn}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-                          aria-label={`Connect with ${authorName} on LinkedIn`}
-                          itemProp="sameAs"
-                        >
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                          </svg>
-                          Connect on LinkedIn
-                        </a>
+                      
+                      {/* Social Media Links */}
+                      {socialLinks.length > 0 && (
+                        <div className="flex flex-wrap gap-3 mt-4">
+                          {socialLinks.map((social) => (
+                            <a
+                              key={social.name}
+                              href={social.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                              aria-label={`Follow ${authorName} on ${social.name}`}
+                              itemProp="sameAs"
+                            >
+                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d={social.icon} />
+                              </svg>
+                              {social.name}
+                            </a>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </div>

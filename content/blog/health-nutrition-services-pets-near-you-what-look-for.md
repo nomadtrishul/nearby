@@ -2,7 +2,7 @@
 title: "Health & Nutrition Services for Pets Near You: What to Look For"
 date: "2025-11-13"
 excerpt: "Comprehensive guide to finding quality pet health care services and pet nutrition services nearby. Learn what to look for in clinical pet care services, veterinary nutrition, and specialized health services for your pet."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Pet Health"
 tags: ["pet health care", "pet nutrition", "veterinary services", "pet health services", "clinical pet care", "pet wellness"]
 readingTime: 10

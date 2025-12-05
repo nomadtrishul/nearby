@@ -17,7 +17,7 @@ export default function BlogSidebar() {
 
   useEffect(() => {
     // Fetch recent posts, categories, and tags
-    fetch('/api/blog/sidebar')
+    fetch('/internal/blog-sidebar')
       .then((res) => res.json())
       .then((data) => {
         setRecentPosts(data.recentPosts || []);

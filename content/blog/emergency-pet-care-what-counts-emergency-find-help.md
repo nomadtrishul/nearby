@@ -2,7 +2,7 @@
 title: "Emergency Pet Care: What Counts as Emergency, and Where to Find Help"
 date: "2025-11-13"
 excerpt: "Critical guide to recognizing pet emergencies and finding immediate help. Learn what counts as an emergency, locate emergency vet near me, and discover 24 hour pet care services and urgent pet care services in your area."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Emergency Care"
 tags: ["emergency vet", "pet emergency", "24 hour pet care", "urgent pet care", "pet emergency services", "emergency veterinary care"]
 readingTime: 10

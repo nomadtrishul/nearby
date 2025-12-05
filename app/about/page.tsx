@@ -63,7 +63,7 @@ export default function AboutPage() {
     organization: {
       name: 'Nearby Pet Care',
       legalName: 'Nearby Pet Care',
-      description: 'An independent educational platform dedicated to helping pet owners make informed decisions about everyday pet care through practical, step-by-step guidance.',
+      description: 'An independent educational platform founded by Dr. Jones and Trishul D N., dedicated to helping pet owners make informed decisions about everyday pet care through practical, step-by-step guidance.',
       logo: '/logo.png',
       contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
       sameAs: [
@@ -92,11 +92,15 @@ export default function AboutPage() {
   const faqStructuredData = generateFAQStructuredData([
     {
       question: 'What is Nearby Pet Care?',
-      answer: 'Nearby Pet Care is an independent educational platform providing trusted pet care tips, guides, and information. We help pet owners learn how to care for dogs, cats, and pets with practical, evidence-based advice.',
+      answer: 'Nearby Pet Care is an independent educational platform founded by Dr. Jones (veterinarian) and Trishul D N. (business expert). We provide trusted pet care tips, guides, and information to help pet owners learn how to care for dogs, cats, and other pets with practical, evidence-based advice.',
+    },
+    {
+      question: 'Who founded Nearby Pet Care?',
+      answer: 'Nearby Pet Care was founded by Dr. Jones, a passionate veterinarian with years of experience in companion animal medicine, and Trishul D N., a business expert and pet lover. They combined their expertise to create an informational website that serves the pet owners and lovers community with easy access to reliable information.',
     },
     {
       question: 'Is Nearby Pet Care affiliated with any pet care businesses?',
-      answer: 'No, we are completely independent. We do not sell pet food, run veterinary clinics, or represent any pet care business. Our only job is to help you understand pet care topics so you can make better decisions for your pets.',
+      answer: 'No, we are completely independent. We don\'t sell pet food, run veterinary clinics, or represent any pet care business. Our only job is to help you understand pet care topics so you can make better decisions for your pets.',
     },
     {
       question: 'What kind of pet care information do you provide?',
@@ -104,7 +108,7 @@ export default function AboutPage() {
     },
     {
       question: 'How do you ensure the quality of your pet care information?',
-      answer: 'All our content is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior. We focus on providing practical, evidence-based guidance that helps pet owners make informed decisions.',
+      answer: 'All our content is reviewed by Dr. Jones, our veterinary expert, and is based on widely accepted pet care practices and current understanding of animal health, nutrition, and behavior. We focus on providing practical, evidence-based guidance that helps pet owners make informed decisions.',
     },
   ]);
 
@@ -170,10 +174,10 @@ export default function AboutPage() {
 
             {/* Description */}
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-4 sm:mb-6 max-w-3xl mx-auto leading-relaxed font-medium">
-              If you've ever searched for "how to care for a dog" or "pet care tips" and found yourself drowning in conflicting advice, you know exactly why we created Nearby Pet Care. We're an independent platform that cuts through the noise to give you practical, trustworthy pet care information you can actually use.
+              Founded by Dr. Jones, a passionate veterinarian, and Trishul D N., a business expert and pet lover, Nearby Pet Care was created to serve the pet owners and lovers community with easy access to reliable information.
             </p>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
-              Whether you're learning how to care for a cat for the first time or looking for advanced pet training techniques, our mission is simple: make pet care information accessible, understandable, and actionable for every pet owner.
+              Our mission is simple: make pet care information accessible, understandable, and actionable for every pet owner. Through the combined expertise of veterinary medicine and business strategy, we've built an independent platform that puts your pet's wellbeing first.
             </p>
 
             {/* Key Points - Optimized for mobile touch targets (min 48x48px) */}
@@ -194,6 +198,37 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Founders Section - New section about co-founders */}
+      <section 
+        className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"
+        aria-labelledby="founders-heading"
+      >
+        <div className="container mx-auto max-w-7xl">
+          <article className="max-w-4xl mx-auto">
+            <h2 id="founders-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8 text-center transition-colors">
+              Meet Our Founders
+            </h2>
+            <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed transition-colors">
+              <p>
+                Nearby Pet Care was founded by two passionate individuals who united their expertise to create a comprehensive resource for the pet owners and lovers community. Dr. Jones and Trishul D N. recognized the overwhelming need for accessible, reliable pet care information and embarked on a mission to bridge the knowledge gap between pet owners and the essential care their beloved animals deserve.
+              </p>
+              <p>
+                <strong className="font-semibold">Dr. Jones - Our Veterinary Expert</strong> brings years of experience in companion animal medicine to every piece of content we create. As a passionate and dedicated veterinarian, Dr. Jones is committed to promoting pet health and wellbeing through education. With deep expertise in preventive care, common health issues, and the latest advances in veterinary medicine, Dr. Jones ensures that our information is not just practical—it's medically sound and based on current best practices in animal healthcare.
+              </p>
+              <p>
+                <strong className="font-semibold">Trishul D N. - Our Business & Strategy Expert</strong> combines sharp business acumen with a genuine love for pets. As a business expert and devoted pet lover, Trishul understood the challenges pet owners face when trying to find trustworthy information amidst marketing messages and conflicting advice. His strategic vision drives our mission to create an independent platform that puts pet owners' needs first, free from commercial interests and hidden agendas.
+              </p>
+              <p>
+                Together, Dr. Jones and Trishul D N. initiated this informational website to serve as a beacon for the pet community. Their complementary expertise—veterinary medicine and business strategy—creates a unique foundation that allows us to provide both medically accurate information and user-friendly, accessible content. This partnership ensures that every guide, tip, and resource we offer meets the highest standards of both accuracy and usability.
+              </p>
+              <p>
+                What makes their collaboration special is their shared commitment to independence and education. They believe that pet owners deserve access to clear, trustworthy information without the influence of product sales or service promotions. This founding principle guides everything we do, from the topics we cover to how we present the information. Whether you're learning about basic pet care or advanced health topics, you can trust that our content is created with your pet's best interests at heart.
+              </p>
+            </div>
+          </article>
         </div>
       </section>
 

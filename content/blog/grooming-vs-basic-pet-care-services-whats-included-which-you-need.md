@@ -2,7 +2,7 @@
 title: "Grooming vs Basic Pet Care Services: What's Included & Which You Need"
 date: "2025-11-13"
 excerpt: "Understand the difference between pet grooming and basic pet care services. Learn what's included in each, discover pet grooming near me options, and determine which services your pet needs with this comprehensive guide."
-author: "Trishul D N."
+author: "Dr. Jones"
 category: "Pet Care Services"
 tags: ["pet grooming", "dog grooming", "pet care services", "basic pet care", "grooming services", "pet care checklist"]
 readingTime: 9
