@@ -4,6 +4,11 @@
  * Follows 2025 SEO best practices including image sitemaps
  */
 
+import fs from 'fs';
+import path from 'path';
+import { URL } from 'url';
+import https from 'https';
+
 function getBaseUrl() {
   if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
@@ -46,7 +51,7 @@ async function safeImport(...candidates) {
 }
 
 /** @type {import('next-sitemap').IConfig} */
-module.exports = {
+export default {
   siteUrl: getBaseUrl(),
   generateRobotsTxt: true,
   generateIndexSitemap: true, // Enable index sitemap for splitting >50k URLs
@@ -115,8 +120,6 @@ module.exports = {
   additionalPaths: async () => {
     const baseUrl = getBaseUrl();
     const now = new Date();
-    const fs = require('fs');
-    const path = require('path');
 
     const formatDate = (date) => {
       if (!date) return new Date().toISOString().split('T')[0];
@@ -424,9 +427,6 @@ module.exports = {
       };
       
       // Submit to IndexNow using Node.js https module (non-blocking, don't fail build if it fails)
-      const https = require('https');
-      const { URL } = require('url');
-      
       const apiUrl = new URL(INDEXNOW_API_URL);
       const postData = JSON.stringify(payload);
       

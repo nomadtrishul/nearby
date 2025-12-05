@@ -4,10 +4,10 @@
  * This script runs after sitemap generation to ensure all URLs are submitted
  */
 
-const fs = require('fs');
-const path = require('path');
-const https = require('https');
-const { URL } = require('url');
+import fs from 'fs';
+import path from 'path';
+import https from 'https';
+import { URL } from 'url';
 
 const INDEXNOW_API_URL = 'https://api.indexnow.org/IndexNow';
 const INDEXNOW_KEY = 'd482a54aae6e44a0b737708149ca3bce';
