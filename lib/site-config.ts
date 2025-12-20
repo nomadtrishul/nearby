@@ -15,8 +15,8 @@ export function getPreferredDomain(): 'www' | 'non-www' {
     if (preferred === 'www') return 'www';
     if (preferred === 'non-www' || preferred === 'nonwww') return 'non-www';
   }
-  // Default to non-www (current production setup)
-  return 'non-www';
+  // Default to www (updated per user request)
+  return 'www';
 }
 
 /**
@@ -28,12 +28,12 @@ export function getPreferredDomain(): 'www' | 'non-www' {
  */
 export function normalizeToPreferredDomain(url: string): string {
   const preferred = getPreferredDomain();
-  
+
   try {
     const urlObj = new URL(url);
     const hostname = urlObj.hostname;
     const hasWww = hostname.startsWith('www.');
-    
+
     if (preferred === 'www' && !hasWww) {
       // Add www
       urlObj.hostname = `www.${hostname}`;
@@ -43,7 +43,7 @@ export function normalizeToPreferredDomain(url: string): string {
       urlObj.hostname = hostname.replace(/^www\./, '');
       return urlObj.toString();
     }
-    
+
     return url;
   } catch {
     // Invalid URL, return as-is
@@ -59,16 +59,16 @@ export function normalizeToPreferredDomain(url: string): string {
  */
 export function getBaseUrl(): string {
   let baseUrl: string;
-  
+
   // In production, use environment variable if set, otherwise default to production URL
   // This allows for preview deployments and staging environments
   if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) {
     baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
   } else {
     // Default to production URL
-    baseUrl = 'https://nearbypetcare.com';
+    baseUrl = 'https://www.nearbypetcare.com';
   }
-  
+
   // Normalize to preferred domain
   return normalizeToPreferredDomain(baseUrl);
 }
@@ -95,17 +95,17 @@ export function ensureAbsoluteUrl(url: string): string {
   if (url.startsWith('http://') || url.startsWith('https://')) {
     return url;
   }
-  
+
   // Handle protocol-relative URLs
   if (url.startsWith('//')) {
     return `https:${url}`;
   }
-  
+
   // Handle absolute paths
   if (url.startsWith('/')) {
     return `${getBaseUrl()}${url}`;
   }
-  
+
   // Relative paths - prepend base URL
   return `${getBaseUrl()}/${url}`;
 }
@@ -121,26 +121,26 @@ export function getVerificationMeta() {
     yahoo?: string;
     other?: Record<string, string>;
   } = {};
-  
+
   if (process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION) {
     verification.google = process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION;
   }
-  
+
   if (process.env.NEXT_PUBLIC_YANDEX_VERIFICATION) {
     verification.yandex = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION;
   }
-  
+
   if (process.env.NEXT_PUBLIC_YAHOO_VERIFICATION) {
     verification.yahoo = process.env.NEXT_PUBLIC_YAHOO_VERIFICATION;
   }
-  
+
   // Bing verification goes in 'other' field
   if (process.env.NEXT_PUBLIC_BING_VERIFICATION) {
     verification.other = {
       'msvalidate.01': process.env.NEXT_PUBLIC_BING_VERIFICATION,
     };
   }
-  
+
   // Only return if we have at least one verification
   return Object.keys(verification).length > 0 ? verification : undefined;
 }

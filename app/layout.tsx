@@ -10,7 +10,7 @@ import { generateSEOMetadata, isProductionEnvironment } from "@/lib/seo-utils";
 import "./globals.css";
 
 // Optimize font loading: use display swap to prevent FOIT, preload for critical font
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   display: 'swap', // Prevents Flash of Invisible Text (FOIT)
   preload: true, // Preloads the font for faster rendering
@@ -32,8 +32,8 @@ const baseMetadata = generateSEOMetadata({
 });
 
 // Extract title as string (handle Next.js 16 Metadata title types)
-const baseTitle = typeof baseMetadata.title === 'string' 
-  ? baseMetadata.title 
+const baseTitle = typeof baseMetadata.title === 'string'
+  ? baseMetadata.title
   : "Nearby Pet Care - Professional Pet Care Services Near You";
 
 // Destructure to exclude title from baseMetadata, then override it
@@ -57,17 +57,7 @@ export const metadata: Metadata = {
   // Robots metadata is handled by generateSEOMetadata in baseMetadata
   // Only block indexing in non-production environments (preview/staging)
   // In production, always allow indexing unless explicitly disabled
-  robots: {
-    index: true, // Default to allowing indexing - generateSEOMetadata handles environment checks
-    follow: true,
-    googleBot: {
-      index: true, // Default to allowing indexing
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+
   ...(verificationMeta && { verification: verificationMeta }),
   icons: {
     icon: [
@@ -106,7 +96,7 @@ export default function RootLayout({
 
         {/* Favicon - Multiple formats for better browser support */}
         {/* Preload critical favicon for faster display */}
-        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
+        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" fetchPriority="high" />
         <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
         <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
         <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
@@ -116,11 +106,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        
+
         {/* Preconnect to Google Fonts for faster font loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* Initialize Google Consent Mode v2 - MUST be loaded BEFORE any Google tags (GTM/GA) */}
         {/* According to Google's guide: https://developers.google.com/tag-platform/security/guides/consent */}
         {/* Note: This must execute synchronously before GA/GTM, but is minimal and fast */}
@@ -251,15 +241,15 @@ export default function RootLayout({
               contactPoint: {
                 '@type': 'ContactPoint',
                 contactType: 'Customer Service',
-                email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
+                email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'trishuldn@gmail.com',
                 areaServed: 'US',
                 availableLanguage: ['English']
               },
               sameAs: [
-                'https://www.facebook.com/nearbypetcare',
-                'https://www.instagram.com/nearbypetcare/',
+                'https://www.facebook.com/barysskylounge/',
+                'https://www.instagram.com/barysskylounge/',
                 'https://www.youtube.com/@nearbypetcare',
-                'https://www.linkedin.com/company/nearbypetcare',
+                'https://www.linkedin.com/company/nearbypetcare/',
                 'https://x.com/nearbypetcare',
               ]
             }),

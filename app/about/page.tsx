@@ -65,12 +65,12 @@ export default function AboutPage() {
       legalName: 'Nearby Pet Care',
       description: 'An independent educational platform founded by Dr. Jones and Trishul D N., dedicated to helping pet owners make informed decisions about everyday pet care through practical, step-by-step guidance.',
       logo: '/logo.png',
-      contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
+      contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'trishuldn@gmail.com',
       sameAs: [
-        'https://www.facebook.com/nearbypetcare',
-        'https://www.instagram.com/nearbypetcare/',
+        'https://www.facebook.com/barysskylounge/',
+        'https://www.instagram.com/barysskylounge/',
         'https://www.youtube.com/@nearbypetcare',
-        'https://www.linkedin.com/company/nearbypetcare',
+        'https://www.linkedin.com/company/nearbypetcare/',
         'https://x.com/nearbypetcare',
       ],
       foundingDate: '2024',
@@ -142,7 +142,7 @@ export default function AboutPage() {
       <script {...jsonLdScriptProps(breadcrumbStructuredData)} />
       <script {...jsonLdScriptProps(faqStructuredData)} />
       {/* Hero Section - Optimized for Core Web Vitals */}
-      <section 
+      <section
         className="relative pb-16 sm:pb-20 md:pb-24 lg:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors"
         aria-labelledby="hero-heading"
       >
@@ -202,7 +202,7 @@ export default function AboutPage() {
       </section>
 
       {/* Founders Section - New section about co-founders */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"
         aria-labelledby="founders-heading"
       >
@@ -233,7 +233,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section - Semantic HTML for SEO */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors"
         aria-labelledby="story-heading"
       >
@@ -261,7 +261,7 @@ export default function AboutPage() {
       </section>
 
       {/* Philosophy Section - Semantic HTML */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"
         aria-labelledby="philosophy-heading"
       >
@@ -289,7 +289,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section - Optimized grid for mobile-first */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors"
         aria-labelledby="values-heading"
       >
@@ -318,7 +318,7 @@ export default function AboutPage() {
       </section>
 
       {/* What We Do Section - Semantic HTML */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"
         aria-labelledby="what-we-do-heading"
       >
@@ -343,7 +343,7 @@ export default function AboutPage() {
       </section>
 
       {/* Community Focus Section - Semantic HTML */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900/50 transition-colors"
         aria-labelledby="community-heading"
       >
@@ -368,7 +368,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section - Optimized for mobile touch targets */}
-      <section 
+      <section
         className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-black transition-colors"
         aria-labelledby="cta-heading"
       >

@@ -13,7 +13,7 @@ function getBaseUrl() {
   if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_SITE_URL) {
     return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, '');
   }
-  return 'https://nearbypetcare.com';
+  return 'https://www.nearbypetcare.com';
 }
 
 function buildRobotsTxt() {
@@ -155,17 +155,17 @@ export default {
     const createEntry = (path, priority = 0.8, changeFrequency = 'weekly', lastModified, image, title, description) => {
       // Normalize image first - ensure it's always a valid string (never undefined or "undefined")
       const normalizedImage = normalizeImage(image);
-      
+
       // Use centralized utilities if available
       if (seoUtils && seoUtils.mergeSeo && seoUtils.makeSitemapEntry) {
         // Only pass image if it's a valid absolute HTTPS URL (Cloudinary URLs start with https://)
         // Strict validation: must be a valid HTTPS URL string
         let imageToPass = undefined;
-        if (normalizedImage && 
-            typeof normalizedImage === 'string' && 
-            normalizedImage.trim().length > 0 &&
-            normalizedImage.startsWith('https://') &&
-            normalizedImage !== '/og-image.png') {
+        if (normalizedImage &&
+          typeof normalizedImage === 'string' &&
+          normalizedImage.trim().length > 0 &&
+          normalizedImage.startsWith('https://') &&
+          normalizedImage !== '/og-image.png') {
           // Final validation: ensure it's a valid URL
           try {
             const testUrl = new URL(normalizedImage);
@@ -177,7 +177,7 @@ export default {
             imageToPass = undefined;
           }
         }
-        
+
         // Merge SEO data using centralized utility
         const merged = seoUtils.mergeSeo({
           title: title || path,
@@ -193,12 +193,12 @@ export default {
           changefreq: changeFrequency,
           lastmod: lastModified ? formatDate(lastModified) : undefined,
         });
-        
+
         // Image sitemap disabled - remove images array if present
         if (entry.images) {
           delete entry.images;
         }
-        
+
         return entry;
       }
 
@@ -350,18 +350,18 @@ export default {
 
         for (const categoryDir of categoryDirs) {
           const categoryPath = path.join(breedsDir, categoryDir);
-          
+
           // Add category page if it exists (e.g., /pet-breeds/birds, /pet-breeds/cats)
           const categoryPagePath = path.join(categoryPath, 'page.tsx');
           if (fs.existsSync(categoryPagePath)) {
             breedPages.push(createEntry(`/pet-breeds/${categoryDir}`, 0.8, 'monthly', now, '/og-image.png'));
           }
-          
+
           // Add individual breed pages
           const breedDirs = fs.readdirSync(categoryPath, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name);
-          
+
           for (const breedDir of breedDirs) {
             const breedPagePath = path.join(categoryPath, breedDir, 'page.tsx');
             if (fs.existsSync(breedPagePath)) {
@@ -377,7 +377,7 @@ export default {
     // Discover sub-pages under pet-* routes dynamically
     const petSubPages = [];
     const petRoutes = ['pet-health', 'pet-grooming', 'pet-training', 'pet-nutrition', 'pet-safety', 'pet-products', 'pet-adoption', 'pet-behavior', 'puppies-kittens', 'senior-pets'];
-    
+
     try {
       for (const route of petRoutes) {
         const routeDir = path.join(process.cwd(), 'app', route);
@@ -385,13 +385,13 @@ export default {
           const subDirs = fs.readdirSync(routeDir, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory())
             .map(dirent => dirent.name);
-          
+
           for (const subDir of subDirs) {
             // Skip if it's a Next.js special directory or already handled
             if (subDir.startsWith('_') || subDir === 'layout.tsx' || subDir === 'loading.tsx' || subDir === 'error.tsx') {
               continue;
             }
-            
+
             const subPagePath = path.join(routeDir, subDir, 'page.tsx');
             if (fs.existsSync(subPagePath)) {
               petSubPages.push(createEntry(`/${route}/${subDir}`, 0.7, 'monthly', now, '/og-image.png'));
@@ -404,7 +404,7 @@ export default {
     }
 
     const allPaths = [...staticRoutes, ...blogPages, ...tipPages, ...toolPages, ...breedPages, ...petSubPages];
-    
+
     // Submit URLs to IndexNow after sitemap generation
     // IndexNow allows instant notification to search engines (Bing, Yandex, etc.)
     // Note: This submits URLs from additionalPaths. The full sitemap (including auto-discovered routes)
@@ -413,23 +413,23 @@ export default {
       const INDEXNOW_API_URL = 'https://api.indexnow.org/IndexNow';
       const INDEXNOW_KEY = 'd482a54aae6e44a0b737708149ca3bce'; // From public/d482a54aae6e44a0b737708149ca3bce.txt
       const hostname = baseUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-      
+
       // Extract URLs from sitemap entries
       const urls = allPaths.map(entry => entry.loc);
-      
+
       // IndexNow supports up to 10,000 URLs per request
       const urlsToSubmit = urls.slice(0, 10000);
-      
+
       const payload = {
         host: hostname,
         key: INDEXNOW_KEY,
         urlList: urlsToSubmit,
       };
-      
+
       // Submit to IndexNow using Node.js https module (non-blocking, don't fail build if it fails)
       const apiUrl = new URL(INDEXNOW_API_URL);
       const postData = JSON.stringify(payload);
-      
+
       const options = {
         hostname: apiUrl.hostname,
         port: 443,
@@ -441,7 +441,7 @@ export default {
         },
         timeout: 10000, // 10 second timeout
       };
-      
+
       const req = https.request(options, (res) => {
         let data = '';
         res.on('data', (chunk) => { data += chunk; });
@@ -454,19 +454,19 @@ export default {
           }
         });
       });
-      
+
       req.on('error', (error) => {
         console.warn(`⚠️ IndexNow: Error submitting URLs - ${error.message}`);
       });
-      
+
       req.on('timeout', () => {
         req.destroy();
         console.warn(`⚠️ IndexNow: Request timeout after ${options.timeout}ms`);
       });
-      
+
       req.write(postData);
       req.end();
-      
+
       if (urls.length > 10000) {
         console.warn(`⚠️ IndexNow: ${urls.length} URLs exceed limit of 10,000. Submitted first 10,000 URLs.`);
       }
@@ -475,7 +475,7 @@ export default {
       // This prevents build failures if IndexNow is unavailable
       console.warn(`⚠️ IndexNow: Failed to submit URLs - ${e.message || 'Unknown error'}`);
     }
-    
+
     return allPaths;
   },
 };

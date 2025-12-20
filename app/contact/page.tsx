@@ -16,10 +16,10 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const supabase = createClient();
-      
+
       const { error } = await supabase
         .from('petcare_contact')
         .insert([
@@ -35,7 +35,7 @@ export default function ContactPage() {
       if (error) {
         throw error;
       }
-      
+
       // Success: Show success message and reset form
       alert('Thank you for your message! We will get back to you soon.');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
@@ -58,8 +58,8 @@ export default function ContactPage() {
     {
       icon: '✉️',
       title: 'Email',
-      content: 'info@nearbypetcare.com',
-      link: 'mailto:info@nearbypetcare.com'
+      content: 'trishuldn@gmail.com',
+      link: 'mailto:trishuldn@gmail.com'
     },
     {
       icon: '🌐',
@@ -91,7 +91,7 @@ export default function ContactPage() {
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'Customer Service',
-        email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@nearbypetcare.com',
+        email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'trishuldn@gmail.com',
         areaServed: 'US',
         availableLanguage: ['English']
       }

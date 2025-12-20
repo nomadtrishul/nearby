@@ -4,7 +4,7 @@
   "description": "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services from experienced professionals. Comprehensive guides and resources for pet owners.",
   "version": 1,
   "language": "en-US",
-  "lastUpdated": "2025-12-20T10:20:10.230Z",
+  "lastUpdated": "2025-12-20T12:57:42.255Z",
   "sections": [
     {
       "id": "core",
@@ -11560,6 +11560,7 @@
       ],
       "relations": {
         "childUrls": [
+          "https://nearbypetcare.com/comparisons/puppy-vs-kitten",
           "https://nearbypetcare.com/comparisons/royal-canin-vs-pedigree",
           "https://nearbypetcare.com/comparisons/wet-vs-dry-food"
         ],
@@ -11569,6 +11570,40 @@
           "https://nearbypetcare.com/pet-care-tips/how-to-transition-pet-from-puppy-kitten-to-adult-diet",
           "https://nearbypetcare.com/pet-care-tips/how-to-stop-excessive-barking-or-meowing",
           "https://nearbypetcare.com/pet-care-tips/how-to-socialize-puppy-kitten-properly"
+        ]
+      }
+    },
+    {
+      "url": "https://nearbypetcare.com/comparisons/puppy-vs-kitten",
+      "title": "Puppy vs Kitten: Which Pet is Right for You?",
+      "section": "comparisons",
+      "priority": "medium",
+      "summary": "Deciding between a puppy and a kitten? Compare costs, time commitment, lifestyle requirements, and training needs to find your perfect pet match.",
+      "tags": [
+        "comparisons",
+        "puppy",
+        "kitten",
+        "reviews",
+        "products"
+      ],
+      "contentType": "product",
+      "aiImportance": "supporting",
+      "intents": [
+        {
+          "id": "comparisons-product-main",
+          "description": "Primary intent: Users seeking information about puppy vs kitten: which pet is right for you?",
+          "exampleQueries": [
+            "How to puppy kitten: which?",
+            "What is puppy?",
+            "Guide to puppy kitten:"
+          ]
+        }
+      ],
+      "relations": {
+        "parentUrl": "https://nearbypetcare.com/comparisons",
+        "relatedUrls": [
+          "https://nearbypetcare.com/comparisons/royal-canin-vs-pedigree",
+          "https://nearbypetcare.com/comparisons/wet-vs-dry-food"
         ]
       }
     },
@@ -11602,6 +11637,7 @@
       "relations": {
         "parentUrl": "https://nearbypetcare.com/comparisons",
         "relatedUrls": [
+          "https://nearbypetcare.com/comparisons/puppy-vs-kitten",
           "https://nearbypetcare.com/comparisons/wet-vs-dry-food"
         ]
       }
@@ -11634,6 +11670,7 @@
       "relations": {
         "parentUrl": "https://nearbypetcare.com/comparisons",
         "relatedUrls": [
+          "https://nearbypetcare.com/comparisons/puppy-vs-kitten",
           "https://nearbypetcare.com/comparisons/royal-canin-vs-pedigree"
         ]
       }
