@@ -11,9 +11,9 @@ async function main() {
   try {
     console.log('🚀 Starting llms.json generation...');
     const outputPath = path.join(process.cwd(), 'llms.json');
-    
+
     await writeLLMSJson(outputPath);
-    
+
     // Verify file was created
     if (fs.existsSync(outputPath)) {
       const stats = fs.statSync(outputPath);

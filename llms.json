@@ -4,7 +4,7 @@
   "description": "Find trusted pet care services near you. Professional grooming, boarding, daycare, and training services from experienced professionals. Comprehensive guides and resources for pet owners.",
   "version": 1,
   "language": "en-US",
-  "lastUpdated": "2025-12-05T12:50:54.941Z",
+  "lastUpdated": "2025-12-20T10:20:10.230Z",
   "sections": [
     {
       "id": "core",
@@ -6475,11 +6475,11 @@
       "title": "Pet Health & Wellness Overview - Comprehensive Guide",
       "section": "core",
       "priority": "medium",
-      "summary": "Expert comprehensive guide to pet health and wellness management. Discover advanced preventive care strategies, early detection methodologies, and professional insights for optimal pet wellbeing and longevity.",
+      "summary": "Expert guide to pet health and wellness management. Discover comprehensive preventive care strategies, early detection methods, and professional insights for optimal pet wellbeing and longevity.",
       "tags": [
         "health",
-        "wellness-overview",
         "wellness",
+        "overview",
         "medical",
         "veterinary"
       ],
@@ -6488,9 +6488,9 @@
       "intents": [
         {
           "id": "core-article-main",
-          "description": "Primary intent: Users seeking information about pet health & wellness guide",
+          "description": "Primary intent: Users seeking information about pet health & wellness overview - comprehensive guide",
           "exampleQueries": [
-            "How to health wellness guide?",
+            "How to health wellness overview?",
             "What is health?",
             "Guide to health wellness",
             "health health",
