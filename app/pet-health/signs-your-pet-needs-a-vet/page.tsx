@@ -131,7 +131,7 @@ export default function SignsYourPetNeedsVetPage() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/50 rounded-full shadow-sm">
               <span className="text-2xl">⚠️</span>
-              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Emergency Signs</span>
+              <span className="text-sm font-semibold text-blue-700 dark:text-blue-300">Critical Emergency Signs</span>
             </div>
             
             {/* Icon */}
@@ -146,22 +146,22 @@ export default function SignsYourPetNeedsVetPage() {
             
             {/* Description */}
             <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
-              Learn to recognize the warning signs that indicate your pet needs immediate veterinary attention. Early recognition of symptoms can make a critical difference in your pet's health and recovery.
+              Master the critical warning signs that demand immediate veterinary attention. Early recognition of symptoms and prompt professional intervention can mean the difference between a manageable health condition and irreversible organ damage or death. This expert guide provides the evidence-based knowledge every responsible pet owner needs to protect their companion's life and wellbeing.
             </p>
             
             {/* Stats or highlights */}
             <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-10">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">🚨</span>
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Emergency Signs</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Life-Threatening Emergencies</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl">👀</span>
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Early Detection</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Early Detection Matters</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-2xl">⚡</span>
-                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Quick Action</span>
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-400">Rapid Professional Care</span>
               </div>
             </div>
           </div>
@@ -175,212 +175,225 @@ export default function SignsYourPetNeedsVetPage() {
             <div className="lg:col-span-2">
               <div className="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-              Recognizing when your pet needs veterinary care is crucial for their health and wellbeing. This comprehensive guide helps you identify symptoms that require immediate attention versus those that can wait for a regular appointment. Early recognition and prompt veterinary care can make a significant difference in treatment outcomes and your pet's recovery.
+              Identifying when your pet requires veterinary intervention represents one of the most critical responsibilities of pet ownership. The capacity to distinguish between conditions demanding emergency intervention and those suitable for scheduled appointments directly impacts your pet's survival and recovery trajectory. This comprehensive resource provides evidence-based guidance to help you recognize warning signs that necessitate immediate professional attention—potentially preventing irreversible organ damage, permanent disability, or death. Swift recognition combined with rapid veterinary intervention consistently yields the most favorable outcomes across virtually all acute health conditions.
             </p>
 
             <div className="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 my-6">
               <p className="text-gray-700 dark:text-gray-300 font-bold mb-2">Seek Immediate Emergency Care For:</p>
               <ul className="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-1">
-                <li>Difficulty breathing or severe respiratory distress</li>
-                <li>Unconsciousness or collapse</li>
-                <li>Severe bleeding that won't stop</li>
-                <li>Suspected poisoning</li>
-                <li>Seizures or convulsions</li>
-                <li>Severe trauma or injury</li>
-                <li>Inability to urinate (especially in male cats - this is a life-threatening emergency)</li>
-                <li>Severe vomiting or diarrhea with blood</li>
-                <li>Signs of extreme pain or distress</li>
+                <li>Difficulty breathing, gasping, or respiratory distress of any severity</li>
+                <li>Loss of consciousness, collapse, or inability to stand or respond</li>
+                <li>Uncontrolled bleeding unresponsive to direct pressure</li>
+                <li>Suspected poisoning or confirmed toxic exposure</li>
+                <li>Seizures, convulsions, or involuntary muscle activity</li>
+                <li>Severe trauma from accidents, falls, or attacks</li>
+                <li>Inability to urinate (life-threatening emergency in male cats)</li>
+                <li>Bloody vomit or hemoptysis (coughing blood)</li>
+                <li>Extreme pain, severe distress, or acute behavioral crisis</li>
+                <li>Suspected bloat, gastric torsion, or severe abdominal distension</li>
               </ul>
             </div>
 
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Understanding Emergency vs. Non-Emergency Situations</h2>
             <p className="mb-4">
-              Not all health concerns require immediate emergency care, but knowing the difference can help you respond appropriately. Emergency situations are those that could be life-threatening or cause permanent damage if not addressed immediately. Non-emergency situations still require veterinary attention but can typically wait for a scheduled appointment.
+              The fundamental distinction between veterinary emergencies and non-emergencies centers on the risk of irreversible organ damage, permanent loss of function, or death. True emergencies involve pathology where delayed treatment—even by hours—results in catastrophic consequences. Non-emergency conditions, although requiring professional evaluation and treatment, do not carry immediate life-threatening risk and can generally be managed through scheduled appointments.
             </p>
             <p className="mb-4">
-              When in doubt, it's always better to err on the side of caution and contact your veterinarian or emergency clinic. They can help you determine whether your pet needs immediate care or can wait for a regular appointment.
+              For pet owners, the challenge lies in accurately categorizing symptoms. When diagnostic uncertainty exists, the conservative approach is invariably appropriate. Contact your veterinarian or nearest emergency facility for professional triage assessment. Experienced veterinary professionals can evaluate symptom descriptions via phone and provide authoritative guidance regarding appropriate care levels. Many emergency clinics maintain dedicated triage personnel specifically to assist with these determinations.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Life-Threatening Emergency Signs</h2>
             <p className="mb-4">
-              These signs require immediate emergency veterinary care. Do not wait - contact your veterinarian or emergency clinic right away:
+              The following presentations represent situations where your pet's life is in immediate jeopardy. These conditions require emergency veterinary intervention without delay. Contact your veterinarian or nearest 24-hour emergency veterinary facility immediately—do not delay for regular business hours or morning appointments. In these situations, minutes represent a critical treatment variable directly affecting survival and prognosis.
             </p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Difficulty Breathing</h3>
-            <p className="mb-3">Signs of breathing problems include:</p>
+            <p className="mb-3">Respiratory distress represents a true emergency requiring immediate professional evaluation. Observe for these specific indicators of compromised oxygenation and ventilation:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Rapid, shallow, or labored breathing</li>
-              <li>Open-mouth breathing in cats (cats rarely pant like dogs)</li>
-              <li>Blue or pale gums</li>
-              <li>Gasping for air</li>
-              <li>Wheezing or choking sounds</li>
-              <li>Inability to catch breath</li>
+              <li>Rapid breathing at rest exceeding 30 breaths per minute, accompanied by visible respiratory effort or strain</li>
+              <li>Open-mouth breathing in cats, which is abnormal and never represents thermoregulation in felines</li>
+              <li>Pale, gray, or cyanotic (blue) gums or mucous membranes indicating hypoxemia</li>
+              <li>Gasping, wheezing, or stridor during respiration</li>
+              <li>Inability to achieve normal breathing pattern during rest</li>
+              <li>Marked nostril flaring with each respiratory cycle</li>
+              <li>Rib retractions or abdominal effort accompanying respiration</li>
             </ul>
-            <p className="mb-4">Breathing problems can indicate serious conditions like heart failure, respiratory disease, or airway obstruction and require immediate attention.</p>
+            <p className="mb-4">Respiratory compromise originates from serious underlying pathology including congestive heart failure, bacterial or viral pneumonia, pulmonary edema, foreign body airway obstruction, pneumothorax, or pleural effusion. Any evidence of breathing difficulty mandates emergency evaluation. During transport, minimize stress and agitation, as anxiety can worsen respiratory distress. If available, supplemental oxygen administration during transit can improve tissue oxygenation. Handle your pet gently and maintain a calm demeanor during the journey to the emergency facility.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Collapse or Unconsciousness</h3>
-            <p className="mb-3">If your pet collapses or loses consciousness:</p>
+            <p className="mb-3">Loss of consciousness or acute collapse invariably indicates serious systemic illness or traumatic injury demanding emergency intervention:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>This is always an emergency</li>
-              <li>Can indicate heart problems, severe illness, or trauma</li>
-              <li>Requires immediate veterinary care</li>
-              <li>Keep your pet calm and transport carefully to a veterinarian</li>
+              <li>Any period of unconsciousness or unresponsiveness requires emergency assessment</li>
+              <li>Collapse may indicate critical cardiac arrhythmias, hypovolemic shock from internal bleeding, severe infection, or acute neurological compromise</li>
+              <li>Transport to a veterinary facility must occur immediately without delay for further observation</li>
+              <li>Support the head and spine during transport, particularly if trauma is suspected</li>
+              <li>Maintain airway patency if possible, but avoid mouth-to-snout contact</li>
+              <li>Monitor breathing and heart rate during transport and report findings to the emergency clinic</li>
             </ul>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Severe Bleeding</h3>
-            <p className="mb-3">Seek immediate care for:</p>
+            <p className="mb-3">Uncontrolled hemorrhage mandates immediate intervention to prevent fatal blood volume loss:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Bleeding that won't stop with direct pressure</li>
-              <li>Bleeding from the nose, mouth, or rectum</li>
-              <li>Blood in urine or vomit</li>
-              <li>Severe wounds or trauma</li>
+              <li>Bleeding from wounds that continues despite 10+ minutes of direct pressure application</li>
+              <li>Any spontaneous bleeding from nose, mouth, or rectum, indicating serious internal pathology</li>
+              <li>Blood in vomit (hematemesis) or stool (hematochezia), suggesting gastrointestinal hemorrhage</li>
+              <li>Hematuria (blood in urine) or blood in the urinary system</li>
+              <li>Severe wounds, lacerations, or traumatic injuries with active ongoing bleeding</li>
+              <li>Puncture wounds from animal bites, which carry high risk of serious internal damage</li>
             </ul>
-            <p className="mb-4">Apply direct pressure while transporting to a veterinarian. Do not remove impaled objects - stabilize them and seek immediate care.</p>
+            <p className="mb-4">Apply firm, continuous direct pressure to bleeding wounds using clean cloth or gauze while transporting immediately to a veterinarian. Never remove impaled objects—stabilize them in place with additional gauze or padding and transport carefully. Bite wounds and puncture injuries warrant professional evaluation even when external bleeding appears minor, as serious internal organ damage may not be immediately apparent. Internal hemorrhage can progress rapidly and prove fatal without intervention. Contact an emergency clinic immediately when you discover any significant bleeding.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Inability to Urinate (Especially Male Cats)</h3>
-            <p className="mb-3">This is a life-threatening emergency, especially in male cats:</p>
+            <p className="mb-3">Urinary obstruction constitutes one of the highest-severity veterinary emergencies, particularly in male cats:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Straining to urinate with little or no urine produced</li>
-              <li>Frequent attempts to urinate</li>
-              <li>Signs of pain or distress</li>
-              <li>Can lead to kidney failure and death if not treated immediately</li>
+              <li>Straining in the litter box with minimal or absent urine output—this differs fundamentally from simple urinary tract infection</li>
+              <li>Repeated unsuccessful attempts to urinate occurring over hours</li>
+              <li>Vocalization, pain, or visible distress during urination attempts</li>
+              <li>Abdominal pain, distension, or hardness on palpation</li>
+              <li>Progression to untreated blockade results in acute kidney failure, hyperkalemia-induced cardiac arrhythmias, and death within 24-48 hours</li>
             </ul>
-            <p className="mb-4">This requires immediate emergency veterinary care - do not wait.</p>
+            <p className="mb-4">Male cats remain uniquely susceptible to urethral obstruction due to anatomical narrowness of the male urethra and predisposition to urinary crystal formation. This condition is invariably life-threatening and requires emergency catheterization and supportive care. Do not assume your cat simply requires additional time in the litter box or dietary modification. Seek emergency veterinary care immediately—delay results in preventable, catastrophic outcomes. Time is absolutely critical with this condition.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Seizures</h3>
-            <p className="mb-3">Seek immediate care if:</p>
+            <p className="mb-3">Seizure activity indicates significant underlying neurological pathology requiring urgent professional assessment:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Seizure lasts more than a few minutes</li>
-              <li>Multiple seizures occur in a short time</li>
-              <li>Your pet doesn't recover between seizures</li>
-              <li>It's your pet's first seizure</li>
+              <li>Any seizure lasting longer than 5 minutes mandates emergency assessment</li>
+              <li>Multiple seizures in rapid succession (cluster seizures) or continued seizure activity between episodes requires immediate intervention</li>
+              <li>Status epilepticus—continuous seizure activity or inability to recover between episodes—represents a neurological emergency causing potential irreversible brain damage</li>
+              <li>A first-time seizure in a previously normal pet warrants urgent veterinary evaluation</li>
+              <li>Seizures may originate from idiopathic epilepsy, toxin exposure, metabolic derangement, intracranial infection, or structural brain disease</li>
             </ul>
-            <p className="mb-4">Even single, brief seizures should be evaluated by a veterinarian as soon as possible.</p>
+            <p className="mb-4">During a seizure, move your pet away from hazards to prevent injury, maintain airway patency without placing objects in the mouth, and note the seizure's duration. Seek veterinary care immediately, even for single brief seizures, as this often represents a treatable underlying condition. Recurrent seizures typically require chronic maintenance therapy to prevent future episodes. Your veterinarian may recommend diagnostic imaging and bloodwork to identify the underlying etiology.</p>
 
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Common Signs Requiring Veterinary Attention</h2>
             <p className="mb-4">
-              These signs indicate your pet needs veterinary care. While not always emergencies, they should be addressed promptly:
+              Although these signs do not necessarily constitute emergencies, they indicate underlying health issues warranting professional veterinary assessment. Prompt evaluation—within 24-48 hours—is important to establish diagnosis and initiate appropriate treatment before conditions progress or worsen.
             </p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Loss of Appetite</h3>
-            <p className="mb-3">When to be concerned:</p>
+            <p className="mb-3">Changes in eating behavior frequently represent early warning indicators of systemic illness requiring investigation:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Complete loss of appetite for more than 24 hours</li>
-              <li>Reduced appetite lasting more than 2-3 days</li>
-              <li>Loss of appetite combined with other symptoms</li>
-              <li>Sudden change in eating habits</li>
+              <li>Complete refusal to eat lasting more than 24 hours in cats or 48 hours in dogs</li>
+              <li>Significantly diminished appetite persisting beyond 2-3 days despite behavioral normalcy</li>
+              <li>Selective appetite loss (refusing preferred foods) combined with other systemic symptoms</li>
+              <li>Acute change in eating patterns or food preferences in a previously normal pet</li>
+              <li>Accompanying weight loss despite apparent normal appetite</li>
             </ul>
-            <p className="mb-4">While a single missed meal may not be concerning, persistent loss of appetite can indicate serious health problems and should be evaluated by a veterinarian.</p>
+            <p className="mb-4">Anorexia frequently represents an early manifestation of serious underlying conditions including bacterial or viral infections, gastrointestinal pathology, metabolic disorders, dental disease, or neoplasia. While a single missed meal in an otherwise healthy pet may prove unremarkable, persistent inappetence warrants professional investigation. Cats face particular vulnerability to hepatic lipidosis—a serious and potentially fatal liver condition that develops within 48-72 hours of inadequate food intake—making prompt veterinary assessment critical for feline patients.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Vomiting or Diarrhea</h3>
-            <p className="mb-3">Seek veterinary care if:</p>
+            <p className="mb-3">Gastrointestinal upset can indicate anything from minor dietary indiscretion to serious systemic illness:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Vomiting or diarrhea persists for more than 24 hours</li>
-              <li>Blood is present in vomit or stool</li>
-              <li>Your pet appears dehydrated (dry gums, sunken eyes, lethargy)</li>
-              <li>Vomiting or diarrhea is severe or frequent</li>
-              <li>Accompanied by other symptoms like lethargy or loss of appetite</li>
+              <li>Vomiting or diarrhea persisting longer than 24 hours despite fasting or dietary modification</li>
+              <li>Presence of blood in vomit (fresh red hemorrhage or coffee-ground appearance) or fecal material</li>
+              <li>Obvious signs of dehydration including dry mucous membranes, sunken eyes, loss of skin turgor, or marked lethargy</li>
+              <li>Severe, frequent, or projectile vomiting, or profuse diarrhea occurring multiple times daily</li>
+              <li>Vomiting or diarrhea accompanied by fever, abdominal pain, significant lethargy, or loss of appetite</li>
             </ul>
-            <p className="mb-4">Occasional vomiting or diarrhea may not be serious, but persistent or severe cases require veterinary attention.</p>
+            <p className="mb-4">Acute gastrointestinal upset can result from dietary indiscretion, viral or bacterial infection, parasitism, foreign body ingestion, medication adverse effects, or serious systemic disease. Persistent vomiting or diarrhea rapidly causes dehydration and critical electrolyte imbalances, particularly dangerous in young, geriatric, or small-breed animals. Hemorrhagic gastroenteritis always warrants immediate assessment. Your veterinarian can determine if bloodwork, imaging, or advanced diagnostics are indicated based on clinical presentation.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Lethargy or Unusual Behavior</h3>
-            <p className="mb-3">Watch for:</p>
+            <p className="mb-3">Behavioral changes and reduced activity levels frequently signal systemic illness requiring investigation:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Unusual tiredness or lack of energy</li>
-              <li>Reluctance to move or exercise</li>
-              <li>Hiding or withdrawal from normal activities</li>
-              <li>Changes in personality or behavior</li>
-              <li>Confusion or disorientation</li>
+              <li>Profound fatigue or unusual lack of energy exceeding normal rest or sleep patterns</li>
+              <li>Refusal or significant reluctance to engage in normal activities, exercise, or play behaviors</li>
+              <li>Hiding behavior or withdrawal from family interactions representing changes from baseline personality</li>
+              <li>Personality changes, uncharacteristic aggression, anxiety, or marked behavioral shifts</li>
+              <li>Confusion, disorientation, failure to recognize owners, or inability to respond to commands</li>
             </ul>
-            <p className="mb-4">While some lethargy can be normal (after exercise, in hot weather), persistent or severe lethargy, especially combined with other symptoms, warrants veterinary evaluation.</p>
+            <p className="mb-4">While expected lethargy follows vigorous exercise or occurs in warm weather, persistent lethargy or behavioral changes—especially combined with other symptoms—warrant veterinary evaluation. These changes may indicate pain, infection, metabolic disease, endocrine dysfunction, neurological disorder, or other serious pathology. Subtle behavioral changes often represent the earliest detectable sign of developing illness, making careful observation of your pet's normal behavior and personality essential for early detection of disease.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Difficulty Urinating or Defecating</h3>
-            <p className="mb-3">Seek care if your pet:</p>
+            <p className="mb-3">Changes in elimination patterns or difficulty with toileting require prompt professional assessment:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Strains to urinate or defecate</li>
-              <li>Cries or shows pain when urinating or defecating</li>
-              <li>Has blood in urine or stool</li>
-              <li>Urinates or defecates more or less frequently than normal</li>
-              <li>Has accidents in the house (if previously house-trained)</li>
+              <li>Straining, tension, or visible discomfort during urination or defecation</li>
+              <li>Vocalization, crying, or obvious pain during elimination</li>
+              <li>Visible blood in urine or stool</li>
+              <li>Significant changes in urination or defecation frequency compared to your pet's baseline pattern</li>
+              <li>House soiling or inappropriate elimination in a previously housetrained pet</li>
+              <li>Ability to produce only minimal amounts of urine or stool despite apparent effort</li>
             </ul>
-            <p className="mb-4">Remember: inability to urinate in male cats is a life-threatening emergency requiring immediate care.</p>
+            <p className="mb-4">Difficulty with elimination can indicate urinary tract infection, bladder or kidney stones, constipation, anal gland impaction, inflammatory bowel disease, or other conditions. Critical reminder: inability to urinate in male cats represents a life-threatening emergency requiring immediate emergency care. For other cases, symptoms persisting beyond 24 hours warrant veterinary evaluation. Your veterinarian can perform urinalysis, bloodwork, and imaging to identify underlying etiology and recommend appropriate treatment.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Excessive Drinking or Urination</h3>
-            <p className="mb-3">Increased thirst and urination can indicate:</p>
+            <p className="mb-3">Increased thirst or urination often represent early manifestations of serious metabolic or systemic disease:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Diabetes</li>
-              <li>Kidney disease</li>
-              <li>Urinary tract infections</li>
-              <li>Hormonal disorders</li>
-              <li>Other serious health conditions</li>
+              <li>Significant increases in water consumption compared to your pet's baseline drinking behavior</li>
+              <li>Markedly increased urination frequency or notably larger urine volumes</li>
+              <li>House soiling or accidents in previously housetrained pets or substantial changes in elimination patterns</li>
+              <li>These signs commonly indicate diabetes mellitus, diabetes insipidus, chronic kidney disease, or urinary tract infection</li>
+              <li>Hyperadrenocorticism (Cushing's disease) frequently presents with polydipsia and polyuria</li>
             </ul>
-            <p className="mb-4">If you notice a significant increase in drinking or urination, schedule a veterinary appointment for evaluation.</p>
+            <p className="mb-4">While environmental factors such as increased exercise or warmer weather can temporarily increase water intake and urination, persistent changes warrant professional investigation. These signs, particularly in middle-aged and older pets, often indicate manageable chronic conditions that benefit significantly from early diagnosis and treatment initiation. Your veterinarian will likely recommend bloodwork and urinalysis to identify the underlying cause and establish appropriate management.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Visible Pain or Discomfort</h3>
-            <p className="mb-3">Signs of pain include:</p>
+            <p className="mb-3">Pain manifests through diverse behavioral and physical changes that mandate professional assessment and intervention:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Limping or favoring a limb</li>
-              <li>Reluctance to move or jump</li>
-              <li>Vocalizing (whining, crying, growling)</li>
-              <li>Changes in posture or movement</li>
-              <li>Guarding a body part</li>
-              <li>Aggression when touched in a specific area</li>
+              <li>Limping, lameness, or obvious favoring of one or more limbs during movement</li>
+              <li>Reluctance or inability to jump, climb stairs, or engage in normal movement patterns</li>
+              <li>Vocalization including whining, crying, growling, or other unusual sounds</li>
+              <li>Postural changes including hunched posture, reluctance to stand, or inability to find comfortable positions</li>
+              <li>Guarding behavior—protective reaction or avoidance when specific body areas are touched</li>
+              <li>Aggression or defensive behavior when specific anatomical regions are palpated or manipulated</li>
+              <li>Gait abnormalities, coordination problems, or unusual postures</li>
             </ul>
-            <p className="mb-4">Do not give human pain medications to pets - many are toxic. Contact your veterinarian for appropriate pain management.</p>
+            <p className="mb-4">Pain significantly compromises quality of life and can substantially impede recovery from underlying conditions. Never administer human pain medications or over-the-counter analgesics to pets, as many produce serious toxicity in animals. Aspirin, ibuprofen, acetaminophen, and other common human pain relievers cause gastrointestinal hemorrhage, liver damage, or acute kidney injury in pets. Contact your veterinarian for proper pain assessment and appropriate pain management, which may include prescription analgesics, physical therapy, or lifestyle modifications tailored to your pet's specific needs and underlying condition.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Changes in Breathing Patterns</h3>
-            <p className="mb-3">Be concerned if you notice:</p>
+            <p className="mb-3">Alterations in respiratory characteristics can indicate serious cardiac, pulmonary, or systemic disease requiring assessment:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Rapid or shallow breathing at rest</li>
-              <li>Coughing that persists</li>
-              <li>Wheezing or labored breathing</li>
-              <li>Open-mouth breathing in cats</li>
-              <li>Blue or pale gums</li>
+              <li>Rapid or shallow breathing at rest without environmental explanation such as exercise or ambient temperature</li>
+              <li>Persistent coughing that does not resolve within several days or progressively worsens</li>
+              <li>Wheezing, stridor, or abnormal sounds associated with respiration</li>
+              <li>Labored breathing with visible respiratory effort</li>
+              <li>Open-mouth breathing in cats (abnormal and never normal thermoregulation in felines)</li>
+              <li>Pale or bluish discoloration of gums or mucous membranes indicating compromised oxygenation</li>
             </ul>
-            <p className="mb-4">Any breathing difficulties should be evaluated promptly, as they can indicate serious respiratory or cardiac problems.</p>
+            <p className="mb-4">Respiratory changes may originate from infection, inflammation, structural abnormalities, cardiac disease, or metabolic derangement. While occasional coughing can result from minor irritation, progressive or persistent coughing warrants investigation as it frequently represents early manifestation of serious cardiopulmonary disease. This is particularly important in older pets or breeds with genetic predisposition to heart disease. Prompt evaluation can identify treatable conditions before they progress to respiratory crisis or cardiopulmonary failure.</p>
 
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mt-6 mb-3">Changes in Weight</h3>
-            <p className="mb-3">Unexplained weight changes can indicate health problems:</p>
+            <p className="mb-3">Unexplained weight changes frequently signal underlying systemic disease warranting investigation:</p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Sudden weight loss (especially if eating normally)</li>
-              <li>Rapid weight gain</li>
-              <li>Changes in body condition</li>
+              <li>Sudden or rapid weight loss, particularly when appetite and food intake remain normal or increased</li>
+              <li>Unintentional weight gain despite normal or reduced food intake</li>
+              <li>Visible changes in body condition, musculature definition, or abdominal appearance</li>
+              <li>Weight loss exceeding 10 percent of body weight warrants urgent evaluation</li>
             </ul>
-            <p className="mb-4">Weight changes, especially when combined with other symptoms, should be evaluated by a veterinarian.</p>
+            <p className="mb-4">Weight loss accompanied by normal or increased appetite suggests metabolic disease such as hyperthyroidism, diabetes mellitus, or malabsorption disorders. Weight loss with concurrent decreased appetite may indicate systemic illness, neoplasia, or gastrointestinal pathology. Unintended weight gain despite normal intake can indicate hypothyroidism, metabolic syndrome, or cardiac compromise. Your veterinarian can assess body condition score and recommend appropriate diagnostics based on the pattern of weight change and accompanying clinical signs.</p>
 
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">When to Schedule a Regular Appointment</h2>
             <p className="mb-4">
-              Some symptoms, while not emergencies, still require veterinary attention. Schedule an appointment if your pet shows:
+              Many health concerns benefit from professional evaluation without requiring emergency care. Schedule a veterinary appointment within several days for these conditions:
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Mild digestive issues that persist for more than 24-48 hours</li>
-              <li>Minor skin irritations or changes</li>
-              <li>Mild behavioral changes</li>
-              <li>Gradual changes in appetite, energy, or weight</li>
-              <li>Minor limping or stiffness</li>
-              <li>Changes in drinking or urination habits</li>
-              <li>Any concerns about your pet's health or behavior</li>
+              <li>Mild digestive upset (single vomiting or diarrhea episodes) resolving within 24-48 hours</li>
+              <li>Mild skin irritations, localized hair loss, or dermatological changes without systemic symptoms</li>
+              <li>Subtle behavioral changes or mild appetite changes lasting 1-2 days</li>
+              <li>Gradual changes in appetite, energy level, or weight developing over weeks or months</li>
+              <li>Minor limping or stiffness that does not progress or worsen</li>
+              <li>Gradual changes in drinking or urination habits</li>
+              <li>Any concerns about your pet's health, behavior, or development—early assessment prevents progression</li>
             </ul>
 
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">Monitoring Your Pet's Health</h2>
             <p className="mb-4">
-              Regular monitoring helps you notice changes early. Pay attention to:
+              Establishing baseline knowledge of what is normal for your individual pet enables prompt recognition of abnormal changes. Close observation and attention to these parameters facilitates early detection of emerging health issues while they remain manageable:
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
-              <li>Eating and drinking habits</li>
-              <li>Energy levels and activity</li>
-              <li>Behavior and personality</li>
-              <li>Appearance (coat, eyes, skin)</li>
-              <li>Elimination habits</li>
-              <li>Breathing patterns</li>
-              <li>Weight and body condition</li>
+              <li>Daily eating and drinking amounts—understand what constitutes normal intake for your specific pet</li>
+              <li>Energy levels, activity patterns, and exercise tolerance throughout daily cycles and seasons</li>
+              <li>Personality traits, behavioral patterns, and normal responses to routine activities</li>
+              <li>Coat quality, skin integrity, eye clarity, and ear health and appearance</li>
+              <li>Elimination habits including urination and bowel movement frequency, consistency, and appearance</li>
+              <li>Breathing patterns and respiratory rate during rest and activity</li>
+              <li>Body weight and body condition score—familiarity with normal body shape aids early weight change detection</li>
             </ul>
             <p className="mb-4">
-              Knowing what's normal for your pet makes it easier to recognize when something is wrong. When in doubt, consult with your veterinarian.
+              Pet owners who understand their individual animal's baseline characteristics represent the first line of defense in detecting emerging health issues. Subtle changes apparent to someone observing a pet daily might be missed during brief veterinary visits. When you notice deviations from your pet's baseline, trust your instincts and contact your veterinarian for guidance. Early intervention frequently prevents minor issues from developing into serious conditions requiring intensive treatment.
             </p>
 
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 my-6">
-              <p className="text-gray-700 dark:text-gray-300"><strong>Remember:</strong> This guide provides general information about when to seek veterinary care. Every pet is different, and symptoms can vary. When in doubt, it's always better to contact your veterinarian for guidance. Early intervention often leads to better outcomes and can prevent conditions from becoming more serious.</p>
+              <p className="text-gray-700 dark:text-gray-300"><strong>Important Medical Disclaimer:</strong> This guide provides general medical information regarding when to seek veterinary care. Individual pets present unique variations in health status, breed predispositions, age-related factors, and symptom presentations. Every animal's health situation remains distinct and may warrant individualized assessment beyond this general guidance. When uncertainty exists regarding the need for veterinary care, contact your veterinarian directly for professional evaluation and recommendation. Veterinary professionals possess the expertise to assess your pet's specific situation and recommend appropriate level of care. Early intervention and preventive medicine consistently produce superior health outcomes and frequently reduce overall treatment costs by preventing progression to severe disease or system failure.</p>
             </div>
           </div>
 

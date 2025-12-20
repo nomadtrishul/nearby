@@ -46,8 +46,9 @@ export default function PetHealthPage() {
     name: 'Pet Health & Wellness Guide',
     description: 'Comprehensive guide to pet health and wellness, including disease prevention, vaccinations, first aid, and maintaining your pet\'s health.',
     url: '/pet-health',
-    numberOfItems: 9,
+    numberOfItems: 10,
     items: [
+      { name: 'Pet Health & Wellness Overview', url: '/pet-health/pet-health-and-wellness-overview' },
       { name: 'Common Pet Diseases', url: '/pet-health/common-diseases' },
       { name: 'Vaccination Schedules', url: '/pet-health/vaccination-schedules' },
       { name: 'Parasite Control', url: '/pet-health/parasite-control-ticks-fleas-worms' },
@@ -79,6 +80,7 @@ export default function PetHealthPage() {
     { title: 'Mental Health & Anxiety', href: '/pet-health/mental-health-anxiety', icon: '🧠', description: 'Understand pet anxiety, stress, and mental health issues, plus effective management strategies.' },
     { title: 'Diagnostics & Tests', href: '/pet-health/diagnostics-and-tests', icon: '🔬', description: 'Learn about common veterinary diagnostic tests and what they mean for your pet\'s health.' },
     { title: 'Seasonal Health Tips', href: '/pet-health/seasonal-health-tips', icon: '🌤️', description: 'Season-specific health care tips to keep your pet healthy throughout the year.' },
+    { title: 'Pet Health & Wellness Overview', href: '/pet-health/pet-health-and-wellness-overview', icon: '💊', description: 'Comprehensive guide to pet health and wellness, including disease prevention, vaccinations, first aid, and maintaining your pet\'s health.' },
   ];
 
   return (

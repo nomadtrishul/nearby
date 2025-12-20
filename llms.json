@@ -5852,7 +5852,7 @@
           "https://nearbypetcare.com/pet-health/first-aid-for-pets",
           "https://nearbypetcare.com/pet-health/mental-health-anxiety",
           "https://nearbypetcare.com/pet-health/parasite-control-ticks-fleas-worms",
-          "https://nearbypetcare.com/pet-health/pillar",
+          "https://nearbypetcare.com/pet-health/pet-health-and-wellness-overview",
           "https://nearbypetcare.com/pet-health/seasonal-health-tips",
           "https://nearbypetcare.com/pet-health/signs-your-pet-needs-a-vet",
           "https://nearbypetcare.com/pet-health/skin-and-coat-health",
@@ -6471,14 +6471,14 @@
       }
     },
     {
-      "url": "https://nearbypetcare.com/pet-health/pillar",
-      "title": "Pet Health & Wellness Guide",
+      "url": "https://nearbypetcare.com/pet-health/pet-health-and-wellness-overview",
+      "title": "Pet Health & Wellness Overview - Comprehensive Guide",
       "section": "core",
       "priority": "medium",
-      "summary": "Comprehensive overview of pet health and wellness topics. Learn about maintaining your pet\\",
+      "summary": "Expert comprehensive guide to pet health and wellness management. Discover advanced preventive care strategies, early detection methodologies, and professional insights for optimal pet wellbeing and longevity.",
       "tags": [
         "health",
-        "pillar",
+        "wellness-overview",
         "wellness",
         "medical",
         "veterinary"
